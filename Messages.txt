@@ -1,40 +1,37 @@
-: <TypeName>, <Deserialize Method>
-Conv: bool    , CommandDeserializer.DeserializeBool    (value);
-Conv: sbyte   , CommandDeserializer.DeserializeInt8    (value);
-Conv: byte    , CommandDeserializer.DeserializeUInt8   (value);
-Conv: short   , CommandDeserializer.DeserializeInt16   (value);
-Conv: ushort  , CommandDeserializer.DeserializeUInt16  (value);
-Conv: int     , CommandDeserializer.DeserializeInt32   (value);
-Conv: uint    , CommandDeserializer.DeserializeUInt32  (value);
-Conv: long    , CommandDeserializer.DeserializeInt64   (value);
-Conv: ulong   , CommandDeserializer.DeserializeUInt64  (value);
-Conv: float   , CommandDeserializer.DeserializeSingle  (value);
-Conv: double  , CommandDeserializer.DeserializeDouble  (value);
-Conv: string  , CommandDeserializer.DeserializeString  (value);
-Conv: DateTime, CommandDeserializer.DeserializeDateTime(value);
-: Enums
-Conv: Codec                      , CommandDeserializer.DeserializeEnum<Codec>(value);
-Conv: HostMessageMode            , CommandDeserializer.DeserializeEnum<HostMessageMode>(value);
-Conv: CodecEncryptionMode        , CommandDeserializer.DeserializeEnum<CodecEncryptionMode>(value);
-Conv: HostBannerMode             , CommandDeserializer.DeserializeEnum<HostBannerMode>(value);
-Conv: MoveReason                 , CommandDeserializer.DeserializeEnum<MoveReason>(value);
-Conv: ClientType                 , CommandDeserializer.DeserializeEnum<ClientType>(value);
-Conv: TextMessageTargetMode      , CommandDeserializer.DeserializeEnum<TextMessageTargetMode>(value);
-Conv: PermissionGroupDatabaseType, CommandDeserializer.DeserializeEnum<PermissionGroupDatabaseType>(value);
-Conv: GroupNamingMode            , CommandDeserializer.DeserializeEnum<GroupNamingMode>(value);
-Conv: Ts3ErrorCode               , (Ts3ErrorCode)CommandDeserializer.DeserializeUInt16(value);
-Conv: PermissionId               , (PermissionId)CommandDeserializer.DeserializeInt32(value);
-: Custom Id Names
-Conv: ClientUidT       , CommandDeserializer.DeserializeString(value);
-Conv: ClientDbIdT      , CommandDeserializer.DeserializeUInt64(value);
-Conv: ClientIdT        , CommandDeserializer.DeserializeUInt16(value);
-Conv: ChannelIdT       , CommandDeserializer.DeserializeUInt64(value);
-Conv: ServerGroupIdT   , CommandDeserializer.DeserializeUInt64(value);
-Conv: ChannelGroupIdT  , CommandDeserializer.DeserializeUInt64(value);
-Conv: ServerGroupIdT[] , CommandDeserializer.DeserializeArray(value, CommandDeserializer.DeserializeUInt64);
-Conv: TimeSpanSecondsT , CommandDeserializer.DeserializeTimeSpanSeconds(value);
-Conv: TimeSpanMillisecT, CommandDeserializer.DeserializeTimeSpanMillisec(value);
-Conv: IconHash,          (int)CommandDeserializer.DeserializeInt64(value);
+: <TypeName>
+Type: bool
+Type: sbyte
+Type: byte
+Type: short
+Type: ushort
+Type: int
+Type: uint
+Type: long
+Type: ulong
+Type: float
+Type: double
+Type: string
+Type: DateTime
+Type: Codec
+Type: HostMessageMode
+Type: CodecEncryptionMode
+Type: HostBannerMode
+Type: MoveReason
+Type: ClientType
+Type: TextMessageTargetMode
+Type: PermissionGroupDatabaseType
+Type: GroupNamingMode
+Type: Ts3ErrorCode
+Type: PermissionId
+Type: ClientUidT
+Type: ClientDbIdT
+Type: ClientIdT
+Type: ChannelIdT
+Type: ServerGroupIdT
+Type: ChannelGroupIdT
+Type: TimeSpanSecondsT
+Type: TimeSpanMillisecT
+Type: IconHash
 
 
 : <Mapping name>, <Teamspeak param name>, <Field name>, <Field type>
@@ -177,7 +174,6 @@ Field: cpid, cpid, ChannelParentId, ChannelIdT
 Field: ctid, ctid, TargetChannelId, ChannelIdT
 Field: current_speed, current_speed, CurrentSpeed, float
 Field: datetime, datetime, DateTime, DateTime
-:: ?? type, name
 Field: es, es, EmptySince, TimeSpanSecondsT
 Field: ft_status, status, Status, int
 Field: ft_type, type, IsFile, bool
@@ -204,7 +200,6 @@ Field: port, port, Port, ushort
 Field: pv, pv, ProtocolVersion, ushort
 Field: reasonid, reasonid, Reason, MoveReason
 Field: reasonmsg, reasonmsg, ReasonMessage, string
-: ?? type
 Field: runtime, runtime, Runtime, TimeSpanSecondsT
 Field: savedb, savedb, GroupIsPermanent, bool
 Field: seconds_empty, seconds_empty, DurationEmpty, TimeSpanSecondsT
