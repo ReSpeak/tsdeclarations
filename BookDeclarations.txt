@@ -1,4 +1,4 @@
-Default: get:true, set:false
+Default: get:true, set:true
 
 Struct: OptionalChannelData; doc:"Get in notifychanneledited by channelgetdescription"
 Prop: Description, str
@@ -9,9 +9,9 @@ Prop: ParentChannelId, ChannelId; doc:"0 means root channel"
 Prop: Name, str
 Prop: Topic, str
 Prop: Codec, Codec
-Prop: CodecQuality, u32
-Prop: MaxClients, u32
-Prop: MaxFamilyClients, u32; doc:"Maximum number of clients in this and all child channels"
+Prop: CodecQuality, u8
+Prop: MaxClients, u16?; doc:"The maximum number of clients in the channel.\n\nNot set if it is unlimited."
+Prop: MaxFamilyClients, u32?; doc:"Maximum number of clients in this and all child channels.\n\nNot set if it is unlimited."
 Prop: Order, i32; doc:"TODO Type of order?"
 Prop: ChannelType, ChannelType
 Prop: Default, bool; doc:"Whether it is the default channel"
@@ -19,19 +19,19 @@ Prop: HasPassword, bool; doc:"Whether this channel has a password"
 Prop: CodecLatencyFactor, i32; doc:"TODO Type?"
 Prop: CodecIsUnencrypted, bool
 Prop: DeleteDelay, Duration
-Prop: MaxClientsUnlimited, bool
-Prop: MaxFamilyClientsUnlimited, bool
 Prop: NeededTalkPower, i32
-Prop: ForcedSilence, bool
+Prop: ForcedSilence, bool; set:false
 Prop: PhoneticName, str
-Prop: IconId, u32
-Prop: Private, bool; doc:"FlagPrivate"
-Nested: OptionalData, OptionalChannelData
+Prop: Icon, IconHash
+Prop: Private, bool
+Nested: OptionalData, OptionalChannelData; set:false
+
+Default: get:true, set:false
 
 Struct: OptionalClientData; doc:"Get in notifyclientupdated by clientgetvariables"
-Prop: Version, str
-Prop: Platform, str
-Prop: LoginName, str; doc:"Set for server queries"
+Prop: Version, str; set:true, doc:"Can only be set for our own client"
+Prop: Platform, str; set:true, doc:"Can only be set for our own client"
+Prop: LoginName, str?; doc:"Set only for server queries"
 Prop: Created, DateTime
 Prop: LastConnected, DateTime
 Prop: TotalConnection, u32
@@ -44,7 +44,7 @@ Struct: ConnectionClientData; doc:"Get in notifyconnectioninfo by getconnectioni
 Prop: Ping, Duration
 Prop: PingDeviation, Duration
 Prop: ConnectedTime, Duration
-Prop: ClientAddress, SocketAddr?
+Prop: ClientAddress, SocketAddr?; doc:"Only available if we have the permission to view it"
 Prop: PacketsSentSpeech, u64
 Prop: PacketsSentKeepalive, u64
 Prop: PacketsSentControl, u64
@@ -81,9 +81,11 @@ Prop: FileTransferBandwidthSent, u64
 Prop: FileTransferBandwidthReceived, u64
 Prop: IdleTime, Duration
 
+Default: get:true, set:true
+
 Struct: Client; id:[Connection.Id Client.Id], doc:"Get in notifycliententerview"
 Prop: Id, ClientId; set:false
-Prop: ChannelId, ChannelId
+Prop: Channel, ChannelId
 Prop: Uid, Uid; set:false, doc:"Unique Identifier"
 Prop: Name, str
 Prop: InputMuted, bool; doc:"MuteInputStatus???"
@@ -91,73 +93,75 @@ Prop: OutputMuted, bool; doc:"MuteOutputStatus???"
 Prop: OutputOnlyMuted, bool; doc:"MuteOutputStatus???"
 Prop: InputHardware, bool; doc:"HardwareInputStatus???"
 Prop: OutputHardware, bool; doc:"HardwareOutputStatus???"
-Prop: Talking, bool; doc:"??? FlagTalking"
+Prop: Talking, bool; set:false, doc:"??? FlagTalking"
 Prop: MetaData, str; doc:"Set by client"
 Prop: Recording, bool; doc:"Whether the client is recording"
-Prop: DatabaseId, ClientDbId
+Prop: DatabaseId, ClientDbId; set:false
 Prop: ChannelGroupId, ChannelGroupId
 Prop: ServerGroups, ServerGroupId[]
 Prop: AwayMessage, str?; doc:"Contains the away message if the client is away"
-Prop: ClientType, ClientType
-Prop: AvatarHash, str; doc:"MD5 hash of the avatar, used to retrieve the avatar"
-Prop: TalkPower, i32
+Prop: ClientType, ClientType; set:false, doc:"If this client is a server query or not"
+Prop: AvatarHash, str; set:false, doc:"MD5 hash of the avatar, used to retrieve the avatar"
+Prop: TalkPower, i32; set:false
 Prop: TalkRequestMessage, str?; doc:"Contains a message from the client if he requests talk power"
 Prop: Description, str
-Prop: IsTalker, bool
+Prop: IsTalker, bool; set:false
 Prop: IsPrioritySpeaker, bool
-Prop: UnreadMessages, u32
+Prop: UnreadMessages, u32; set:false
 Prop: PhoneticName, str
-Prop: NeededServerqueryViewPower, i32
-Prop: IconId, u32
+Prop: NeededServerqueryViewPower, i32; set:false
+Prop: Icon, IconHash; set:false
 Prop: IsChannelCommander, bool
-Prop: ClientCountry, str; doc:"TODO Content?"
-Prop: ChannelGroupInheritedChannelId, ChannelId
+Prop: Country, str; set:false, doc:"Like US, DE"
+Prop: ChannelGroupInheritedChannel, ChannelId; set:false
 Prop: Badges, str[]
-Nested: OptionalData, OptionalClientData
-Nested: ConnectionData, ConnectionClientData
+Nested: OptionalData, OptionalClientData; set:false
+Nested: ConnectionData, ConnectionClientData; set:false
+
+Default: get:true, set:false
 
 Struct: OptionalServerData; doc:"Get by notifyserverupdated after requested by servergetvariables"
-Prop: ClientsOnline, u32
-Prop: ChannelsOnline, u32
+Prop: ConnectionCount, u32; doc:"The amount of connections on this server.\n\nThis includes normal clients and server queries."
+Prop: ChannelCount, u64; doc:"The amount of channels on the server"
 Prop: Uptime, Duration
 Prop: HasPassword, bool
-Prop: DefaultChannelAdminGroup, ChannelGroupId; doc:"The channel group which will be given to channel creators"
-Prop: MaxDownloadTotalBandwith, u64
-Prop: MaxUploadTotalBandwith, u64
-Prop: ComplainAutobanCount, u32
-Prop: ComplainAutobanTime, Duration
-Prop: ComplainRemoveTime, Duration
-Prop: MinClientsForceSilence, u16; doc:"How many clients can be in a server before silence is forced"
-Prop: AntifloodPointsTickReduce, u32
-Prop: AntifloodPointsNeededCommandBlock, u32
-Prop: ClientConnections, u32
-Prop: QueryClientConnections, u32; doc:"Amount of server queries connected to the server"
-Prop: QueryClientsOnline, u32; doc:"Amount of server queries connected and online/visible on the server"
-Prop: DownloadQuota, u64
-Prop: UploadQuota, u64
+Prop: DefaultChannelAdminGroup, ChannelGroupId; set:true, doc:"The channel group which will be given to channel creators"
+Prop: MaxDownloadTotalBandwith, u64; set:true
+Prop: MaxUploadTotalBandwith, u64; set:true
+Prop: ComplainAutobanCount, u32; set:true
+Prop: ComplainAutobanTime, Duration; set:true
+Prop: ComplainRemoveTime, Duration; set:true
+Prop: MinClientsForceSilence, u16; set:true, doc:"How many clients can be in a server before silence is forced"
+Prop: AntifloodPointsTickReduce, u32; set:true
+Prop: AntifloodPointsNeededCommandBlock, u32; set:true
+Prop: ClientCount, u16; doc:"The amount of clients which are online on the server"
+Prop: QueryCount, u32; doc:"Amount of server queries connected to the server"
+Prop: QueryOnlineCount, u32; doc:"Amount of server queries connected and online/visible on the server"
+Prop: DownloadQuota, u64; set:true
+Prop: UploadQuota, u64; set:true
 Prop: MonthBytesDownloaded, u64
 Prop: MonthBytesUploaded, u64
 Prop: TotalBytesDownloaded, u64
 Prop: TotalBytesUploaded, u64
 Prop: Port, u16
-Prop: Autostart, bool
+Prop: Autostart, bool; set:true
 Prop: MachineId, str
-Prop: NeededIdentitySecurityLevel, u8
-Prop: LogClient, bool
-Prop: LogQuery, bool
-Prop: LogChannel, bool
-Prop: LogPermissions, bool
-Prop: LogServer, bool
-Prop: LogFileTransfer, bool
+Prop: NeededIdentitySecurityLevel, u8; set:true
+Prop: LogClient, bool; set:true
+Prop: LogQuery, bool; set:true
+Prop: LogChannel, bool; set:true
+Prop: LogPermissions, bool; set:true
+Prop: LogServer, bool; set:true
+Prop: LogFileTransfer, bool; set:true
 Prop: MinClientVersion, DateTime
-Prop: ReservedSlots, u32
+Prop: ReservedSlots, u16; set:true
 Prop: TotalPacketlossSpeech, f32
 Prop: TotalPacketlossKeepalive, f32
 Prop: TotalPacketlossControl, f32
 Prop: TotalPacketlossTotal, f32
 Prop: TotalPing, Duration
-Prop: WeblistEnabled, bool
-Prop: MinAndroidVersion, DateTime
+Prop: WeblistEnabled, bool; set:true
+Prop: MinAndroidVersion, DateTime; doc:"TODO Maybe str"
 Prop: MinIosVersion, DateTime
 
 Struct: ConnectionServerData; doc:"Get by notifyserverconnectioninfo after serverrequestconnectioninfo"
@@ -183,27 +187,27 @@ Prop: Name, str
 Prop: WelcomeMessage, str; doc:"Welcome message when conecting to a server"
 Prop: Platform, str
 Prop: Version, str
-Prop: MaxClients, u32
+Prop: MaxClients, u32; doc:"The maximum number of clients on the server"
 Prop: Created, DateTime; doc:"Seems to be always 0"
-Prop: CodecEncryptionMode, CodecEncryptionMode
-Prop: hostmessage, str
-Prop: hostmessage_mode, HostMessageMode
-Prop: DefaultServerGroup, ServerGroupId; doc:"???"
-Prop: DefaultChannelGroup, ChannelGroupId; doc:"???"
-Prop: HostbannerUrl, str
-Prop: HostbannerGfxUrl, str
-Prop: HostbannerGfxInterval, Duration
-Prop: PrioritySpeakerDimmModificator, f32
+Prop: CodecEncryptionMode, CodecEncryptionMode; set:true
+Prop: hostmessage, str; set:true
+Prop: hostmessage_mode, HostMessageMode; set:true
+Prop: DefaultServerGroup, ServerGroupId; set:true
+Prop: DefaultChannelGroup, ChannelGroupId; set:true
+Prop: HostbannerUrl, str; set:true
+Prop: HostbannerGfxUrl, str; set:true
+Prop: HostbannerGfxInterval, Duration; set:true, doc:"How often the hostbanner should be updated"
+Prop: PrioritySpeakerDimmModificator, f32; set:true
 Prop: VirtualServerId, u32; doc:"The virtual server id"
-Prop: HostbuttonTooltip, str
-Prop: HostbuttonUrl, str
-Prop: HostbuttonGfxUrl, str
-Prop: PhoneticName, str
-Prop: IconId, u32; doc:"Should be an u32, sometimes the server sends an u64 for reasons which has to be cut to 32 bit"
+Prop: HostbuttonTooltip, str; set:true
+Prop: HostbuttonUrl, str; set:true
+Prop: HostbuttonGfxUrl, str; set:true
+Prop: PhoneticName, str; set:true
+Prop: Icon, IconHash; doc:"Should be an u32, sometimes the server sends an u64 for reasons which has to be cut to 32 bit"
 Prop: Ip, str[]; doc:"A list of listen ips, can be empty"
 Prop: AskForPrivilegekey, bool
-Prop: HostbannerMode, HostBannerMode
-Prop: ChannelTempDeleteDelayDefault, Duration
+Prop: HostbannerMode, HostBannerMode; set:true
+Prop: ChannelTempDeleteDelayDefault, Duration; set:true
 Prop: ProtocolVersion, u16
 Prop: LicenseType, u16; doc:"TODO Convert to enum?"
 Nested: OptionalData, OptionalServerData?
@@ -212,8 +216,8 @@ Nested: Client, Client[]; doc:"All clients which are visible for us"
 Nested: Channels, Channel[]; doc:"All channels on the server"
 
 Struct: Connection; doc:"A connection from our client to a server", id:[Connection.Id]
-Prop: Id, ConnectionId; set:false, doc:"The local unique id of our connection"
-Prop: OwnClientId, ClientId; set:false, doc:"The id of our own client on the server"
+Prop: Id, ConnectionId; doc:"The local unique id of our connection"
+Prop: OwnClient, ClientId; doc:"The id of our own client on the server"
 Nested: Server, Server; doc:"The server of this connection"
 
 Struct: ChatEntryTmp; id:[ChatEntryTmp.SenderClientId Connection.Id]
