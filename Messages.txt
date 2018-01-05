@@ -23,7 +23,7 @@ Type: PermissionGroupDatabaseType
 Type: GroupNamingMode
 Type: Ts3ErrorCode
 Type: PermissionId
-Type: ClientUidT
+Type: UidT
 Type: ClientDbIdT
 Type: ClientIdT
 Type: ChannelIdT
@@ -116,12 +116,12 @@ Field: client_total_bytes_downloaded, client_total_bytes_downloaded, TotalDownlo
 Field: client_total_bytes_uploaded, client_total_bytes_uploaded, TotalUploadQuota, long
 Field: client_totalconnections, client_totalconnections, TotalConnections, int
 Field: client_type, client_type, ClientType, ClientType
-Field: client_unique_identifier, client_unique_identifier, Uid, ClientUidT
+Field: client_unique_identifier, client_unique_identifier, Uid, UidT
 Field: client_unread_messages, client_unread_messages, UnreadMessages, int
 Field: client_version, client_version, ClientVersion, string
 Field: client_version_sign, client_version_sign, ClientVersionSign, string
 Field: clientftfid, clientftfid, ClientFileTransferId, ushort
-Field: cluid, cluid, ClientUid, ClientUidT
+Field: cluid, cluid, ClientUid, UidT
 Field: connection_bandwidth_received_last_minute_control, connection_bandwidth_received_last_minute_control, ConnectionBandwidthReceivedLastMinuteControl, uint
 Field: connection_bandwidth_received_last_minute_keepalive, connection_bandwidth_received_last_minute_keepalive, ConnectionBandwidthReceivedLastMinuteKeepalive, uint
 Field: connection_bandwidth_received_last_minute_speech, connection_bandwidth_received_last_minute_speech, ConnectionBandwidthReceivedLastMinuteSpeech, uint
@@ -182,7 +182,7 @@ Field: iconid, iconid, IconId, int
 Field: id, id, Id, ChannelIdT
 Field: invokerid, invokerid, InvokerId, ClientIdT
 Field: invokername, invokername, InvokerName, string
-Field: invokeruid, invokeruid, InvokerUid, ClientUidT
+Field: invokeruid, invokeruid, InvokerUid, UidT
 Field: lt, lt, LicenseType, ushort
 Field: msg, msg, Message, string
 Field: n_member_addp, n_member_addp, NeededMemberAddPower, int
@@ -251,7 +251,7 @@ Field: virtualserver_port, virtualserver_port, VirtualServerPort, ushort
 Field: virtualserver_priority_speaker_dimm_modificator, virtualserver_priority_speaker_dimm_modificator, PrioritySpeakerDimmModificator, float
 Field: virtualserver_queryclientsonline, virtualserver_queryclientsonline, QueriesOnline, int
 Field: virtualserver_status, virtualserver_status, VirtualServerStatus, string
-Field: virtualserver_unique_identifier, virtualserver_unique_identifier, VirtualServerUid, ClientUidT
+Field: virtualserver_unique_identifier, virtualserver_unique_identifier, VirtualServerUid, UidT
 Field: virtualserver_uptime, virtualserver_uptime, Uptime, TimeSpanSecondsT
 Field: virtualserver_version, virtualserver_version, ServerVersion, string
 Field: virtualserver_welcomemessage, virtualserver_welcomemessage, WelcomeMessage, string
