@@ -1,4 +1,4 @@
-: <TypeName>
+: <TypeName>, (<Backing type>)
 Type: bool
 Type: sbyte
 Type: byte
@@ -12,7 +12,7 @@ Type: float
 Type: double
 Type: string
 Type: DateTime
-Type: Codec
+Type: Codec, byte
 Type: HostMessageMode
 Type: CodecEncryptionMode
 Type: HostBannerMode
@@ -21,17 +21,18 @@ Type: ClientType
 Type: TextMessageTargetMode
 Type: PermissionGroupDatabaseType
 Type: GroupNamingMode
-Type: Ts3ErrorCode
+Type: Ts3ErrorCode, ushort
 Type: PermissionId
-Type: UidT
-Type: ClientDbIdT
-Type: ClientIdT
-Type: ChannelIdT
-Type: ServerGroupIdT
-Type: ChannelGroupIdT
+Type: LicenseType, ushort
+Type: UidT, string
+Type: ClientDbIdT, ulong
+Type: ClientIdT, ushort
+Type: ChannelIdT, ulong
+Type: ServerGroupIdT, ulong
+Type: ChannelGroupIdT, ulong
 Type: TimeSpanSecondsT
 Type: TimeSpanMillisecT
-Type: IconHash
+Type: IconHash, int
 
 
 : <Mapping name>, <Teamspeak param name>, <Field name>, <Field type>
@@ -183,7 +184,7 @@ Field: id, id, Id, ChannelIdT
 Field: invokerid, invokerid, InvokerId, ClientIdT
 Field: invokername, invokername, InvokerName, string
 Field: invokeruid, invokeruid, InvokerUid, UidT
-Field: lt, lt, LicenseType, ushort
+Field: lt, lt, LicenseType, LicenseType
 Field: msg, msg, Message, string
 Field: n_member_addp, n_member_addp, NeededMemberAddPower, int
 Field: n_member_remove_p, n_member_remove_p, NeededMemberRemovePower, int
