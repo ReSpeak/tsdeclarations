@@ -5,7 +5,7 @@ Prop: Description, str
 
 Struct: Channel; id:[Connection.Id Channel.Id] doc:"Get in channellist"
 Prop: Id, ChannelId; set:false
-Prop: ParentChannelId, ChannelId; doc:"0 means root channel"
+Prop: Parent, ChannelId; doc:"0 means root channel"
 Prop: Name, str
 Prop: Topic, str
 Prop: Codec, Codec
@@ -17,14 +17,14 @@ Prop: ChannelType, ChannelType
 Prop: Default, bool; doc:"Whether it is the default channel"
 Prop: HasPassword, bool; doc:"Whether this channel has a password"
 Prop: CodecLatencyFactor, i32; doc:"TODO Type?"
-Prop: CodecIsUnencrypted, bool
+Prop: IsUnencrypted, bool
 Prop: DeleteDelay, Duration
 Prop: NeededTalkPower, i32
 Prop: ForcedSilence, bool; set:false
 Prop: PhoneticName, str
 Prop: Icon, IconHash
-Prop: Private, bool
-Nested: OptionalData, OptionalChannelData; set:false
+Prop: IsPrivate, bool
+Nested: OptionalData, OptionalChannelData?; set:false
 
 Default: get:true, set:false
 
@@ -115,8 +115,8 @@ Prop: IsChannelCommander, bool
 Prop: Country, str; set:false, doc:"Like US, DE"
 Prop: ChannelGroupInheritedChannel, ChannelId; set:false
 Prop: Badges, str[]
-Nested: OptionalData, OptionalClientData; set:false
-Nested: ConnectionData, ConnectionClientData; set:false
+Nested: OptionalData, OptionalClientData?; set:false
+Nested: ConnectionData, ConnectionClientData?; set:false
 
 Default: get:true, set:false
 
@@ -198,7 +198,7 @@ Prop: HostbannerUrl, str; set:true
 Prop: HostbannerGfxUrl, str; set:true
 Prop: HostbannerGfxInterval, Duration; set:true, doc:"How often the hostbanner should be updated"
 Prop: PrioritySpeakerDimmModificator, f32; set:true
-Prop: VirtualServerId, u32; doc:"The virtual server id"
+Prop: VirtualServerId, u64; doc:"The virtual server id"
 Prop: HostbuttonTooltip, str; set:true
 Prop: HostbuttonUrl, str; set:true
 Prop: HostbuttonGfxUrl, str; set:true
@@ -207,12 +207,12 @@ Prop: Icon, IconHash; doc:"Should be an u32, sometimes the server sends an u64 f
 Prop: Ip, str[]; doc:"A list of listen ips, can be empty"
 Prop: AskForPrivilegekey, bool
 Prop: HostbannerMode, HostBannerMode; set:true
-Prop: ChannelTempDeleteDelayDefault, Duration; set:true
+Prop: TempChannelDefaultDeleteDelay, Duration; set:true
 Prop: ProtocolVersion, u16
-Prop: LicenseType, u16; doc:"TODO Convert to enum?"
+Prop: License, LicenseType
 Nested: OptionalData, OptionalServerData?
 Nested: ConnectionData, ConnectionServerData?
-Nested: Client, Client[]; doc:"All clients which are visible for us"
+Nested: Clients, Client[]; doc:"All clients which are visible for us"
 Nested: Channels, Channel[]; doc:"All channels on the server"
 
 Struct: Connection; doc:"A connection from our client to a server", id:[Connection.Id]
@@ -220,8 +220,8 @@ Prop: Id, ConnectionId; doc:"The local unique id of our connection"
 Prop: OwnClient, ClientId; doc:"The id of our own client on the server"
 Nested: Server, Server; doc:"The server of this connection"
 
-Struct: ChatEntryTmp; id:[ChatEntryTmp.SenderClientId Connection.Id]
+Struct: ChatEntry; id:[ChatEntry.SenderClient Connection.Id]
+Prop: SenderClient, ClientId
 Prop: Text, str
 Prop: Date, DateTime
 Prop: Mode, TextMessageTargetMode
-Prop: SenderClientId, ClientId

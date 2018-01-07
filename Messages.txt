@@ -48,7 +48,7 @@ Field: cgid, cgid, ChannelGroupId, ChannelGroupIdT
 Field: channel_codec, channel_codec, Codec, Codec
 Field: channel_codec_is_unencrypted, channel_codec_is_unencrypted, IsUnencrypted, bool
 Field: channel_codec_latency_factor, channel_codec_latency_factor, CodecLatencyFactor, int
-Field: channel_codec_quality, channel_codec_quality, CodecQuality, int
+Field: channel_codec_quality, channel_codec_quality, CodecQuality, byte
 Field: channel_delete_delay, channel_delete_delay, DeleteDelay, TimeSpanSecondsT
 Field: channel_flag_default, channel_flag_default, IsDefaultChannel, bool
 Field: channel_flag_maxclients_unlimited, channel_flag_maxclients_unlimited, IsMaxClientsUnlimited, bool
@@ -60,8 +60,8 @@ Field: channel_flag_private, channel_flag_private, IsPrivate, bool
 Field: channel_flag_semi_permanent, channel_flag_semi_permanent, IsSemiPermanent, bool
 Field: channel_forced_silence, channel_forced_silence, ForcedSilence, bool
 Field: channel_icon_id, channel_icon_id, IconId, IconHash
-Field: channel_maxclients, channel_maxclients, MaxClients, int
-Field: channel_maxfamilyclients, channel_maxfamilyclients, MaxFamilyClients, int
+Field: channel_maxclients, channel_maxclients, MaxClients, ushort
+Field: channel_maxfamilyclients, channel_maxfamilyclients, MaxFamilyClients, uint
 Field: channel_name, channel_name, Name, string
 Field: channel_name_phonetic, channel_name_phonetic, PhoneticName, string
 Field: channel_needed_subscribe_power, channel_needed_subscribe_power, NeededSubscribePower, int
@@ -179,7 +179,7 @@ Field: es, es, EmptySince, TimeSpanSecondsT
 Field: ft_status, status, Status, int
 Field: ft_type, type, IsFile, bool
 Field: ftkey, ftkey, FileTransferKey, string
-Field: iconid, iconid, IconId, int
+Field: iconid, iconid, IconId, IconHash
 Field: id, id, Id, ChannelIdT
 Field: invokerid, invokerid, InvokerId, ClientIdT
 Field: invokername, invokername, InvokerName, string
@@ -228,7 +228,7 @@ Field: virtualserver_autostart, virtualserver_autostart, Autostart, bool
 Field: virtualserver_channel_temp_delete_delay_default, virtualserver_channel_temp_delete_delay_default, DefaultTempChannelDeleteDelay, TimeSpanSecondsT
 Field: virtualserver_clientsonline, virtualserver_clientsonline, ClientsOnline, int
 Field: virtualserver_codec_encryption_mode, virtualserver_codec_encryption_mode, CodecEncryptionMode, CodecEncryptionMode
-Field: virtualserver_created, virtualserver_created, ServerCreated, long
+Field: virtualserver_created, virtualserver_created, ServerCreated, DateTime
 Field: virtualserver_default_channel_group, virtualserver_default_channel_group, DefaultChannelGroup, ChannelGroupIdT
 Field: virtualserver_default_server_group, virtualserver_default_server_group, DefaultServerGroup, ServerGroupIdT
 Field: virtualserver_hostbanner_gfx_interval, virtualserver_hostbanner_gfx_interval, HostbannerGfxInterval, TimeSpanSecondsT
@@ -242,9 +242,9 @@ Field: virtualserver_hostmessage, virtualserver_hostmessage, Hostmessage, string
 Field: virtualserver_hostmessage_mode, virtualserver_hostmessage_mode, HostmessageMode, HostMessageMode
 Field: virtualserver_icon_id, virtualserver_icon_id, IconId, IconHash
 Field: virtualserver_id, virtualserver_id, VirtualServerId, ulong
-Field: virtualserver_ip, virtualserver_ip, ServerIp, string
+Field: virtualserver_ip, virtualserver_ip, ServerIp, string[]
 Field: virtualserver_machine_id, virtualserver_machine_id, MachineId, string
-Field: virtualserver_maxclients, virtualserver_maxclients, MaxClients, int
+Field: virtualserver_maxclients, virtualserver_maxclients, MaxClients, uint
 Field: virtualserver_name, virtualserver_name, ServerName, string
 Field: virtualserver_name_phonetic, virtualserver_name_phonetic, PhoneticName, string
 Field: virtualserver_platform, virtualserver_platform, ServerPlatform, string
