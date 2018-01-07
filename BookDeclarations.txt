@@ -1,6 +1,6 @@
 Default: get:true, set:true
 
-Struct: OptionalChannelData; doc:"Get in notifychanneledited by channelgetdescription"
+Struct: OptionalChannelData; id:[Connection.Id Channel.Id] doc:"Get in notifychanneledited by channelgetdescription"
 Prop: Description, str
 
 Struct: Channel; id:[Connection.Id Channel.Id] doc:"Get in channellist"
@@ -28,7 +28,7 @@ Nested: OptionalData, OptionalChannelData?; set:false
 
 Default: get:true, set:false
 
-Struct: OptionalClientData; doc:"Get in notifyclientupdated by clientgetvariables"
+Struct: OptionalClientData; id:[Connection.Id Client.Id] doc:"Get in notifyclientupdated by clientgetvariables"
 Prop: Version, str; set:true, doc:"Can only be set for our own client"
 Prop: Platform, str; set:true, doc:"Can only be set for our own client"
 Prop: LoginName, str?; doc:"Set only for server queries"
@@ -40,7 +40,7 @@ Prop: MonthBytesDownloaded, u64
 Prop: TotalBytesUploaded, u64
 Prop: TotalBytesDownloaded, u64
 
-Struct: ConnectionClientData; doc:"Get in notifyconnectioninfo by getconnectioninfo"
+Struct: ConnectionClientData; id:[Connection.Id Client.Id] doc:"Get in notifyconnectioninfo by getconnectioninfo"
 Prop: Ping, Duration
 Prop: PingDeviation, Duration
 Prop: ConnectedTime, Duration
@@ -120,7 +120,7 @@ Nested: ConnectionData, ConnectionClientData?; set:false
 
 Default: get:true, set:false
 
-Struct: OptionalServerData; doc:"Get by notifyserverupdated after requested by servergetvariables"
+Struct: OptionalServerData; id:[Connection.Id], doc:"Get by notifyserverupdated after requested by servergetvariables"
 Prop: ConnectionCount, u32; doc:"The amount of connections on this server.\n\nThis includes normal clients and server queries."
 Prop: ChannelCount, u64; doc:"The amount of channels on the server"
 Prop: Uptime, Duration
@@ -164,7 +164,7 @@ Prop: WeblistEnabled, bool; set:true
 Prop: MinAndroidVersion, DateTime; doc:"TODO Maybe str"
 Prop: MinIosVersion, DateTime
 
-Struct: ConnectionServerData; doc:"Get by notifyserverconnectioninfo after serverrequestconnectioninfo"
+Struct: ConnectionServerData; id:[Connection.Id], doc:"Get by notifyserverconnectioninfo after serverrequestconnectioninfo"
 Prop: FileTransferBandwidthSent, u64
 Prop: FileTransferBandwidthReceived, u64
 Prop: FileTransferBytesSentTotal, u64
@@ -215,12 +215,12 @@ Nested: ConnectionData, ConnectionServerData?
 Nested: Clients, Client[]; doc:"All clients which are visible for us"
 Nested: Channels, Channel[]; doc:"All channels on the server"
 
-Struct: Connection; doc:"A connection from our client to a server", id:[Connection.Id]
+Struct: Connection; id:[Connection.Id], doc:"A connection from our client to a server", id:[Connection.Id]
 Prop: Id, ConnectionId; doc:"The local unique id of our connection"
 Prop: OwnClient, ClientId; doc:"The id of our own client on the server"
 Nested: Server, Server; doc:"The server of this connection"
 
-Struct: ChatEntry; id:[ChatEntry.SenderClient Connection.Id]
+Struct: ChatEntry; id:[Connection.Id ChatEntry.SenderClient]
 Prop: SenderClient, ClientId
 Prop: Text, str
 Prop: Date, DateTime
