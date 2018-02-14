@@ -21,8 +21,8 @@ Type: ClientType
 Type: TextMessageTargetMode
 Type: PermissionGroupDatabaseType
 Type: GroupNamingMode
-Type: Ts3ErrorCode, ushort
-Type: PermissionId
+Type: Ts3ErrorCode, uint
+Type: PermissionId, uint
 Type: LicenseType, ushort
 Type: UidT, string
 Type: ClientDbIdT, ulong
@@ -262,8 +262,15 @@ Field: failed_permid, failed_permid, MissingPermissionId, PermissionId
 Field: return_code, return_code, ReturnCode, string
 Field: extra_msg, extra_msg, ExtraMessage, string
 
+: 3.1
+Field: l, l, License, string
+Field: tvd, tvd, Tvd, string
+Field: proof, proof, Proof, string
+Field: ot, ot, Ot, bool
+:Field: ek, ek, Ek, string
 
 : <Teamspeak notification name>, <Enum name>
+: Official notifies, used by client and query
 Notify: error, Error
 Notify: notifychannelchanged, ChannelChanged
 Notify: notifychannelcreated, ChannelCreated
@@ -278,9 +285,11 @@ Notify: notifyserveredited, ServerEdited
 Notify: notifytextmessage, TextMessage
 Notify: notifytokenused, TokenUsed
 
+: Internal notifies, used by client
 Notify: channellist, ChannelList
 Notify: channellistfinished, ChannelListFinished
 Notify: initivexpand, InitIvExpand
+Notify: initivexpand2, InitIvExpand2
 Notify: initserver, InitServer
 Notify: notifychannelsubscribed, ChannelSubscribed
 Notify: notifychannelunsubscribed, ChannelUnsubscribed
@@ -299,6 +308,12 @@ Notify: notifyservergroupsbyclientid, ServerGroupsByClientId
 Notify: notifystartdownload, StartDownload
 Notify: notifystartupload, StartUpload
 Notify: notifystatusfiletransfer, FileTransferStatus
+:TODO: notifyclientchatclosed
+:TODO: notifyclientpoke
+:TODO: notifyclientupdated
+:TODO: notifyclientchannelgroupchanged
+:TODO: notifychannelpasswordchanged
+:TODO: notifychanneldescriptionchanged
 
 
 : <Class name>, <Teamspeak notification name | Empty = Response>, <Field param mappings>*
@@ -326,6 +341,7 @@ Msg: ConnectionInfoRequest, notifyconnectioninforequest
 Msg: FileListFinished, notifyfilelistfinished, cid, path
 Msg: FileTransferStatus, notifystatusfiletransfer, clientftfid, status, msg, size
 Msg: InitIvExpand, initivexpand, alpha, beta, omega
+Msg: InitIvExpand2, initivexpand2, l, beta, omega, ot, proof, tvd
 Msg: InitServer, initserver, virtualserver_welcomemessage, virtualserver_platform, virtualserver_version, virtualserver_maxclients, virtualserver_created, virtualserver_hostmessage, virtualserver_hostmessage_mode, virtualserver_id, virtualserver_ip, virtualserver_ask_for_privilegekey, acn, aclid, pv, lt, client_talk_power, client_needed_serverquery_view_power, virtualserver_name, virtualserver_codec_encryption_mode, virtualserver_default_server_group, virtualserver_default_channel_group, virtualserver_hostbanner_url, virtualserver_hostbanner_gfx_url, virtualserver_hostbanner_gfx_interval, virtualserver_priority_speaker_dimm_modificator, virtualserver_hostbutton_tooltip, virtualserver_hostbutton_url, virtualserver_hostbutton_gfx_url, virtualserver_name_phonetic, virtualserver_icon_id, virtualserver_hostbanner_mode, virtualserver_channel_temp_delete_delay_default
 Msg: ServerEdited, notifyserveredited, invokerid, invokername, invokeruid, reasonid, virtualserver_name, virtualserver_codec_encryption_mode, virtualserver_default_server_group, virtualserver_default_channel_group, virtualserver_hostbanner_url, virtualserver_hostbanner_gfx_url, virtualserver_hostbanner_gfx_interval, virtualserver_priority_speaker_dimm_modificator, virtualserver_hostbutton_tooltip, virtualserver_hostbutton_url, virtualserver_hostbutton_gfx_url, virtualserver_name_phonetic, virtualserver_icon_id, virtualserver_hostbanner_mode, virtualserver_channel_temp_delete_delay_default
 Msg: ServerGroupList, notifyservergrouplist, sgid, name, type, iconid, savedb, sortid, namemode, n_modifyp, n_member_addp, n_member_remove_p
