@@ -16,10 +16,10 @@ Type: Codec, byte
 Type: HostMessageMode
 Type: CodecEncryptionMode
 Type: HostBannerMode
-Type: MoveReason
+Type: Reason
 Type: ClientType
 Type: TextMessageTargetMode
-Type: PermissionGroupDatabaseType
+Type: GroupType
 Type: GroupNamingMode
 Type: Ts3ErrorCode, uint
 Type: PermissionId, uint
@@ -44,15 +44,15 @@ Field: bantime, bantime, BanTime, TimeSpanSecondsT
 Field: beta, beta, Beta, string
 Field: cfid, cfid, SourceChannelId, ChannelIdT
 Field: cgi, cgi, ChannelGroupIndex, ChannelGroupIdT
-Field: cgid, cgid, ChannelGroupId, ChannelGroupIdT
+Field: cgid, cgid, ChannelGroup, ChannelGroupIdT
 Field: channel_codec, channel_codec, Codec, Codec
 Field: channel_codec_is_unencrypted, channel_codec_is_unencrypted, IsUnencrypted, bool
 Field: channel_codec_latency_factor, channel_codec_latency_factor, CodecLatencyFactor, int
 Field: channel_codec_quality, channel_codec_quality, CodecQuality, byte
 Field: channel_delete_delay, channel_delete_delay, DeleteDelay, TimeSpanSecondsT
-Field: channel_flag_default, channel_flag_default, IsDefaultChannel, bool
+Field: channel_flag_default, channel_flag_default, IsDefault, bool
 Field: channel_flag_maxclients_unlimited, channel_flag_maxclients_unlimited, IsMaxClientsUnlimited, bool
-Field: channel_flag_maxfamilyclients_inherited, channel_flag_maxfamilyclients_inherited, IsMaxFamilyClientsInherited, bool
+Field: channel_flag_maxfamilyclients_inherited, channel_flag_maxfamilyclients_inherited, InheritsMaxFamilyClients, bool
 Field: channel_flag_maxfamilyclients_unlimited, channel_flag_maxfamilyclients_unlimited, IsMaxFamilyClientsUnlimited, bool
 Field: channel_flag_password, channel_flag_password, HasPassword, bool
 Field: channel_flag_permanent, channel_flag_permanent, IsPermanent, bool
@@ -75,7 +75,7 @@ Field: client_away, client_away, IsAway, bool
 Field: client_away_message, client_away_message, AwayMessage, string
 Field: client_badges, client_badges, Badges, string
 Field: client_base64HashClientUID, client_base64HashClientUID, Base64HashClientUid, string
-Field: client_channel_group_id, client_channel_group_id, ChannelGroupId, ChannelGroupIdT
+Field: client_channel_group_id, client_channel_group_id, ChannelGroup, ChannelGroupIdT
 Field: client_channel_group_inherited_channel_id, client_channel_group_inherited_channel_id, InheritedChannelGroupFromChannelId, ChannelGroupIdT
 Field: client_channel_id, client_channel_id, ChannelId, ChannelIdT
 Field: client_country, client_country, CountryCode, string
@@ -84,34 +84,34 @@ Field: client_database_id, client_database_id, DatabaseId, ClientDbIdT
 Field: client_default_channel, client_default_channel, DefaultChannel, string
 Field: client_default_token, client_default_token, DefaultToken, string
 Field: client_description, client_description, Description, string
-Field: client_flag_avatar, client_flag_avatar, AvatarFlag, string, ?? string ??
+Field: client_flag_avatar, client_flag_avatar, AvatarHash, string, ?? string ??
 Field: client_icon_id, client_icon_id, IconId, IconHash
 Field: client_id, client_id, ClientId, ClientIdT
 Field: client_idle_time, client_idle_time, ClientIdleTime, TimeSpanMillisecT
-Field: client_input_hardware, client_input_hardware, IsInputHardware, bool
-Field: client_input_muted, client_input_muted, IsInputMuted, bool
+Field: client_input_hardware, client_input_hardware, InputHardwareEnabled, bool
+Field: client_input_muted, client_input_muted, InputMuted, bool
 Field: client_is_channel_commander, client_is_channel_commander, IsChannelCommander, bool
 Field: client_is_priority_speaker, client_is_priority_speaker, IsPrioritySpeaker, bool
 Field: client_is_recording, client_is_recording, IsRecording, bool
-Field: client_is_talker, client_is_talker, IsTalker, bool
+Field: client_is_talker, client_is_talker, TalkPowerGranted, bool
 Field: client_lastconnected, client_lastconnected, LastConnected, DateTime
 Field: client_lastip, client_lastip, LastIp, string
 Field: client_login_name, client_login_name, LoginName, string
 Field: client_meta_data, client_meta_data, Metadata, string
 Field: client_month_bytes_downloaded, client_month_bytes_downloaded, MonthlyDownloadQuota, long
 Field: client_month_bytes_uploaded, client_month_bytes_uploaded, MonthlyUploadQuota, long
-Field: client_needed_serverquery_view_power, client_needed_serverquery_view_power, NeededServerQueryViewPower, int
-Field: client_nickname, client_nickname, NickName, string
+Field: client_needed_serverquery_view_power, client_needed_serverquery_view_power, NeededServerqueryViewPower, int
+Field: client_nickname, client_nickname, Name, string
 Field: client_nickname_phonetic, client_nickname_phonetic, PhoneticName, string
 Field: client_origin_server_id, client_origin_server_id, OriginServerId, ulong
-Field: client_output_hardware, client_output_hardware, IsClientOutputHardware, bool
-Field: client_output_muted, client_output_muted, IsOutputMuted, bool
-Field: client_outputonly_muted, client_outputonly_muted, IsOutputOnlyMuted, bool
+Field: client_output_hardware, client_output_hardware, OutputHardwareEnabled, bool
+Field: client_output_muted, client_output_muted, OutputMuted, bool
+Field: client_outputonly_muted, client_outputonly_muted, OutputOnlyMuted, bool
 Field: client_platform, client_platform, ClientPlattform, string
 Field: client_security_hash, client_security_hash, SecurityHash, string
 Field: client_servergroups, client_servergroups, ServerGroups, ServerGroupIdT[]
 Field: client_talk_power, client_talk_power, TalkPower, int
-Field: client_talk_request, client_talk_request, RequestedTalkPower, int
+Field: client_talk_request, client_talk_request, TalkPowerRequestTime, DateTime
 Field: client_talk_request_msg, client_talk_request_msg, TalkPowerRequestMessage, string
 Field: client_total_bytes_downloaded, client_total_bytes_downloaded, TotalDownloadQuota, long
 Field: client_total_bytes_uploaded, client_total_bytes_uploaded, TotalUploadQuota, long
@@ -123,54 +123,54 @@ Field: client_version, client_version, ClientVersion, string
 Field: client_version_sign, client_version_sign, ClientVersionSign, string
 Field: clientftfid, clientftfid, ClientFileTransferId, ushort
 Field: cluid, cluid, ClientUid, UidT
-Field: connection_bandwidth_received_last_minute_control, connection_bandwidth_received_last_minute_control, ConnectionBandwidthReceivedLastMinuteControl, uint
-Field: connection_bandwidth_received_last_minute_keepalive, connection_bandwidth_received_last_minute_keepalive, ConnectionBandwidthReceivedLastMinuteKeepalive, uint
-Field: connection_bandwidth_received_last_minute_speech, connection_bandwidth_received_last_minute_speech, ConnectionBandwidthReceivedLastMinuteSpeech, uint
-Field: connection_bandwidth_received_last_minute_total, connection_bandwidth_received_last_minute_total, ConnectionBandwidtReceivedLastMinute, long
-Field: connection_bandwidth_received_last_second_control, connection_bandwidth_received_last_second_control, ConnectionBandwidthReceivedLastSecondControl, uint
-Field: connection_bandwidth_received_last_second_keepalive, connection_bandwidth_received_last_second_keepalive, ConnectionBandwidthReceivedLastSecondKeepalive, uint
-Field: connection_bandwidth_received_last_second_speech, connection_bandwidth_received_last_second_speech, ConnectionBandwidthReceivedLastSecondSpeech, uint
-Field: connection_bandwidth_received_last_second_total, connection_bandwidth_received_last_second_total, ConnectionBandwidtReceivedLastSecond, long
-Field: connection_bandwidth_sent_last_minute_control, connection_bandwidth_sent_last_minute_control, ConnectionBandwidthSentLastMinuteControl, uint
-Field: connection_bandwidth_sent_last_minute_keepalive, connection_bandwidth_sent_last_minute_keepalive, ConnectionBandwidthSentLastMinuteKeepalive, uint
-Field: connection_bandwidth_sent_last_minute_speech, connection_bandwidth_sent_last_minute_speech, ConnectionBandwidthSentLastMinuteSpeech, uint
-Field: connection_bandwidth_sent_last_minute_total, connection_bandwidth_sent_last_minute_total, ConnectionBandwidtSentLastMinute, long
-Field: connection_bandwidth_sent_last_second_control, connection_bandwidth_sent_last_second_control, ConnectionBandwidthSentLastSecondControl, uint
-Field: connection_bandwidth_sent_last_second_keepalive, connection_bandwidth_sent_last_second_keepalive, ConnectionBandwidthSentLastSecondKeepalive, uint
-Field: connection_bandwidth_sent_last_second_speech, connection_bandwidth_sent_last_second_speech, ConnectionBandwidthSentLastSecondSpeech, uint
-Field: connection_bandwidth_sent_last_second_total, connection_bandwidth_sent_last_second_total, ConnectionBandwidtSentLastSecond, long
-Field: connection_bytes_received_control, connection_bytes_received_control, ConnectionBytesReceivedControl, ulong
-Field: connection_bytes_received_keepalive, connection_bytes_received_keepalive, ConnectionBytesReceivedKeepalive, ulong
-Field: connection_bytes_received_speech, connection_bytes_received_speech, ConnectionBytesReceivedSpeech, ulong
-Field: connection_bytes_received_total, connection_bytes_received_total, ConnectionBytesReceived, long
-Field: connection_bytes_sent_control, connection_bytes_sent_control, ConnectionBytesSentControl, ulong
-Field: connection_bytes_sent_keepalive, connection_bytes_sent_keepalive, ConnectionBytesSentKeepalive, ulong
-Field: connection_bytes_sent_speech, connection_bytes_sent_speech, ConnectionBytesSentSpeech, ulong
-Field: connection_bytes_sent_total, connection_bytes_sent_total, ConnectionBytesSent, long
+Field: connection_bandwidth_received_last_minute_control, connection_bandwidth_received_last_minute_control, BandwidthReceivedLastMinuteControl, ulong
+Field: connection_bandwidth_received_last_minute_keepalive, connection_bandwidth_received_last_minute_keepalive, BandwidthReceivedLastMinuteKeepalive, ulong
+Field: connection_bandwidth_received_last_minute_speech, connection_bandwidth_received_last_minute_speech, BandwidthReceivedLastMinuteSpeech, ulong
+Field: connection_bandwidth_received_last_minute_total, connection_bandwidth_received_last_minute_total, BandwidthReceivedLastMinuteTotal, ulong
+Field: connection_bandwidth_received_last_second_control, connection_bandwidth_received_last_second_control, BandwidthReceivedLastSecondControl, ulong
+Field: connection_bandwidth_received_last_second_keepalive, connection_bandwidth_received_last_second_keepalive, BandwidthReceivedLastSecondKeepalive, ulong
+Field: connection_bandwidth_received_last_second_speech, connection_bandwidth_received_last_second_speech, BandwidthReceivedLastSecondSpeech, ulong
+Field: connection_bandwidth_received_last_second_total, connection_bandwidth_received_last_second_total, BandwidthReceivedLastSecondTotal, ulong
+Field: connection_bandwidth_sent_last_minute_control, connection_bandwidth_sent_last_minute_control, BandwidthSentLastMinuteControl, ulong
+Field: connection_bandwidth_sent_last_minute_keepalive, connection_bandwidth_sent_last_minute_keepalive, BandwidthSentLastMinuteKeepalive, ulong
+Field: connection_bandwidth_sent_last_minute_speech, connection_bandwidth_sent_last_minute_speech, BandwidthSentLastMinuteSpeech, ulong
+Field: connection_bandwidth_sent_last_minute_total, connection_bandwidth_sent_last_minute_total, BandwidthSentLastMinuteTotal, ulong
+Field: connection_bandwidth_sent_last_second_control, connection_bandwidth_sent_last_second_control, BandwidthSentLastSecondControl, ulong
+Field: connection_bandwidth_sent_last_second_keepalive, connection_bandwidth_sent_last_second_keepalive, BandwidthSentLastSecondKeepalive, ulong
+Field: connection_bandwidth_sent_last_second_speech, connection_bandwidth_sent_last_second_speech, BandwidthSentLastSecondSpeech, ulong
+Field: connection_bandwidth_sent_last_second_total, connection_bandwidth_sent_last_second_total, BandwidthSentLastSecondTotal, ulong
+Field: connection_bytes_received_control, connection_bytes_received_control, BytesReceivedControl, ulong
+Field: connection_bytes_received_keepalive, connection_bytes_received_keepalive, BytesReceivedKeepalive, ulong
+Field: connection_bytes_received_speech, connection_bytes_received_speech, BytesReceivedSpeech, ulong
+Field: connection_bytes_received_total, connection_bytes_received_total, BytesReceivedTotal, ulong
+Field: connection_bytes_sent_control, connection_bytes_sent_control, BytesSentControl, ulong
+Field: connection_bytes_sent_keepalive, connection_bytes_sent_keepalive, BytesSentKeepalive, ulong
+Field: connection_bytes_sent_speech, connection_bytes_sent_speech, BytesSentSpeech, ulong
+Field: connection_bytes_sent_total, connection_bytes_sent_total, BytesSentTotal, ulong
 Field: connection_client_ip, connection_client_ip, Ip, string
 Field: connection_client_port, connection_client_port, ConnectionClientPort, ushort
-Field: connection_client2server_packetloss_control, connection_client2server_packetloss_control, ConnectionClientToServerPacketlossControl, float
-Field: connection_client2server_packetloss_keepalive, connection_client2server_packetloss_keepalive, ConnectionClientToServerPacketlossKeepalive, float
-Field: connection_client2server_packetloss_speech, connection_client2server_packetloss_speech, ConnectionClientToServerPacketlossSpeech, float
-Field: connection_client2server_packetloss_total, connection_client2server_packetloss_total, ConnectionClientToServerPacketlossTotal, float
-Field: connection_connected_time, connection_connected_time, ConnectionTime, TimeSpanMillisecT
-Field: connection_filetransfer_bandwidth_received, connection_filetransfer_bandwidth_received, ConnectionFiletransferReceived, long
-Field: connection_filetransfer_bandwidth_sent, connection_filetransfer_bandwidth_sent, ConnectionFiletransferSent, long
-Field: connection_idle_time, connection_idle_time, ConnectionIdleTime, TimeSpanMillisecT
-Field: connection_packets_received_control, connection_packets_received_control, ConnectionPacketsReceivedControl, ulong
-Field: connection_packets_received_keepalive, connection_packets_received_keepalive, ConnectionPacketsReceivedKeepalive, ulong
-Field: connection_packets_received_speech, connection_packets_received_speech, ConnectionPacketsReceivedSpeech, ulong
-Field: connection_packets_received_total, connection_packets_received_total, ConnectionPacketsReceived, long
-Field: connection_packets_sent_control, connection_packets_sent_control, ConnectionPacketsSentControl, ulong
-Field: connection_packets_sent_keepalive, connection_packets_sent_keepalive, ConnectionPacketsSentKeepalive, ulong
-Field: connection_packets_sent_speech, connection_packets_sent_speech, ConnectionPacketsSentSpeech, long
-Field: connection_packets_sent_total, connection_packets_sent_total, ConnectionPacketsSent, long
-Field: connection_ping, connection_ping, ConnectionPing, float
-Field: connection_ping_deviation, connection_ping_deviation, ConnectionPingDeviation, float
-Field: connection_server2client_packetloss_control, connection_server2client_packetloss_control, ConnectionServerToClientPacketlossControl, float
-Field: connection_server2client_packetloss_keepalive, connection_server2client_packetloss_keepalive, ConnectionServerToClientPacketlossKeepalive, float
-Field: connection_server2client_packetloss_speech, connection_server2client_packetloss_speech, ConnectionServerToClientPacketlossSpeech, float
-Field: connection_server2client_packetloss_total, connection_server2client_packetloss_total, ConnectionServerToClientPacketlossTotal, float
+Field: connection_client2server_packetloss_control, connection_client2server_packetloss_control, ClientToServerPacketlossControl, float
+Field: connection_client2server_packetloss_keepalive, connection_client2server_packetloss_keepalive, ClientToServerPacketlossKeepalive, float
+Field: connection_client2server_packetloss_speech, connection_client2server_packetloss_speech, ClientToServerPacketlossSpeech, float
+Field: connection_client2server_packetloss_total, connection_client2server_packetloss_total, ClientToServerPacketlossTotal, float
+Field: connection_connected_time, connection_connected_time, ConnectedTime, TimeSpanMillisecT
+Field: connection_filetransfer_bandwidth_received, connection_filetransfer_bandwidth_received, FiletransferBandwidthReceived, ulong
+Field: connection_filetransfer_bandwidth_sent, connection_filetransfer_bandwidth_sent, FiletransferBandwidthSent, ulong
+Field: connection_idle_time, connection_idle_time, IdleTime, TimeSpanMillisecT
+Field: connection_packets_received_control, connection_packets_received_control, PacketsReceivedControl, ulong
+Field: connection_packets_received_keepalive, connection_packets_received_keepalive, PacketsReceivedKeepalive, ulong
+Field: connection_packets_received_speech, connection_packets_received_speech, PacketsReceivedSpeech, ulong
+Field: connection_packets_received_total, connection_packets_received_total, PacketsReceivedTotal, ulong
+Field: connection_packets_sent_control, connection_packets_sent_control, PacketsSentControl, ulong
+Field: connection_packets_sent_keepalive, connection_packets_sent_keepalive, PacketsSentKeepalive, ulong
+Field: connection_packets_sent_speech, connection_packets_sent_speech, PacketsSentSpeech, ulong
+Field: connection_packets_sent_total, connection_packets_sent_total, PacketsSentTotal, ulong
+Field: connection_ping, connection_ping, Ping, float
+Field: connection_ping_deviation, connection_ping_deviation, PingDeviation, float
+Field: connection_server2client_packetloss_control, connection_server2client_packetloss_control, ServerToClientPacketlossControl, float
+Field: connection_server2client_packetloss_keepalive, connection_server2client_packetloss_keepalive, ServerToClientPacketlossKeepalive, float
+Field: connection_server2client_packetloss_speech, connection_server2client_packetloss_speech, ServerToClientPacketlossSpeech, float
+Field: connection_server2client_packetloss_total, connection_server2client_packetloss_total, ServerToClientPacketlossTotal, float
 Field: cpid, cpid, ChannelParentId, ChannelIdT
 Field: ctid, ctid, TargetChannelId, ChannelIdT
 Field: current_speed, current_speed, CurrentSpeed, float
@@ -199,10 +199,10 @@ Field: permvalue, permvalue, PermissionValue, int
 Field: pid, pid, ParentChannelId, ChannelIdT
 Field: port, port, Port, ushort
 Field: pv, pv, ProtocolVersion, ushort
-Field: reasonid, reasonid, Reason, MoveReason
+Field: reasonid, reasonid, Reason, Reason
 Field: reasonmsg, reasonmsg, ReasonMessage, string
 Field: runtime, runtime, Runtime, TimeSpanSecondsT
-Field: savedb, savedb, GroupIsPermanent, bool
+Field: savedb, savedb, IsPermanent, bool
 Field: seconds_empty, seconds_empty, DurationEmpty, TimeSpanSecondsT
 Field: seekpos, seekpos, SeekPosistion, long
 : ?? type
@@ -222,10 +222,10 @@ Field: token2, token2, Token2, string
 Field: tokencustomset, tokencustomset, TokenCustomSet, string
 Field: total_clients, total_clients, TotalClients, int
 Field: total_clients_family, total_clients_family, TotalFamilyClients, int
-Field: type, type, GroupType, PermissionGroupDatabaseType
+Field: type, type, GroupType, GroupType
 Field: virtualserver_ask_for_privilegekey, virtualserver_ask_for_privilegekey, AskForPrivilege, bool
 Field: virtualserver_autostart, virtualserver_autostart, Autostart, bool
-Field: virtualserver_channel_temp_delete_delay_default, virtualserver_channel_temp_delete_delay_default, DefaultTempChannelDeleteDelay, TimeSpanSecondsT
+Field: virtualserver_channel_temp_delete_delay_default, virtualserver_channel_temp_delete_delay_default, TempChannelDefaultDeleteDelay, TimeSpanSecondsT
 Field: virtualserver_clientsonline, virtualserver_clientsonline, ClientsOnline, int
 Field: virtualserver_codec_encryption_mode, virtualserver_codec_encryption_mode, CodecEncryptionMode, CodecEncryptionMode
 Field: virtualserver_created, virtualserver_created, ServerCreated, DateTime
@@ -245,7 +245,7 @@ Field: virtualserver_id, virtualserver_id, VirtualServerId, ulong
 Field: virtualserver_ip, virtualserver_ip, ServerIp, string[]
 Field: virtualserver_machine_id, virtualserver_machine_id, MachineId, string
 Field: virtualserver_maxclients, virtualserver_maxclients, MaxClients, uint
-Field: virtualserver_name, virtualserver_name, ServerName, string
+Field: virtualserver_name, virtualserver_name, Name, string
 Field: virtualserver_name_phonetic, virtualserver_name_phonetic, PhoneticName, string
 Field: virtualserver_platform, virtualserver_platform, ServerPlatform, string
 Field: virtualserver_port, virtualserver_port, VirtualServerPort, ushort
