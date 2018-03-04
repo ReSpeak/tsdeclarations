@@ -1,8 +1,8 @@
 ChannelCreated -> Channel[@ ChannelId]+
 	ChannelId -> Id
 	ChannelParentId -> Parent
-	MaxClientsFun -> (MaxClients, MaxFamilyClients)
-	ChannelTypeFun -> (ChannelType)
+	MaxClientsCcFun -> (MaxClients, MaxFamilyClients)
+	ChannelTypeCcFun -> (ChannelType)
 	ReturnFalse -> (ForcedSilence)
 	ReturnFalse -> (IsPrivate)
 	ReturnNone -> (OptionalData)
@@ -10,14 +10,14 @@ ChannelCreated -> Channel[@ ChannelId]+
 ChannelDeleted -> Channel[@ ChannelId]-
 
 ChannelEdited -> Channel[@ ChannelId]
-	MaxClientsFun -> (MaxClients, MaxFamilyClients)
-	ChannelTypeFun -> (ChannelType)
+	MaxClientsCeFun -> (MaxClients, MaxFamilyClients)
+	ChannelTypeCeFun -> (ChannelType)
 
 ChannelList -> Channel[@ ChannelId]+
 	ChannelId -> Id
 	ChannelParentId -> Parent
-	MaxClientsFun -> (MaxClients, MaxFamilyClients)
-	ChannelTypeFun -> (ChannelType)
+	MaxClientsClFun -> (MaxClients, MaxFamilyClients)
+	ChannelTypeClFun -> (ChannelType)
 	ReturnNone -> (OptionalData)
 
 ChannelMoved -> Channel[@ ChannelId]
@@ -29,7 +29,7 @@ ClientEnterView -> Client[@ ClientId]+
 	ClientId -> Id
 	TargetChannelId -> Channel
 	AwayFun -> (AwayMessage)
-	TalkPowerFun -> (TalkPowerRequestTime, TalkPowerRequestMessage)
+	TalkPowerFun -> (TalkPowerRequest)
 	ReturnNone -> (OptionalData)
 	ReturnNone -> (ConnectionData)
 	BadgesFun -> (Badges)

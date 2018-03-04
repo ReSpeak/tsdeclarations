@@ -30,8 +30,7 @@ Prop: Topic, str
 Prop: Codec, Codec
 Prop: CodecQuality, u8
 Prop: MaxClients, u16?; doc:"The maximum number of clients in the channel.\n\nNot set if it is unlimited."
-Prop: MaxFamilyClients, u32?; doc:"Maximum number of clients in this and all child channels.\n\nNot set if it is unlimited."
-Prop: InheritsMaxFamilyClients, bool
+Prop: MaxFamilyClients, MaxFamilyClients; doc:"Maximum number of clients in this and all child channels.\n\nNot set if it is unlimited."
 Prop: Order, i32; doc:"TODO Type of order?"
 Prop: ChannelType, ChannelType
 Prop: IsDefault, bool; doc:"Whether it is the default channel"
@@ -123,8 +122,7 @@ Prop: AwayMessage, str?; doc:"Contains the away message if the client is away"
 Prop: ClientType, ClientType; set:false, doc:"If this client is a server query or not"
 Prop: AvatarHash, str; set:false, doc:"MD5 hash of the avatar, used to retrieve the avatar"
 Prop: TalkPower, i32; set:false
-Prop: TalkPowerRequestTime, DateTime?; set:false
-Prop: TalkPowerRequestMessage, str?; doc:"Contains a message from the client if he requests talk power"
+Prop: TalkPowerRequest, TalkPowerRequest?; set:false doc:"Contains a message and timestamp from the client if he requests talk power"
 Prop: Description, str
 Prop: IsPrioritySpeaker, bool
 Prop: UnreadMessages, u32; set:false
@@ -208,7 +206,7 @@ Prop: Name, str
 Prop: WelcomeMessage, str; doc:"Welcome message when conecting to a server"
 Prop: Platform, str
 Prop: Version, str
-Prop: MaxClients, u32; doc:"The maximum number of clients on the server"
+Prop: MaxClients, u16; doc:"The maximum number of clients on the server"
 Prop: Created, DateTime; doc:"Seems to be always 0"
 Prop: CodecEncryptionMode, CodecEncryptionMode; set:true
 Prop: hostmessage, str; set:true

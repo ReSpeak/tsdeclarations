@@ -61,7 +61,7 @@ Field: channel_flag_semi_permanent, channel_flag_semi_permanent, IsSemiPermanent
 Field: channel_forced_silence, channel_forced_silence, ForcedSilence, bool
 Field: channel_icon_id, channel_icon_id, IconId, IconHash
 Field: channel_maxclients, channel_maxclients, MaxClients, ushort
-Field: channel_maxfamilyclients, channel_maxfamilyclients, MaxFamilyClients, uint
+Field: channel_maxfamilyclients, channel_maxfamilyclients, MaxFamilyClients, ushort
 Field: channel_name, channel_name, Name, string
 Field: channel_name_phonetic, channel_name_phonetic, PhoneticName, string
 Field: channel_needed_subscribe_power, channel_needed_subscribe_power, NeededSubscribePower, int
@@ -148,7 +148,7 @@ Field: connection_bytes_sent_keepalive, connection_bytes_sent_keepalive, BytesSe
 Field: connection_bytes_sent_speech, connection_bytes_sent_speech, BytesSentSpeech, ulong
 Field: connection_bytes_sent_total, connection_bytes_sent_total, BytesSentTotal, ulong
 Field: connection_client_ip, connection_client_ip, Ip, string
-Field: connection_client_port, connection_client_port, ConnectionClientPort, ushort
+Field: connection_client_port, connection_client_port, Port, ushort
 Field: connection_client2server_packetloss_control, connection_client2server_packetloss_control, ClientToServerPacketlossControl, float
 Field: connection_client2server_packetloss_keepalive, connection_client2server_packetloss_keepalive, ClientToServerPacketlossKeepalive, float
 Field: connection_client2server_packetloss_speech, connection_client2server_packetloss_speech, ClientToServerPacketlossSpeech, float
@@ -165,8 +165,8 @@ Field: connection_packets_sent_control, connection_packets_sent_control, Packets
 Field: connection_packets_sent_keepalive, connection_packets_sent_keepalive, PacketsSentKeepalive, ulong
 Field: connection_packets_sent_speech, connection_packets_sent_speech, PacketsSentSpeech, ulong
 Field: connection_packets_sent_total, connection_packets_sent_total, PacketsSentTotal, ulong
-Field: connection_ping, connection_ping, Ping, float
-Field: connection_ping_deviation, connection_ping_deviation, PingDeviation, float
+Field: connection_ping, connection_ping, Ping, TimeSpanMillisecT
+Field: connection_ping_deviation, connection_ping_deviation, PingDeviation, TimeSpanMillisecT
 Field: connection_server2client_packetloss_control, connection_server2client_packetloss_control, ServerToClientPacketlossControl, float
 Field: connection_server2client_packetloss_keepalive, connection_server2client_packetloss_keepalive, ServerToClientPacketlossKeepalive, float
 Field: connection_server2client_packetloss_speech, connection_server2client_packetloss_speech, ServerToClientPacketlossSpeech, float
@@ -244,7 +244,7 @@ Field: virtualserver_icon_id, virtualserver_icon_id, IconId, IconHash
 Field: virtualserver_id, virtualserver_id, VirtualServerId, ulong
 Field: virtualserver_ip, virtualserver_ip, ServerIp, string[]
 Field: virtualserver_machine_id, virtualserver_machine_id, MachineId, string
-Field: virtualserver_maxclients, virtualserver_maxclients, MaxClients, uint
+Field: virtualserver_maxclients, virtualserver_maxclients, MaxClients, ushort
 Field: virtualserver_name, virtualserver_name, Name, string
 Field: virtualserver_name_phonetic, virtualserver_name_phonetic, PhoneticName, string
 Field: virtualserver_platform, virtualserver_platform, ServerPlatform, string
