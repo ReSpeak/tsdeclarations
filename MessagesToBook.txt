@@ -1,5 +1,4 @@
 ChannelCreated -> Channel[@ ChannelId]+
-	ChannelId -> Id
 	ChannelParentId -> Parent
 	MaxClientsCcFun -> (MaxClients, MaxFamilyClients)
 	ChannelTypeCcFun -> (ChannelType)
@@ -14,7 +13,6 @@ ChannelEdited -> Channel[@ ChannelId]
 	ChannelTypeCeFun -> (ChannelType)
 
 ChannelList -> Channel[@ ChannelId]+
-	ChannelId -> Id
 	ChannelParentId -> Parent
 	MaxClientsClFun -> (MaxClients, MaxFamilyClients)
 	ChannelTypeClFun -> (ChannelType)
@@ -26,7 +24,6 @@ ChannelMoved -> Channel[@ ChannelId]
 ClientChannelGroupChanged -> Client[@ ClientId]
 
 ClientEnterView -> Client[@ ClientId]+
-	ClientId -> Id
 	TargetChannelId -> Channel
 	AwayFun -> (AwayMessage)
 	TalkPowerFun -> (TalkPowerRequest)
@@ -46,6 +43,5 @@ ClientServerGroupAdded -> Client[@ ClientId]
 	ServerGroupId -> ServerGroups+
 
 ServerGroupList -> ServerGroup[@ ServerGroupId]+
-	ServerGroupId -> Id
 
 ServerEdited -> Server[@]

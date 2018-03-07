@@ -131,7 +131,7 @@ Prop: NeededServerqueryViewPower, i32; set:false
 Prop: IconId, IconHash; set:false
 Prop: IsChannelCommander, bool
 Prop: CountryCode, str; set:false, doc:"Like US, DE"
-Prop: ChannelGroupInheritedChannel, ChannelId; set:false
+Prop: InheritedChannelGroupFromChannel, ChannelId; set:false
 Prop: Badges, str[]
 Nested: OptionalData, OptionalClientData?; set:false
 Nested: ConnectionData, ConnectionClientData?; set:false

@@ -76,7 +76,7 @@ Field: client_away_message, client_away_message, AwayMessage, string
 Field: client_badges, client_badges, Badges, string
 Field: client_base64HashClientUID, client_base64HashClientUID, Base64HashClientUid, string
 Field: client_channel_group_id, client_channel_group_id, ChannelGroup, ChannelGroupIdT
-Field: client_channel_group_inherited_channel_id, client_channel_group_inherited_channel_id, InheritedChannelGroupFromChannelId, ChannelGroupIdT
+Field: client_channel_group_inherited_channel_id, client_channel_group_inherited_channel_id, InheritedChannelGroupFromChannel, ChannelIdT
 Field: client_channel_id, client_channel_id, ChannelId, ChannelIdT
 Field: client_country, client_country, CountryCode, string
 Field: client_created, client_created, CreationDate, DateTime
@@ -118,7 +118,7 @@ Field: client_total_bytes_uploaded, client_total_bytes_uploaded, TotalUploadQuot
 Field: client_totalconnections, client_totalconnections, TotalConnections, int
 Field: client_type, client_type, ClientType, ClientType
 Field: client_unique_identifier, client_unique_identifier, Uid, UidT
-Field: client_unread_messages, client_unread_messages, UnreadMessages, int
+Field: client_unread_messages, client_unread_messages, UnreadMessages, uint
 Field: client_version, client_version, ClientVersion, string
 Field: client_version_sign, client_version_sign, ClientVersionSign, string
 Field: clientftfid, clientftfid, ClientFileTransferId, ushort
