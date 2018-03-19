@@ -292,7 +292,7 @@ Msg: ClientNeededPermissions;   notify:notifyclientneededpermissions; permid, pe
 Msg: ClientServerGroupAdded;    notify:notifyservergroupclientadded; name, sgid, invokerid, invokername, invokeruid, clid, cluid
 Msg: CommandError;              notify:error; error_id, msg, failed_permid, return_code, extra_msg
 Msg: ConnectionInfo;            notify:notifyconnectioninfo; clid, connection_ping, connection_ping_deviation, connection_connected_time, connection_client_ip, connection_client_port, connection_packets_sent_speech, connection_packets_sent_keepalive, connection_packets_sent_control, connection_bytes_sent_speech, connection_bytes_sent_keepalive, connection_bytes_sent_control, connection_packets_received_speech, connection_packets_received_keepalive, connection_packets_received_control, connection_bytes_received_speech, connection_bytes_received_keepalive, connection_bytes_received_control, connection_server2client_packetloss_speech, connection_server2client_packetloss_keepalive, connection_server2client_packetloss_control, connection_server2client_packetloss_total, connection_client2server_packetloss_speech, connection_client2server_packetloss_keepalive, connection_client2server_packetloss_control, connection_client2server_packetloss_total, connection_bandwidth_sent_last_second_speech, connection_bandwidth_sent_last_second_keepalive, connection_bandwidth_sent_last_second_control, connection_bandwidth_sent_last_minute_speech, connection_bandwidth_sent_last_minute_keepalive, connection_bandwidth_sent_last_minute_control, connection_bandwidth_received_last_second_speech, connection_bandwidth_received_last_second_keepalive, connection_bandwidth_received_last_second_control, connection_bandwidth_received_last_minute_speech, connection_bandwidth_received_last_minute_keepalive, connection_bandwidth_received_last_minute_control, connection_filetransfer_bandwidth_sent, connection_filetransfer_bandwidth_received, connection_idle_time
-Msg: ConnectionInfoRequest;     notify:connectioninforequest
+Msg: ConnectionInfoRequest;     notify:notifyconnectioninforequest
 Msg: FileListFinished;          notify:notifyfilelistfinished; cid, path
 Msg: FileTransferStatus;        notify:notifystatusfiletransfer; clientftfid, status, msg, size
 Msg: InitIvExpand;              notify:initivexpand; alpha, beta, omega
@@ -325,5 +325,6 @@ Msg: FileUpload;                notify:notifystartupload;                 client
 # TODO: notifyclientpoke
 # TODO: notifyclientupdated
 # TODO: notifyclientchannelgroupchanged
+# TODO: notifychannelgrouplist
 # TODO: notifychannelpasswordchanged
 # TODO: notifychanneldescriptionchanged
