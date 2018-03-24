@@ -174,6 +174,7 @@ Field: connection_server2client_packetloss_total, connection_server2client_packe
 Field: cpid, cpid, ChannelParentId, ChannelIdT
 Field: ctid, ctid, TargetChannelId, ChannelIdT
 Field: current_speed, current_speed, CurrentSpeed, float
+Field: data, data, Data, string
 Field: datetime, datetime, DateTime, DateTime
 Field: es, es, EmptySince, TimeSpanSecondsT
 Field: ft_status, status, Status, int
@@ -216,6 +217,7 @@ Field: sortid, sortid, SortId, int
 Field: status, status, Status, Ts3ErrorCode
 Field: target, target, TargetClientId, ClientIdT
 Field: targetmode, targetmode, Target, TextMessageTargetMode
+Field: targetmode_plugin, targetmode, Target, int
 Field: token, token, UsedToken, string
 Field: token1, token1, Token1, string
 Field: token2, token2, Token2, string
@@ -299,6 +301,8 @@ Msg: FileTransferStatus;        notify:notifystatusfiletransfer; clientftfid, st
 Msg: InitIvExpand;              notify:initivexpand; alpha, beta, omega
 Msg: InitIvExpand2;             notify:initivexpand2; l, beta, omega, ot, proof, tvd
 Msg: InitServer;                notify:initserver; virtualserver_welcomemessage, virtualserver_platform, virtualserver_version, virtualserver_maxclients, virtualserver_created, virtualserver_hostmessage, virtualserver_hostmessage_mode, virtualserver_id, virtualserver_ip, virtualserver_ask_for_privilegekey, acn, aclid, pv, lt?, client_talk_power, client_needed_serverquery_view_power, virtualserver_name, virtualserver_codec_encryption_mode, virtualserver_default_server_group, virtualserver_default_channel_group, virtualserver_hostbanner_url, virtualserver_hostbanner_gfx_url, virtualserver_hostbanner_gfx_interval, virtualserver_priority_speaker_dimm_modificator, virtualserver_hostbutton_tooltip, virtualserver_hostbutton_url, virtualserver_hostbutton_gfx_url, virtualserver_name_phonetic, virtualserver_icon_id, virtualserver_hostbanner_mode, virtualserver_channel_temp_delete_delay_default
+Msg: PluginCommand;             notify:notifyplugincmd; name, data
+Msg: PluginCommandRequest;      notify:plugincmd s2c:false c2s:true; name, data, targetmode_plugin
 Msg: ServerEdited;              notify:notifyserveredited; invokerid, invokername, invokeruid, reasonid, virtualserver_name, virtualserver_codec_encryption_mode, virtualserver_default_server_group, virtualserver_default_channel_group, virtualserver_hostbanner_url, virtualserver_hostbanner_gfx_url, virtualserver_hostbanner_gfx_interval, virtualserver_priority_speaker_dimm_modificator, virtualserver_hostbutton_tooltip, virtualserver_hostbutton_url, virtualserver_hostbutton_gfx_url, virtualserver_name_phonetic, virtualserver_icon_id, virtualserver_hostbanner_mode, virtualserver_channel_temp_delete_delay_default
 Msg: ServerGroupList;           notify:notifyservergrouplist; sgid, name, type, iconid, savedb, sortid, namemode, n_modifyp, n_member_addp, n_member_remove_p
 Msg: TextMessage;               notify:notifytextmessage; targetmode, msg, target, invokerid, invokername, invokeruid
