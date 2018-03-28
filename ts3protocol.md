@@ -107,15 +107,23 @@ The en/decryption parameters get generated for each packet as follows
 | SIV  | [u8; 20] | Shared IV (see 3.2)             |
 
 ### 1.6.2 Generation pseudocode
-    let temporary: [u8; 26]
+The temporary variable will have a different length depending on the result
+from the crypto init handshake. The old protocol SharedIV will be 20 bytes long,
+since it is generated with sha1, while the new protocol SharedIV will have
+64 byte, since it is generated with sha512.
+
+    let temporary: [u8; 26] OR [u8; 70]
     temporary[0]    = 0x30 if (Client <- Server)
                       0x31 if (Client -> Server)
     temporary[1]    = PT
     temporary[2-6]  = (PGId in network order)[0-4]
-    temporary[6-26] = SIV[0-20]
+    if SIV.length == 20
+        temporary[6-26] = SIV[0-20]
+    else
+        temporary[6-70] = SIV[0-64]
 
     let keynonce: [u8; 32]
-    keynonce        = SHA256(temporary)
+    keynonce        = sha256(temporary)
 
     key: [u8; 16]   = keynonce[0-16]
     nonce: [u8; 16] = keynonce[16-32]
@@ -393,6 +401,8 @@ All high level packets specified in this chapter are sent as `Command` Type
 packets as explained in (see 2.8.3). Additionally the `Newprotocol` flag
 (see 2.3) must be set on all `Command`, `CommandLow` and `Init1` packets.
 
+All commands are specified in the `Messages.txt` file.
+
 The packet header/encryption values for (see 3.1) and (see 3.2) are as following:
 
 | Parameter | Value                                                                                                |
@@ -432,7 +442,16 @@ The ip parameter is added but left without value for legacy reasons.
   | INTEGER    | publicKey.x    | The affine X-Coordinate of the public key |
   | INTEGER    | publicKey.y    | The affine Y-Coordinate of the public key |
 
-## 3.2 initivexpand (Client <- Server)
+## 3.2 initivexpand/initivexpand2 (Client <- Server)
+Depending on the server version the server will send a different init request.
+- TS3 server <3.1 will send `initivexpand`. Continue with (see 3.2.1)
+- TS3 server >=3.1 will send `initivexpand2`. Continue with (see 3.2.2)
+
+If you want to support both protocol standards you dont need to check/know the
+server version. The client just has to act accordingly depending on which
+packet the server sends.
+
+### 3.2.1 initivexpand (Client <- Server)
 The server responds with this command.
 
     initivexpand alpha={alpha} beta={beta} omega={omega}
@@ -441,7 +460,7 @@ The server responds with this command.
 - `beta` is set to `base64(random[u8; 10])`  
   by the server.
 - `omega` is set to `base64(publicKey[u8])`  
-  with the public Key from the server, encoded same as in (see 3.1)
+  with the public key from the server, encoded same as in (see 3.1)
 
 With this information the client now must calculate the shared secret.
 
@@ -461,18 +480,113 @@ With this information the client now must calculate the shared secret.
         sharedData[0-32] = x[0-32]
     if x.length > 32
         sharedData[0-32] = x[(x.length-32)-x.length]
-    SharedIV             = SHA1(sharedData)
+    SharedIV             = sha1(sharedData)
     SharedIV[0-10]       = SharedIV[0-10] xor alpha.decode64()
     SharedIV[10-20]      = SharedIV[10-20] xor beta.decode64()
-    SharedMac[0-8]       = SHA1(SharedIV)[0-8]
+    SharedMac[0-8]       = sha1(SharedIV)[0-8]
 
-**Notes**:
-- Only `SharedIV` and `SharedMac` are needed. The other values can be discarded.
-- The crypto handshake is now completed. The normal encryption scheme (see 1.6) is
-  from now on used.
+### 3.2.2 initivexpand2 (Client <- Server)
+The server responds with this command.
+
+    initivexpand2 l={l} beta={beta} omega={omega} ot={ot} proof={proof} tvd={tvd}
+
+- `l` the server license (see 3.2.2.2)
+- `beta` is set to `base64(random[u8; 54])`  
+  by the server.
+- `omega` is a `base64(publicKey[u8])`  
+  with the public key from the server, encoded same as in (see 3.1)
+- `ot` should always be `1`
+- `proof` is a `base64(ecdh_sign(l))`  
+- `tvd` (base64, unknown; only set on servers with a license)
+
+#### 3.2.2.1 Verify integrity
+This step **must** be done to verity the integrity of the connection.
+
+The `proof` parameter is the sign of the `l` parameter (*not* base64 encoded).
+The client can verify the `l` parameter with the public key of the server
+which is sent in `omega`.
+
+#### 3.2.2.2 Parsing the license
+The license is build from blocks which are concatenated. They may vary in length
+and must be parsed sequentially therefore.
+
+     01 bytes : Key type
+                Const: 0x00
+     32 bytes : Block public key
+     01 bytes : License block type
+     04 bytes : Not valid before date,
+     04 bytes : Not valid after date,
+    var bytes : (Content from the block type)
+
+There are currently 3 different `License block type`s used. 
+- `00` Intermediate.  
+  `content`: A null terminated string, which describes the issuer of this certificate.
+- `02` Server  
+  `content`: A null terminated string, which describes the issuer of this certificate.
+- `32` Ephemeral  
+  `content`: none
+
+#### 3.2.2.4 Calculating the shared secret
+Teamspeak uses Curve25519 for all cryptographic operations.
+
+To calculate the shared secret each license block now must be processed
+sequentially the following way:
+
+    next_key = public_key * sha512(block[1-end])[0-32] + parent
+
+Where:
+- `public_key` is the `Block public key` taken from the current license block.
+  This array must be imported as a compressed Curve25519 EC point.
+- `sha512(block[1-end])[0-32]` is the sha512 of the current license block.  
+  Note that the first byte (`Key type`) is skipped for the sha calculation.  
+  For the result only the first 32 bytes are used.  
+  This resulting array must be imported as a Curve25519 private key.
+- `parent` which is the resulting `new_key` from the previous block.
+  This is a compressed Curve25519 EC point.
+
+Since the first block has no predecessor.
+A fixed 'root' key is used as `parent`.  
+This key must be imported as a compressed Curve25519 EC point.
+
+    [u8; 32] {0xcd, 0x0d, 0xe2, 0xae, 0xd4, 0x63, 0x45, 0x50, 0x9a, 0x7e, 0x3c,
+              0xfd, 0x8f, 0x68, 0xb3, 0xdc, 0x75, 0x55, 0xb2, 0x9d, 0xcc, 0xec,
+              0x73, 0xcd, 0x18, 0x75, 0x0f, 0x99, 0x38, 0x12, 0x40, 0x8a}
+
+The last `next_key` is now used as the public key from the server.
+
+The client now has to create a temporary Curve25519 public/private keypair.
+
+Now the `SharedIV` and `SharedMac` which are used in the encryption as in the
+old protocol can be calculated.
+
+    let SharedIV: [u8; 64]
+    let SharedMac: [u8; 8]
+
+    SharedIV             = sha512(sharedData[0-32])
+    SharedIV[0-10]       = SharedIV[0-10] xor alpha.decode64()
+    SharedIV[10-56]      = SharedIV[10-64] xor beta.decode64()
+    SharedMac[0-8]       = sha1(SharedIV)[0-8]
+
+#### 3.2.2.5 clientek (Client -> Server)
+
+    clientek ek={ek} proof={proof}
+
+- `ek` is `base64(client_public_key)`  
+  which the ephimeral (temporary) key created in (see 3.2.2.4) by the client.
+  This should obviously be the public key part only.
+- `proof` is `base64(client_public_key + beta)`
+  which is a sign of the client_public_key (the `ek`) concatenated with the
+  `beta` parameter from the `initivexpand2` command.
+  The sign must be done with the private key from the identity keypair.
+
+### 3.2.3 **Notes**:
+- Only `SharedIV` and `SharedMac` are needed. The other values can (and should)
+  be discarded.
+- The crypto handshake is now completed. The normal encryption scheme (see 1.6)
+  is from now on used.
 - All `Command`, `CommandLow`, `Ack` and `AckLow` packets must get encrypted.
 - `Voice` packets (and `VoiceWhisper` when wanted) should be encrypted when the
-channel encryption or server wide encryption flag is set.
+  channel encryption or server wide encryption flag is set.
 - `Ping` and `Pong` must not be encrypted.
 
 ## 3.3 clientinit (Client -> Server)
@@ -510,45 +624,11 @@ channel encryption or server wide encryption flag is set.
   value and the `=` character
 
 ## 3.4 initserver (Client <- Server)
-    initserver virtualserver_welcomemessage virtualserver_platform virtualserver_version virtualserver_maxclients virtualserver_created virtualserver_hostmessage virtualserver_hostmessage_mode virtualserver_id virtualserver_ip virtualserver_ask_for_privilegekey acn aclid pv lt client_talk_power client_needed_serverquery_view_power virtualserver_name virtualserver_codec_encryption_mode virtualserver_default_server_group virtualserver_default_channel_group virtualserver_hostbanner_url virtualserver_hostbanner_gfx_url virtualserver_hostbanner_gfx_interval virtualserver_priority_speaker_dimm_modificator virtualserver_hostbutton_tooltip virtualserver_hostbutton_url virtualserver_hostbutton_gfx_url virtualserver_name_phonetic virtualserver_icon_id virtualserver_hostbanner_mode virtualserver_channel_temp_delete_delay_default
-
-- `virtualserver_welcomemessage` the welcome message of the sever
-- `virtualserver_platform` the plattform the server is running on
-- `virtualserver_version` the verison of the server
-- `virtualserver_maxclients` the maximum allowed clients on this server
-- `virtualserver_created` the start date of the server
-- `virtualserver_hostmessage`
-- `virtualserver_hostmessage_mode`
-- `virtualserver_id`
-- `virtualserver_ip`
-- `virtualserver_ask_for_privilegekey`
-- `acn` the accepted client nickname, this might differ from the desired
-  nickname if it's already in use
-- `aclid` the assigned client Id
-- `pv` Protocol Version
-- `lt` License Type of the server
-- `client_talk_power` the initial talk power
-- `client_needed_serverquery_view_power`
-- `virtualserver_name`
-- `virtualserver_codec_encryption_mode` see CodecEncryptionMode from the
-  official query documentation
-- `virtualserver_default_server_group`
-- `virtualserver_default_channel_group`
-- `virtualserver_hostbanner_url`
-- `virtualserver_hostbanner_gfx_url`
-- `virtualserver_hostbanner_gfx_interval`
-- `virtualserver_priority_speaker_dimm_modificator`
-- `virtualserver_hostbutton_tooltip`
-- `virtualserver_hostbutton_url`
-- `virtualserver_hostbutton_gfx_url`
-- `virtualserver_name_phonetic`
-- `virtualserver_icon_id`
-- `virtualserver_hostbanner_mode`
-- `virtualserver_channel_temp_delete_delay_default`
+The server sends the `initserver` command.
 
 Note:
 - From this point on the client knows his client id, therefore it must be set
-  in the header of each packet
+  in the header of each packet.
 
 ## 3.5 Further notifications
 The server will now send all needed information to display the entire
@@ -556,46 +636,16 @@ server properly. Those notifications are in no fixed order, although they
  are most of the time sent in the here declared order.
 
 ### 3.5.1 channellist and channellistfinished
-See the official query documentation to get further details to this
-notifications parameter.
-
-    channellist cid cpid channel_name channel_topic channel_codec channel_codec_quality channel_maxclients channel_maxfamilyclients channel_order channel_flag_permanent channel_flag_semi_permanent channel_flag_default channel_flag_password channel_codec_latency_factor channel_codec_is_unencrypted channel_delete_delay channel_flag_maxclients_unlimited channel_flag_maxfamilyclients_unlimited channel_flag_maxfamilyclients_inherited channel_needed_talk_power channel_forced_silence channel_name_phonetic channel_icon_id channel_flag_private
-
-- `cid` Channel id
-- `cpid` Channel parent id
-- `channel_name`
-- `channel_topic`
-- `channel_codec` see the Codec enum from the official query documentation
-- `channel_codec_quality` value between 0-10 representing a bitrate (see XXX)
-- `channel_maxclients`
-- `channel_maxfamilyclients`
-- `channel_order`
-- `channel_flag_permanent`
-- `channel_flag_semi_permanent`
-- `channel_flag_default`
-- `channel_flag_password`
-- `channel_codec_latency_factor`
-- `channel_codec_is_unencrypted`
-- `channel_delete_delay`
-- `channel_flag_maxclients_unlimited`
-- `channel_flag_maxfamilyclients_unlimited`
-- `channel_flag_maxfamilyclients_inherited`
-- `channel_needed_talk_power`
-- `channel_forced_silence`
-- `channel_name_phonetic`
-- `channel_icon_id`
-- `channel_flag_private`
+The `channellist` notification type will be sent multiple times as needed to
+transfer the entire server structure.
 
 After the last `channellist` notification the server will send
-
-    channellistfinished
+`channellistfinished`
 
 ### 3.5.2 notifycliententerview
-Same as the query notification.
-
-### 3.5.3 notifychannelgrouplist
-### 3.5.4 notifyservergrouplist
-### 3.5.5 notifyclientneededpermissions
+The `notifycliententerview` notification will be sent multiple times as needed
+for each client currently connected.  
+This is the same notification as when a new client connects.
 
 # 4. Further concepts
 ## 4.1 Hashcash
@@ -611,7 +661,7 @@ concatenated.
 
 The first step is to calculate a hash as following
 
-    let data: [u8; 20] = SHA1(publicKey + keyOffset)
+    let data: [u8; 20] = sha1(publicKey + keyOffset)
 
 The level can now be calculated by counting the continuous leading zero bits in
 the data array.
