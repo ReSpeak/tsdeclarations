@@ -447,7 +447,7 @@ Depending on the server version the server will send a different init request.
 - TS3 server <3.1 will send `initivexpand`. Continue with (see 3.2.1)
 - TS3 server >=3.1 will send `initivexpand2`. Continue with (see 3.2.2)
 
-If you want to support both protocol standards you dont need to check/know the
+If you want to support both protocol standards you don't need to check/know the
 server version. The client just has to act accordingly depending on which
 packet the server sends.
 
@@ -507,8 +507,15 @@ The client can verify the `l` parameter with the public key of the server
 which is sent in `omega`.
 
 #### 3.2.2.2 Parsing the license
-The license is build from blocks which are concatenated. They may vary in length
-and must be parsed sequentially therefore.
+The license has a small header continued by a list of blocks. Each block may
+vary in length and must be parsed sequentially therefore.
+
+The license header:
+
+     01 bytes : License version
+                Const: 0x01
+
+The block base layout:
 
      01 bytes : Key type
                 Const: 0x00
@@ -541,7 +548,7 @@ Where:
   Note that the first byte (`Key type`) is skipped for the sha calculation.  
   For the result only the first 32 bytes are used.  
   This resulting array must be imported as a Curve25519 private key.
-- `parent` which is the resulting `new_key` from the previous block.
+- `parent` which is the resulting `next_key` from the previous block.
   This is a compressed Curve25519 EC point.
 
 Since the first block has no predecessor.
@@ -572,7 +579,7 @@ old protocol can be calculated.
     clientek ek={ek} proof={proof}
 
 - `ek` is `base64(client_public_key)`  
-  which the ephimeral (temporary) key created in (see 3.2.2.4) by the client.
+  which the ephemeral (temporary) key created in (see 3.2.2.4) by the client.
   This should obviously be the public key part only.
 - `proof` is `base64(client_public_key + beta)`
   which is a sign of the client_public_key (the `ek`) concatenated with the
@@ -688,6 +695,26 @@ They will be answered with according pong packets.
 
 Sending ping packets from the client side should not be started before the
 crypto handshake has been completed (see 3.3)
+
+## 4.4 Passwords
+All passwords when sent are hashed and encoded with `base64(sha1(password))`
+
+## 4.5 Importing/Deobfuscating Identities from the TeamSpeak3 Client
+The TeamSpeak3 Client exports identities the following way:
+
+    <key offset> + 'V' + <obfuscaded identity>
+
+(For an explanation of the key offset (see 4.1))
+
+```ts
+const staticObfucationKey = b"b9dfaa7bee6ac57ac7b65f1094a1c155e747327bc2fe5d51c512023fe54a280201004e90ad1daaae1075d53b7d571c30e063b5a62a4a017bb394833aa0983e6e"
+let tmp1 = base64decode(identity)
+let idx = in tmp1[20-end].indexof('\0') // where '\0' is the null-byte
+let sha = sha1(tmp1[20-idx])
+let final;
+final[0-20] = tmp1[0-20] xor sha[0-20]
+final[20-end] = tmp1[20-end] xor staticObfucationKey[0-end]
+```
 
 ## 4.? Differences between Query and Full Client
 - notifyconnectioninforequest
