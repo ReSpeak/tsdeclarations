@@ -625,7 +625,7 @@ old protocol can be calculated.
   - Version: `3.0.19.3 [Build: 1466672534]`
   - Platform: `Windows`
   - Sign: `a1OYzvM18mrmfUQBUgxYBxYz2DUU6y5k3/mEL6FurzU0y97Bd1FL7+PRpcHyPkg4R+kKAFZ1nhyzbgkGphDWDg==`
-- The `hwid` usually consists of two 32 char strings with `,` as seperator and looks like `87056c6e1268aaf5055abf8256415e0e,408978b6d98810cc03f0aa16a4c75600` but even empty strings are accepted. On windows the hwid seems to be generated from a registry key (`Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductId`) and on linux and mac it seems to derive from the MAC address of the primary Ethernet/Wifi adapter.
+- The `hwid` usually consists of two 32 char strings with `,` as seperator and looks like `87056c6e1268aaf5055abf8256415e0e,408978b6d98810cc03f0aa16a4c75600` but even empty strings are accepted. On windows the hwid seems to be generated from a registry key (`HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductId`) and on linux and mac it seems to derive from the MAC address of the primary Ethernet/Wifi adapter.
 - Parameters which are empty or not used must be declared but left without
   value and the `=` character
 
