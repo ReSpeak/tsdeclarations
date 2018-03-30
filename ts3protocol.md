@@ -36,7 +36,7 @@ though have differences depending in which direction.
 | PId  | 2 bytes     | u16      | Packet Id                       |
 | CId  | 2 bytes     | u16      | Client Id                       |
 | PT   | 1 byte      | u8       | Packet Type + Flags             |
-| Data | <=487 bytes | [u8]     | The packet payload              |
+| Data | ≤487 bytes  | [u8]     | The packet payload              |
 
 ### 1.1.2 (Client <- Server)
     +--+--+--+--+--+--+--+--+--+--+--+------------//-------------+
@@ -50,7 +50,7 @@ though have differences depending in which direction.
 | MAC  | 8 bytes     | [u8]     | EAX Message Authentication Code |
 | PId  | 2 bytes     | u16      | Packet Id                       |
 | PT   | 1 byte      | u8       | Packet Type + Flags             |
-| Data | <=489 bytes | [u8]     | The packet payload              |
+| Data | ≤489 bytes  | [u8]     | The packet payload              |
 
 ## 1.2 Packet Types
 - `0x00` Voice
@@ -387,6 +387,12 @@ The packet header values are set as following for all packets here:
                 Example: { 0x00, 0x00, data ... data}
     var bytes : The clientinitiv command data as explained in (see 3.1)
 
+Note:
+- `^` in this context means 'power to'
+- To calculate the power of such a high number use a language integrated
+  function like `ModPow` or similar, when available.  
+  If you don't have this function available you can multiply x iteratively
+  and apply the modulo operation after each multiplication.
 
 # 3. The (High-Level) Initiation/Handshake
 In this phase the client and server exchange basic information and
@@ -445,7 +451,7 @@ The ip parameter is added but left without value for legacy reasons.
 ## 3.2 initivexpand/initivexpand2 (Client <- Server)
 Depending on the server version the server will send a different init request.
 - TS3 server <3.1 will send `initivexpand`. Continue with (see 3.2.1)
-- TS3 server >=3.1 will send `initivexpand2`. Continue with (see 3.2.2)
+- TS3 server ≥3.1 will send `initivexpand2`. Continue with (see 3.2.2)
 
 If you want to support both protocol standards you don't need to check/know the
 server version. The client just has to act accordingly depending on which
@@ -527,11 +533,30 @@ The block base layout:
 
 There are currently 3 different `License block type`s used. 
 - `00` Intermediate.  
-  `content`: A null terminated string, which describes the issuer of this certificate.
+  `content`:
+    ```
+     04 bytes : Unknown
+    var bytes : A null terminated string, which describes the issuer of this certificate.
+    ```
 - `02` Server  
-  `content`: A null terminated string, which describes the issuer of this certificate.
+  `content`:
+    ```
+     01 bytes : Server License Type
+     04 bytes : Unknown
+    var bytes : A null terminated string, which describes the issuer of this certificate.
+    ```
 - `32` Ephemeral  
   `content`: none
+
+Both dates are stored in BigEndian, when read you must add `0x50e22700` to the
+number and import as a unix timestamp.
+
+Each `Not valid before` and `Not valid after` timespan must be within the range
+of the parent license block.
+
+The license must consist of `2 ≤ count ≤ 8` blocks.
+The second to last block must be of type `Server`
+and the last block must be of type `Ephemeral`.
 
 #### 3.2.2.4 Calculating the shared secret
 Teamspeak uses Curve25519 for all cryptographic operations.
@@ -559,16 +584,20 @@ This key must be imported as a compressed Curve25519 EC point.
               0xfd, 0x8f, 0x68, 0xb3, 0xdc, 0x75, 0x55, 0xb2, 0x9d, 0xcc, 0xec,
               0x73, 0xcd, 0x18, 0x75, 0x0f, 0x99, 0x38, 0x12, 0x40, 0x8a}
 
-The last `next_key` is now used as the public key from the server.
+The last `next_key` is now used as the public key from the server
+(see pseudocode below).
 
 The client now has to create a temporary Curve25519 public/private keypair.
+We will call them `client_public_key` and `client_private_key`.
 
-Now the `SharedIV` and `SharedMac` which are used in the encryption as in the
-old protocol can be calculated.
+Now the `SharedIV` and `SharedMac` which will be used in the encryption, just as
+in the old protocol, can be calculated.
 
     let SharedIV: [u8; 64]
     let SharedMac: [u8; 8]
+    let sharedData: [u8; 32]
 
+    sharedData           = next_key * client_private_key
     SharedIV             = sha512(sharedData[0-32])
     SharedIV[0-10]       = SharedIV[0-10] xor alpha.decode64()
     SharedIV[10-56]      = SharedIV[10-64] xor beta.decode64()
