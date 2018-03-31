@@ -432,9 +432,7 @@ The first packet is sent (Client -> Server) although this is only sent for
 legacy reasons since newer servers (at least 3.0.13.0?) use the data part
 embedded in the last `Init1` packet from the low-level handshake (see 2.5).
 
-The ip parameter is added but left without value for legacy reasons.
-
-    clientinitiv alpha={alpha} omega={omega} ip
+    clientinitiv alpha={alpha} omega={omega} ip={ip}
 
 - `alpha` is set to `base64(random[u8; 10])`  
   which are 10 random bytes for entropy.
@@ -447,6 +445,9 @@ The ip parameter is added but left without value for legacy reasons.
   | INTEGER    | 32             | The LibTomCrypt used keysize              |
   | INTEGER    | publicKey.x    | The affine X-Coordinate of the public key |
   | INTEGER    | publicKey.y    | The affine Y-Coordinate of the public key |
+
+- `ip` should be set to the final resolved ip address of the server you are
+  actually connecting to.
 
 ## 3.2 initivexpand/initivexpand2 (Client <- Server)
 Depending on the server version the server will send a different init request.
@@ -512,6 +513,11 @@ The `proof` parameter is the sign of the `l` parameter (*not* base64 encoded).
 The client can verify the `l` parameter with the public key of the server
 which is sent in `omega`.
 
+Both proofs which are exchanged (the one you received in (see 3.2.2), and the
+one sent in (see 3.2.2.5)) use 'prime256v1 with sha256, DER encoded'.  
+Note that the identity keys from client/server already should be keys
+on 'prime256v1' as noted in (see 3).
+
 #### 3.2.2.2 Parsing the license
 The license has a small header continued by a list of blocks. Each block may
 vary in length and must be parsed sequentially therefore.
@@ -559,12 +565,14 @@ The second to last block must be of type `Server`
 and the last block must be of type `Ephemeral`.
 
 #### 3.2.2.4 Calculating the shared secret
-Teamspeak uses Curve25519 for all cryptographic operations.
+All elliptic curve operations for this step are done on the Curve25519.  
+You might find more tools looking for Ed25519 but keep in mind that Ed25519
+describes an EdDsa signing/verify operation and is not the curve itself.
 
 To calculate the shared secret each license block now must be processed
 sequentially the following way:
 
-    next_key = public_key * sha512(block[1-end])[0-32] + parent
+    next_key = public_key * clamp(sha512(block[1-end])[0-32]) + parent
 
 Where:
 - `public_key` is the `Block public key` taken from the current license block.
@@ -575,6 +583,16 @@ Where:
   This resulting array must be imported as a Curve25519 private key.
 - `parent` which is the resulting `next_key` from the previous block.
   This is a compressed Curve25519 EC point.
+- `clamp(num)` is a function describing `abs(num) mod B` where `B` is the base
+  point of Curve25519. This function can usually be implemented conveniently
+  on the number buffer like this:
+  ```
+  let buffer: [u8; 32]
+
+  buffer[0]  &= 0xF8
+  buffer[31] &= 0x3F
+  buffer[31] |= 0x40
+  ```
 
 Since the first block has no predecessor.
 A fixed 'root' key is used as `parent`.  
@@ -599,8 +617,8 @@ in the old protocol, can be calculated.
 
     sharedData           = next_key * client_private_key
     SharedIV             = sha512(sharedData[0-32])
-    SharedIV[0-10]       = SharedIV[0-10] xor alpha.decode64()
-    SharedIV[10-56]      = SharedIV[10-64] xor beta.decode64()
+    SharedIV[0-10]       = SharedIV[ 0-10] xor alpha.decode64()
+    SharedIV[10-64]      = SharedIV[10-64] xor  beta.decode64()
     SharedMac[0-8]       = sha1(SharedIV)[0-8]
 
 #### 3.2.2.5 clientek (Client -> Server)
@@ -614,6 +632,10 @@ in the old protocol, can be calculated.
   which is a sign of the client_public_key (the `ek`) concatenated with the
   `beta` parameter from the `initivexpand2` command.
   The sign must be done with the private key from the identity keypair.
+
+The normal packet id counting starts with this packet. This means that
+`clientek` already has the packet id `1` and the next command will continue
+with `2`.
 
 ### 3.2.3 **Notes**:
 - Only `SharedIV` and `SharedMac` are needed. The other values can (and should)
@@ -654,7 +676,13 @@ in the old protocol, can be calculated.
   - Version: `3.0.19.3 [Build: 1466672534]`
   - Platform: `Windows`
   - Sign: `a1OYzvM18mrmfUQBUgxYBxYz2DUU6y5k3/mEL6FurzU0y97Bd1FL7+PRpcHyPkg4R+kKAFZ1nhyzbgkGphDWDg==`
-- The `hwid` usually consists of two 32 char strings with `,` as seperator and looks like `87056c6e1268aaf5055abf8256415e0e,408978b6d98810cc03f0aa16a4c75600` but even empty strings are accepted. On windows the hwid seems to be generated from a registry key (`HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductId`) and on linux and mac it seems to derive from the MAC address of the primary Ethernet/Wifi adapter.
+- The `hwid` usually consists of two 32 char strings concatenated with `,` and
+  looks like `87056c6e1268aaf5055abf8256415e0e,408978b6d98810cc03f0aa16a4c75600`
+  but even empty strings are accepted.  
+  On windows the hwid seems to be generated from a registry key
+  (`HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProductId`).  
+  On linux and macOS it seems to derive from the MAC address of the primary
+  Ethernet/Wifi adapter.
 - Parameters which are empty or not used must be declared but left without
   value and the `=` character
 
@@ -736,7 +764,7 @@ The TeamSpeak3 Client exports identities the following way:
 
 ```ts
 const staticObfucationKey = b"b9dfaa7bee6ac57ac7b65f1094a1c155e747327bc2fe5d51c512023fe54a280201004e90ad1daaae1075d53b7d571c30e063b5a62a4a017bb394833aa0983e6e"
-let tmp1 = base64decode(identity)
+let tmp1 = identity.decode64()
 let idx = in tmp1[20-end].indexof('\0') // where '\0' is the null-byte
 let sha = sha1(tmp1[20-idx])
 let final;
