@@ -1,0 +1,344 @@
+[[struct]]
+name = "ServerGroup"
+id = [
+	{ struct="Connection", prop="Id" },
+	{ struct="ServerGroup", prop="Id" },
+]
+doc = "Get in notifyservergrouplist"
+accessor = { get = true, set = true }
+properties = [
+	{ name="Id", type="ServerGroupId", set=false },
+	{ name="Name", type="str" },
+	{ name="GroupType", type="GroupType" },
+	{ name="IconId", type="IconHash" },
+	{ name="IsPermanent", type="bool", doc="If the group is saved to the server database" },
+	{ name="SortId", type="i32" },
+	{ name="NamingMode", type="GroupNamingMode" },
+	{ name="NeededModifyPower", type="i32" },
+	{ name="NeededMemberAddPower", type="i32" },
+	{ name="NeededMemberRemovePower", type="i32" },
+]
+
+[[struct]]
+name = "File"
+id = [
+	{ struct="Connection", prop="Id" },
+	{ struct="Channel", prop="Id" },
+	{ struct="File", prop="Path" },
+	{ struct="File", prop="Name" },
+]
+doc = "A downloadable file"
+accessor = { get = true, set = true }
+properties = [
+	{ name="Path", type="str" },
+	{ name="Name", type="str" },
+	{ name="Size", type="i64" },
+	{ name="LastChanged", type="DateTime" },
+	{ name="IsFile", type="bool", doc="`true` if this is a file, `false` if it is a folder" },
+]
+
+[[struct]]
+name = "OptionalChannelData"
+id = [
+	{ struct="Connection", prop="Id" },
+	{ struct="Channel", prop="Id" },
+]
+doc = "Get in notifychanneledited by channelgetdescription"
+accessor = { get = true, set = true }
+properties = [
+	{ name="Description", type="str" },
+]
+
+[[struct]]
+name = "Channel"
+id = [
+	{ struct="Connection", prop="Id" },
+	{ struct="Channel", prop="Id" },
+]
+doc = "Get in channellist"
+accessor = { get = true, set = true }
+properties = [
+	{ name="Id", type="ChannelId", set=false },
+	{ name="Parent", type="ChannelId", doc="0 means root channel" },
+	{ name="Name", type="str" },
+	{ name="Topic", type="str" },
+	{ name="Codec", type="Codec" },
+	{ name="CodecQuality", type="u8" },
+	{ name="MaxClients", type="u16", opt=true, doc="The maximum number of clients in the channel.\n\nNot set if it is unlimited." },
+	{ name="MaxFamilyClients", type="MaxFamilyClients", doc="Maximum number of clients in this and all child channels.\n\nNot set if it is unlimited." },
+	{ name="Order", type="i32", doc="TODO Type of order?" },
+	{ name="ChannelType", type="ChannelType" },
+	{ name="IsDefault", type="bool", doc="Whether it is the default channel" },
+	{ name="HasPassword", type="bool", doc="Whether this channel has a password" },
+	{ name="CodecLatencyFactor", type="i32", doc="TODO Type?" },
+	{ name="IsUnencrypted", type="bool" },
+	{ name="DeleteDelay", type="Duration" },
+	{ name="NeededTalkPower", type="i32" },
+	{ name="ForcedSilence", type="bool", set=false },
+	{ name="PhoneticName", type="str" },
+	{ name="IconId", type="IconHash" },
+	{ name="IsPrivate", type="bool" },
+	{ name="OptionalData", type="OptionalChannelData", opt=true, set=false },
+]
+
+[[struct]]
+name = "OptionalClientData"
+id = [
+	{ struct="Connection", prop="Id" },
+	{ struct="Client", prop="Id" },
+]
+doc = "Get in notifyclientupdated by clientgetvariables"
+accessor = { get = true, set = false }
+properties = [
+	{ name="Version", type="str", set=true, doc="Can only be set for our own client" },
+	{ name="Platform", type="str", set=true, doc="Can only be set for our own client" },
+	{ name="LoginName", type="str", opt=true, doc="Set only for server queries" },
+	{ name="Created", type="DateTime" },
+	{ name="LastConnected", type="DateTime" },
+	{ name="TotalConnection", type="u32" },
+	{ name="MonthBytesUploaded", type="u64" },
+	{ name="MonthBytesDownloaded", type="u64" },
+	{ name="TotalBytesUploaded", type="u64" },
+	{ name="TotalBytesDownloaded", type="u64" },
+]
+
+[[struct]]
+name = "ConnectionClientData"
+id = [
+	{ struct="Connection", prop="Id" },
+	{ struct="Client", prop="Id" },
+]
+doc = "Get in notifyconnectioninfo by getconnectioninfo"
+accessor = { get = true, set = false }
+properties = [
+	{ name="Ping", type="Duration" },
+	{ name="PingDeviation", type="Duration" },
+	{ name="ConnectedTime", type="Duration" },
+	{ name="ClientAddress", type="SocketAddr", opt=true, doc="Only available if we have the permission to view it" },
+	{ name="PacketsSentSpeech", type="u64" },
+	{ name="PacketsSentKeepalive", type="u64" },
+	{ name="PacketsSentControl", type="u64" },
+	{ name="BytesSentSpeech", type="u64" },
+	{ name="BytesSentKeepalive", type="u64" },
+	{ name="BytesSentControl", type="u64" },
+	{ name="PacketsReceivedSpeech", type="u64" },
+	{ name="PacketsReceivedKeepalive", type="u64" },
+	{ name="PacketsReceivedControl", type="u64" },
+	{ name="BytesReceivedSpeech", type="u64" },
+	{ name="BytesReceivedKeepalive", type="u64" },
+	{ name="BytesReceivedControl", type="u64" },
+	{ name="ServerToClientPacketlossSpeech", type="f32" },
+	{ name="ServerToClientPacketlossKeepalive", type="f32" },
+	{ name="ServerToClientPacketlossControl", type="f32" },
+	{ name="ServerToClientPacketlossTotal", type="f32" },
+	{ name="ClientToServerPacketlossSpeech", type="f32" },
+	{ name="ClientToServerPacketlossKeepalive", type="f32" },
+	{ name="ClientToServerPacketlossControl", type="f32" },
+	{ name="ClientToServerPacketlossTotal", type="f32" },
+	{ name="BandwidthSentLastSecondSpeech", type="u64" },
+	{ name="BandwidthSentLastSecondKeepalive", type="u64" },
+	{ name="BandwidthSentLastSecondControl", type="u64" },
+	{ name="BandwidthSentLastMinuteSpeech", type="u64" },
+	{ name="BandwidthSentLastMinuteKeepalive", type="u64" },
+	{ name="BandwidthSentLastMinuteControl", type="u64" },
+	{ name="BandwidthReceivedLastSecondSpeech", type="u64" },
+	{ name="BandwidthReceivedLastSecondKeepalive", type="u64" },
+	{ name="BandwidthReceivedLastSecondControl", type="u64" },
+	{ name="BandwidthReceivedLastMinuteSpeech", type="u64" },
+	{ name="BandwidthReceivedLastMinuteKeepalive", type="u64" },
+	{ name="BandwidthReceivedLastMinuteControl", type="u64" },
+	{ name="FiletransferBandwidthSent", type="u64" },
+	{ name="FiletransferBandwidthReceived", type="u64" },
+	{ name="IdleTime", type="Duration" },
+]
+
+[[struct]]
+name = "Client"
+id = [
+	{ struct="Connection", prop="Id" },
+	{ struct="Client", prop="Id" },
+]
+doc = "Get in notifycliententerview"
+accessor = { get = true, set = true }
+properties = [
+	{ name="Id", type="ClientId", set=false },
+	{ name="Channel", type="ChannelId" },
+	{ name="Uid", type="Uid", set=false, doc="Unique Identifier" },
+	{ name="Name", type="str" },
+	{ name="InputMuted", type="bool", doc="`true` if muted, `false` otherwise" },
+	{ name="OutputMuted", type="bool", doc="`true` if muted, `false` otherwise" },
+	{ name="OutputOnlyMuted", type="bool", doc="`true` if muted, `false` otherwise" },
+	{ name="InputHardwareEnabled", type="bool", doc="`true` if enabled, `false` if disabled" },
+	{ name="OutputHardwareEnabled", type="bool", doc="`true` if enabled, `false` if disabled" },
+	{ name="TalkPowerGranted", type="bool", doc="If the client is granted talk power" },
+	{ name="Metadata", type="str", doc="Set by client" },
+	{ name="IsRecording", type="bool", doc="Whether the client is recording" },
+	{ name="DatabaseId", type="ClientDbId", set=false },
+	{ name="ChannelGroup", type="ChannelGroupId" },
+	{ name="ServerGroups", type="ServerGroupId", mod="array" },
+	{ name="AwayMessage", type="str", opt=true, doc="Contains the away message if the client is away" },
+	{ name="ClientType", type="ClientType", set=false, doc="If this client is a server query or not" },
+	{ name="AvatarHash", type="str", set=false, doc="MD5 hash of the avatar, used to retrieve the avatar" },
+	{ name="TalkPower", type="i32", set=false },
+	{ name="TalkPowerRequest", type="TalkPowerRequest", opt=true, set=false, doc="Contains a message and timestamp from the client if he requests talk power" },
+	{ name="Description", type="str" },
+	{ name="IsPrioritySpeaker", type="bool" },
+	{ name="UnreadMessages", type="u32", set=false },
+	{ name="PhoneticName", type="str" },
+	{ name="NeededServerqueryViewPower", type="i32", set=false },
+	{ name="IconId", type="IconHash", set=false },
+	{ name="IsChannelCommander", type="bool" },
+	{ name="CountryCode", type="str", set=false, doc="Like US, DE" },
+	{ name="InheritedChannelGroupFromChannel", type="ChannelId", set=false },
+	{ name="Badges", type="str", mod="array" },
+	{ name="OptionalData", type="OptionalClientData", opt=true, set=false },
+	{ name="ConnectionData", type="ConnectionClientData", opt=true, set=false },
+]
+
+[[struct]]
+name = "OptionalServerData"
+id = [
+	{ struct="Connection", prop="Id" },
+]
+doc = "Get by notifyserverupdated after requested by servergetvariables"
+accessor = { get = true, set = false }
+properties = [
+	{ name="ConnectionCount", type="u32", doc="The amount of connections on this server.\n\nThis includes normal clients and server queries." },
+	{ name="ChannelCount", type="u64", doc="The amount of channels on the server" },
+	{ name="Uptime", type="Duration" },
+	{ name="HasPassword", type="bool" },
+	{ name="DefaultChannelAdminGroup", type="ChannelGroupId", set=true, doc="The channel group which will be given to channel creators" },
+	{ name="MaxDownloadTotalBandwith", type="u64", set=true },
+	{ name="MaxUploadTotalBandwith", type="u64", set=true },
+	{ name="ComplainAutobanCount", type="u32", set=true },
+	{ name="ComplainAutobanTime", type="Duration", set=true },
+	{ name="ComplainRemoveTime", type="Duration", set=true },
+	{ name="MinClientsForceSilence", type="u16", set=true, doc="How many clients can be in a server before silence is forced" },
+	{ name="AntifloodPointsTickReduce", type="u32", set=true },
+	{ name="AntifloodPointsNeededCommandBlock", type="u32", set=true },
+	{ name="ClientCount", type="u16", doc="The amount of clients which are online on the server" },
+	{ name="QueryCount", type="u32", doc="Amount of server queries connected to the server" },
+	{ name="QueryOnlineCount", type="u32", doc="Amount of server queries connected and online/visible on the server" },
+	{ name="DownloadQuota", type="u64", set=true },
+	{ name="UploadQuota", type="u64", set=true },
+	{ name="MonthBytesDownloaded", type="u64" },
+	{ name="MonthBytesUploaded", type="u64" },
+	{ name="TotalBytesDownloaded", type="u64" },
+	{ name="TotalBytesUploaded", type="u64" },
+	{ name="Port", type="u16" },
+	{ name="Autostart", type="bool", set=true },
+	{ name="MachineId", type="str" },
+	{ name="NeededIdentitySecurityLevel", type="u8", set=true },
+	{ name="LogClient", type="bool", set=true },
+	{ name="LogQuery", type="bool", set=true },
+	{ name="LogChannel", type="bool", set=true },
+	{ name="LogPermissions", type="bool", set=true },
+	{ name="LogServer", type="bool", set=true },
+	{ name="LogFileTransfer", type="bool", set=true },
+	{ name="MinClientVersion", type="DateTime" },
+	{ name="ReservedSlots", type="u16", set=true },
+	{ name="TotalPacketlossSpeech", type="f32" },
+	{ name="TotalPacketlossKeepalive", type="f32" },
+	{ name="TotalPacketlossControl", type="f32" },
+	{ name="TotalPacketlossTotal", type="f32" },
+	{ name="TotalPing", type="Duration" },
+	{ name="WeblistEnabled", type="bool", set=true },
+	{ name="MinAndroidVersion", type="DateTime", doc="TODO Maybe str" },
+	{ name="MinIosVersion", type="DateTime" },
+]
+
+[[struct]]
+name = "ConnectionServerData"
+id = [
+	{ struct="Connection", prop="Id" },
+]
+doc = "Get by notifyserverconnectioninfo after serverrequestconnectioninfo"
+accessor = { get = true, set = false }
+properties = [
+	{ name="FileTransferBandwidthSent", type="u64" },
+	{ name="FileTransferBandwidthReceived", type="u64" },
+	{ name="FileTransferBytesSentTotal", type="u64" },
+	{ name="FileTransferBytesReceivedTotal", type="u64" },
+	{ name="PacketsSentTotal", type="u64" },
+	{ name="BytesSentTotal", type="u64" },
+	{ name="PacketsReceivedTotal", type="u64" },
+	{ name="BytesReceivedTotal", type="u64" },
+	{ name="BandwidthSentLastSecondTotal", type="u64" },
+	{ name="BandwidthSentLastMinuteTotal", type="u64" },
+	{ name="BandwidthReceivedLastSecondTotal", type="u64" },
+	{ name="BandwidthReceivedLastMinuteTotal", type="u64" },
+	{ name="ConnectedTime", type="Duration" },
+	{ name="PacketlossTotal", type="f32" },
+	{ name="Ping", type="Duration" },
+]
+
+[[struct]]
+name = "Server"
+id = [
+	{ struct="Connection", prop="Id" },
+]
+doc = "Get in initserver"
+accessor = { get = true, set = false }
+properties = [
+	{ name="Uid", type="Uid", doc="UniqueIdentifier" },
+	{ name="VirtualServerId", type="u64", doc="The virtual server id" },
+	{ name="Name", type="str" },
+	{ name="WelcomeMessage", type="str", doc="Welcome message when conecting to a server" },
+	{ name="Platform", type="str" },
+	{ name="Version", type="str" },
+	{ name="MaxClients", type="u16", doc="The maximum number of clients on the server" },
+	{ name="Created", type="DateTime", doc="Seems to be always 0" },
+	{ name="CodecEncryptionMode", type="CodecEncryptionMode", set=true },
+	{ name="Hostmessage", type="str", set=true },
+	{ name="HostmessageMode", type="HostMessageMode", set=true },
+	{ name="DefaultServerGroup", type="ServerGroupId", set=true },
+	{ name="DefaultChannelGroup", type="ChannelGroupId", set=true },
+	{ name="HostbannerUrl", type="str", set=true },
+	{ name="HostbannerGfxUrl", type="str", set=true },
+	{ name="HostbannerGfxInterval", type="Duration", set=true, doc="How often the hostbanner should be updated" },
+	{ name="PrioritySpeakerDimmModificator", type="f32", set=true },
+	{ name="HostbuttonTooltip", type="str", set=true },
+	{ name="HostbuttonUrl", type="str", set=true },
+	{ name="HostbuttonGfxUrl", type="str", set=true },
+	{ name="PhoneticName", type="str", set=true },
+	{ name="IconId", type="IconHash", doc="Should be an u32, sometimes the server sends an u64 for reasons which has to be cut to 32 bit" },
+	{ name="Ip", type="str", mod="array", doc="A list of listen ips, can be empty" },
+	{ name="AskForPrivilegekey", type="bool" },
+	{ name="HostbannerMode", type="HostBannerMode", set=true },
+	{ name="TempChannelDefaultDeleteDelay", type="Duration", set=true },
+	{ name="ProtocolVersion", type="u16" },
+	{ name="License", type="LicenseType" },
+	{ name="OptionalData", type="OptionalServerData", opt=true },
+	{ name="ConnectionData", type="ConnectionServerData", opt=true },
+	{ name="Clients", type="Client", mod="map", key="ClientId", doc="All clients which are visible for us" },
+	{ name="Channels", type="Channel", mod="map", key="ChannelId", doc="All channels on the server" },
+	{ name="Groups", type="ServerGroup", mod="map", key="ServerGroupId", doc="All server groups on the server" },
+]
+
+[[struct]]
+name = "Connection"
+id = [
+	{ struct="Connection", prop="Id" },
+]
+doc = "A connection from our client to a server"
+accessor = { get = true, set = false }
+properties = [
+	{ name="Id", type="ConnectionId", doc="The local unique id of our connection" },
+	{ name="OwnClient", type="ClientId", doc="The id of our own client on the server" },
+	{ name="Server", type="Server", doc="The server of this connection" },
+]
+
+[[struct]]
+name = "ChatEntry"
+id = [
+	{ struct="Connection", prop="Id" },
+	{ struct="ChatEntry", prop="SenderClient" },
+]
+doc = "An abstract chat object"
+accessor = { get = true, set = false }
+properties = [
+	{ name="SenderClient", type="ClientId" },
+	{ name="Text", type="str" },
+	{ name="Date", type="DateTime" },
+	{ name="Mode", type="TextMessageTargetMode" },
+]
