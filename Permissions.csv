@@ -1,248 +1,249 @@
-name,doc,num
-unknown,May occour on error returns with no associated permission,0
-b_serverinstance_help_view,Retrieve information about ServerQuery commands,1
-b_serverinstance_version_view,Retrieve global server version (including platform and build number),2
-b_serverinstance_info_view,Retrieve global server information,3
-b_serverinstance_virtualserver_list,List virtual servers stored in the database,4
-b_serverinstance_binding_list,List active IP bindings on multi-homed machines,5
-b_serverinstance_permission_list,List permissions available available on the server instance,6
-b_serverinstance_permission_find,Search permission assignments by name or ID,7
-b_virtualserver_create,Create virtual servers,8
-b_virtualserver_delete,Delete virtual servers,9
-b_virtualserver_start_any,Start any virtual server in the server instance,10
-b_virtualserver_stop_any,Stop any virtual server in the server instance,11
-b_virtualserver_change_machine_id,Change a virtual servers machine ID,12
-b_virtualserver_change_template,Edit virtual server default template values,13
-b_serverquery_login,Login to ServerQuery,14
-b_serverinstance_textmessage_send,Send text messages to all virtual servers at once,15
-b_serverinstance_log_view,Retrieve global server log,16
-b_serverinstance_log_add,Write to global server log,17
-b_serverinstance_stop,Shutdown the server process,18
-b_serverinstance_modify_settings,Edit global settings,19
-b_serverinstance_modify_querygroup,Edit global ServerQuery groups,20
-b_serverinstance_modify_templates,Edit global template groups,21
-b_virtualserver_select,Select a virtual server,22
-b_virtualserver_info_view,Retrieve virtual server information,23
-b_virtualserver_connectioninfo_view,Retrieve virtual server connection information,24
-b_virtualserver_channel_list,List channels on a virtual server,25
-b_virtualserver_channel_search,Search for channels on a virtual server,26
-b_virtualserver_client_list,List clients online on a virtual server,27
-b_virtualserver_client_search,Search for clients online on a virtual server,28
-b_virtualserver_client_dblist,List client identities known by the virtual server,29
-b_virtualserver_client_dbsearch,Search for client identities known by the virtual server,30
-b_virtualserver_client_dbinfo,Retrieve client information,31
-b_virtualserver_permission_find,Find permissions,32
-b_virtualserver_custom_search,Find custom fields,33
-b_virtualserver_start,Start own virtual server,34
-b_virtualserver_stop,Stop own virtual server,35
-b_virtualserver_token_list,List privilege keys available,36
-b_virtualserver_token_add,Create new privilege keys,37
-b_virtualserver_token_use,Use a privilege keys to gain access to groups,38
-b_virtualserver_token_delete,Delete a privilege key,39
-b_virtualserver_log_view,Retrieve virtual server log,40
-b_virtualserver_log_add,Write to virtual server log,41
-b_virtualserver_join_ignore_password,Join virtual server ignoring its password,42
-b_virtualserver_notify_register,Register for server notifications,43
-b_virtualserver_notify_unregister,Unregister from server notifications,44
-b_virtualserver_snapshot_create,Create server snapshots,45
-b_virtualserver_snapshot_deploy,Deploy server snapshots,46
-b_virtualserver_permission_reset,Reset the server permission settings to default values,47
-b_virtualserver_modify_name,Modify server name,48
-b_virtualserver_modify_welcomemessage,Modify welcome message,49
-b_virtualserver_modify_maxclients,Modify servers max clients,50
-b_virtualserver_modify_reserved_slots,Modify reserved slots,51
-b_virtualserver_modify_password,Modify server password,52
-b_virtualserver_modify_default_servergroup,Modify default Server Group,53
-b_virtualserver_modify_default_channelgroup,Modify default Channel Group,54
-b_virtualserver_modify_default_channeladmingroup,Modify default Channel Admin Group,55
-b_virtualserver_modify_channel_forced_silence,Modify channel force silence value,56
-b_virtualserver_modify_complain,Modify individual complain settings,57
-b_virtualserver_modify_antiflood,Modify individual antiflood settings,58
-b_virtualserver_modify_ft_settings,Modify file transfer settings,59
-b_virtualserver_modify_ft_quotas,Modify file transfer quotas,60
-b_virtualserver_modify_hostmessage,Modify individual hostmessage settings,61
-b_virtualserver_modify_hostbanner,Modify individual hostbanner settings,62
-b_virtualserver_modify_hostbutton,Modify individual hostbutton settings,63
-b_virtualserver_modify_port,Modify server port,64
-b_virtualserver_modify_autostart,Modify server autostart,65
-b_virtualserver_modify_needed_identity_security_level,Modify required identity security level,66
-b_virtualserver_modify_priority_speaker_dimm_modificator,Modify priority speaker dimm modificator,67
-b_virtualserver_modify_log_settings,Modify log settings,68
-b_virtualserver_modify_min_client_version,Modify min client version,69
-b_virtualserver_modify_icon_id,Modify server icon,70
-b_virtualserver_modify_weblist,Modify web server list reporting settings,71
-b_virtualserver_modify_codec_encryption_mode,Modify codec encryption mode,72
-b_virtualserver_modify_temporary_passwords,Modify temporary serverpasswords,73
-b_virtualserver_modify_temporary_passwords_own,Modify own temporary serverpasswords,74
-b_virtualserver_modify_channel_temp_delete_delay_default,Modify default temporary channel delete delay,75
-i_channel_min_depth,Min channel creation depth in hierarchy,76
-i_channel_max_depth,Max channel creation depth in hierarchy,77
-b_channel_group_inheritance_end,Stop inheritance of channel group permissions,78
-i_channel_permission_modify_power,Modify channel permission power,79
-i_channel_needed_permission_modify_power,Needed modify channel permission power,80
-b_channel_info_view,Retrieve channel information,81
-b_channel_create_child,Create sub-channels,82
-b_channel_create_permanent,Create permanent channels,83
-b_channel_create_semi_permanent,Create semi-permanent channels,84
-b_channel_create_temporary,Create temporary channels,85
-b_channel_create_private,Create private channel,86
-b_channel_create_with_topic,Create channels with a topic,87
-b_channel_create_with_description,Create channels with a description,88
-b_channel_create_with_password,Create password protected channels,89
-b_channel_create_modify_with_codec_speex8,Create channels using Speex Narrowband (8 kHz) codecs,90
-b_channel_create_modify_with_codec_speex16,Create channels using Speex Wideband (16 kHz) codecs,91
-b_channel_create_modify_with_codec_speex32,Create channels using Speex Ultra-Wideband (32 kHz) codecs,92
-b_channel_create_modify_with_codec_celtmono48,Create channels using the CELT Mono (48 kHz) codec ,93
-b_channel_create_modify_with_codec_opusvoice,Create channels using OPUS (voice) codec,94
-b_channel_create_modify_with_codec_opusmusic,Create channels using OPUS (music) codec,95
-i_channel_create_modify_with_codec_maxquality,Create channels with custom codec quality,96
-i_channel_create_modify_with_codec_latency_factor_min,Create channels with minimal custom codec latency factor,97
-b_channel_create_with_maxclients,Create channels with custom max clients,98
-b_channel_create_with_maxfamilyclients,Create channels with custom max family clients,99
-b_channel_create_with_sortorder,Create channels with custom sort order,100
-b_channel_create_with_default,Create default channels,101
-b_channel_create_with_needed_talk_power,Create channels with needed talk power,102
-b_channel_create_modify_with_force_password,Create new channels only with password,103
-i_channel_create_modify_with_temp_delete_delay,Max delete delay for temporary channels,104
-b_channel_modify_parent,Move channels,105
-b_channel_modify_make_default,Make channel default,106
-b_channel_modify_make_permanent,Make channel permanent,107
-b_channel_modify_make_semi_permanent,Make channel semi-permanent,108
-b_channel_modify_make_temporary,Make channel temporary,109
-b_channel_modify_name,Modify channel name,110
-b_channel_modify_topic,Modify channel topic,111
-b_channel_modify_description,Modify channel description,112
-b_channel_modify_password,Modify channel password,113
-b_channel_modify_codec,Modify channel codec,114
-b_channel_modify_codec_quality,Modify channel codec quality,115
-b_channel_modify_codec_latency_factor,Modify channel codec latency factor,116
-b_channel_modify_maxclients,Modify channels max clients,117
-b_channel_modify_maxfamilyclients,Modify channels max family clients,118
-b_channel_modify_sortorder,Modify channel sort order,119
-b_channel_modify_needed_talk_power,Change needed channel talk power,120
-i_channel_modify_power,Channel modify power,121
-i_channel_needed_modify_power,Needed channel modify power,122
-b_channel_modify_make_codec_encrypted,Make channel codec encrypted,123
-b_channel_modify_temp_delete_delay,Modify temporary channel delete delay,124
-b_channel_delete_permanent,Delete permanent channels,125
-b_channel_delete_semi_permanent,Delete semi-permanent channels,126
-b_channel_delete_temporary,Delete temporary channels,127
-b_channel_delete_flag_force,Force channel delete,128
-i_channel_delete_power,Delete channel power,129
-i_channel_needed_delete_power,Needed delete channel power,130
-b_channel_join_permanent,Join permanent channels,131
-b_channel_join_semi_permanent,Join semi-permanent channels,132
-b_channel_join_temporary,Join temporary channels,133
-b_channel_join_ignore_password,Join channel ignoring its password,134
-b_channel_join_ignore_maxclients,Ignore channels max clients limit,135
-i_channel_join_power,Channel join power,136
-i_channel_needed_join_power,Needed channel join power,137
-i_channel_subscribe_power,Channel subscribe power,138
-i_channel_needed_subscribe_power,Needed channel subscribe power,139
-i_channel_description_view_power,Channel description view power,140
-i_channel_needed_description_view_power,Needed channel needed description view power,141
-i_icon_id,Group icon identifier,142
-i_max_icon_filesize,Max icon filesize in bytes,143
-b_icon_manage,Enables icon management,144
-b_group_is_permanent,Group is permanent,145
-i_group_auto_update_type,Group auto-update type,146
-i_group_auto_update_max_value,Group auto-update max value,147
-i_group_sort_id,Group sort id,148
-i_group_show_name_in_tree,Show group name in tree depending on selected mode,149
-b_virtualserver_servergroup_list,List server groups,150
-b_virtualserver_servergroup_permission_list,List server group permissions,151
-b_virtualserver_servergroup_client_list,List clients from a server group,152
-b_virtualserver_channelgroup_list,List channel groups ,153
-b_virtualserver_channelgroup_permission_list,List channel group permissions,154
-b_virtualserver_channelgroup_client_list,List clients from a channel group,155
-b_virtualserver_client_permission_list,List client permissions,156
-b_virtualserver_channel_permission_list,List channel permissions,157
-b_virtualserver_channelclient_permission_list,List channel client permissions,158
-b_virtualserver_servergroup_create,Create server groups,159
-b_virtualserver_channelgroup_create,Create channel groups,160
-i_group_modify_power,Group modify power,161
-i_group_needed_modify_power,Needed group modify power,162
-i_group_member_add_power,Group member add power,163
-i_group_needed_member_add_power,Needed group member add power,164
-i_group_member_remove_power,Group member delete power,165
-i_group_needed_member_remove_power,Needed group member delete power,166
-i_permission_modify_power,Permission modify power,167
-b_permission_modify_power_ignore,Ignore needed permission modify power,168
-b_virtualserver_servergroup_delete,Delete server groups,169
-b_virtualserver_channelgroup_delete,Delete channel groups,170
-i_client_permission_modify_power,Client permission modify power,171
-i_client_needed_permission_modify_power,Needed client permission modify power,172
-i_client_max_clones_uid,Max additional connections per client identity,173
-i_client_max_idletime,Max idle time in seconds,174
-i_client_max_avatar_filesize,Max avatar filesize in bytes,175
-i_client_max_channel_subscriptions,Max channel subscriptions,176
-b_client_is_priority_speaker,Client is priority speaker,177
-b_client_skip_channelgroup_permissions,Ignore channel group permissions,178
-b_client_force_push_to_talk,Force Push-To-Talk capture mode,179
-b_client_ignore_bans,Ignore bans,180
-b_client_ignore_antiflood,Ignore antiflood measurements,181
-b_client_issue_client_query_command,Issue query commands from client,182
-b_client_use_reserved_slot,Use an reserved slot,183
-b_client_use_channel_commander,Use channel commander,184
-b_client_request_talker,Allow to request talk power,185
-b_client_avatar_delete_other,Allow deletion of avatars from other clients,186
-b_client_is_sticky,Client will be sticked to current channel,187
-b_client_ignore_sticky,Client ignores sticky flag,188
-b_client_info_view,Retrieve client information,189
-b_client_permissionoverview_view,Retrieve client permissions overview,190
-b_client_permissionoverview_own,Retrieve clients own permissions overview,191
-b_client_remoteaddress_view,View client IP address and port,192
-i_client_serverquery_view_power,ServerQuery view power,193
-i_client_needed_serverquery_view_power,Needed ServerQuery view power,194
-b_client_custom_info_view,View custom fields,195
-i_client_kick_from_server_power,Client kick power from server,196
-i_client_needed_kick_from_server_power,Needed client kick power from server,197
-i_client_kick_from_channel_power,Client kick power from channel,198
-i_client_needed_kick_from_channel_power,Needed client kick power from channel,199
-i_client_ban_power,Client ban power,200
-i_client_needed_ban_power,Needed client ban power,201
-i_client_move_power,Client move power,202
-i_client_needed_move_power,Needed client move power,203
-i_client_complain_power,Complain power,204
-i_client_needed_complain_power,Needed complain power,205
-b_client_complain_list,Show complain list,206
-b_client_complain_delete_own,Delete own complains,207
-b_client_complain_delete,Delete complains,208
-b_client_ban_list,Show banlist,209
-b_client_ban_create,Add a ban,210
-b_client_ban_delete_own,Delete own bans,211
-b_client_ban_delete,Delete bans,212
-i_client_ban_max_bantime,Max bantime,213
-i_client_private_textmessage_power,Client private message power,214
-i_client_needed_private_textmessage_power,Needed client private message power,215
-b_client_server_textmessage_send,Send text messages to virtual server,216
-b_client_channel_textmessage_send,Send text messages to channel,217
-b_client_offline_textmessage_send,Send offline messages to clients,218
-i_client_talk_power,Client talk power,219
-i_client_needed_talk_power,Needed client talk power,220
-i_client_poke_power,Client poke power,221
-i_client_needed_poke_power,Needed client poke power,222
-b_client_set_flag_talker,Set the talker flag for clients and allow them to speak,223
-i_client_whisper_power,Client whisper power,224
-i_client_needed_whisper_power,Client needed whisper power,225
-b_client_modify_description,Edit a clients description,226
-b_client_modify_own_description,Allow client to edit own description,227
-b_client_modify_dbproperties,Edit a clients properties in the database,228
-b_client_delete_dbproperties,Delete a clients properties in the database,229
-b_client_create_modify_serverquery_login,Create or modify own ServerQuery account,230
-b_ft_ignore_password,Browse files without channel password,231
-b_ft_transfer_list,Retrieve list of running filetransfers,232
-i_ft_file_upload_power,File upload power,233
-i_ft_needed_file_upload_power,Needed file upload power,234
-i_ft_file_download_power,File download power,235
-i_ft_needed_file_download_power,Needed file download power,236
-i_ft_file_delete_power,File delete power,237
-i_ft_needed_file_delete_power,Needed file delete power,238
-i_ft_file_rename_power,File rename power,239
-i_ft_needed_file_rename_power,Needed file rename power,240
-i_ft_file_browse_power,File browse power,241
-i_ft_needed_file_browse_power,Needed file browse power,242
-i_ft_directory_create_power,Create directory power,243
-i_ft_needed_directory_create_power,Needed create directory power,244
-i_ft_quota_mb_download_per_client,Download quota per client in MByte,245
-i_ft_quota_mb_upload_per_client,Upload quota per client in MByte,246
+num,name,doc
+0,unknown,May occour on error returns with no associated permission
+1,b_serverinstance_help_view,Retrieve information about ServerQuery commands
+2,b_serverinstance_version_view,Retrieve global server version (including platform and build number)
+3,b_serverinstance_info_view,Retrieve global server information
+4,b_serverinstance_virtualserver_list,List virtual servers stored in the database
+5,b_serverinstance_binding_list,List active IP bindings on multi-homed machines
+6,b_serverinstance_permission_list,List permissions available available on the server instance
+7,b_serverinstance_permission_find,Search permission assignments by name or ID
+8,b_virtualserver_create,Create virtual servers
+9,b_virtualserver_delete,Delete virtual servers
+10,b_virtualserver_start_any,Start any virtual server in the server instance
+11,b_virtualserver_stop_any,Stop any virtual server in the server instance
+12,b_virtualserver_change_machine_id,Change a virtual servers machine ID
+13,b_virtualserver_change_template,Edit virtual server default template values
+14,b_serverquery_login,Login to ServerQuery
+15,b_serverinstance_textmessage_send,Send text messages to all virtual servers at once
+16,b_serverinstance_log_view,Retrieve global server log
+17,b_serverinstance_log_add,Write to global server log
+18,b_serverinstance_stop,Shutdown the server process
+19,b_serverinstance_modify_settings,Edit global settings
+20,b_serverinstance_modify_querygroup,Edit global ServerQuery groups
+21,b_serverinstance_modify_templates,Edit global template groups
+22,b_virtualserver_select,Select a virtual server
+23,b_virtualserver_info_view,Retrieve virtual server information
+24,b_virtualserver_connectioninfo_view,Retrieve virtual server connection information
+25,b_virtualserver_channel_list,List channels on a virtual server
+26,b_virtualserver_channel_search,Search for channels on a virtual server
+27,b_virtualserver_client_list,List clients online on a virtual server
+28,b_virtualserver_client_search,Search for clients online on a virtual server
+29,b_virtualserver_client_dblist,List client identities known by the virtual server
+30,b_virtualserver_client_dbsearch,Search for client identities known by the virtual server
+31,b_virtualserver_client_dbinfo,Retrieve client information
+32,b_virtualserver_permission_find,Find permissions
+33,b_virtualserver_custom_search,Find custom fields
+34,b_virtualserver_start,Start own virtual server
+35,b_virtualserver_stop,Stop own virtual server
+36,b_virtualserver_token_list,List privilege keys available
+37,b_virtualserver_token_add,Create new privilege keys
+38,b_virtualserver_token_use,Use a privilege keys to gain access to groups
+39,b_virtualserver_token_delete,Delete a privilege key
+40,b_virtualserver_log_view,Retrieve virtual server log
+41,b_virtualserver_log_add,Write to virtual server log
+42,b_virtualserver_join_ignore_password,Join virtual server ignoring its password
+43,b_virtualserver_notify_register,Register for server notifications
+44,b_virtualserver_notify_unregister,Unregister from server notifications
+45,b_virtualserver_snapshot_create,Create server snapshots
+46,b_virtualserver_snapshot_deploy,Deploy server snapshots
+47,b_virtualserver_permission_reset,Reset the server permission settings to default values
+48,b_virtualserver_modify_name,Modify server name
+49,b_virtualserver_modify_welcomemessage,Modify welcome message
+50,b_virtualserver_modify_maxclients,Modify servers max clients
+51,b_virtualserver_modify_reserved_slots,Modify reserved slots
+52,b_virtualserver_modify_password,Modify server password
+53,b_virtualserver_modify_default_servergroup,Modify default Server Group
+54,b_virtualserver_modify_default_channelgroup,Modify default Channel Group
+55,b_virtualserver_modify_default_channeladmingroup,Modify default Channel Admin Group
+56,b_virtualserver_modify_channel_forced_silence,Modify channel force silence value
+57,b_virtualserver_modify_complain,Modify individual complain settings
+58,b_virtualserver_modify_antiflood,Modify individual antiflood settings
+59,b_virtualserver_modify_ft_settings,Modify file transfer settings
+60,b_virtualserver_modify_ft_quotas,Modify file transfer quotas
+61,b_virtualserver_modify_hostmessage,Modify individual hostmessage settings
+62,b_virtualserver_modify_hostbanner,Modify individual hostbanner settings
+63,b_virtualserver_modify_hostbutton,Modify individual hostbutton settings
+64,b_virtualserver_modify_port,Modify server port
+65,b_virtualserver_modify_autostart,Modify server autostart
+66,b_virtualserver_modify_needed_identity_security_level,Modify required identity security level
+67,b_virtualserver_modify_priority_speaker_dimm_modificator,Modify priority speaker dimm modificator
+68,b_virtualserver_modify_log_settings,Modify log settings
+69,b_virtualserver_modify_min_client_version,Modify min client version
+70,b_virtualserver_modify_icon_id,Modify server icon
+71,b_virtualserver_modify_weblist,Modify web server list reporting settings
+72,b_virtualserver_modify_codec_encryption_mode,Modify codec encryption mode
+73,b_virtualserver_modify_temporary_passwords,Modify temporary serverpasswords
+74,b_virtualserver_modify_temporary_passwords_own,Modify own temporary serverpasswords
+75,b_virtualserver_modify_channel_temp_delete_delay_default,Modify default temporary channel delete delay
+76,b_virtualserver_modify_nickname,Modify server nicknames
+77,i_channel_min_depth,Min channel creation depth in hierarchy
+78,i_channel_max_depth,Max channel creation depth in hierarchy
+79,b_channel_group_inheritance_end,Stop inheritance of channel group permissions
+80,i_channel_permission_modify_power,Modify channel permission power
+81,i_channel_needed_permission_modify_power,Needed modify channel permission power
+82,b_channel_info_view,Retrieve channel information
+83,b_channel_create_child,Create sub-channels
+84,b_channel_create_permanent,Create permanent channels
+85,b_channel_create_semi_permanent,Create semi-permanent channels
+86,b_channel_create_temporary,Create temporary channels
+87,b_channel_create_private,Create private channel
+88,b_channel_create_with_topic,Create channels with a topic
+89,b_channel_create_with_description,Create channels with a description
+90,b_channel_create_with_password,Create password protected channels
+91,b_channel_create_modify_with_codec_speex8,Create channels using Speex Narrowband (8 kHz) codecs
+92,b_channel_create_modify_with_codec_speex16,Create channels using Speex Wideband (16 kHz) codecs
+93,b_channel_create_modify_with_codec_speex32,Create channels using Speex Ultra-Wideband (32 kHz) codecs
+94,b_channel_create_modify_with_codec_celtmono48,Create channels using the CELT Mono (48 kHz) codec 
+95,b_channel_create_modify_with_codec_opusvoice,Create channels using OPUS (voice) codec
+96,b_channel_create_modify_with_codec_opusmusic,Create channels using OPUS (music) codec
+97,i_channel_create_modify_with_codec_maxquality,Create channels with custom codec quality
+98,i_channel_create_modify_with_codec_latency_factor_min,Create channels with minimal custom codec latency factor
+99,b_channel_create_with_maxclients,Create channels with custom max clients
+100,b_channel_create_with_maxfamilyclients,Create channels with custom max family clients
+101,b_channel_create_with_sortorder,Create channels with custom sort order
+102,b_channel_create_with_default,Create default channels
+103,b_channel_create_with_needed_talk_power,Create channels with needed talk power
+104,b_channel_create_modify_with_force_password,Create new channels only with password
+105,i_channel_create_modify_with_temp_delete_delay,Max delete delay for temporary channels
+106,b_channel_modify_parent,Move channels
+107,b_channel_modify_make_default,Make channel default
+108,b_channel_modify_make_permanent,Make channel permanent
+109,b_channel_modify_make_semi_permanent,Make channel semi-permanent
+110,b_channel_modify_make_temporary,Make channel temporary
+111,b_channel_modify_name,Modify channel name
+112,b_channel_modify_topic,Modify channel topic
+113,b_channel_modify_description,Modify channel description
+114,b_channel_modify_password,Modify channel password
+115,b_channel_modify_codec,Modify channel codec
+116,b_channel_modify_codec_quality,Modify channel codec quality
+117,b_channel_modify_codec_latency_factor,Modify channel codec latency factor
+118,b_channel_modify_maxclients,Modify channels max clients
+119,b_channel_modify_maxfamilyclients,Modify channels max family clients
+120,b_channel_modify_sortorder,Modify channel sort order
+121,b_channel_modify_needed_talk_power,Change needed channel talk power
+122,i_channel_modify_power,Channel modify power
+123,i_channel_needed_modify_power,Needed channel modify power
+124,b_channel_modify_make_codec_encrypted,Make channel codec encrypted
+125,b_channel_modify_temp_delete_delay,Modify temporary channel delete delay
+126,b_channel_delete_permanent,Delete permanent channels
+127,b_channel_delete_semi_permanent,Delete semi-permanent channels
+128,b_channel_delete_temporary,Delete temporary channels
+129,b_channel_delete_flag_force,Force channel delete
+130,i_channel_delete_power,Delete channel power
+131,i_channel_needed_delete_power,Needed delete channel power
+132,b_channel_join_permanent,Join permanent channels
+133,b_channel_join_semi_permanent,Join semi-permanent channels
+134,b_channel_join_temporary,Join temporary channels
+135,b_channel_join_ignore_password,Join channel ignoring its password
+136,b_channel_join_ignore_maxclients,Ignore channels max clients limit
+137,i_channel_join_power,Channel join power
+138,i_channel_needed_join_power,Needed channel join power
+139,i_channel_subscribe_power,Channel subscribe power
+140,i_channel_needed_subscribe_power,Needed channel subscribe power
+141,i_channel_description_view_power,Channel description view power
+142,i_channel_needed_description_view_power,Needed channel needed description view power
+143,i_icon_id,Group icon identifier
+144,i_max_icon_filesize,Max icon filesize in bytes
+145,b_icon_manage,Enables icon management
+146,b_group_is_permanent,Group is permanent
+147,i_group_auto_update_type,Group auto-update type
+148,i_group_auto_update_max_value,Group auto-update max value
+149,i_group_sort_id,Group sort id
+150,i_group_show_name_in_tree,Show group name in tree depending on selected mode
+151,b_virtualserver_servergroup_list,List server groups
+152,b_virtualserver_servergroup_permission_list,List server group permissions
+153,b_virtualserver_servergroup_client_list,List clients from a server group
+154,b_virtualserver_channelgroup_list,List channel groups 
+155,b_virtualserver_channelgroup_permission_list,List channel group permissions
+156,b_virtualserver_channelgroup_client_list,List clients from a channel group
+157,b_virtualserver_client_permission_list,List client permissions
+158,b_virtualserver_channel_permission_list,List channel permissions
+159,b_virtualserver_channelclient_permission_list,List channel client permissions
+160,b_virtualserver_servergroup_create,Create server groups
+161,b_virtualserver_channelgroup_create,Create channel groups
+162,i_group_modify_power,Group modify power
+163,i_group_needed_modify_power,Needed group modify power
+164,i_group_member_add_power,Group member add power
+165,i_group_needed_member_add_power,Needed group member add power
+166,i_group_member_remove_power,Group member delete power
+167,i_group_needed_member_remove_power,Needed group member delete power
+168,i_permission_modify_power,Permission modify power
+169,b_permission_modify_power_ignore,Ignore needed permission modify power
+170,b_virtualserver_servergroup_delete,Delete server groups
+171,b_virtualserver_channelgroup_delete,Delete channel groups
+172,i_client_permission_modify_power,Client permission modify power
+173,i_client_needed_permission_modify_power,Needed client permission modify power
+174,i_client_max_clones_uid,Max additional connections per client identity
+175,i_client_max_idletime,Max idle time in seconds
+176,i_client_max_avatar_filesize,Max avatar filesize in bytes
+177,i_client_max_channel_subscriptions,Max channel subscriptions
+178,b_client_is_priority_speaker,Client is priority speaker
+179,b_client_skip_channelgroup_permissions,Ignore channel group permissions
+180,b_client_force_push_to_talk,Force Push-To-Talk capture mode
+181,b_client_ignore_bans,Ignore bans
+182,b_client_ignore_antiflood,Ignore antiflood measurements
+183,b_client_issue_client_query_command,Issue query commands from client
+184,b_client_use_reserved_slot,Use an reserved slot
+185,b_client_use_channel_commander,Use channel commander
+186,b_client_request_talker,Allow to request talk power
+187,b_client_avatar_delete_other,Allow deletion of avatars from other clients
+188,b_client_is_sticky,Client will be sticked to current channel
+189,b_client_ignore_sticky,Client ignores sticky flag
+190,b_client_info_view,Retrieve client information
+191,b_client_permissionoverview_view,Retrieve client permissions overview
+192,b_client_permissionoverview_own,Retrieve clients own permissions overview
+193,b_client_remoteaddress_view,View client IP address and port
+194,i_client_serverquery_view_power,ServerQuery view power
+195,i_client_needed_serverquery_view_power,Needed ServerQuery view power
+196,b_client_custom_info_view,View custom fields
+197,i_client_kick_from_server_power,Client kick power from server
+198,i_client_needed_kick_from_server_power,Needed client kick power from server
+199,i_client_kick_from_channel_power,Client kick power from channel
+200,i_client_needed_kick_from_channel_power,Needed client kick power from channel
+201,i_client_ban_power,Client ban power
+202,i_client_needed_ban_power,Needed client ban power
+203,i_client_move_power,Client move power
+204,i_client_needed_move_power,Needed client move power
+205,i_client_complain_power,Complain power
+206,i_client_needed_complain_power,Needed complain power
+207,b_client_complain_list,Show complain list
+208,b_client_complain_delete_own,Delete own complains
+209,b_client_complain_delete,Delete complains
+210,b_client_ban_list,Show banlist
+211,b_client_ban_create,Add a ban
+212,b_client_ban_delete_own,Delete own bans
+213,b_client_ban_delete,Delete bans
+214,i_client_ban_max_bantime,Max bantime
+215,i_client_private_textmessage_power,Client private message power
+216,i_client_needed_private_textmessage_power,Needed client private message power
+217,b_client_server_textmessage_send,Send text messages to virtual server
+218,b_client_channel_textmessage_send,Send text messages to channel
+219,b_client_offline_textmessage_send,Send offline messages to clients
+220,i_client_talk_power,Client talk power
+221,i_client_needed_talk_power,Needed client talk power
+222,i_client_poke_power,Client poke power
+223,i_client_needed_poke_power,Needed client poke power
+224,b_client_set_flag_talker,Set the talker flag for clients and allow them to speak
+225,i_client_whisper_power,Client whisper power
+226,i_client_needed_whisper_power,Client needed whisper power
+227,b_client_modify_description,Edit a clients description
+228,b_client_modify_own_description,Allow client to edit own description
+229,b_client_modify_dbproperties,Edit a clients properties in the database
+230,b_client_delete_dbproperties,Delete a clients properties in the database
+231,b_client_create_modify_serverquery_login,Create or modify own ServerQuery account
+232,b_ft_ignore_password,Browse files without channel password
+233,b_ft_transfer_list,Retrieve list of running filetransfers
+234,i_ft_file_upload_power,File upload power
+235,i_ft_needed_file_upload_power,Needed file upload power
+236,i_ft_file_download_power,File download power
+237,i_ft_needed_file_download_power,Needed file download power
+238,i_ft_file_delete_power,File delete power
+239,i_ft_needed_file_delete_power,Needed file delete power
+240,i_ft_file_rename_power,File rename power
+241,i_ft_needed_file_rename_power,Needed file rename power
+242,i_ft_file_browse_power,File browse power
+243,i_ft_needed_file_browse_power,Needed file browse power
+244,i_ft_directory_create_power,Create directory power
+245,i_ft_needed_directory_create_power,Needed create directory power
+246,i_ft_quota_mb_download_per_client,Download quota per client in MByte
+247,i_ft_quota_mb_upload_per_client,Upload quota per client in MByte
