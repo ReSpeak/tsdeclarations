@@ -16,7 +16,7 @@ properties = [
 	{ name="NamingMode", type="GroupNamingMode" },
 	{ name="NeededModifyPower", type="i32" },
 	{ name="NeededMemberAddPower", type="i32" },
-	{ name="NeededMemberRemovePower", type="i32" },
+	{ name="NeededMemberRemovePower", type="i32", opt=true },
 ]
 
 [[struct]]
@@ -280,6 +280,7 @@ id = [
 doc = "Get in initserver"
 accessor = { get = true, set = false }
 properties = [
+	# TODO replace by public key
 	{ name="Uid", type="Uid", doc="UniqueIdentifier" },
 	{ name="VirtualServerId", type="u64", doc="The virtual server id" },
 	{ name="Name", type="str" },
