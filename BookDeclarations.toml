@@ -1,11 +1,10 @@
 [[struct]]
 name = "ServerGroup"
 id = [
-	{ struct="Connection", prop="Id" },
 	{ struct="ServerGroup", prop="Id" },
 ]
 doc = "Get in notifyservergrouplist"
-accessor = { get = true, set = true }
+accessor = { get=true, set=true }
 properties = [
 	{ name="Id", type="ServerGroupId", set=false },
 	{ name="Name", type="str" },
@@ -22,13 +21,12 @@ properties = [
 [[struct]]
 name = "File"
 id = [
-	{ struct="Connection", prop="Id" },
 	{ struct="Channel", prop="Id" },
 	{ struct="File", prop="Path" },
 	{ struct="File", prop="Name" },
 ]
 doc = "A downloadable file"
-accessor = { get = true, set = true }
+accessor = { get=true, set=true }
 properties = [
 	{ name="Path", type="str" },
 	{ name="Name", type="str" },
@@ -40,11 +38,10 @@ properties = [
 [[struct]]
 name = "OptionalChannelData"
 id = [
-	{ struct="Connection", prop="Id" },
 	{ struct="Channel", prop="Id" },
 ]
 doc = "Get in notifychanneledited by channelgetdescription"
-accessor = { get = true, set = true }
+accessor = { get=true, set=true }
 properties = [
 	{ name="Description", type="str" },
 ]
@@ -52,11 +49,10 @@ properties = [
 [[struct]]
 name = "Channel"
 id = [
-	{ struct="Connection", prop="Id" },
 	{ struct="Channel", prop="Id" },
 ]
 doc = "Get in channellist"
-accessor = { get = true, set = true }
+accessor = { get=true, set=true }
 properties = [
 	{ name="Id", type="ChannelId", set=false },
 	{ name="Parent", type="ChannelId", doc="0 means root channel" },
@@ -84,11 +80,10 @@ properties = [
 [[struct]]
 name = "OptionalClientData"
 id = [
-	{ struct="Connection", prop="Id" },
 	{ struct="Client", prop="Id" },
 ]
 doc = "Get in notifyclientupdated by clientgetvariables"
-accessor = { get = true, set = false }
+accessor = { get=true, set=false }
 properties = [
 	{ name="Version", type="str", set=true, doc="Can only be set for our own client" },
 	{ name="Platform", type="str", set=true, doc="Can only be set for our own client" },
@@ -105,11 +100,10 @@ properties = [
 [[struct]]
 name = "ConnectionClientData"
 id = [
-	{ struct="Connection", prop="Id" },
 	{ struct="Client", prop="Id" },
 ]
 doc = "Get in notifyconnectioninfo by getconnectioninfo"
-accessor = { get = true, set = false }
+accessor = { get=true, set=false }
 properties = [
 	{ name="Ping", type="Duration" },
 	{ name="PingDeviation", type="Duration" },
@@ -155,11 +149,10 @@ properties = [
 [[struct]]
 name = "Client"
 id = [
-	{ struct="Connection", prop="Id" },
 	{ struct="Client", prop="Id" },
 ]
 doc = "Get in notifycliententerview"
-accessor = { get = true, set = true }
+accessor = { get=true, set=true }
 properties = [
 	{ name="Id", type="ClientId", set=false },
 	{ name="Channel", type="ChannelId" },
@@ -198,10 +191,9 @@ properties = [
 [[struct]]
 name = "OptionalServerData"
 id = [
-	{ struct="Connection", prop="Id" },
 ]
 doc = "Get by notifyserverupdated after requested by servergetvariables"
-accessor = { get = true, set = false }
+accessor = { get=true, set=false }
 properties = [
 	{ name="ConnectionCount", type="u32", doc="The amount of connections on this server.\n\nThis includes normal clients and server queries." },
 	{ name="ChannelCount", type="u64", doc="The amount of channels on the server" },
@@ -250,10 +242,9 @@ properties = [
 [[struct]]
 name = "ConnectionServerData"
 id = [
-	{ struct="Connection", prop="Id" },
 ]
 doc = "Get by notifyserverconnectioninfo after serverrequestconnectioninfo"
-accessor = { get = true, set = false }
+accessor = { get=true, set=false }
 properties = [
 	{ name="FileTransferBandwidthSent", type="u64" },
 	{ name="FileTransferBandwidthReceived", type="u64" },
@@ -275,10 +266,9 @@ properties = [
 [[struct]]
 name = "Server"
 id = [
-	{ struct="Connection", prop="Id" },
 ]
 doc = "Get in initserver"
-accessor = { get = true, set = false }
+accessor = { get=true, set=false }
 properties = [
 	# TODO replace by public key
 	{ name="Uid", type="Uid", doc="UniqueIdentifier" },
@@ -319,10 +309,9 @@ properties = [
 [[struct]]
 name = "Connection"
 id = [
-	{ struct="Connection", prop="Id" },
 ]
 doc = "A connection from our client to a server"
-accessor = { get = true, set = false }
+accessor = { get=true, set=false }
 properties = [
 	{ name="Id", type="ConnectionId", doc="The local unique id of our connection" },
 	{ name="OwnClient", type="ClientId", doc="The id of our own client on the server" },
@@ -332,11 +321,10 @@ properties = [
 [[struct]]
 name = "ChatEntry"
 id = [
-	{ struct="Connection", prop="Id" },
 	{ struct="ChatEntry", prop="SenderClient" },
 ]
 doc = "An abstract chat object"
-accessor = { get = true, set = false }
+accessor = { get=true, set=false }
 properties = [
 	{ name="SenderClient", type="ClientId" },
 	{ name="Text", type="str" },
