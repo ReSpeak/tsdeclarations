@@ -1,6 +1,20 @@
 # All properties which have an identical 'High-Level' name are copied implicitly
 
 [[rule]]
+from = "InitServer"
+id = []
+to = "Server"
+operation = "add"
+properties = [
+	{ from="ServerPlatform", to="Platform" },
+	{ from="ServerVersion", to="Version" },
+	{ from="ServerCreated", to="Created" },
+	{ from="ServerIp", to="Ip" },
+	# ClientName, ClientId, TalkPower, NeededServerqueryViewPower
+	{ function="SetClientDataFun", tolist=[] },
+]
+
+[[rule]]
 from = "ChannelCreated"
 id = ["ChannelId"]
 to = "Channel"

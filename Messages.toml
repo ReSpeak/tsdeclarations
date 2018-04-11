@@ -23,8 +23,8 @@ fields = [
 	{ map="channel_flag_semi_permanent", ts="channel_flag_semi_permanent", pretty="IsSemiPermanent", type="bool" },
 	{ map="channel_forced_silence", ts="channel_forced_silence", pretty="ForcedSilence", type="bool" },
 	{ map="channel_icon_id", ts="channel_icon_id", pretty="IconId", type="IconHash" },
-	{ map="channel_maxclients", ts="channel_maxclients", pretty="MaxClients", type="u16" },
-	{ map="channel_maxfamilyclients", ts="channel_maxfamilyclients", pretty="MaxFamilyClients", type="u16" },
+	{ map="channel_maxclients", ts="channel_maxclients", pretty="MaxClients", type="i32" }, # should be u16, but teamspeak sometimes sends '-1'
+	{ map="channel_maxfamilyclients", ts="channel_maxfamilyclients", pretty="MaxFamilyClients", type="i32" }, # should be u16, but teamspeak sometimes sends '-1'
 	{ map="channel_name", ts="channel_name", pretty="Name", type="str" },
 	{ map="channel_name_phonetic", ts="channel_name_phonetic", pretty="PhoneticName", type="str" },
 	{ map="channel_needed_subscribe_power", ts="channel_needed_subscribe_power", pretty="NeededSubscribePower", type="i32" },
@@ -189,7 +189,7 @@ fields = [
 	{ map="total_clients", ts="total_clients", pretty="TotalClients", type="i32" },
 	{ map="total_clients_family", ts="total_clients_family", pretty="TotalFamilyClients", type="i32" },
 	{ map="type", ts="type", pretty="GroupType", type="GroupType" },
-	{ map="virtualserver_ask_for_privilegekey", ts="virtualserver_ask_for_privilegekey", pretty="AskForPrivilege", type="bool" },
+	{ map="virtualserver_ask_for_privilegekey", ts="virtualserver_ask_for_privilegekey", pretty="AskForPrivilegekey", type="bool" },
 	{ map="virtualserver_autostart", ts="virtualserver_autostart", pretty="Autostart", type="bool" },
 	{ map="virtualserver_channel_temp_delete_delay_default", ts="virtualserver_channel_temp_delete_delay_default", pretty="TempChannelDefaultDeleteDelay", type="DurationSeconds" },
 	{ map="virtualserver_clientsonline", ts="virtualserver_clientsonline", pretty="ClientsOnline", type="i32" },
@@ -236,7 +236,7 @@ fields = [
 	{ map="ot", ts="ot", pretty="Ot", type="bool" },
 ]
 
-# Server to Client notifications
+# Server to Client Notifications
 [[msg_group]]
 default = { s2c=true, c2s=false, response=false, low=false, np=false }
 msg = [
