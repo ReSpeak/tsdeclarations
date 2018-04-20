@@ -1,3 +1,6 @@
+# LaTeX files
+*.synctex.gz
+
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db

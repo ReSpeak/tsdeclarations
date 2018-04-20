@@ -1,0 +1,133 @@
+# All properties which have an identical 'High-Level' name are copied implicitly
+
+[[rule]]
+from = "InitServer"
+id = []
+to = "Server"
+operation = "add"
+properties = [
+	{ from="ServerPlatform", to="Platform" },
+	{ from="ServerVersion", to="Version" },
+	{ from="ServerCreated", to="Created" },
+	{ from="ServerIp", to="Ip" },
+	# ClientName, ClientId, TalkPower, NeededServerqueryViewPower
+	{ function="SetClientDataFun", tolist=[] },
+]
+
+[[rule]]
+from = "ChannelCreated"
+id = ["ChannelId"]
+to = "Channel"
+# add/update/remove
+operation = "add"
+properties = [
+	{ from="ChannelParentId", to="Parent" },
+	{ function="MaxClientsCcFun", tolist=["MaxClients", "MaxFamilyClients"] },
+	{ function="ChannelTypeCcFun", tolist=["ChannelType"] },
+	{ function="ReturnFalse", tolist=["ForcedSilence"] },
+	{ function="ReturnFalse", tolist=["IsPrivate"] },
+	{ function="ReturnNone", tolist=["OptionalData"] },
+]
+
+[[rule]]
+from = "ChannelDeleted"
+id = ["ChannelId"]
+to = "Channel"
+operation = "remove"
+
+[[rule]]
+from = "ChannelEdited"
+id = ["ChannelId"]
+to = "Channel"
+operation = "update"
+properties = [
+	{ function="MaxClientsCeFun", tolist=["MaxClients", "MaxFamilyClients"] },
+	{ function="ChannelTypeCeFun", tolist=["ChannelType"] },
+]
+
+[[rule]]
+from = "ChannelList"
+id = ["ChannelId"]
+to = "Channel"
+operation = "add"
+properties = [
+	{ from="ChannelParentId", to="Parent" },
+	{ function="MaxClientsClFun", tolist=["MaxClients", "MaxFamilyClients"] },
+	{ function="ChannelTypeClFun", tolist=["ChannelType"] },
+	{ function="ReturnNone", tolist=["OptionalData"] },
+]
+
+[[rule]]
+from = "ChannelMoved"
+id = ["ChannelId"]
+to = "Channel"
+operation = "update"
+properties = [
+	{ from="ChannelParentId", to="Parent" },
+]
+
+[[rule]]
+from = "ClientChannelGroupChanged"
+id = ["ClientId"]
+to = "Client"
+operation = "update"
+
+[[rule]]
+from = "ClientEnterView"
+id = ["ClientId"]
+to = "Client"
+operation = "add"
+properties = [
+	{ from="TargetChannelId", to="Channel" },
+	{ function="AwayFun", tolist=["AwayMessage"] },
+	{ function="TalkPowerFun", tolist=["TalkPowerRequest"] },
+	{ function="ReturnNone", tolist=["OptionalData"] },
+	{ function="ReturnNone", tolist=["ConnectionData"] },
+	{ function="BadgesFun", tolist=["Badges"] },
+]
+
+[[rule]]
+from = "ClientLeftView"
+id = ["ClientId"]
+to = "Client"
+operation = "remove"
+
+[[rule]]
+from = "ClientMoved"
+id = ["ClientId"]
+to = "Client"
+operation = "update"
+properties = [
+	{ from="TargetChannelId", to="Channel" },
+]
+
+[[rule]]
+from = "ConnectionInfo"
+id = ["ClientId"]
+to = "ConnectionClientData"
+operation = "add"
+properties = [
+	{ function="AddressFun", tolist=["ClientAddress"] },
+]
+
+[[rule]]
+from = "ClientServerGroupAdded"
+id = ["ClientId"]
+to = "Client"
+operation = "update"
+properties = [
+	{ from="ServerGroupId", to="ServerGroups", operation="add" },
+	{ function="VoidFun", tolist=["Name"] },
+]
+
+[[rule]]
+from = "ServerGroupList"
+id = ["ServerGroupId"]
+to = "ServerGroup"
+operation = "add"
+
+[[rule]]
+from = "ServerEdited"
+id = []
+to = "Server"
+operation = "update"
