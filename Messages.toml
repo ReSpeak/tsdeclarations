@@ -45,6 +45,7 @@ fields = [
 	{ map="client_created", ts="client_created", pretty="CreationDate", type="DateTime" },
 	{ map="client_database_id", ts="client_database_id", pretty="DatabaseId", type="ClientDbId" },
 	{ map="client_default_channel", ts="client_default_channel", pretty="DefaultChannel", type="str" },
+	{ map="client_default_channel_password", ts="client_default_channel_password", pretty="DefaultChannelPassword", type="str" },
 	{ map="client_default_token", ts="client_default_token", pretty="DefaultToken", type="str" },
 	{ map="client_description", ts="client_description", pretty="Description", type="str" },
 	# ?? string ??
@@ -58,6 +59,7 @@ fields = [
 	{ map="client_is_priority_speaker", ts="client_is_priority_speaker", pretty="IsPrioritySpeaker", type="bool" },
 	{ map="client_is_recording", ts="client_is_recording", pretty="IsRecording", type="bool" },
 	{ map="client_is_talker", ts="client_is_talker", pretty="TalkPowerGranted", type="bool" },
+	{ map="client_key_offset", ts="client_key_offset", pretty="ClientKeyOffset", type="u64" },
 	{ map="client_lastconnected", ts="client_lastconnected", pretty="LastConnected", type="DateTime" },
 	{ map="client_lastip", ts="client_lastip", pretty="LastIp", type="str" },
 	{ map="client_login_name", ts="client_login_name", pretty="LoginName", type="str" },
@@ -73,6 +75,7 @@ fields = [
 	{ map="client_outputonly_muted", ts="client_outputonly_muted", pretty="OutputOnlyMuted", type="bool" },
 	{ map="client_platform", ts="client_platform", pretty="ClientPlattform", type="str" },
 	{ map="client_security_hash", ts="client_security_hash", pretty="SecurityHash", type="str" },
+	{ map="client_server_password", ts="client_server_password", pretty="ServerPassword", type="str" },
 	{ map="client_servergroups", ts="client_servergroups", pretty="ServerGroups", type="ServerGroupId", mod="array" },
 	{ map="client_talk_power", ts="client_talk_power", pretty="TalkPower", type="i32" },
 	{ map="client_talk_request", ts="client_talk_request", pretty="TalkPowerRequestTime", type="DateTime" },
@@ -144,8 +147,10 @@ fields = [
 	{ map="ft_status", ts="status", pretty="Status", type="i32" },
 	{ map="ft_type", ts="type", pretty="IsFile", type="bool" },
 	{ map="ftkey", ts="ftkey", pretty="FileTransferKey", type="str" },
+	{ map="hwid", ts="hwid", pretty="HardwareId", type="str" },
 	{ map="iconid", ts="iconid", pretty="IconId", type="IconHash" },
 	{ map="id", ts="id", pretty="Id", type="ChannelId" },
+	{ map="ip", ts="ip", pretty="Ip", type="str" },
 	{ map="invokerid", ts="invokerid", pretty="InvokerId", type="ClientId" },
 	{ map="invokername", ts="invokername", pretty="InvokerName", type="str" },
 	{ map="invokeruid", ts="invokeruid", pretty="InvokerUid", type="Uid" },
@@ -278,6 +283,8 @@ msg = [
 [[msg_group]]
 default = { s2c=false, c2s=true, response=false, low=false, np=false }
 msg = [
+	{ name="ClientInit",                notify="clientinit",                      attributes=["client_nickname", "client_version", "client_platform", "client_input_hardware", "client_output_hardware", "client_default_channel", "client_default_channel_password", "client_server_password", "client_meta_data", "client_version_sign", "client_key_offset", "client_nickname_phonetic", "client_default_token", "hwid" ] },
+	{ name="ClientInitIv",              notify="clientinitiv",                    attributes=["alpha", "omega", "ip"] },
 	{ name="GetClientIds",              notify="clientgetids",                    attributes=["cluid"] },
 	{ name="PluginCommandRequest",      notify="plugincmd",                       attributes=["name", "data", "targetmode_plugin"] },
 ]

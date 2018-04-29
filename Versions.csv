@@ -1,18 +1,45 @@
 channel,version,platform,hash
+Stable,3.0.11 [Build: 1374563791],Windows,hQCwiLP5f4GIcDG5KQ1T+CNFGqRxyw5MXCHE8KjWRIgkjCuGSryK4vpPy70EURH3blQ8TKrax8BEorHlpnpdAQ==
+Stable,3.0.11 [Build: 1374830986],Windows,PJvjEuApy2McckLGGnAgw8kB2FE+yb4J/TuUdaLj+x5JVghSBR5tKJDQklLurJrshKynWzYYtokrtgBxTAz5CA==
 Stable,3.0.11 [Build: 1375083581],Windows,54wPDkfv0kT56UE0lv/LFkFJObH+Q4Irmo4Brfz1EcvjVhj8hJ+RCHcVTZsdKU2XvVvh+VLJpURulEHsAOsyBw==
+Stable,3.0.11.1 [Build: 1375367141],Windows,2xNEoMd2TBeOj6PRSEftjE0fTSjq9dnqt8ttFVYdS3Kp9NHX/jBNycD3XCnNtsmHtHgQkczq1x2qQb1KFfg5Cw==
 Stable,3.0.11.1 [Build: 1375773286],Windows,Qfvcn4uQmKETDsD4LbtdbZR8rDetJ26Z/bVbu5SZJjMjGlYEMSbJnR4PtOBshdMSEwEsAJf1G+5tjx+onm2fDA==
+Stable,3.0.12 [Build: 1378199876],Windows,1uVn+Px0c733pYcYmid+3MwrJaq2KMIzvqIktMkICNhOYPViYfwUqTbFHMMx/CzLNKEevP57HyQ1TFdGdPU7BQ==
+Stable,3.0.12 [Build: 1378301061],Windows,bbShDADD1HUCnPI7F4EG92k0L5qU3M+vsMOZu94xdMfw6Ru1mo6UZ/ctNnrDPHsFZjcSUPOV2myjurknhaUUCg==
+Stable,3.0.12 [Build: 1378461722],Windows,3z7xnPRdMYJ3S+w6Jx7XyzpiXI2Cu+zSMG4Gr+F9cgKAWvdFp6dPvysT9bBtrkDWWL+hnZluCx/+1fmEcjXrAg==
 Stable,3.0.12 [Build: 1378715177],Windows,x6wFA5xqjenf6kbAh36IC4CkrbT8/uSBpgjM9juSt9oxGCXLqHOC2oaYlB1zZSJZjT4sOrnp0M+uOdVjYCzLCg==
+Stable,3.0.13 [Build: 1380008864],Windows,E/MlNft7LXOD5AdgVE8ekxWyrBXDXmfM+I2GDhUiOxlyIzXf0LLq7xtiq79yNqp1CLT3SYKFtIZhaT+YWUqKCw==
 Stable,3.0.13 [Build: 1380283653],Windows,7dA+6EbVyMevol4gE3/Cu1WonRjqu1C6pTWF+txApbaiTgKtZ/ky+NVxluPkSDnCxXN1pOR4uGdF6B7LUqQgDQ==
 Stable,3.0.13.1 [Build: 1382530211],Windows,bCIfLPUgTM6C0kNkesvhcxaDPvV9h6qLbYVy9cQVSP5lzaYebZaeDzAOOHsdjKcRTa6LU1oHEdz9D/d+2gxJCw==
+Stable,3.0.14 [Build: 1387444094],Windows,3BFPkbf8KQ3udBXLoMpm41txWJ2M+vsKzXYVaBMCr4xSiPBcdnol8lUgrBLV3dNIHjGZlZXqmqtz+/qmsnu0Bw==
+Stable,3.0.14 [Build: 1392643117],Windows,/k5bfFDSb0KBHNO5BBloS2vvVXu2S9iuxRa8L9prP+zbfR/EoGuzz1Vlpm/pxxeDQpcJ7oLog9wsdgBAF0nVAg==
+Stable,3.0.14 [Build: 1393597517],Windows,vKRbu9Nf8d54bAEJAywHU9qIhpR89dvcmq0ff+Ak+umKqLKzMl02YwP9qx+oSgj5UQOpt9nMST/8puhHmD9QBQ==
+Stable,3.0.14 [Build: 1394114560],Windows,mxBQYmj5bfirNWiVvbsFT8ybN2oov3CQ0fQmBpHWgBBJk9EM8NKmqMCpfpqVLFcubkCK7gs1hbYRXQ5DhuixBQ==
 Stable,3.0.14 [Build: 1394624943],Windows,F0WIO9sBVzG893AtX2Jfd98cH6yZPAnfMBNvBlQbAIfvfyiq+cbjZ31AUngEjq7UPIYdnYSsdRX9hczwdBrKAQ==
+Stable,3.0.15 [Build: 1401808190],Windows,Bo28W8+xHTRqVAiayKwRSmp1iojqY8NhhuhjSbvbovx9Mby8YNTWdY7/HHCfOt+nEYLhcGnxcssR0aJhShItAw==
+Stable,3.0.15 [Build: 1402646489],Windows,Jv5wg8X7HZv2NwbAX8b9L5gyDFN3mPI1veCRV/IbxwvRVzS0PL1vvHqDJYfyjIsrtM0VPLBhnuF4PswmEdueBA==
+Stable,3.0.15 [Build: 1403250090],Windows,FKKAHPwV1swKwH6mqHqdcGuYm8o5mZw4WreBxJrQjOprC3NXXcJviPe0p7EZPI810HOWMfmQRUgFpggoRL8kAQ==
 Stable,3.0.15.1 [Build: 1405341092],Windows,b+hr0KQWOVW2WEn49BmNb08R9zimsJcThm2gEeF7EAgRUeUDYzeplh5HrHmda0ftbbnrzWV33U/GOo2LAs/rAg==
+Stable,3.0.16 [Build: 1406898538],Windows,UoK5KLpRJfF9KnF9EURK8CbdI4WgjigfvVVgSUc9lokIvCpFTYwGuKfgL4oW8I1ldnzHTbs1Q0gtGcrzI0KwBQ==
 Stable,3.0.16 [Build: 1407159763],Linux,8776GitHAgkFPfOLxEh5x+Luuh4NrYPEJUdsUzNKndcAuWMYjwQTZkmeZOeG/swdn/p2Cg2pRfZfsIFSOAUWCQ==
 Stable,3.0.16 [Build: 1407159763],Windows,Y1DuQGXo/8/rYznEGyeQHgpvZMuiCH4FYm4QVyAgLYyMpNpc/LM7XetVWhDQxGsNejkN/2olI7GVJkt4X+ooDg==
+Stable,3.0.17 [Build: 1437491062],Windows,zlKTIfyJfjeXw9tL9MJsu5RLqKf1RrcNC+c2MQyoVwYBiSMpGJJ8KAyKtyDdK6WiKM0iIF5vjCnYBXAun9dqCw==
+Stable,3.0.17 [Build: 1437730067],Windows,JDOrqErAA93ukBMRfhI3pDqHbvIQcF9uHAJjZAlR9X1/1aESp9TDwatFAXqXF78OJA9EI+E5XTheL+BjXTwHCA==
+Stable,3.0.17 [Build: 1438160323],Windows,TtQjq217fCW3emP2G6VECMsXRWsMyt8RDs1u7iPUlRUJvGN86REPvCRBnnF3T0nwfVsqqct40qxtLzhkkYwLCg==
+Stable,3.0.17 [Build: 1438246387],Windows,K+aWgISXjmTdJYXD/lW9du+RAz3ss/3nMQeUhHK1mHEKKiPe9pI+uizi+yXSj3B4bKFOzTpmrUayHVO3aSL9Dg==
 Stable,3.0.17 [Build: 1438673913],Windows,znDjHvCgmQF/jQKTK49X8tnXqF7AGXfS2XYcogww4XxNTBxp2tf1aFc/jgboKco9EuVa0ku2cf/xg9wW3Cm7AQ==
+Stable,3.0.18 [Build: 1441371697],Windows,7uMCLHsNLl9pqL8m7foMBh4qsQZQ84eumhqWW7+A75WbQWFfN9XQ0f2UUEMzDQxbbLwWFuIO8XkzI90LbLG+Aw==
+Stable,3.0.18 [Build: 1442498553],Windows,NTcB2oaqPYbZRFSIccNpPHr39SysqffsBRS+AmYicYxUhSj9lO1NWsRTLF9fQOyaCP3m+DAfUZfRgSG3Atv/Dw==
+Stable,3.0.18 [Build: 1442913547],Windows,qBdVDaq6KdRBago4oxqd2E2vnepEu+/i1s6nSPfQm+3Wyd6gwmOomFrU7vNR0cmqu4fPvyWb9CnfYJmqPheHAQ==
+Stable,3.0.18 [Build: 1442998335],Windows,vUgm8mJoeVLBG6qB2HcYF7YNG4D+H/4edILaZbHze2Unua6mrBvNmbtRkRtmRyDZSd7sVQHMApinRDgGT1mUBw==
 Stable,3.0.18.1 [Build: 1444491275],Windows,xqfa3CUd2GFiTqjJWYzcu9ZbxVVLng8qIMKlVxMqWdiM8JrTRiXBAaTBDd8Xc+flVe+rGSIOZTkXRsz1rqjiAA==
 Stable,3.0.18.2 [Build: 1445512488],Windows,F0hY25Dtja0wcU6dzC39rNuYbhnDAbIwPHC3VO9Oicf13kUY2I2g6scPZ3p195Cw9gUYdBIRYm8ucHEhtSeWCw==
 Stable,3.0.19 [Build: 1445263695],Windows,z2CS87ly6Z6AHMVfs4UjhL+xobHbr/QcjjvudTL7mfrfSwe4Bm0pBaoWw+xlo8Qvtkk1OQeYjZxwUXJOJJ1wDQ==
+Stable,3.0.19 [Build: 1455611032],Windows,oFIR1O/nAb4DYuJFlHQ+KgpljBKdle59E4+iNSneNp6RmhGc/I2W/sUIkkjPOlnWO/7SVCGG+KRzmQPrlvggCA==
+Stable,3.0.19 [Build: 1457598290],Windows,FNmch2Flbwd+UFBd5i8obSRyV4MZlAjYsljWzklqWFOE+exiYYJqYGH2mT7+CmaxwJkzVHlggykRMIuwj9wTAA==
+Stable,3.0.19 [Build: 1459504131],Windows,JoHyZHF4k/a3+QH1zPNSEzc40487fzbpssyRZtoWB5kbQorAJgwlpcScA08J4vjGoUbdaTZsT0vCw56wo/Q9Ag==
 Stable,3.0.19.1 [Build: 1461588969],Windows,KYo52MA89dowkYpFU1KixgHngjbJ6F2Yi++5tbaqBlBpz9YikX2gI3sqmU1kP1ghsKCLKM7o0patDH1hv9bmAg==
+Stable,3.0.19.2 [Build: 1466597785],Windows,sDOzu7rCGb7kBID2WbBk35DjPijKkXzujnsAtLhXxhkQ+am0JlDOpuU1ISHhq9gCl/Qo0dzc723o0AIPI+yoCQ==
 Stable,3.0.19.3 [Build: 1466672534],Windows,a1OYzvM18mrmfUQBUgxYBxYz2DUU6y5k3/mEL6FurzU0y97Bd1FL7+PRpcHyPkg4R+kKAFZ1nhyzbgkGphDWDg==
 Stable,3.0.19.4 [Build: 1468491418],Linux,jvhhk75EV3nCGeewx4Y5zZmiZSN07q5ByKZ9Wlmg85aAbnw7c1jKq5/Iq0zY6dfGwCEwuKod0I5lQcVLf2NTCg==
 Stable,3.0.19.4 [Build: 1468491418],OS X,Pvcizdk3HRQMzTLt7goUYBmmS5nbAS1g2E6HIypLU+9eXTqGTBLim0UUtKc0s867TFHbK91GroDrTtv0aMUGAw==
@@ -20,14 +47,41 @@ Stable,3.0.19.4 [Build: 1468491418],Windows,ldWL49uDKC3N9uxdgWRMTOzUuiG1nBqUiOa+
 Stable,3.0.20 [Build: 1465542546],Windows,vDK31sOwOvDpTXgqAJzmR1NzeUeSDG9dLMgIz5LCX+KpDSVD/qU60mzScz9tuc9AsLyrL8DxHpDDO3eQD+hYCA==
 Stable,3.0.23 [Build: 1463662487],Android,RN+cwFI+jSHJEhggucIuUyEteWNVFy4iw0QDp3qn2UzfopypFVE9BPZqJjBUGeoCN7Q/SfYL4RNIRzJEQaZUCA==
 Stable,3.1 [Build: 1471417187],Windows,Vr9F7kbVorcrkV5b/Iw+feH9qmDGvfsW8tpa737zhc1fDpK5uaEo6M5l2DzgaGqqOr3GKl5A7PF9Sj6eTM26Aw==
-Stable,3.1.6 [Build: 1502873983],Windows,73fB82Jt1lmIRHKBFaE8h1JKPGFbnt6/yrXOHwTS93Oo7Adx1usY5TzNg+8BKy9nmmA2FEBnRmz5cRfXDghnBA==
+Stable,3.1 [Build: 1472203002],Windows,0HO60MuQm1Emn+G+ai8aJWFwcFF/y032y8pnoFGSgtMZE8RfuEmb+epDHoXlSHVwHaWy6pAafU5GvzAtKmFTDQ==
+Stable,3.1 [Build: 1475158080],Windows,jVCy5/F04fJ1aFFiHPXClAwNNHy9V9VcQP/b4kwPBTs242hqt4hyeK8kw/iFnTBtvdE44lv7ug4exrrXAh6jDQ==
+Stable,3.1 [Build: 1476372595],Windows,RFV+pRwf2vMW/uflREuz0PE1K4J/EnuGq36DSggBF6wCjNmLv4IHokyb4rN16LW/EWZ8ny1zZrfdp9oRtb99Cg==
+Stable,3.1 [Build: 1476720122],Windows,Vvypi6dNQifos6pVSYKx5tQJSS/fyx4/3N8RWLnoLqSqrOiwepc4pLd3F+mafm+dSC996FQNNATGDPGPxsB/Bg==
+Stable,3.1 [Build: 1478701553],Windows,6M7zXboPykVY5FP1LFeDho+BtAoWXKiT5gyIzRxm/Ht8BY+dVFTLEnGrzEFwHEjo8ux0ZVAE9uEwqVCEcvYMCQ==
+Stable,3.1 [Build: 1480583762],Windows,IGq93SEt29FgghlMGD290LEsWBxQ7gW+qZy9Qok1xUiWGsxVSivYrtJ37V9jCA5pSAD3XOXui64+6cLiUN5LAA==
+Stable,3.1 [Build: 1481795005],Windows,3TpZZM0V+PKHELFnsfRPoKjEFfvfHUL/6mUP5LHbI3nvmdOjRqEEKi4ndXZG6OpWOKQ3VeadHDH0KBfD8EI2Cg==
+Stable,3.1.0.1 [Build: 1484223040],Windows,oaaorJ4co/sS2m5JT5oRiu9AieW6kfFY+RENqPfp26iP4pbWbf9GcZj+JhDA+/JyLpfueCcSulZSRRbash2JCw==
+Stable,3.1.1 [Build: 1486051051],Windows,41Ed+R6kN3IRMzxd55wiGjKlz0Kj5txi2j/K/fO86dbE16sTTWU60/5Qom61p0OzjKXn8rSptl+2q+838lKVCg==
+Stable,3.1.1 [Build: 1486485240],Windows,CZIC/dYL5ntRZZKoa5OFf6sJUU+Fh7nyI2dSegOxoLO0kJTkVVp8FZ23j/gOKvFZZyToQRkmNvHnBAYbp9XsCA==
+Stable,3.1.1 [Build: 1486712038],Windows,sryyx++NhRWKDAo+Tnwv9N+IrOaQBP0XjjDszY0BBv0YIMr4jmdHtgrwzWkUqhU7kfql7qBWIhlb/r0l1ZHeBw==
+Stable,3.1.1.1 [Build: 1487668590],Windows,CchjMitGiVGfRlGph0D1mDjOCJCnkVxR/WuYvNHdPyeQUCncRWML8jYxYfnhRF6CzViwYRnsmZkN+W5oenB2CQ==
+Stable,3.1.2 [Build: 1489662774],Windows,5Aaj21gGFtrjW9424ezfLa1SMQBpZvgQgcJLZmrLoNMe4XebBPV2s8rxEDAIodfFpruLxLFbFpH63A/BGnJyDw==
+Stable,3.1.3 [Build: 1490279472],Windows,7RPY2bzJmMdgVX24VuKD3lTnYYb6yHWqfn2x21tFOjXL9q+2t7tU9Vy8Bh5/IpeiqklUHTWc23mWpYOCoW9eCA==
+Stable,3.1.4 [Build: 1491993378],Windows,rwdyEwnJCzbVfNCqbxMrRyhL5BSYqYSzKQkeZ6m5KImc1F8VB8wEkwwwyxoG7SimC/sxIyy4h27CjBFP6rcgBQ==
+Stable,3.1.5 [Build: 1496989945],Windows,vCK7AxxVis7dQyEy5dwV3+ctSX3RUudj6OoQLW0AUDkYzkr1zp17srD6BQNZUBpaQRCQJqqDsCT4dYIpxt1vDQ==
+Stable,3.1.5 [Build: 1497432760],Windows,9yBvw4TOcihVsVlN37Gf3bV4EF1nyLMbcq5E+7WbootiDC+GNEA8oDRSeGadHhquf/B4G2CIDhhvjYW/X6+rAg==
+Stable,3.1.4.2 [Build: 1498644101],Windows,WtscrpvJG13kbF6aoVzsGwQuE/WwR1b8++ydDc8IpmiXLw+zFC6zFUvLinOeE0zZgh2Hs5Amp3DZoPJSynOWBg==
+Stable,3.1.5 [Build: 1498740787],Windows,iL8prlQuMXIMBJrszzjyPa7k36GA9DsyVEOg5L9uoK/EFc5lXH4Pv6TYj4yPZt3p6cd8OMkPfuHfXj5bn8fpDg==
+Stable,3.1.5 [Build: 1499699899],Windows,muYzth+vZLUobeluM0GMW/U59T34gn70zVpvnIyT5ADWlcsRQ3Ex0t2iqz0yTqcgn7/e0wAmqS3OLL2ctFT3DQ==
+Stable,3.1.5 [Build: 1500360741],Windows,0mCCWSFXyuWqKLM95/b/8seOCljvFCuupu5tst6G7hzTWQlPIdlsypdnEW+uN7XJwKacdQ3axHEmiTo6GpcXAQ==
+Stable,3.1.5 [Build: 1500537355],Windows,O9WqHB9oX0qe9AXIYmJm0+mzl6VLxNvrGF0lGlovLaig5MXUIwd6T00NkCj62OkBbzM3eECs9FUuJk7N8V0dCg==
+Stable,3.1.6 [Build: 1502264952],Windows,3l3IQ5y4PHAMro9/i2UqBT7xGZUE7sUcyjqWdhG+5AYhnVC5GuHnv4l44TtPneEcxWIYXFtoFlr2rlPhFwrkCw==
 Stable,3.1.6 [Build: 1502873983],Linux,o+l92HKfiUF+THx2rBsuNjj/S1QpxG1fd5o3Q7qtWxkviR3LI3JeWyc26eTmoQoMTgI3jjHV7dCwHsK1BVu6Aw==
-Stable,3.1.7 [Build: 1507896705],Windows,Iks42KIMcmFv5vzPLhziqahcPD2AHygkepr8xHNCbqx+li5n7Htbq5LE9e1YYhRhLoS4e2HqOpKkt+/+LC8EDA==
+Stable,3.1.6 [Build: 1502873983],Windows,73fB82Jt1lmIRHKBFaE8h1JKPGFbnt6/yrXOHwTS93Oo7Adx1usY5TzNg+8BKy9nmmA2FEBnRmz5cRfXDghnBA==
 Stable,3.1.7 [Build: 1507896705],OS X,iM0IyUpaH9ak0gTtrHlRT0VGZa4rC51iZwSFwifK6iFqciSba/WkIQDWk9GUJN0OCCfatoc/fmlq8TPBnE5XCA==
+Stable,3.1.7 [Build: 1507896705],Windows,Iks42KIMcmFv5vzPLhziqahcPD2AHygkepr8xHNCbqx+li5n7Htbq5LE9e1YYhRhLoS4e2HqOpKkt+/+LC8EDA==
 Alpha,3.1.7 [Build: 1510583507],OS X,OmMyxPhOHzkVKzOmy8U8CivSF/c3f8bYMhdAPLHVM6k2Ws69IzMUntr/yilFw4w6hni6Bz/Gd8Swe1L2YqCtCg==
 Alpha,3.1.7 [Build: 1512049856],OS X,CRpQYBwQr5L0vU9os6s/U8e1X7kvGAnc8iUQ67TKxywSwH7cfPRooLCTOVtevt6g0Xs2O+C1t/DS7wzyOHmHDw==
+Stable,3.1.7 [Build: 1512391926],Windows,n2Ntx8GVlLGTmMCILg4QbXkMA9CI5FTSfa3LcrOsz07pK4FEPHa3u8eOD0g9rFMdmQSia4jYyMDWR1KomIkRAg==
+Stable,3.1.7 [Build: 1513163251],Windows,tdNngCAZ1ImAf7BxJzO4RXv5nBRsUERsrSOnMKVUFNQg6BS4Bzag0RFgLVzs2DRj19AC8+q5cXgH+5Ms50mTCA==
 Alpha,3.1.7 [Build: 1512141423],OS X,PP+/cBUDtSyV0k7lm8aYvYWAs28KL+KmXa+f0pUpDqjQDKy8dnDzJp16F4YGJxJ+2ODGPkp5YQYwts3m8T7+CA==
 Stable,3.1.7 [Build: 1513163251],Linux,/j5TZqPuOU8yMYPdGehvijYvU74KefRrKO5sgTUrkpeslNFiy4XfU7quKW0diLHQoPQn1t3KArdfzOAMk8dlAg==
+Stable,3.1.8 [Build: 1516099541],Windows,nwdwhrNjGH5IhaNoYGpJOKl0jsSYmq5f6jb0Y7ETfNNf+NqF6djEd6grCUlR7moKnkFdpRFazFsZD3E+dze9Bg==
+Stable,3.1.8 [Build: 1516349129],Windows,scnT3q9ViDVUSKceKSPQ4p50He1m0tlT9FsxSj8YMLfOoh50SKbqZEzrRTJ1aGwsGYb8x88JhjdlhDBRPhwhCQ==
 Stable,3.1.8 [Build: 1516614607],Linux,LJ5q+KWT4KwBX7oR/9j9A12hBrq5ds5ony99f9kepNmqFskhT7gfB51bAJNgAMOzXVCeaItNmc10F2wUNktqCw==
 Stable,3.1.8 [Build: 1516614607],Windows,gDEgQf/BiOQZdAheKccM1XWcMUj2OUQqt75oFuvF2c0MQMXyv88cZQdUuckKbcBRp7RpmLInto4PIgd7mPO7BQ==
 Alpha,3.1.9 [Build: 1520246719],OS X,gTeib0sqVKETwmYTAD6rrzgmqDHE/smMgOPTiuHPj6218mgPkhWuRWAE8pD+gm3cLMBfRl/2XlllMViYbok0DQ==
