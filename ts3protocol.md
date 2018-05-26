@@ -91,6 +91,19 @@ When splitting occurs, the `Fragmented` flag must be set on the first and
 the last packet. Other flags, if set, are only set on the first packet.
 The data can additionally be compressed before splitting.
 
+*Example*:
+
+The packet to split has the following flags:
+
+    [UE|CP|NP|__]  Packet Id: 42
+
+it must be split into:
+
+    [UE|CP|NP|FR]  Packet Id: 42
+    [__|__|__|__]  Packet Id: 43
+    [__|__|__|FR]  Packet Id: 44
+
+
 ## 1.6 Packet Encryption
 When a packet is not encrypted the `Unencrypted` flag is set. For encrypted
 packets the flag gets cleared.
