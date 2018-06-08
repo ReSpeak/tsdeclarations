@@ -1,3 +1,15 @@
+# The fields array specifies command parameter.
+# - "map": is a unique name for a field. This is required since teamspeak
+#   | sometimes reuses field names with different data or datatypes.
+#   | We usually use the same as "ts" unless disambiguation is needed.
+# - "ts": is then field name in the command as teamspeak uses it.
+# - "pretty": is a high-level name for the field which should be better readable
+#   | and make more sense in the object context it is used.
+# - "type": Descibes a primitive type or enum which can be used for this field.
+#   | We use the primitve type namings of the language 'Rust'.
+# - "mod": Applies an additional modifier to this field. Current modifiers:
+#   | "array": The field is a comma-seperated list and can be read as an array.
+
 fields = [
 	{ map="aclid", ts="aclid", pretty="ClientId", type="ClientId" },
 	{ map="acn", ts="acn", pretty="ClientName", type="str" },
@@ -240,6 +252,30 @@ fields = [
 	{ map="proof", ts="proof", pretty="Proof", type="str" },
 	{ map="ot", ts="ot", pretty="Ot", type="bool" },
 ]
+
+# The "msg_group: array specifies all messages which can be sent beween client
+# and server.
+# They are categorized into message groups whereby each group has a list of
+# default modifiers which are applied on each message in the group.
+# [Message structure]:
+# - "name": The high-level name of the messsage.
+# - "notify": The event name as teamspeak uses it (can be omitted when
+#   | response=true; this means that it can't be received without request).
+# - "attributes": The "map"-name from all fields which are a parameter of this
+#   | command. The map name can be suffixed with a '?' to make it optional.
+#   | All non-optional fields must be set when receiving this message,
+#   | otherwise the message can/should be considered as invalid.
+# [Message modifiers]:
+# - "s2c": This message can be received as client (read: "server to client")
+# - "c2s": This message can be received as server (read: "client to server")
+# - "response":
+#   | - true: This message can appear without the event name as an answer to
+#   |   | a request command (see "notify" before).
+#   | - false: This message will always be sent with the notify event name.
+# - "low": The "lowcommand" packet must be used for this command. (Ignore for
+#   | query).
+# - "np": The "newprotocol" flag must be set for this command. (Ignore for
+#   | query).
 
 # Server to Client Notifications
 [[msg_group]]
