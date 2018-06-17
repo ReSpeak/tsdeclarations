@@ -321,11 +321,12 @@ default = { s2c=false, c2s=true, response=false, low=false, np=false }
 msg = [
 	{ name="ClientInit",                notify="clientinit",                      attributes=["client_nickname", "client_version", "client_platform", "client_input_hardware", "client_output_hardware", "client_default_channel", "client_default_channel_password", "client_server_password", "client_meta_data", "client_version_sign", "client_key_offset", "client_nickname_phonetic", "client_default_token", "hwid" ] },
 	{ name="ClientInitIv",              notify="clientinitiv",                    attributes=["alpha", "omega", "ip"] },
+	{ name="GetClientDbIdFromUid",      notify="clientgetdbidfromuid",            attributes=["cluid"] },
 	{ name="GetClientIds",              notify="clientgetids",                    attributes=["cluid"] },
 	{ name="PluginCommandRequest",      notify="plugincmd",                       attributes=["name", "data", "targetmode_plugin"] },
 ]
 
-# Responses
+# Server to Client Responses
 [[msg_group]]
 default = { s2c=true, c2s=false, response=true, low=false, np=false }
 msg = [
@@ -338,10 +339,11 @@ msg = [
 	{ name="WhoAmI",                    attributes=["client_id", "client_channel_id", "client_nickname", "client_database_id", "client_login_name", "client_origin_server_id", "virtualserver_id", "virtualserver_unique_identifier", "virtualserver_port", "virtualserver_status", "client_unique_identifier"] },
 ]
 
-# Hybrid
+# Server to Client Hybrid
 [[msg_group]]
 default = { s2c=true, c2s=false, response=true, low=false, np=false }
 msg = [
+	{ name="ClientDbIdFromUid",         notify="notifyclientdbidfromuid",      attributes=["cluid", "cldbid"] },
 	{ name="ClientServerGroup",         notify="notifyservergroupsbyclientid", attributes=["name", "sgid", "cldbid"] },
 	{ name="FileDownload",              notify="notifystartdownload",          attributes=["clientftfid", "serverftfid", "ftkey", "port", "size", "msg"] },
 	{ name="FileInfoTs",                notify="notifyfileinfo",               attributes=["cid", "path", "name", "size", "datetime"] },
