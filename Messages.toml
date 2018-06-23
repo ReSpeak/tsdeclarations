@@ -315,6 +315,13 @@ msg = [
 	{ name="TokenUsed",                 notify="notifytokenused",                 attributes=["token", "tokencustomset", "token1", "token2", "clid", "cldbid", "cluid"] },
 ]
 
+# Server to Client Notifications (Low)
+[[msg_group]]
+default = { s2c=true, c2s=false, response=false, low=true, np=false }
+msg = [
+	{ name="ClientPoke",                notify="notifyclientpoke",                attributes=["invokerid", "invokername", "invokeruid", "msg"] },
+]
+
 # Client to Server Notifications
 [[msg_group]]
 default = { s2c=false, c2s=true, response=false, low=false, np=false }
@@ -353,7 +360,6 @@ msg = [
 ]
 
 # TODO: notifyclientchatclosed
-# TODO: notifyclientpoke
 # TODO: notifyclientupdated
 # TODO: notifyclientchannelgroupchanged
 # TODO: notifychannelpasswordchanged
