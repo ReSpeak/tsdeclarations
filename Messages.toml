@@ -295,7 +295,6 @@ msg = [
 	{ name="ClientChannelGroupChanged", notify="notifyclientchannelgroupchanged", attributes=["invokerid", "invokername", "cgid", "cgi", "cid", "clid"] },
 	{ name="ClientChatComposing",       notify="notifyclientchatcomposing",       attributes=["clid", "cluid"] },
 	{ name="ClientEnterView",           notify="notifycliententerview",           attributes=["reasonid", "ctid", "invokerid?", "invokername?", "invokeruid?", "clid", "client_database_id", "client_nickname", "client_type", "cfid", "client_unique_identifier", "client_flag_avatar", "client_description", "client_icon_id", "client_input_muted", "client_output_muted", "client_outputonly_muted", "client_input_hardware", "client_output_hardware", "client_meta_data", "client_is_recording", "client_channel_group_id", "client_channel_group_inherited_channel_id", "client_servergroups", "client_away", "client_away_message", "client_talk_power", "client_talk_request", "client_talk_request_msg", "client_is_talker", "client_is_priority_speaker", "client_unread_messages", "client_nickname_phonetic", "client_needed_serverquery_view_power", "client_is_channel_commander", "client_country", "client_badges"] },
-	{ name="ClientIds",                 notify="notifyclientids",                 attributes=["cluid", "clid", "name"] },
 	{ name="ClientLeftView",            notify="notifyclientleftview",            attributes=["reasonmsg", "bantime?", "reasonid", "ctid", "invokerid?", "invokername?", "invokeruid?", "clid", "cfid"] },
 	{ name="ClientMoved",               notify="notifyclientmoved",               attributes=["clid", "reasonid", "ctid", "invokerid", "invokername", "invokeruid"] },
 	{ name="ClientNeededPermissions",   notify="notifyclientneededpermissions",   attributes=["permid", "permvalue"] },
@@ -351,6 +350,7 @@ msg = [
 default = { s2c=true, c2s=false, response=true, low=false, np=false }
 msg = [
 	{ name="ClientDbIdFromUid",         notify="notifyclientdbidfromuid",      attributes=["cluid", "cldbid"] },
+	{ name="ClientIds",                 notify="notifyclientids",              attributes=["cluid", "clid", "name"] },
 	{ name="ClientServerGroup",         notify="notifyservergroupsbyclientid", attributes=["name", "sgid", "cldbid"] },
 	{ name="FileDownload",              notify="notifystartdownload",          attributes=["clientftfid", "serverftfid", "ftkey", "port", "size", "msg"] },
 	{ name="FileInfoTs",                notify="notifyfileinfo",               attributes=["cid", "path", "name", "size", "datetime"] },
