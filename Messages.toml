@@ -85,7 +85,7 @@ fields = [
 	{ map="client_output_hardware", ts="client_output_hardware", pretty="OutputHardwareEnabled", type="bool" },
 	{ map="client_output_muted", ts="client_output_muted", pretty="OutputMuted", type="bool" },
 	{ map="client_outputonly_muted", ts="client_outputonly_muted", pretty="OutputOnlyMuted", type="bool" },
-	{ map="client_platform", ts="client_platform", pretty="ClientPlattform", type="str" },
+	{ map="client_platform", ts="client_platform", pretty="ClientPlatform", type="str" },
 	{ map="client_security_hash", ts="client_security_hash", pretty="SecurityHash", type="str" },
 	{ map="client_server_password", ts="client_server_password", pretty="ServerPassword", type="str" },
 	{ map="client_servergroups", ts="client_servergroups", pretty="ServerGroups", type="ServerGroupId", mod="array" },
