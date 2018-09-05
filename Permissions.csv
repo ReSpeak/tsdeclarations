@@ -93,7 +93,7 @@ num,name,doc
 91,b_channel_create_modify_with_codec_speex8,Create channels using Speex Narrowband (8 kHz) codecs
 92,b_channel_create_modify_with_codec_speex16,Create channels using Speex Wideband (16 kHz) codecs
 93,b_channel_create_modify_with_codec_speex32,Create channels using Speex Ultra-Wideband (32 kHz) codecs
-94,b_channel_create_modify_with_codec_celtmono48,Create channels using the CELT Mono (48 kHz) codec 
+94,b_channel_create_modify_with_codec_celtmono48,Create channels using the CELT Mono (48 kHz) codec
 95,b_channel_create_modify_with_codec_opusvoice,Create channels using OPUS (voice) codec
 96,b_channel_create_modify_with_codec_opusmusic,Create channels using OPUS (music) codec
 97,i_channel_create_modify_with_codec_maxquality,Create channels with custom codec quality
@@ -153,7 +153,7 @@ num,name,doc
 151,b_virtualserver_servergroup_list,List server groups
 152,b_virtualserver_servergroup_permission_list,List server group permissions
 153,b_virtualserver_servergroup_client_list,List clients from a server group
-154,b_virtualserver_channelgroup_list,List channel groups 
+154,b_virtualserver_channelgroup_list,List channel groups
 155,b_virtualserver_channelgroup_permission_list,List channel group permissions
 156,b_virtualserver_channelgroup_client_list,List clients from a channel group
 157,b_virtualserver_client_permission_list,List client permissions
