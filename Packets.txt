@@ -9,7 +9,7 @@ Packet
 		/// Client id
 		?c_id u16
 			// Pre condition
-			+ *from_client true
+			++ *from_client
 		/// Flags:
 		///
 		/// - 0x80 Unencrypted
@@ -36,7 +36,7 @@ Packet
 	// Enum
 	#Data
 		#C2SInit
-			++ header.mac.iter().eq("TS3INIT1".as_bytes())
+			++ header.mac.iter().eq(b"TS3INIT1")
 			++ header.c_id.is_some()
 			++ header.get_type() == PacketType::Init
 			Init0
@@ -70,7 +70,7 @@ Packet
 				command Command
 				++ if let C2SInit::Init4 { ref command, .. } = res { command.command == "clientinitiv" && command.has_arg("alpha") && command.has_arg("omega") } else { true }
 		#S2CInit
-			++ header.mac.iter().eq("TS3INIT1".as_bytes())
+			++ header.mac.iter().eq(b"TS3INIT1")
 			++ header.c_id.is_none()
 			++ header.get_type() == PacketType::Init
 			Init1
