@@ -86,22 +86,29 @@ The algorithm "QuickLZ" with Level 1 is used for compression.
 
 ## 1.5 Packet Splitting
 When the packet payload exceeds the maximum datablock size the data can be
-split up across multiple packets.
+split up across multiple packets.  
+The current protocol only allows `Command` and `CommandLow` to be split and/or
+compressed. This means we can only observe the behaviour of those two.  
 When splitting occurs, the `Fragmented` flag must be set on the first and
-the last packet. Other flags, if set, are only set on the first packet.
-The data can additionally be compressed before splitting.
+the last packet.  
+The `Unencrypted` and `Compressed` flag, if set in the original
+packet, are only set on the first packet. (Though commands always have to be
+encrypted)  
+The `Newprotocol` flag has to be set on all commands and therefore also has to
+be applied on all splitted command packets.  
+The data can additionally be compressed *before* splitting.
 
 *Example*:
 
 The packet to split has the following flags:
 
-    [UE|CP|NP|__]  Packet Id: 42
+    [__|CP|NP|__]  Packet Id: 42
 
 it must be split into:
 
-    [UE|CP|NP|FR]  Packet Id: 42
-    [__|__|__|__]  Packet Id: 43
-    [__|__|__|FR]  Packet Id: 44
+    [__|CP|NP|FR]  Packet Id: 42
+    [__|__|NP|__]  Packet Id: 43
+    [__|__|NP|FR]  Packet Id: 44
 
 
 ## 1.6 Packet Encryption
@@ -283,7 +290,7 @@ Empty.
 | PId  | u16  | The packet id that is acknowledged |
 
 - In case of `Pong` a matching ping packet id is acknowledged.
-- In case of `Ack` or `AckLow` a matching Command or CommandLow packet id
+- In case of `Ack` or `AckLow` a matching `Command` or `CommandLow` packet id
 respectively is acknowledged.
 
 ### 1.8.9 Init1
@@ -778,7 +785,7 @@ The TeamSpeak3 Client exports identities the following way:
 ```ts
 const staticObfucationKey = b"b9dfaa7bee6ac57ac7b65f1094a1c155e747327bc2fe5d51c512023fe54a280201004e90ad1daaae1075d53b7d571c30e063b5a62a4a017bb394833aa0983e6e"
 let tmp1 = identity.decode64()
-let idx = in tmp1[20-end].indexof('\0') // where '\0' is the null-byte
+let idx = tmp1[20-end].indexof('\0') // where '\0' is the null-byte
 let sha = sha1(tmp1[20-idx])
 let final;
 final[0-20] = tmp1[0-20] xor sha[0-20]
