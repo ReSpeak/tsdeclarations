@@ -313,7 +313,6 @@ id = [
 doc = "A connection from our client to a server"
 accessor = { get=true, set=false }
 properties = [
-	{ name="Id", type="ConnectionId", doc="The local unique id of our connection" },
 	{ name="OwnClient", type="ClientId", doc="The id of our own client on the server" },
 	{ name="Server", type="Server", doc="The server of this connection" },
 ]
