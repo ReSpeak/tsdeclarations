@@ -367,7 +367,6 @@ fields = [
 	{ map="virtualserver_version", ts="virtualserver_version", pretty="ServerVersion", type="str" },
 	{ map="virtualserver_weblist_enabled", ts="virtualserver_weblist_enabled", pretty="WeblistEnabled", type="bool" },
 	{ map="virtualserver_welcomemessage", ts="virtualserver_welcomemessage", pretty="WelcomeMessage", type="str" },
-	{ map="", ts="", pretty="", type="" },
 
 	# Error stuff
 	{ map="error_id", ts="id", pretty="Id", type="Ts3ErrorCode" },
@@ -887,7 +886,7 @@ msg = [
 	{ name="ServerTempPasswordListRequest", notify="servertemppasswordlist",        attributes=[] },
 	# setclientchannelgroup cgid=9 cid=1 cldbid=2
 	# -> {ClientChannelGroupChanged} notifyclientchannelgroupchanged invokerid=3 invokername=Splamy invokeruid=uA0U7t4PBxdJ5TLnarsOHQh4\/tY= cgid=9 cid=3 clid=3 cgi=3
-	{ name="setclientchannelgroup",         notify="setclientchannelgroup",         attributes=["cgid", "cid", "cldbid"] },
+	{ name="SetClientChannelGroup",         notify="setclientchannelgroup",         attributes=["cgid", "cid", "cldbid"] },
 	# tokenadd tokentype=0 tokenid1=7 tokenid2=0 tokendescription=test
 	# -> {TokenAdd} notifytokenadd token=jnKIAfA2aiDW9ZMPj5CPmuXLIOR3tdYwDn70B9Hw
 	{ name="TokenAddRequest",               notify="tokenadd",                      attributes=["tokentype", "tokenid1", "tokenid2", "tokendescription?", "tokencustomset?"] },
