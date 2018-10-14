@@ -102,7 +102,7 @@ properties = [
 ]
 
 [[rule]]
-from = "ConnectionInfo"
+from = "ClientConnectionInfo"
 id = ["ClientId"]
 to = "ConnectionClientData"
 operation = "add"
