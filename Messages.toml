@@ -603,6 +603,18 @@ msg = [
 	# channelpermlist cid=3
 	# -> {ChannelPermList} notifychannelpermlist cid=3 permid=82 permvalue=75 permnegated=0 permskip=0|permid=132 permvalue=75 permnegated=0 permskip=0
 	{ name="ChannelPermListRequest",        notify="channelpermlist",               attributes=["cid"] }, # -permsid
+	# channelsubscribe cid=8
+	# -> {ChannelSubscribed} notifychannelsubscribed cid=8 es=31020
+	{ name="ChannelSubscribe",              notify="channelsubscribeall",           attributes=["cid"] },
+	# channelsubscribeall
+	# -> {ChannelSubscribed} notifychannelsubscribed cid=5 es=30852|cid=6 es=30852|cid=8 es=30852
+	{ name="ChannelSubscribeAll",           notify="channelsubscribeall",           attributes=[] },
+	# channelunsubscribe cid=8
+	# -> {ChannelUnsubscribed} notifychannelunsubscribed cid=8
+	{ name="ChannelUnsubscribe",            notify="channelsubscribeall",           attributes=["cid"] },
+	# channelunsubscribeall
+	# -> {ChannelUnsubscribed} notifychannelunsubscribed cid=5|cid=6|cid=8
+	{ name="ChannelUnsubscribeAll",         notify="channelsubscribeall",           attributes=[] },
 	# clientaddperm cldbid=2 permid=177 permvalue=75 permskip=0
 	# -> {ClientNeededPermissions} notifyclientneededpermissions permid=177 permvalue=75
 	{ name="ClientAddPerm",                 notify="clientaddperm",                 attributes=["cldbid", "permid?", "permsid?", "permvalue", "permskip"] },
