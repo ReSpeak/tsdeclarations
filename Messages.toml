@@ -169,28 +169,26 @@ fields = [
 	{ map="delete", ts="delete", pretty="Delete", type="bool" },
 	{ map="desc", ts="desc", pretty="Description", type="str" },
 	{ map="dirname", ts="dirname", pretty="DirectoryName", type="str" },
-	{ map="duration", ts="duration", pretty="Duration", type="DurationSeconds" },
+	{ map="duration@time", ts="duration", pretty="Duration", type="DurationSeconds" },
+	{ map="duration@list", ts="duration", pretty="Limit", type="u32" }, # integer, size guessed
 	# TODO: No idea what that is, or what type
 	{ map="enforcements", ts="enforcements", pretty="Enforcements", type="str" },
 	{ map="es", ts="es", pretty="EmptySince", type="DurationSeconds" },
-	{ map="end_pw", ts="end", pretty="End", type="DateTime" },
+	{ map="end", ts="end", pretty="End", type="DateTime" },
 	{ map="event", ts="event", pretty="EventType", type="str" }, # {server|channel|textserver|textchannel|textprivate}
 	{ map="fcldbid", ts="fcldbid", pretty="FromClientDbId", type="ClientDbId" },
 	{ map="file_size", ts="file_size", pretty="FileSize", type="u64" },
 	{ map="flag", ts="flag", pretty="IsRead", type="bool" },
 	{ map="flag_read", ts="flag_read", pretty="IsRead", type="bool" },
 	{ map="fname", ts="fname", pretty="FromName", type="str" },
-	{ map="ft_status", ts="status", pretty="Status", type="i32" },
-	{ map="ft_type", ts="type", pretty="IsFile", type="bool" },
 	{ map="ftkey", ts="ftkey", pretty="FileTransferKey", type="str" },
 	{ map="force", ts="force", pretty="Force", type="bool" },
-	# TODO maybe find better name when know what this is
-	{ map="group_id_end", ts="group_id_end", pretty="GroupIdEnd", type="u32" },  # probably integer, size guessed (maybe SGroupId ?)
+	{ map="group_id_end", ts="group_id_end", pretty="GroupIdEnd", type="PermissionId" }, # describes how permissions are groupd in the client ui
 	{ map="hwid", ts="hwid", pretty="HardwareId", type="str" },
 	{ map="iconid", ts="iconid", pretty="IconId", type="IconHash" },
 	{ map="id", ts="id", pretty="Id", type="ChannelId" },
-	{ map="id1", ts="id1", pretty="Id1", type="u32" }, # type guessed
-	{ map="id2", ts="id2", pretty="Id2", type="u32" }, # type guessed
+	{ map="id1", ts="id1", pretty="Id1", type="u64" }, # {ServerGroupId|ClientDbId|ChannelId}
+	{ map="id2", ts="id2", pretty="Id2", type="u64" }, # {0|ChannelGroupId|ClientDbId}
 	{ map="ident", ts="ident", pretty="ExternalIdentity", type="str" },
 	{ map="ip", ts="ip", pretty="Ip", type="str" },
 	{ map="instance", ts="instance", pretty="InstanceLog", type="bool" },
@@ -200,7 +198,6 @@ fields = [
 	{ map="invokeruid", ts="invokeruid", pretty="InvokerUid", type="Uid" },
 	{ map="lastnickname", ts="lastnickname", pretty="LastNickname", type="str" },
 	{ map="last_pos", ts="last_pos", pretty="LastOffset", type="u64" }, # integer, size guessed
-	{ map="limit", ts="duration", pretty="Limit", type="u32" }, # integer, size guessed
 	{ map="lines", ts="lines", pretty="Lines", type="u32" }, # integer, size guessed
 	{ map="logmsg", ts="logmsg", pretty="LogMessage", type="str" },
 	{ map="loglevel", ts="loglevel", pretty="LogLevel", type="LogLevel" },
@@ -258,16 +255,15 @@ fields = [
 	{ map="sortid", ts="sortid", pretty="SortId", type="i32" },
 	{ map="ssgid", ts="ssgid", pretty="SourceServerGroupId", type="ServerGroupId" },
 	{ map="subject", ts="subject", pretty="Subject", type="str" },
-	{ map="subsystem", ts="subsystem", pretty="Subsystem", type="str" }, # {voice|query|filetransfer}
-	# ?? type/enum
-	{ map="status", ts="status", pretty="Status", type="Ts3ErrorCode" },
-	{ map="start", ts="start", pretty="Offset", type="u32" }, # integer, size guessed
-	{ map="start_pw", ts="start", pretty="Start", type="DateTime" },
-	# TODO ????
-	{ map="t", ts="t", pretty="T", type="str" },
+	{ map="subsystem", ts="subsystem", pretty="Subsystem", type="str" }, # {'voice'|'query'|'filetransfer'}
+	{ map="status@err", ts="status", pretty="Status", type="Ts3ErrorCode" },
+	{ map="status@ft", ts="status", pretty="Status", type="i32" },
+	{ map="start@list", ts="start", pretty="Offset", type="u32" }, # integer, size guessed
+	{ map="start@tmppw", ts="start", pretty="Start", type="DateTime" },
+	{ map="t", ts="t", pretty="PermissionType", type="PermissionType" },
 	{ map="target", ts="target", pretty="TargetClientId", type="ClientId" },
-	{ map="targetmode", ts="targetmode", pretty="Target", type="TextMessageTargetMode" },
-	{ map="targetmode_plugin", ts="targetmode", pretty="Target", type="PluginTargetMode" },
+	{ map="targetmode@msg", ts="targetmode", pretty="Target", type="TextMessageTargetMode" },
+	{ map="targetmode@plugin", ts="targetmode", pretty="Target", type="PluginTargetMode" },
 	{ map="tcgid", ts="tcgid", pretty="TargetChannelGroupId", type="ChannelGroupId" },
 	{ map="tcid", ts="tcid", pretty="TargetChannelId", type="ChannelId" },
 	{ map="tcpw", ts="tcpw", pretty="TargetChannelPassword", type="str" },
@@ -279,8 +275,8 @@ fields = [
 	{ map="token_created", ts="token_created", pretty="TokenCreateTime", type="DateTime" },
 	{ map="token_description", ts="token_description", pretty="TokenDescription", type="str" },
 	{ map="tokendescription", ts="tokendescription", pretty="TokenDescription", type="str" },
-	{ map="token_id1", ts="token_id1", pretty="TokenId1", type="u64" }, # ServerGroup | ChannelGroup
-	{ map="tokenid1", ts="tokenid1", pretty="TokenId1", type="u64" }, # ServerGroup | ChannelGroup
+	{ map="token_id1", ts="token_id1", pretty="TokenId1", type="u64" }, # {ServerGroup|ChannelGroup}
+	{ map="tokenid1", ts="tokenid1", pretty="TokenId1", type="u64" }, # {ServerGroup|ChannelGroup}
 	{ map="token_id2", ts="token_id2", pretty="TokenId2", type="ChannelId" }, # ChannelId
 	{ map="tokenid2", ts="tokenid2", pretty="TokenId2", type="ChannelId" }, # ChannelId
 	{ map="token_type", ts="token_type", pretty="TokenType", type="TokenType" },
@@ -291,9 +287,9 @@ fields = [
 	{ map="total_clients", ts="total_clients", pretty="TotalClients", type="i32" },
 	{ map="total_clients_family", ts="total_clients_family", pretty="TotalFamilyClients", type="i32" },
 	{ map="tsgid", ts="tsgid", pretty="TargetServerGroupId", type="ServerGroupId" },
-	{ map="type", ts="type", pretty="GroupType", type="GroupType" },
+	{ map="type@ft", ts="type", pretty="IsFile", type="bool" },
+	{ map="type@group", ts="type", pretty="GroupType", type="GroupType" },
 	{ map="uid", ts="uid", pretty="Uid", type="Uid" },
-	# TODO ????
 	{ map="v", ts="v", pretty="PermissionValue", type="i32" }, # integer, size guessed
 	{ map="value", ts="value", pretty="Value", type="str" },
 	{ map="virtualserver_antiflood_points_tick_reduce", ts="virtualserver_antiflood_points_tick_reduce", pretty="AntifloodPointsTickReduce", type="u32" },
@@ -434,13 +430,13 @@ msg = [
 	{ name="ClientUpdated",             notify="notifyclientupdated",             attributes=["clid", "client_unread_messages?", "client_version?", "client_platform?", "client_login_name?", "client_created?", "client_lastconnected?", "client_totalconnections?", "client_month_bytes_uploaded?", "client_month_bytes_downloaded?", "client_total_bytes_uploaded?", "client_total_bytes_downloaded?"] }, # TODO ! Incomplete
 	{ name="CommandError",              notify="error",                           attributes=["error_id", "msg", "failed_permid", "return_code", "extra_msg"] },
 	{ name="FileListFinished",          notify="notifyfilelistfinished",          attributes=["cid", "path"] },
-	{ name="FileTransferStatus",        notify="notifystatusfiletransfer",        attributes=["clientftfid", "status", "msg", "size"] },
+	{ name="FileTransferStatus",        notify="notifystatusfiletransfer",        attributes=["clientftfid", "status@err", "msg", "size"] },
 	{ name="InitIvExpand",              notify="initivexpand",                    attributes=["alpha", "beta", "omega"] },
 	{ name="InitIvExpand2",             notify="initivexpand2",                   attributes=["l", "beta", "omega", "ot", "proof", "tvd"] },
 	{ name="InitServer",                notify="initserver",                      attributes=["virtualserver_welcomemessage", "virtualserver_platform", "virtualserver_version", "virtualserver_maxclients", "virtualserver_created", "virtualserver_hostmessage", "virtualserver_hostmessage_mode", "virtualserver_id", "virtualserver_ip", "virtualserver_ask_for_privilegekey", "acn", "aclid", "pv", "lt?", "client_talk_power", "client_needed_serverquery_view_power", "virtualserver_name", "virtualserver_codec_encryption_mode", "virtualserver_default_server_group", "virtualserver_default_channel_group", "virtualserver_hostbanner_url", "virtualserver_hostbanner_gfx_url", "virtualserver_hostbanner_gfx_interval", "virtualserver_priority_speaker_dimm_modificator", "virtualserver_hostbutton_tooltip", "virtualserver_hostbutton_url", "virtualserver_hostbutton_gfx_url", "virtualserver_name_phonetic", "virtualserver_icon_id", "virtualserver_hostbanner_mode", "virtualserver_channel_temp_delete_delay_default"] },
 	{ name="PluginCommand",             notify="notifyplugincmd",                 attributes=["name", "data"] },
 	{ name="ServerEdited",              notify="notifyserveredited",              attributes=["invokerid", "invokername", "invokeruid", "reasonid", "virtualserver_name", "virtualserver_codec_encryption_mode", "virtualserver_default_server_group", "virtualserver_default_channel_group", "virtualserver_hostbanner_url", "virtualserver_hostbanner_gfx_url", "virtualserver_hostbanner_gfx_interval", "virtualserver_priority_speaker_dimm_modificator", "virtualserver_hostbutton_tooltip", "virtualserver_hostbutton_url", "virtualserver_hostbutton_gfx_url", "virtualserver_name_phonetic", "virtualserver_icon_id", "virtualserver_hostbanner_mode", "virtualserver_channel_temp_delete_delay_default" ] },
-	{ name="ServerTempPasswordList",    notify="notifyservertemppasswordlist",    attributes=["nickname", "uid", "desc", "pw_clear", "start_pw", "end_pw", "tcid", "tcpw"] },
+	{ name="ServerTempPasswordList",    notify="notifyservertemppasswordlist",    attributes=["nickname", "uid", "desc", "pw_clear", "start@tmppw", "end", "tcid", "tcpw"] },
 	{ name="ServerUpdated",             notify="notifyserverupdated",             attributes=["virtualserver_welcomemessage", "virtualserver_maxclients", "virtualserver_clientsonline", "virtualserver_channelsonline", "virtualserver_uptime", "virtualserver_hostmessage", "virtualserver_hostmessage_mode", "virtualserver_flag_password", "virtualserver_default_channel_admin_group", "virtualserver_max_download_total_bandwidth", "virtualserver_max_upload_total_bandwidth", "virtualserver_complain_autoban_count", "virtualserver_complain_autoban_time", "virtualserver_complain_remove_time", "virtualserver_min_clients_in_channel_before_forced_silence", "virtualserver_antiflood_points_tick_reduce", "virtualserver_antiflood_points_needed_command_block", "virtualserver_antiflood_points_needed_ip_block", "virtualserver_client_connections", "virtualserver_query_client_connections", "virtualserver_queryclientsonline", "virtualserver_download_quota", "virtualserver_upload_quota", "virtualserver_month_bytes_downloaded", "virtualserver_month_bytes_uploaded", "virtualserver_total_bytes_downloaded", "virtualserver_total_bytes_uploaded", "virtualserver_port", "virtualserver_autostart", "virtualserver_machine_id", "virtualserver_needed_identity_security_level", "virtualserver_log_client", "virtualserver_log_query", "virtualserver_log_channel", "virtualserver_log_permissions", "virtualserver_log_server", "virtualserver_log_filetransfer", "virtualserver_min_client_version", "virtualserver_reserved_slots", "virtualserver_total_packetloss_speech", "virtualserver_total_packetloss_keepalive", "virtualserver_total_packetloss_control", "virtualserver_total_packetloss_total", "virtualserver_total_ping", "virtualserver_weblist_enabled", "virtualserver_min_android_version", "virtualserver_min_ios_version", "virtualserver_antiflood_points_needed_plugin_block"] },
 	{ name="TokenUsed",                 notify="notifytokenused",                 attributes=["token", "tokencustomset", "token1", "token2", "clid", "cldbid", "cluid"] },
 ]
@@ -470,13 +466,13 @@ msg = [
 [[msg_group]]
 default = { s2c=true, c2s=false, response=true, low=false, np=false }
 msg = [
-	{ name="BanList",                   notify="notifybanlist",                     attributes=["banid", "ip", "name", "uid", "lastnickname", "created", "duration", "invokercldbid", "invokername", "invokeruid", "reason", "enforcements"] },
+	{ name="BanList",                   notify="notifybanlist",                     attributes=["banid", "ip", "name", "uid", "lastnickname", "created", "duration@time", "invokercldbid", "invokername", "invokeruid", "reason", "enforcements"] },
 	{ name="ChannelClientPermList",     notify="notifychannelclientpermlist",       attributes=["cid", "cldbid", "permid?", "permsid?", "permvalue", "permnegated", "permskip"] },
 	{ name="ChannelCreated",            notify="notifychannelcreated",              attributes=["cid", "invokerid", "invokername", "invokeruid", "channel_order", "channel_name", "channel_topic?", "channel_flag_default?", "channel_flag_password?", "channel_flag_permanent?", "channel_flag_semi_permanent?", "channel_codec?", "channel_codec_quality", "channel_needed_talk_power?", "channel_icon_id?", "channel_maxclients?", "channel_maxfamilyclients?", "channel_codec_latency_factor?", "channel_codec_is_unencrypted", "channel_delete_delay?", "channel_flag_maxclients_unlimited?", "channel_flag_maxfamilyclients_unlimited", "channel_flag_maxfamilyclients_inherited", "channel_name_phonetic?", "cpid"] },
 	{ name="ChannelDeleted",            notify="notifychanneldeleted",              attributes=["cid", "invokerid", "invokername", "invokeruid"] },
 	{ name="ChannelEdited",             notify="notifychanneledited",               attributes=["cid", "invokerid?", "invokername?", "invokeruid?", "reasonid", "channel_order?", "channel_name?", "channel_topic?", "channel_flag_default?", "channel_flag_password?", "channel_flag_permanent?", "channel_flag_semi_permanent?", "channel_codec?", "channel_codec_quality?", "channel_needed_talk_power?", "channel_icon_id?", "channel_maxclients?", "channel_maxfamilyclients?", "channel_codec_latency_factor?", "channel_codec_is_unencrypted?", "channel_delete_delay?", "channel_flag_maxclients_unlimited?", "channel_flag_maxfamilyclients_unlimited?", "channel_flag_maxfamilyclients_inherited?", "channel_name_phonetic?", "cpid?"] },
 	{ name="ChannelGroupClientList",    notify="notifychannelgroupclientlist",      attributes=["cid", "cldbid", "cgid"] },
-	{ name="ChannelGroupList",          notify="notifychannelgrouplist",            attributes=["cgid", "name", "type", "iconid", "savedb", "sortid", "namemode", "n_modifyp", "n_member_addp", "n_member_remove_p?"] },
+	{ name="ChannelGroupList",          notify="notifychannelgrouplist",            attributes=["cgid", "name", "type@group", "iconid", "savedb", "sortid", "namemode", "n_modifyp", "n_member_addp", "n_member_remove_p?"] },
 	{ name="ChannelGroupPermList",      notify="notifychannelgrouppermlist",        attributes=["cgid", "permid?", "permsid?", "permvalue", "permnegated", "permskip"] },
 	{ name="ChannelPermList",           notify="notifychannelpermlist",             attributes=["cid", "permid", "permvalue", "permnegated", "permskip"] },
 	{ name="ClientDbFind",              notify="notifyclientdbfind",                attributes=["cldbid", "client_unique_identifier", "client_nickname", "client_lastconnected", "client_totalconnections"] },
@@ -491,8 +487,8 @@ msg = [
 	{ name="ComplainList",              notify="notifycomplainlist",                attributes=["tcldbid", "tname", "fcldbid", "fname", "message", "timestamp"] },
 	{ name="FileDownload",              notify="notifystartdownload",               attributes=["clientftfid", "serverftfid", "ftkey", "port", "size", "msg"] },
 	{ name="FileInfo",                  notify="notifyfileinfo",                    attributes=["cid", "path", "name", "size", "datetime"] },
-	{ name="FileList",                  notify="notifyfilelist",                    attributes=["cid", "path", "name", "size", "datetime", "ft_type"] },
-	{ name="FileTransfer",              notify="notifyfiletransferlist",            attributes=["clid", "path", "name", "size", "sizedone", "clientftfid", "serverftfid", "sender", "ft_status", "current_speed", "average_speed", "runtime"] },
+	{ name="FileList",                  notify="notifyfilelist",                    attributes=["cid", "path", "name", "size", "datetime", "type@ft"] },
+	{ name="FileTransfer",              notify="notifyfiletransferlist",            attributes=["clid", "path", "name", "size", "sizedone", "clientftfid", "serverftfid", "sender", "status@ft", "current_speed", "average_speed", "runtime"] },
 	{ name="FileUpload",                notify="notifystartupload",                 attributes=["clientftfid", "serverftfid", "ftkey", "port", "seekpos", "msg"] },
 	{ name="OfflineMessage",            notify="notifymessage",                     attributes=["msgid", "cluid", "subject", "message", "timestamp"] },
 	{ name="OfflineMessageList",        notify="notifymessagelist",                 attributes=["msgid", "cluid", "subject", "timestamp", "flag_read"] },
@@ -501,11 +497,11 @@ msg = [
 	{ name="PermOverview",              notify="notifypermoverview",                attributes=["cldbid", "cid", "t", "id1", "id2", "p", "v", "n", "s"] },
 	{ name="ServerConnectionInfo",      notify="notifyserverconnectioninfo",        attributes=["connection_filetransfer_bandwidth_sent", "connection_filetransfer_bandwidth_received", "connection_filetransfer_bytes_sent_total", "connection_filetransfer_bytes_received_total", "connection_packets_sent_total", "connection_bytes_sent_total", "connection_packets_received_total", "connection_bytes_received_total", "connection_bandwidth_sent_last_second_total", "connection_bandwidth_sent_last_minute_total", "connection_bandwidth_received_last_second_total", "connection_bandwidth_received_last_minute_total", "connection_connected_time", "connection_packetloss_total", "connection_ping"] },
 	{ name="ServerGroupClientList",     notify="notifyservergroupclientlist",       attributes=["sgid", "cldbid", "client_nickname?", "client_unique_identifier?"] },
-	{ name="ServerGroupList",           notify="notifyservergrouplist",             attributes=["sgid", "name", "type", "iconid", "savedb", "sortid", "namemode", "n_modifyp", "n_member_addp", "n_member_remove_p?"] },
+	{ name="ServerGroupList",           notify="notifyservergrouplist",             attributes=["sgid", "name", "type@group", "iconid", "savedb", "sortid", "namemode", "n_modifyp", "n_member_addp", "n_member_remove_p?"] },
 	{ name="ServerGroupPermList",       notify="notifyservergrouppermlist",         attributes=["sgid", "permid?", "permsid?", "permvalue", "permnegated", "permskip"] },
 	{ name="ServerGroupsByClientId",    notify="notifyservergroupsbyclientid",      attributes=["name", "sgid", "cldbid"] },
 	{ name="ServerLog",                 notify="notifyserverlog",                   attributes=["last_pos", "file_size", "l"] },
-	{ name="TextMessage",               notify="notifytextmessage",                 attributes=["targetmode", "msg", "target", "invokerid", "invokername", "invokeruid"] },
+	{ name="TextMessage",               notify="notifytextmessage",                 attributes=["targetmode@msg", "msg", "target", "invokerid", "invokername", "invokeruid"] },
 	{ name="TokenAdd",                  notify="notifytokenadd",                    attributes=["token"] },
 	{ name="TokenList",                 notify="notifytokenlist",                   attributes=["token", "token_type", "token_id1", "token_id2", "token_created", "token_description"] },
 ]
@@ -516,7 +512,7 @@ default = { s2c=false, c2s=true, response=false, low=false, np=false }
 msg = [
 	{ name="ClientInit",                    notify="clientinit",                    attributes=["client_nickname", "client_version", "client_platform", "client_input_hardware", "client_output_hardware", "client_default_channel", "client_default_channel_password", "client_server_password", "client_meta_data", "client_version_sign", "client_key_offset", "client_nickname_phonetic", "client_default_token", "hwid" ] },
 	{ name="ClientInitIv",                  notify="clientinitiv",                  attributes=["alpha", "omega", "ip"] },
-	{ name="PluginCommandRequest",          notify="plugincmd",                     attributes=["name", "data", "targetmode_plugin"] },
+	{ name="PluginCommandRequest",          notify="plugincmd",                     attributes=["name", "data", "targetmode@plugin"] },
 	# banadd ip=42\\.42\\.42\\.42 name=test uid=b+P0CqXms5I0C+A66HZ4Sbu\/PNw= time=5 banreason=test
 	# -> void
 	{ name="BanAdd",                        notify="banadd",                        attributes=["ip?", "name?", "uid?", "time?", "banreason?"] },
@@ -566,7 +562,7 @@ msg = [
 	{ name="ChannelFindRequest",            notify="channelfind",                   attributes=["pattern"] },
 	# channelgroupadd name=TestGroup type=1
 	# -> {ChannelGroupList} notifychannelgrouplist cgid=1 name=Channel\sAdmin type=0 iconid=100 savedb=1 sortid=0 namemode=0 n_modifyp=75 n_member_addp=50 n_member_removep=50|cgid=2 name=Operator type=0 iconid=200 savedb=1 sortid=0 namemode=0 n_modifyp=75 n_member_addp=30 n_member_removep=30|...
-	{ name="ChannelGroupAdd",               notify="channelgroupadd",               attributes=["name", "type?"] },
+	{ name="ChannelGroupAdd",               notify="channelgroupadd",               attributes=["name", "type@group?"] },
 	# channelgroupaddperm cgid=9 permid=146 permvalue=1
 	# -> void
 	{ name="ChannelGroupAddPerm",           notify="channelgroupaddperm",           attributes=["cgid", "permid?", "permsid?", "permvalue"] },
@@ -575,7 +571,7 @@ msg = [
 	{ name="ChannelGroupClientListRequest", notify="channelgroupclientlist",        attributes=["cid?", "cldbid?", "cgid?"] },
 	# channelgroupcopy name=TestGroup2\s(Copy) scgid=9 tcgid=0
 	# -> {ChannelGroupList} notifychannelgrouplist ...
-	{ name="ChannelGroupCopy",              notify="channelgroupcopy",              attributes=["scgid", "tcgid", "name", "type"] },
+	{ name="ChannelGroupCopy",              notify="channelgroupcopy",              attributes=["scgid", "tcgid", "name", "type@group"] },
 	# channelgroupdel cgid=10 force=0
 	# -> {ChannelGroupList} notifychannelgrouplist ...
 	{ name="ChannelGroupDel",               notify="channelgroupdel",               attributes=["cgid", "force"] },
@@ -637,7 +633,7 @@ msg = [
 	{ name="ClientDbInfoRequest",           notify="clientdbinfo",                  attributes=["cldbid"] },
 	# clientdblist start=0 duration=10
 	# -> {ClientDbList} notifyclientdblist cldbid=2 client_unique_identifier=uA0U7t4PBxdJ5TLnarsOHQh4\/tY= client_nickname=Splamy client_created=1537603744 client_lastconnected=1539260951 client_totalconnections=20 client_description client_lastip=::1 | ...
-	{ name="ClientDbListRequest",           notify="clientdblist",                  attributes=["start?", "limit?"] }, # -count
+	{ name="ClientDbListRequest",           notify="clientdblist",                  attributes=["start@list?", "duration@list?"] }, # -count
 	# clientdelperm cldbid=2 permid=177
 	# -> {ClientNeededPermissions} notifyclientneededpermissions permid=177
 	{ name="ClientDelPerm",                 notify="clientdelperm",                 attributes=["cldbid", "permid?", "permsid?"] },
@@ -811,7 +807,7 @@ msg = [
 	{ name="Quit",                          notify="quit",                          attributes=[] },
 	# sendtextmessage targetmode=2 msg=hi
 	# -> {TextMessage} notifytextmessage targetmode=2 msg=hi invokerid=4 invokername=Splamy invokeruid=uA0U7t4PBxdJ5TLnarsOHQh4\/tY=
-	{ name="SendTextMessage",               notify="sendtextmessage",               attributes=["targetmode", "target", "msg"] },
+	{ name="SendTextMessage",               notify="sendtextmessage",               attributes=["targetmode@msg", "target", "msg"] },
 	# TODO
 	{ name="ServerCreate",                  notify="servercreate",                  attributes=["virtualserver_name"] }, # TODO PROPERTIES !
 	# TODO
@@ -823,7 +819,7 @@ msg = [
 	{ name="ServerVariablesRequest",        notify="servergetvariables",            attributes=[] },
 	# servergroupadd name=test type=1
 	# -> {ServerGroupList} notifyservergrouplist sgid=1 name=Guest\sServer\sQuery type=2 iconid=0 savedb=0 sortid=0 namemode=0 n_modifyp=100 n_member_addp=0 n_member_removep=0|...
-	{ name="ServerGroupAdd",                notify="servergroupadd",                attributes=["name", "type?"] },
+	{ name="ServerGroupAdd",                notify="servergroupadd",                attributes=["name", "type@group?"] },
 	# servergroupaddclient sgid=9 cldbid=2
 	# -> void
 	{ name="ServerGroupAddClient",          notify="servergroupaddclient",          attributes=["sgid", "cldbid"] },
@@ -839,7 +835,7 @@ msg = [
 	{ name="ServerGroupClientListRequest",  notify="servergroupclientlist",         attributes=["sgid"] }, # -names
 	# servergroupcopy name=test\s(Copy) ssgid=9 tsgid=0 type=1
 	# -> {ServerGroupList} notifyservergrouplist ...
-	{ name="ServerGroupCopy",               notify="servergroupcopy",               attributes=["ssgid", "tsgid", "name", "type"] },
+	{ name="ServerGroupCopy",               notify="servergroupcopy",               attributes=["ssgid", "tsgid", "name", "type@group"] },
 	# servergroupdel sgid=10 force=0
 	# -> void
 	{ name="ServerGroupDel",                notify="servergroupdel",                attributes=["sgid", "force"] },
@@ -889,7 +885,7 @@ msg = [
 	{ name="ServerStop",                    notify="serverstop",                    attributes=["sid", "reasonmsg?"] },
 	# servertemppasswordadd pw=1234 desc=asdf duration=42 tcid=1 tcpw=4321
 	# -> void
-	{ name="ServerTempPasswordAdd",         notify="servertemppasswordadd",         attributes=["pw", "desc", "duration", "tcid", "tcpw"] },
+	{ name="ServerTempPasswordAdd",         notify="servertemppasswordadd",         attributes=["pw", "desc", "duration@time", "tcid", "tcpw"] },
 	# servertemppassworddel pw=1234
 	# -> void
 	{ name="ServerTempPasswordDel",         notify="servertemppassworddel",         attributes=["pw"] },
