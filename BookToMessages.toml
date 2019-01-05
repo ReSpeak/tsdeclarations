@@ -1,0 +1,34 @@
+# As in M2B from/to properties can be automatically mapped when they have
+# the same high-level name.
+
+[[rule]]
+# From the Book
+from = "Channel"
+# Into message
+to = "ChannelEdit"
+operation = "update"
+# The static message parameters
+# Can be often empty
+# Can be inferred from required message parameters
+ids = [
+	{ from="Id", to="ChannelId" },
+]
+# The dynamic message parameters
+# from is the property which gets updated, to is the field in the message
+properties = [
+	#{ from="ChannelName", to="ChannelName" },
+	# Function which reads a value form the book and splits it up
+	# into multiple message parameters
+	# fn bla(Channel, MaxClientChannelInherited) -> (type of asd)
+	#{ from="MaxClientChannelInherited", function="Bla", tolist=["asd"] },
+]
+
+[[rule]]
+# From the Book
+from = "Client"
+# Into message
+to = "ClientEdit"
+operation = "update"
+ids = [
+	{ from="Id", to="ClientId" },
+]
