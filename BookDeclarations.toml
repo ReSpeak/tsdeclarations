@@ -292,7 +292,7 @@ properties = [
 	{ name="HostbuttonUrl", type="str", set=true },
 	{ name="HostbuttonGfxUrl", type="str", set=true },
 	{ name="PhoneticName", type="str", set=true },
-	{ name="IconId", type="IconHash", doc="Should be an u32, sometimes the server sends an u64 for reasons which has to be cut to 32 bit" },
+	{ name="IconId", type="IconHash", doc="Should be an u32, sometimes the server sends an u64 or an i32 for reasons which has to be cut to 32 bit" },
 	{ name="Ip", type="str", mod="array", doc="A list of listen ips, can be empty" },
 	{ name="AskForPrivilegekey", type="bool" },
 	{ name="HostbannerMode", type="HostBannerMode", set=true },

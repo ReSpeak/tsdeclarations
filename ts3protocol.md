@@ -376,14 +376,17 @@ The packet header values are set as following for all packets here:
     01 bytes : Init-packet step number
                Const: 0x01
     16 bytes : Server stuff := [A1]
-    04 bytes : The bytes from [A0] in reversed order
+    04 bytes : The bytes from [A0] in reversed order (not always) := [A0r]
+
+This packets usually contains the bytes from [A0] in reversed order, except when
+connecting from some networks for a yet unknown reason.
 
 ## 2.3 Packet 2 (Client -> Server)
     04 bytes : Version of the TeamSpeak client as timestamp
     01 bytes : Init-packet step number
                Const: 0x02
     16 bytes : The bytes from [A1]
-    04 bytes : The bytes from [A0] in reversed order
+    04 bytes : The bytes from [A0r]
 
 ## 2.4 Packet 3 (Client <- Server)
      01 bytes : Init-packet step number
@@ -712,6 +715,7 @@ The server sends the `initserver` command.
 Note:
 - From this point on the client knows his client id, therefore it must be set
   in the header of each packet.
+- Newer versions of the server send parts of the `clientinit` command in the `initserver` command.
 
 ## 3.5 Further notifications
 The server will now send all needed information to display the entire
