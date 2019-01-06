@@ -638,7 +638,8 @@ msg = [
 	# -> {ClientNeededPermissions} notifyclientneededpermissions permid=177
 	{ name="ClientDelPerm",                 notify="clientdelperm",                 attributes=["cldbid", "permid?", "permsid?"] },
 	# TODO !!!
-	{ name="ClientEdit",                    notify="clientedit",                    attributes=["clid"] }, # TODO PROPERTIES !
+	# clientedit clid=2 client_description=desc client_is_talker=1
+	{ name="ClientEdit",                    notify="clientedit",                    attributes=["clid", "client_description?", "client_is_talker?"] }, # TODO PROPERTIES !
 	# clientfind pattern=Spla
 	# -> clid=1 client_nickname=Splamy
 	{ name="ClientFindRequest",             notify="clientfind",                    attributes=["pattern"] },
@@ -682,7 +683,8 @@ msg = [
 	# -> {ClientSetServerQueryLogin} notifyclientserverqueryloginpassword client_login_password=qm2niw4m
 	{ name="ClientSetServerQueryLoginRequest", notify="clientsetserverquerylogin",  attributes=["client_login_name", "client_login_password?", "cldbid?"] }, # 'client_login_password' is always ignored, 'cldbid' only exists for full client(?)
 	# TODO !!!
-	{ name="ClientUpdate",                  notify="clientupdate",                  attributes=[] }, # TODO PROPERTIES !
+	# clientupdate client_nickname=Seebi1 client_input_muted=1 client_away=1 client_away_message=AFK return_code=__1_
+	{ name="ClientUpdate",                  notify="clientupdate",                  attributes=["client_nickname?", "client_input_muted?", "client_output_muted?", "client_away?", "client_away_message?"] }, # TODO PROPERTIES !
 	# complainadd tcldbid=7 message=annoying
 	# -> void
 	{ name="ComplainAdd",                   notify="complainadd",                   attributes=["tcldbid", "message"] },
@@ -916,4 +918,7 @@ msg = [
 	# whoami
 	# -> {WhoAmI} virtualserver_status=online virtualserver_id=1 virtualserver_unique_identifier=SwHpaSmzsKpQ4ksmdkMFOMpBhqA= virtualserver_port=9987 client_id=4 client_channel_id=1 client_nickname=Splamy client_database_id=0 client_login_name client_unique_identifier client_origin_server_id=0
 	{ name="WhoAmIRequest",                 notify="whoami",                        attributes=[] },
+	# clientdisconnect reasonid=7 reasonmsg=Client\sdisconnected
+	# TODO Can this have a return code?
+	{ name="Disconnect",                    notify="clientdisconnect",              attributes=["reasonid?", "reasonmsg?"] },
 ]

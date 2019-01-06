@@ -16,7 +16,6 @@ ids = [
 # The dynamic message parameters
 # from is the property which gets updated, to is the field in the message
 properties = [
-	#{ from="ChannelName", to="ChannelName" },
 	# Function which reads a value form the book and splits it up
 	# into multiple message parameters
 	# fn bla(Channel, MaxClientChannelInherited) -> (type of asd)
@@ -24,11 +23,21 @@ properties = [
 ]
 
 [[rule]]
-# From the Book
 from = "Client"
-# Into message
 to = "ClientEdit"
 operation = "update"
 ids = [
 	{ from="Id", to="ClientId" },
 ]
+
+# TODO This should be on the connection, not on the client, because we can only
+# change our own properties.
+[[rule]]
+from = "Client"
+to = "ClientUpdate"
+operation = "update"
+
+[[rule]]
+from = "Connection"
+to = "Disconnect"
+operation = "remove"
