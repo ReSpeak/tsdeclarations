@@ -427,6 +427,7 @@ msg = [
 	{ name="ClientMoved",               notify="notifyclientmoved",               attributes=["clid", "reasonid", "ctid", "invokerid", "invokername", "invokeruid", "reasonmsg?"] },
 	{ name="ClientNeededPermissions",   notify="notifyclientneededpermissions",   attributes=["permid", "permvalue?"] },
 	{ name="ClientServerGroupAdded",    notify="notifyservergroupclientadded",    attributes=["name", "sgid", "invokerid", "invokername", "invokeruid", "clid", "cluid"] },
+	{ name="ClientServerGroupRemoved",  notify="notifyservergroupclientdeleted",  attributes=["name", "sgid", "invokerid", "invokername", "invokeruid", "clid", "cluid"] },
 	{ name="ClientUpdated",             notify="notifyclientupdated",             attributes=["clid", "client_unread_messages?", "client_version?", "client_platform?", "client_login_name?", "client_created?", "client_lastconnected?", "client_totalconnections?", "client_month_bytes_uploaded?", "client_month_bytes_downloaded?", "client_total_bytes_uploaded?", "client_total_bytes_downloaded?"] }, # TODO ! Incomplete
 	{ name="CommandError",              notify="error",                           attributes=["error_id", "msg", "failed_permid?", "return_code", "extra_msg?"] },
 	{ name="FileListFinished",          notify="notifyfilelistfinished",          attributes=["cid", "path"] },
