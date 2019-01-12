@@ -183,7 +183,7 @@ properties = [
 	{ name="IsChannelCommander", type="bool" },
 	{ name="CountryCode", type="str", set=false, doc="Like US, DE" },
 	{ name="InheritedChannelGroupFromChannel", type="ChannelId", set=false },
-	{ name="Badges", type="str", mod="array" },
+	{ name="Badges", type="str" },
 	{ name="OptionalData", type="OptionalClientData", opt=true, set=false },
 	{ name="ConnectionData", type="ConnectionClientData", opt=true, set=false },
 ]

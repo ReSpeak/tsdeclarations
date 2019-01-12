@@ -83,7 +83,6 @@ properties = [
 	{ function="TalkPowerFun", tolist=["TalkPowerRequest"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },
 	{ function="ReturnNone", tolist=["ConnectionData"] },
-	{ function="BadgesFun", tolist=["Badges"] },
 ]
 
 [[rule]]
