@@ -30,12 +30,18 @@ ids = [
 	{ from="Id", to="ClientId" },
 ]
 
-# TODO This should be on the connection, not on the client, because we can only
-# change our own properties.
+# The original properties are on the client object, but we can only change our
+# own properties, so these methods are available on the connection.
 [[rule]]
-from = "Client"
+from = "Connection"
 to = "ClientUpdate"
 operation = "update"
+properties = [
+	{ from="Name", type="str", function="ReturnSome", tolist=["Name"] },
+	{ from="InputMuted", type="bool", function="ReturnSome", tolist=["InputMuted"] },
+	{ from="OutputMuted", type="bool", function="ReturnSome", tolist=["OutputMuted"] },
+	{ from="away", type="str?", function="AwayFunB2m", tolist=["IsAway", "AwayMessage"] },
+]
 
 [[rule]]
 from = "Connection"
