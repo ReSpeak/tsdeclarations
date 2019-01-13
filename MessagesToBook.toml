@@ -123,6 +123,12 @@ properties = [
 ]
 
 [[rule]]
+from = "ClientUpdated"
+id = ["ClientId"]
+to = "Client"
+operation = "update"
+
+[[rule]]
 from = "ServerGroupList"
 id = ["ServerGroupId"]
 to = "ServerGroup"
