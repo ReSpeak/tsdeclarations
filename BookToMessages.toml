@@ -47,3 +47,47 @@ properties = [
 from = "Connection"
 to = "Disconnect"
 operation = "remove"
+
+[[rule]]
+from = "Client"
+to = "ServerGroupAddClient"
+operation = "add"
+ids = [
+	{ from="DatabaseId", to="ClientDbId" },
+]
+properties = [
+	{ from="ServerGroup", to="ServerGroupId" },
+]
+
+[[rule]]
+from = "Client"
+to = "ServerGroupDelClient"
+operation = "remove"
+ids = [
+	{ from="DatabaseId", to="ClientDbId" },
+]
+properties = [
+	{ from="ServerGroups", function="GetId", tolist=["ServerGroupId"] },
+]
+
+[[rule]]
+from = "ServerGroup"
+to = "ServerGroupAddClient"
+operation = "add"
+ids = [
+	{ from="Id", to="ServerGroupId" },
+]
+properties = [
+	{ from="Client", to="ClientDbId" },
+]
+
+[[rule]]
+from = "ServerGroup"
+to = "ServerGroupDelClient"
+operation = "remove"
+ids = [
+	{ from="Id", to="ServerGroupId" },
+	# Not an id attribute of the server group, but we want to have it as an
+	# argument.
+	{ from="Client", to="ClientDbId" },
+]

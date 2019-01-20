@@ -67,7 +67,7 @@ properties = [
 	{ name="IsDefault", type="bool", opt=true, doc="Whether it is the default channel" },
 	{ name="HasPassword", type="bool", opt=true, doc="Whether this channel has a password" },
 	{ name="CodecLatencyFactor", type="i32", opt=true, doc="TODO Type?" },
-	{ name="IsUnencrypted", type="bool" },
+	{ name="IsUnencrypted", type="bool", opt=true },
 	{ name="DeleteDelay", type="Duration", opt=true },
 	{ name="NeededTalkPower", type="i32", opt=true },
 	{ name="ForcedSilence", type="bool", set=false },
