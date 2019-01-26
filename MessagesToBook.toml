@@ -26,6 +26,7 @@ properties = [
 	{ function="ChannelTypeCcFun", tolist=["ChannelType"] },
 	{ function="ReturnFalse", tolist=["ForcedSilence"] },
 	{ function="ReturnFalse", tolist=["IsPrivate"] },
+	{ function="ReturnFalse", tolist=["Subscribed"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },
 ]
 
@@ -54,6 +55,7 @@ properties = [
 	{ from="ChannelParentId", to="Parent" },
 	{ function="MaxClientsClFun", tolist=["MaxClients", "MaxFamilyClients"] },
 	{ function="ChannelTypeClFun", tolist=["ChannelType"] },
+	{ function="ReturnFalse", tolist=["Subscribed"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },
 ]
 
@@ -64,6 +66,24 @@ to = "Channel"
 operation = "update"
 properties = [
 	{ from="ChannelParentId", to="Parent" },
+]
+
+[[rule]]
+from = "ChannelSubscribed"
+id = ["ChannelId"]
+to = "Channel"
+operation = "update"
+properties = [
+	{ function="ChannelSubscribeFun", tolist=["Subscribed"] },
+]
+
+[[rule]]
+from = "ChannelUnsubscribed"
+id = ["ChannelId"]
+to = "Channel"
+operation = "update"
+properties = [
+	{ function="ChannelUnsubscribeFun", tolist=["Subscribed"] },
 ]
 
 [[rule]]

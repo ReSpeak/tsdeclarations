@@ -416,7 +416,7 @@ msg = [
 	{ name="ChannelListFinished",       notify="channellistfinished",             attributes=[] },
 	{ name="ChannelMoved",              notify="notifychannelmoved",              attributes=["order", "cid", "invokerid", "invokername", "invokeruid", "reasonid", "cpid"] },
 	{ name="ChannelPasswordChanged",    notify="notifychannelpasswordchanged",    attributes=["cid"] },
-	{ name="ChannelSubscribed",         notify="notifychannelsubscribed",         attributes=["cid", "es"] },
+	{ name="ChannelSubscribed",         notify="notifychannelsubscribed",         attributes=["cid", "es?"] },
 	{ name="ChannelUnsubscribed",       notify="notifychannelunsubscribed",       attributes=["cid"] },
 	{ name="ClientChannelGroupChanged", notify="notifyclientchannelgroupchanged", attributes=["invokerid", "invokername", "cgid", "cgi", "cid", "clid"] },
 	{ name="ClientChatClosed",          notify="notifyclientchatclosed",          attributes=["clid", "cluid"] },
@@ -430,7 +430,7 @@ msg = [
 	{ name="ClientServerGroupAdded",    notify="notifyservergroupclientadded",    attributes=["name", "sgid", "invokerid", "invokername", "invokeruid", "clid", "cluid"] },
 	{ name="ClientServerGroupRemoved",  notify="notifyservergroupclientdeleted",  attributes=["name", "sgid", "invokerid", "invokername", "invokeruid", "clid", "cluid"] },
 	{ name="ClientUpdated",             notify="notifyclientupdated",             attributes=["clid", "client_nickname?", "client_unread_messages?", "client_version?", "client_platform?", "client_login_name?", "client_created?", "client_lastconnected?", "client_totalconnections?", "client_month_bytes_uploaded?", "client_month_bytes_downloaded?", "client_total_bytes_uploaded?", "client_total_bytes_downloaded?", "client_input_muted?"] }, # TODO ! Incomplete
-	{ name="CommandError",              notify="error",                           attributes=["error_id", "msg", "failed_permid?", "return_code", "extra_msg?"] },
+	{ name="CommandError",              notify="error",                           attributes=["error_id", "msg", "failed_permid?", "return_code?", "extra_msg?"] },
 	{ name="FileListFinished",          notify="notifyfilelistfinished",          attributes=["cid", "path"] },
 	{ name="FileTransferStatus",        notify="notifystatusfiletransfer",        attributes=["clientftfid", "status@err", "msg", "size"] },
 	{ name="InitIvExpand",              notify="initivexpand",                    attributes=["alpha", "beta", "omega"] },

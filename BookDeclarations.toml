@@ -74,6 +74,7 @@ properties = [
 	{ name="PhoneticName", type="str", opt=true },
 	{ name="IconId", type="IconHash", opt=true },
 	{ name="IsPrivate", type="bool" },
+	{ name="Subscribed", type="bool" },
 	{ name="OptionalData", type="OptionalChannelData", opt=true, set=false },
 ]
 
