@@ -21,7 +21,7 @@ to = "Channel"
 # add/update/remove
 operation = "add"
 properties = [
-	{ from="ChannelParentId", to="Parent" },
+	{ from="ParentId", to="Parent" },
 	{ function="MaxClientsCcFun", tolist=["MaxClients", "MaxFamilyClients"] },
 	{ function="ChannelTypeCcFun", tolist=["ChannelType"] },
 	{ function="ReturnFalse", tolist=["ForcedSilence"] },
@@ -52,7 +52,7 @@ id = ["ChannelId"]
 to = "Channel"
 operation = "add"
 properties = [
-	{ from="ChannelParentId", to="Parent" },
+	{ from="ParentId", to="Parent" },
 	{ function="MaxClientsClFun", tolist=["MaxClients", "MaxFamilyClients"] },
 	{ function="ChannelTypeClFun", tolist=["ChannelType"] },
 	{ function="ReturnFalse", tolist=["Subscribed"] },
@@ -65,7 +65,7 @@ id = ["ChannelId"]
 to = "Channel"
 operation = "update"
 properties = [
-	{ from="ChannelParentId", to="Parent" },
+	{ from="ParentId", to="Parent" },
 ]
 
 [[rule]]
