@@ -8,7 +8,7 @@ TS3 PROTOCOL PAPER
 specified.
 - Datatypes are declared with a prefixing `u` or `i` for unsigned and signed
 and a number for the bitlength.  
-For example `u8` would be be the C equivalent of `uint8` or `unsigned char`
+For example `u8` would be the C equivalent of `uint8` or `unsigned char`
 - Arrays are represented by the underlying datatype in square brackets,
 additionally if the length is known it is added in the brackets, separated by
 a semicolon. Eg: `[u8]`, `[i32; 16]`
@@ -80,7 +80,7 @@ The final byte then looks like this
 | Type | 4 bit | 0-8  | The packet type |
 
 ## 1.4 Packet Compression
-To reduce a packet size the data can be compressed.
+To reduce packet size, the data can be compressed.
 When the data is compressed the `Compressed` flag must be set.
 The algorithm "QuickLZ" with Level 1 is used for compression.
 
@@ -115,7 +115,7 @@ it must be split into:
 When a packet is not encrypted the `Unencrypted` flag is set. For encrypted
 packets the flag gets cleared.
 Packets get encrypted with EAX mode (AES_128_CTR with OMAC).
-The en/decryption parameters get generated for each packet as follows
+The en/decryption parameters are generated for each packet as follows
 
 ### 1.6.1 Inputs
 | Name | Type     | Explanation                     |
@@ -130,7 +130,7 @@ The en/decryption parameters get generated for each packet as follows
 The temporary variable will have a different length depending on the result
 from the crypto init handshake. The old protocol SharedIV will be 20 bytes long,
 since it is generated with sha1, while the new protocol SharedIV will have
-64 byte, since it is generated with sha512.
+64 bytes, since it is generated with sha512.
 
     let temporary: [u8; 26] OR [u8; 70]
     temporary[0]    = 0x30 if (Client <- Server)
@@ -303,7 +303,7 @@ counter.
 This means the client has 9 different packet id counter for outgoing packets.
 
 For each new packet the counter gets increased by 1. This also applies to
-splitted packets.
+split packets.
 
 The client must also maintain packet ids for incoming packets in case of
 packets arriving out of order.
@@ -311,7 +311,7 @@ packets arriving out of order.
 All Packet Ids start at 1 unless otherwise specified.
 
 ### 1.9.2 Generations
-Packet Ids are stored as u16, this mean that they range from 0-65536.
+Packet Ids are stored as u16, this means they range from 0 up to 65535 included.
 
 When the packet id overflows from 65535 to 0 at a packet,
 the generation counter for this packet type gets increased by 1.
@@ -321,7 +321,7 @@ Note that the new generation id immediately applies to the 'overflowing' packet.
 The generation id counter is solely used for encryption (see 1.6).
 
 ## 1.10 Packet Acknowledgement / Packet Loss
-In order to reliably send packets over UPD some packet types must get
+In order to reliably send packets over UDP some packet types must get
 acknowledged when received (see 1.11).
 
 The protocol uses selective repeat for lost packets. This means each packet has
@@ -676,8 +676,8 @@ with `2`.
 - `client_nickname` the desired nickname
 - `client_version` the client version
 - `client_platform` the client platform
-- `client_input_hardware` whether a input device is available
-- `client_output_hardware` whether a output device is available
+- `client_input_hardware` whether an input device is available
+- `client_output_hardware` whether an output device is available
 - `client_default_channel` the default channel to join. This can be a channel
   path or `/<id>` (eg `/1`) for a channel id.
 - `client_default_channel_password` the password for the join channel, prepared
