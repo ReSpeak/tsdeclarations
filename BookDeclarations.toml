@@ -73,7 +73,7 @@ properties = [
 	{ name="ForcedSilence", type="bool", set=false },
 	{ name="PhoneticName", type="str", opt=true },
 	{ name="IconId", type="IconHash", opt=true },
-	{ name="IsPrivate", type="bool" },
+	{ name="IsPrivate", type="bool", opt=true },
 	{ name="Subscribed", type="bool" },
 	{ name="OptionalData", type="OptionalChannelData", opt=true, set=false },
 ]

@@ -417,7 +417,7 @@ msg = [
 	{ name="ChannelChanged",            notify="notifychannelchanged",            attributes=["cid"] },
 	{ name="ChannelDescriptionChanged", notify="notifychanneldescriptionchanged", attributes=["cid"] },
 	# TODO check with ChannelData
-	{ name="ChannelList",               notify="channellist",                     attributes=["cid", "cpid", "channel_name", "channel_topic", "channel_codec", "channel_codec_quality", "channel_maxclients", "channel_maxfamilyclients", "channel_order", "channel_flag_permanent", "channel_flag_semi_permanent", "channel_flag_default", "channel_flag_password", "channel_codec_latency_factor", "channel_codec_is_unencrypted", "channel_delete_delay", "channel_flag_maxclients_unlimited", "channel_flag_maxfamilyclients_unlimited", "channel_flag_maxfamilyclients_inherited", "channel_needed_talk_power", "channel_forced_silence", "channel_name_phonetic", "channel_icon_id", "channel_flag_private"] },
+	{ name="ChannelList",               notify="channellist",                     attributes=["cid", "cpid", "channel_name", "channel_topic", "channel_codec", "channel_codec_quality", "channel_maxclients", "channel_maxfamilyclients", "channel_order", "channel_flag_permanent", "channel_flag_semi_permanent", "channel_flag_default", "channel_flag_password", "channel_codec_latency_factor", "channel_codec_is_unencrypted", "channel_delete_delay", "channel_flag_maxclients_unlimited", "channel_flag_maxfamilyclients_unlimited", "channel_flag_maxfamilyclients_inherited", "channel_needed_talk_power", "channel_forced_silence", "channel_name_phonetic", "channel_icon_id", "channel_flag_private?"] },
 	{ name="ChannelListFinished",       notify="channellistfinished",             attributes=[] },
 	{ name="ChannelMoved",              notify="notifychannelmoved",              attributes=["order", "cid", "invokerid", "invokername", "invokeruid?", "reasonid", "cpid"] },
 	{ name="ChannelPasswordChanged",    notify="notifychannelpasswordchanged",    attributes=["cid"] },
@@ -543,7 +543,7 @@ msg = [
 [[msg_group]]
 default = { s2c=false, c2s=true, response=false, low=false, np=false }
 msg = [
-	{ name="ClientInit",                    notify="clientinit",                    attributes=["client_nickname", "client_version", "client_platform", "client_input_hardware", "client_output_hardware", "client_default_channel", "client_default_channel_password", "client_server_password", "client_meta_data", "client_version_sign", "client_key_offset", "client_nickname_phonetic", "client_default_token", "hwid" ] },
+	{ name="ClientInit",                    notify="clientinit",                    attributes=["client_nickname", "client_version", "client_platform", "client_input_hardware", "client_output_hardware", "client_default_channel", "client_default_channel_password", "client_server_password", "client_meta_data", "client_version_sign", "client_key_offset", "client_nickname_phonetic", "client_default_token", "hwid", "client_badges?" ] },
 	{ name="ClientInitIv",                  notify="clientinitiv",                  attributes=["alpha", "omega", "ip"] },
 	{ name="PluginCommandRequest",          notify="plugincmd",                     attributes=["name", "data", "targetmode@plugin"] },
 	# banadd ip=42\\.42\\.42\\.42 name=test uid=b+P0CqXms5I0C+A66HZ4Sbu\/PNw= time=5 banreason=test

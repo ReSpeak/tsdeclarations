@@ -25,7 +25,7 @@ properties = [
 	{ function="MaxClientsCcFun", tolist=["MaxClients", "MaxFamilyClients"] },
 	{ function="ChannelTypeCcFun", tolist=["ChannelType"] },
 	{ function="ReturnFalse", tolist=["ForcedSilence"] },
-	{ function="ReturnFalse", tolist=["IsPrivate"] },
+	{ function="ReturnNone", tolist=["IsPrivate"] },
 	{ function="ReturnFalse", tolist=["Subscribed"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },
 ]
