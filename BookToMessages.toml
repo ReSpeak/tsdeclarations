@@ -83,6 +83,18 @@ properties = [
 ]
 
 [[rule]]
+from = "Client"
+to = "ClientMove"
+operation = "update"
+ids = [
+	{ from="Id", to="ClientId" },
+	{ from="Password", type="str", function="ReturnSome", tolist=["ChannelPassword"] },
+]
+properties = [
+	{ from="ChannelWithPassword", type="ChannelId", function="Identity", tolist=["ChannelId"] },
+]
+
+[[rule]]
 from = "ServerGroup"
 to = "ServerGroupAddClient"
 operation = "add"
