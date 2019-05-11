@@ -9,7 +9,7 @@ properties = [
 	{ from="ServerPlatform", to="Platform" },
 	{ from="ServerVersion", to="Version" },
 	{ from="ServerCreated", to="Created" },
-	{ from="ServerIp", to="Ip" },
+	{ from="ServerIp", to="Ips" },
 	# ClientName, ClientId, TalkPower, NeededServerqueryViewPower
 	{ function="SetClientDataFun", tolist=[] },
 ]

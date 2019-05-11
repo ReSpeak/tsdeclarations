@@ -23,13 +23,11 @@ name = "File"
 id = [
 	{ struct="Channel", prop="Id" },
 	{ struct="File", prop="Path" },
-	{ struct="File", prop="Name" },
 ]
 doc = "A downloadable file"
 accessor = { get=true, set=true }
 properties = [
 	{ name="Path", type="str" },
-	{ name="Name", type="str" },
 	{ name="Size", type="i64" },
 	{ name="LastChanged", type="DateTime" },
 	{ name="IsFile", type="bool", doc="`true` if this is a file, `false` if it is a folder" },
@@ -295,7 +293,7 @@ properties = [
 	{ name="HostbuttonGfxUrl", type="str", set=true },
 	{ name="PhoneticName", type="str", set=true },
 	{ name="IconId", type="IconHash", doc="Should be an u32, sometimes the server sends an u64 or an i32 for reasons which has to be cut to 32 bit" },
-	{ name="Ip", type="str", mod="array", doc="A list of listen ips, can be empty" },
+	{ name="Ips", type="str", mod="array", doc="A list of listen ips, can be empty" },
 	{ name="AskForPrivilegekey", type="bool" },
 	{ name="HostbannerMode", type="HostBannerMode", set=true },
 	{ name="TempChannelDefaultDeleteDelay", type="Duration", set=true },
