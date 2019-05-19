@@ -37,9 +37,9 @@ from = "Connection"
 to = "ClientUpdate"
 operation = "update"
 properties = [
-	{ from="Name", type="str", function="ReturnSome", tolist=["Name"] },
-	{ from="InputMuted", type="bool", function="ReturnSome", tolist=["InputMuted"] },
-	{ from="OutputMuted", type="bool", function="ReturnSome", tolist=["OutputMuted"] },
+	{ from="Name", type="str", function="NameB2m", tolist=["Name"] },
+	{ from="InputMuted", type="bool", function="InputMutedB2m", tolist=["InputMuted"] },
+	{ from="OutputMuted", type="bool", function="OutputMutedB2m", tolist=["OutputMuted"] },
 	{ from="away", type="str?", function="AwayFunB2m", tolist=["IsAway", "AwayMessage"] },
 ]
 
@@ -88,10 +88,10 @@ to = "ClientMove"
 operation = "update"
 ids = [
 	{ from="Id", to="ClientId" },
-	{ from="Password", type="str", function="ReturnSome", tolist=["ChannelPassword"] },
+	{ from="Password", type="str", function="PasswordB2m", tolist=["ChannelPassword"] },
 ]
 properties = [
-	{ from="ChannelWithPassword", type="ChannelId", function="Identity", tolist=["ChannelId"] },
+	{ from="ChannelWithPassword", type="ChannelId", function="ChannelIdB2m", tolist=["ChannelId"] },
 ]
 
 [[rule]]
