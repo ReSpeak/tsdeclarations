@@ -73,6 +73,7 @@ properties = [
 	{ name="IconId", type="IconHash", opt=true },
 	{ name="IsPrivate", type="bool", opt=true },
 	{ name="Subscribed", type="bool" },
+	{ name="PermissionHints", type="ChannelPermissionHint", opt=true },
 	{ name="OptionalData", type="OptionalChannelData", opt=true, set=false },
 ]
 
@@ -184,6 +185,7 @@ properties = [
 	{ name="CountryCode", type="str", set=false, doc="Like US, DE" },
 	{ name="InheritedChannelGroupFromChannel", type="ChannelId", set=false },
 	{ name="Badges", type="str" },
+	{ name="PermissionHints", type="ChannelPermissionHint", opt=true },
 	{ name="OptionalData", type="OptionalClientData", opt=true, set=false },
 	{ name="ConnectionData", type="ConnectionClientData", opt=true, set=false },
 ]

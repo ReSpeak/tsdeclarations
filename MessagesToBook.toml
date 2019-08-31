@@ -173,3 +173,21 @@ from = "ServerEdited"
 id = []
 to = "Server"
 operation = "update"
+
+[[rule]]
+from = "ChannelPermissionHints"
+id = ["ChannelId"]
+to = "Channel"
+operation = "update"
+properties = [
+	{ from="Flags", to="PermissionHints" },
+]
+
+[[rule]]
+from = "ClientPermissionHints"
+id = ["ClientId"]
+to = "Client"
+operation = "update"
+properties = [
+	{ from="Flags", to="PermissionHints" },
+]
