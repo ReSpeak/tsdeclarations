@@ -28,6 +28,7 @@ properties = [
 	{ function="ReturnNone", tolist=["IsPrivate"] },
 	{ function="ReturnFalse", tolist=["Subscribed"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },
+	{ function="ChannelOrderCcFun", tolist=["Order"] },
 ]
 
 [[rule]]
@@ -35,6 +36,9 @@ from = "ChannelDeleted"
 id = ["ChannelId"]
 to = "Channel"
 operation = "remove"
+properties = [
+	{ function="ChannelOrderCdFun", tolist=["Order"] },
+]
 
 [[rule]]
 from = "ChannelEdited"
@@ -44,6 +48,7 @@ operation = "update"
 properties = [
 	{ function="MaxClientsCeFun", tolist=["MaxClients", "MaxFamilyClients"] },
 	{ function="ChannelTypeCeFun", tolist=["ChannelType"] },
+	{ function="ChannelOrderCeFun", tolist=["Order"] },
 ]
 
 [[rule]]
@@ -66,6 +71,7 @@ to = "Channel"
 operation = "update"
 properties = [
 	{ from="ParentId", to="Parent" },
+	{ function="ChannelOrderCmFun", tolist=["Order"] },
 ]
 
 [[rule]]

@@ -60,7 +60,7 @@ properties = [
 	{ name="CodecQuality", type="u8", opt=true },
 	{ name="MaxClients", type="MaxClients", opt=true, doc="The maximum number of clients in the channel." },
 	{ name="MaxFamilyClients", type="MaxClients", opt=true, doc="Maximum number of clients in this and all child channels." },
-	{ name="Order", type="i32", doc="TODO Type of order?" },
+	{ name="Order", type="ChannelId", doc="The preceding channel id." },
 	{ name="ChannelType", type="ChannelType" },
 	{ name="IsDefault", type="bool", opt=true, doc="Whether it is the default channel" },
 	{ name="HasPassword", type="bool", opt=true, doc="Whether this channel has a password" },
@@ -303,9 +303,6 @@ properties = [
 	{ name="License", type="LicenseType" },
 	{ name="OptionalData", type="OptionalServerData", opt=true },
 	{ name="ConnectionData", type="ConnectionServerData", opt=true },
-	{ name="Clients", type="Client", mod="map", key="ClientId", doc="All clients which are visible for us" },
-	{ name="Channels", type="Channel", mod="map", key="ChannelId", doc="All channels on the server" },
-	{ name="Groups", type="ServerGroup", mod="map", key="ServerGroupId", doc="All server groups on the server" },
 ]
 
 [[struct]]
@@ -317,6 +314,9 @@ accessor = { get=true, set=false }
 properties = [
 	{ name="OwnClient", type="ClientId", doc="The id of our own client on the server" },
 	{ name="Server", type="Server", doc="The server of this connection" },
+	{ name="Clients", type="Client", mod="map", key="ClientId", doc="All clients which are visible for us" },
+	{ name="Channels", type="Channel", mod="map", key="ChannelId", doc="All channels on the server" },
+	{ name="Groups", type="ServerGroup", mod="map", key="ServerGroupId", doc="All server groups on the server" },
 ]
 
 [[struct]]
