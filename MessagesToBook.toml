@@ -36,9 +36,6 @@ from = "ChannelDeleted"
 id = ["ChannelId"]
 to = "Channel"
 operation = "remove"
-properties = [
-	{ function="ChannelOrderCdFun", tolist=["Order"] },
-]
 
 [[rule]]
 from = "ChannelEdited"
