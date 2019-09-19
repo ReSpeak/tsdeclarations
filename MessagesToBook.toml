@@ -27,6 +27,7 @@ properties = [
 	{ function="ReturnFalse", tolist=["ForcedSilence"] },
 	{ function="ReturnNone", tolist=["IsPrivate"] },
 	{ function="ReturnFalse", tolist=["Subscribed"] },
+	{ function="ReturnNone", tolist=["PermissionHints"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },
 	{ function="ChannelOrderCcFun", tolist=["Order"] },
 ]
@@ -58,6 +59,7 @@ properties = [
 	{ function="MaxClientsClFun", tolist=["MaxClients", "MaxFamilyClients"] },
 	{ function="ChannelTypeClFun", tolist=["ChannelType"] },
 	{ function="ReturnFalse", tolist=["Subscribed"] },
+	{ function="ReturnNone", tolist=["PermissionHints"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },
 ]
 
@@ -104,6 +106,7 @@ properties = [
 	{ from="TargetChannelId", to="Channel" },
 	{ function="AwayCevFun", tolist=["AwayMessage"] },
 	{ function="TalkPowerCevFun", tolist=["TalkPowerRequest"] },
+	{ function="ReturnNone", tolist=["PermissionHints"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },
 	{ function="ReturnNone", tolist=["ConnectionData"] },
 ]

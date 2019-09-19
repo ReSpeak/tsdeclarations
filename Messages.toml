@@ -329,7 +329,7 @@ fields = [
 	{ map="virtualserver_hostmessage_mode", ts="virtualserver_hostmessage_mode", pretty="HostmessageMode", type="HostMessageMode" },
 	{ map="virtualserver_icon_id", ts="virtualserver_icon_id", pretty="IconId", type="IconHash" },
 	{ map="virtualserver_id", ts="virtualserver_id", pretty="VirtualServerId", type="u64" },
-	{ map="virtualserver_ip", ts="virtualserver_ip", pretty="ServerIp", type="str", mod="array" },
+	{ map="virtualserver_ip", ts="virtualserver_ip", pretty="ServerIp", type="IpAddr", mod="array" },
 	{ map="virtualserver_log_client", ts="virtualserver_log_client", pretty="LogClient", type="bool" },
 	{ map="virtualserver_log_query", ts="virtualserver_log_query", pretty="LogQuery", type="bool" },
 	{ map="virtualserver_log_channel", ts="virtualserver_log_channel", pretty="LogChannel", type="bool" },

@@ -185,7 +185,7 @@ properties = [
 	{ name="CountryCode", type="str", set=false, doc="Like US, DE" },
 	{ name="InheritedChannelGroupFromChannel", type="ChannelId", set=false },
 	{ name="Badges", type="str" },
-	{ name="PermissionHints", type="ChannelPermissionHint", opt=true },
+	{ name="PermissionHints", type="ClientPermissionHint", opt=true },
 	{ name="OptionalData", type="OptionalClientData", opt=true, set=false },
 	{ name="ConnectionData", type="ConnectionClientData", opt=true, set=false },
 ]
@@ -295,7 +295,7 @@ properties = [
 	{ name="HostbuttonGfxUrl", type="str", set=true },
 	{ name="PhoneticName", type="str", set=true },
 	{ name="IconId", type="IconHash", doc="Should be an u32, sometimes the server sends an u64 or an i32 for reasons which has to be cut to 32 bit" },
-	{ name="Ips", type="SocketAddr", mod="array", doc="A list of listen ips, can be empty" },
+	{ name="Ips", type="IpAddr", mod="array", doc="A list of listen ips, can be empty" },
 	{ name="AskForPrivilegekey", type="bool" },
 	{ name="HostbannerMode", type="HostBannerMode", set=true },
 	{ name="TempChannelDefaultDeleteDelay", type="Duration", set=true },
