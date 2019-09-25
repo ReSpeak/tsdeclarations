@@ -195,7 +195,7 @@ fields = [
 	{ map="id1", ts="id1", pretty="Id1", type="u64" }, # {ServerGroupId|ClientDbId|ChannelId}
 	{ map="id2", ts="id2", pretty="Id2", type="u64" }, # {0|ChannelGroupId|ClientDbId}
 	{ map="ident", ts="ident", pretty="ExternalIdentity", type="str" },
-	{ map="ip", ts="ip", pretty="Ip", type="str" },
+	{ map="ip", ts="ip", pretty="Ip", type="IpAddr" },
 	{ map="instance", ts="instance", pretty="InstanceLog", type="bool" },
 	{ map="invokerid", ts="invokerid", pretty="InvokerId", type="ClientId" },
 	{ map="invokercldbid", ts="invokercldbid", pretty="InvokerDatabaseId", type="ClientDbId" },
@@ -235,6 +235,7 @@ fields = [
 	{ map="permdesc", ts="permdesc", pretty="PermissionDescription", type="str" },
 	{ map="pid", ts="pid", pretty="ParentChannelId", type="ChannelId" },
 	{ map="port", ts="port", pretty="Port", type="u16" },
+	{ map="proto", ts="proto", pretty="Protocol", type="u8" },
 	{ map="pv", ts="pv", pretty="ProtocolVersion", type="u16" },
 	{ map="pw", ts="pw", pretty="Password", type="str" },
 	# TODO maybe find better name when know what this is
@@ -249,14 +250,14 @@ fields = [
 	{ map="savedb", ts="savedb", pretty="IsPermanent", type="bool" },
 	{ map="scgid", ts="scgid", pretty="SourceChannelGroupId", type="ChannelGroupId" },
 	{ map="seconds_empty", ts="seconds_empty", pretty="DurationEmpty", type="DurationSeconds" },
-	{ map="seekpos", ts="seekpos", pretty="SeekPosistion", type="i64" },
+	{ map="seekpos", ts="seekpos", pretty="SeekPosition", type="u64" },
 	# ?? type
 	{ map="sender", ts="sender", pretty="Sender", type="u64" },
 	{ map="serverftfid", ts="serverftfid", pretty="ServerFileTransferId", type="u16" },
 	{ map="sgid", ts="sgid", pretty="ServerGroupId", type="ServerGroupId" },
 	{ map="sgtype", ts="sgtype", pretty="ServerGroupType", type="u32" },  # integer, size guessed
 	{ map="sid", ts="sid", pretty="ServerId", type="u32" }, # integer, size guessed, maybe own type ServerId ?
-	{ map="size", ts="size", pretty="Size", type="i64" },
+	{ map="size", ts="size", pretty="Size", type="u64" },
 	{ map="sizedone", ts="sizedone", pretty="SizeDone", type="i64" },
 	{ map="sortid", ts="sortid", pretty="SortId", type="i32" },
 	{ map="ssgid", ts="ssgid", pretty="SourceServerGroupId", type="ServerGroupId" },
@@ -522,11 +523,11 @@ msg = [
 	{ name="ClientPermList",            notify="notifyclientpermlist",              attributes=["cldbid", "permid?", "permsid?", "permvalue", "permnegated", "permskip"] },
 	{ name="ClientSetServerQueryLogin", notify="notifyclientserverqueryloginpassword", attributes=["client_login_password"] },
 	{ name="ComplainList",              notify="notifycomplainlist",                attributes=["tcldbid", "tname", "fcldbid", "fname", "message", "timestamp"] },
-	{ name="FileDownload",              notify="notifystartdownload",               attributes=["clientftfid", "serverftfid", "ftkey", "port", "size", "msg"] },
+	{ name="FileDownload",              notify="notifystartdownload",               attributes=["clientftfid", "serverftfid", "ftkey", "port", "size", "proto", "ip?"] },
 	{ name="FileInfo",                  notify="notifyfileinfo",                    attributes=["cid", "path", "name", "size", "datetime"] },
 	{ name="FileList",                  notify="notifyfilelist",                    attributes=["cid", "path", "name", "size", "datetime", "type@ft"] },
 	{ name="FileTransfer",              notify="notifyfiletransferlist",            attributes=["clid", "path", "name", "size", "sizedone", "clientftfid", "serverftfid", "sender", "status@ft", "current_speed", "average_speed", "runtime"] },
-	{ name="FileUpload",                notify="notifystartupload",                 attributes=["clientftfid", "serverftfid", "ftkey", "port", "seekpos", "msg"] },
+	{ name="FileUpload",                notify="notifystartupload",                 attributes=["clientftfid", "serverftfid", "ftkey", "port", "seekpos", "proto", "ip?"] },
 	{ name="OfflineMessage",            notify="notifymessage",                     attributes=["msgid", "cluid", "subject", "message", "timestamp"] },
 	{ name="OfflineMessageList",        notify="notifymessagelist",                 attributes=["msgid", "cluid", "subject", "timestamp", "flag_read"] },
 	{ name="PermFind",                  notify="notifypermfind",                    attributes=["t", "id1", "id2", "p"] },
@@ -762,10 +763,10 @@ msg = [
 	{ name="FtFileListRequest",             notify="ftgetfilelist",                 attributes=["cid", "cpw", "path"] },
 	# ftinitdownload clientftfid=4096 name=\/Doxyfile2 cid=4 cpw seekpos=0 proto=1
 	# -> {FileDownload} notifystartdownload clientftfid=4096 serverftfid=1 ftkey=YkmvbK7ibKPJPTRONaY68j3S\/fjx7dkO port=30033 size=11984 proto=1
-	{ name="FtInitDownload",                notify="ftinitdownload",                attributes=["clientftfid", "name", "cid", "cpw", "seekpos"] },
+	{ name="FtInitDownload",                notify="ftinitdownload",                attributes=["clientftfid", "name", "cid", "cpw", "seekpos", "proto"] },
 	# ftinitupload clientftfid=4096 name=\/Doxyfile size=11984 cid=4 cpw overwrite=0 resume=0 proto=1
 	# -> {FileUpload} notifystartupload clientftfid=4096 serverftfid=1 ftkey=U2VNc4+cRZdCKMdR6JECqfz8Ix1L40SM port=30033 seekpos=0 proto=1
-	{ name="FtInitUpload",                  notify="ftinitupload",                  attributes=["clientftfid", "name", "cid", "cpw", "size", "overwrite", "resume"] },
+	{ name="FtInitUpload",                  notify="ftinitupload",                  attributes=["clientftfid", "name", "cid", "cpw", "size", "overwrite", "resume", "proto"] },
 	# ftlist
 	# -> {FileTransfer} notifyfiletransferlist clid=1 path=files\\virtualserver_1\\channel_4 name=Win10_1709_German_x64_Pro.iso size=3825467392 sizedone=1324744704 clientftfid=4096 serverftfid=1 sender=0 status=1 current_speed=101380912.0000 average_speed=98684800.0000 runtime=13
 	{ name="FtList",                        notify="ftlist",                        attributes=[] },
