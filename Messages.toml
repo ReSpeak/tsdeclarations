@@ -464,8 +464,25 @@ msg = [
 [[msg_group]]
 default = { s2c=true, c2s=false, response=true, low=false, np=false }
 msg = [
-	{ name="ChannelData",               attributes=["id", "pid", "seconds_empty", "total_clients_family", "total_clients", "channel_needed_subscribe_power", "channel_order", "channel_name", "channel_topic", "channel_flag_default", "channel_flag_password", "channel_flag_permanent", "channel_flag_semi_permanent", "channel_codec", "channel_codec_quality", "channel_needed_talk_power", "channel_icon_id", "channel_maxclients", "channel_maxfamilyclients"] },
+	# channellist
+	{ name="ChannelListResponse",       attributes=["cid", "pid", "channel_order", "channel_name", "total_clients", "channel_needed_subscribe_power",
+		"channel_topic?", # -topic
+		"channel_flag_default?", # -flags
+		"channel_flag_password?", # -flags
+		"channel_flag_permanent?", # -flags
+		"channel_flag_semi_permanent?", # -flags
+		"channel_codec?", # -voice
+		"channel_codec_quality?", # -voice
+		"channel_needed_talk_power?", # -voice
+		"total_clients_family?", # -limits
+		"channel_maxclients?", # -limits
+		"channel_maxfamilyclients?", # -limits
+		"channel_icon_id?", # -icon
+		"seconds_empty?", # -secondsempty
+	] },
+	# channelfind
 	{ name="ChannelFind",               attributes=["cid", "channel_name"] },
+	# clientlist
 	{ name="ClientList",                attributes=["clid", "cid", "client_database_id", "client_nickname", "client_type",
 		"client_unique_identifier?", # -uid
 		"client_away?", # -away
@@ -492,10 +509,15 @@ msg = [
 		"connection_client_ip?", # -ip
 		"client_badges?", # - badges
 	] },
+	# clientdbinfo
 	{ name="ClientDbInfo",              attributes=["client_lastip", "clid", "client_unique_identifier", "cid", "client_database_id", "client_nickname", "client_type", "client_flag_avatar", "client_description", "client_icon_id", "client_created", "client_lastconnected", "client_totalconnections", "client_month_bytes_uploaded", "client_month_bytes_downloaded", "client_total_bytes_uploaded", "client_total_bytes_downloaded", "client_base64HashClientUID"] },
+	# clientinfo
 	{ name="ClientInfo",                attributes=["client_idle_time", "client_version", "client_version_sign", "client_platform", "client_default_channel", "client_security_hash", "client_login_name", "client_default_token", "connection_filetransfer_bandwidth_sent", "connection_filetransfer_bandwidth_received", "connection_packets_sent_total", "connection_packets_received_total", "connection_bytes_sent_total", "connection_bytes_received_total", "connection_bandwidth_sent_last_second_total", "connection_bandwidth_received_last_second_total", "connection_bandwidth_sent_last_minute_total", "connection_bandwidth_received_last_minute_total", "connection_connected_time", "connection_client_ip", "cid", "client_unique_identifier", "client_database_id", "client_nickname", "client_type", "client_input_muted", "client_output_muted", "client_outputonly_muted", "client_input_hardware", "client_output_hardware", "client_meta_data", "client_is_recording", "client_channel_group_id", "client_channel_group_inherited_channel_id", "client_servergroups", "client_away", "client_away_message", "client_talk_power", "client_talk_request", "client_talk_request_msg", "client_is_talker", "client_is_priority_speaker", "client_unread_messages", "client_nickname_phonetic", "client_needed_serverquery_view_power", "client_is_channel_commander", "client_country", "client_badges", "client_created", "client_lastconnected", "client_totalconnections", "client_month_bytes_uploaded", "client_month_bytes_downloaded", "client_total_bytes_uploaded", "client_total_bytes_downloaded", "client_base64HashClientUID", "client_flag_avatar", "client_description", "client_icon_id", "client_myteamspeak_id?", "client_integrations?"] },
+	# ??
 	{ name="ServerData",                attributes=["virtualserver_clientsonline", "virtualserver_queryclientsonline", "virtualserver_maxclients", "virtualserver_uptime", "virtualserver_autostart", "virtualserver_machine_id", "virtualserver_name", "virtualserver_id", "virtualserver_unique_identifier", "virtualserver_port", "virtualserver_status"] },
+	# servergroupadd
 	{ name="ServerGroupAddResponse",    attributes=["sgid"] },
+	# whoami
 	{ name="WhoAmI",                    attributes=["client_id", "client_channel_id", "client_nickname", "client_database_id", "client_login_name", "client_origin_server_id", "virtualserver_id", "virtualserver_unique_identifier", "virtualserver_port", "virtualserver_status", "client_unique_identifier"] },
 ]
 
