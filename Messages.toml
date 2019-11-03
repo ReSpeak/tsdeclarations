@@ -23,12 +23,15 @@ fields = [
 	{ map="cfid", ts="cfid", pretty="SourceChannelId", type="ChannelId" },
 	{ map="cgi", ts="cgi", pretty="ChannelGroupIndex", type="ChannelGroupId" },
 	{ map="cgid", ts="cgid", pretty="ChannelGroup", type="ChannelGroupId" },
+	{ map="channel_banner_gfx_url", ts="channel_banner_gfx_url", pretty="BannerGfxUrl", type="str" },
+	{ map="channel_banner_mode", ts="channel_banner_mode", pretty="BannerMode", type="str" }, # ?? Same as HostBannerMode maybe? There's no ui for this setting
 	{ map="channel_codec", ts="channel_codec", pretty="Codec", type="Codec" },
 	{ map="channel_codec_is_unencrypted", ts="channel_codec_is_unencrypted", pretty="IsUnencrypted", type="bool" },
 	{ map="channel_codec_latency_factor", ts="channel_codec_latency_factor", pretty="CodecLatencyFactor", type="i32" },
 	{ map="channel_codec_quality", ts="channel_codec_quality", pretty="CodecQuality", type="u8" },
 	{ map="channel_delete_delay", ts="channel_delete_delay", pretty="DeleteDelay", type="DurationSeconds" },
 	{ map="channel_description", ts="channel_description", pretty="Description", type="str" },
+	{ map="channel_filepath", ts="channel_filepath", pretty="FilePath", type="str" },
 	{ map="channel_flag_default", ts="channel_flag_default", pretty="IsDefault", type="bool" },
 	{ map="channel_flag_maxclients_unlimited", ts="channel_flag_maxclients_unlimited", pretty="IsMaxClientsUnlimited", type="bool" },
 	{ map="channel_flag_maxfamilyclients_inherited", ts="channel_flag_maxfamilyclients_inherited", pretty="InheritsMaxFamilyClients", type="bool" },
@@ -47,6 +50,7 @@ fields = [
 	{ map="channel_needed_talk_power", ts="channel_needed_talk_power", pretty="NeededTalkPower", type="i32" },
 	{ map="channel_order", ts="channel_order", pretty="Order", type="ChannelId" },
 	{ map="channel_password", ts="channel_password", pretty="Password", type="str" },
+	{ map="channel_security_salt", ts="channel_security_salt", pretty="PasswordSalt", type="str" },
 	{ map="channel_topic", ts="channel_topic", pretty="Topic", type="str" },
 	{ map="cid", ts="cid", pretty="ChannelId", type="ChannelId" },
 	{ map="cldbid", ts="cldbid", pretty="ClientDbId", type="ClientDbId" },
@@ -464,6 +468,10 @@ msg = [
 [[msg_group]]
 default = { s2c=true, c2s=false, response=true, low=false, np=false }
 msg = [
+	# ChannelCreate
+	{ name="ChannelCreateResponse",       attributes=["cid"] },
+	# channelinfo
+	{ name="ChannelInfoResponse",       attributes=["pid", "channel_name", "channel_topic", "channel_description", "channel_password?", "channel_codec", "channel_codec_quality", "channel_maxclients", "channel_maxfamilyclients", "channel_order", "channel_flag_permanent", "channel_flag_semi_permanent", "channel_flag_default", "channel_flag_password", "channel_codec_latency_factor", "channel_codec_is_unencrypted", "channel_security_salt?", "channel_delete_delay", "channel_flag_maxclients_unlimited", "channel_flag_maxfamilyclients_unlimited", "channel_flag_maxfamilyclients_inherited", "channel_filepath", "channel_needed_talk_power", "channel_forced_silence", "channel_name_phonetic?", "channel_icon_id", "channel_banner_gfx_url?", "channel_banner_mode", "seconds_empty"] },
 	# channellist
 	{ name="ChannelListResponse",       attributes=["cid", "pid", "channel_order", "channel_name", "total_clients", "channel_needed_subscribe_power",
 		"channel_topic?", # -topic
@@ -513,8 +521,17 @@ msg = [
 	{ name="ClientDbInfo",              attributes=["client_lastip", "clid", "client_unique_identifier", "cid", "client_database_id", "client_nickname", "client_type", "client_flag_avatar", "client_description", "client_icon_id", "client_created", "client_lastconnected", "client_totalconnections", "client_month_bytes_uploaded", "client_month_bytes_downloaded", "client_total_bytes_uploaded", "client_total_bytes_downloaded", "client_base64HashClientUID"] },
 	# clientinfo
 	{ name="ClientInfo",                attributes=["client_idle_time", "client_version", "client_version_sign", "client_platform", "client_default_channel", "client_security_hash", "client_login_name", "client_default_token", "connection_filetransfer_bandwidth_sent", "connection_filetransfer_bandwidth_received", "connection_packets_sent_total", "connection_packets_received_total", "connection_bytes_sent_total", "connection_bytes_received_total", "connection_bandwidth_sent_last_second_total", "connection_bandwidth_received_last_second_total", "connection_bandwidth_sent_last_minute_total", "connection_bandwidth_received_last_minute_total", "connection_connected_time", "connection_client_ip", "cid", "client_unique_identifier", "client_database_id", "client_nickname", "client_type", "client_input_muted", "client_output_muted", "client_outputonly_muted", "client_input_hardware", "client_output_hardware", "client_meta_data", "client_is_recording", "client_channel_group_id", "client_channel_group_inherited_channel_id", "client_servergroups", "client_away", "client_away_message", "client_talk_power", "client_talk_request", "client_talk_request_msg", "client_is_talker", "client_is_priority_speaker", "client_unread_messages", "client_nickname_phonetic", "client_needed_serverquery_view_power", "client_is_channel_commander", "client_country", "client_badges", "client_created", "client_lastconnected", "client_totalconnections", "client_month_bytes_uploaded", "client_month_bytes_downloaded", "client_total_bytes_uploaded", "client_total_bytes_downloaded", "client_base64HashClientUID", "client_flag_avatar", "client_description", "client_icon_id", "client_myteamspeak_id?", "client_integrations?"] },
-	# ??
-	{ name="ServerData",                attributes=["virtualserver_clientsonline", "virtualserver_queryclientsonline", "virtualserver_maxclients", "virtualserver_uptime", "virtualserver_autostart", "virtualserver_machine_id", "virtualserver_name", "virtualserver_id", "virtualserver_unique_identifier", "virtualserver_port", "virtualserver_status"] },
+	# serverlist
+	{ name="ServerListResponse",        attributes=["virtualserver_id", "virtualserver_port", "virtualserver_status",
+		"virtualserver_clientsonline?", # not -short
+		"virtualserver_queryclientsonline?", # not -short
+		"virtualserver_maxclients?", # not -short
+		"virtualserver_uptime?", # not -short
+		"virtualserver_autostart?", # not -short
+		"virtualserver_machine_id?", # not -short
+		"virtualserver_name?", # not -short
+		"virtualserver_unique_identifier?", # -uid
+	] },
 	# servergroupadd
 	{ name="ServerGroupAddResponse",    attributes=["sgid"] },
 	# whoami
@@ -650,7 +667,7 @@ msg = [
 	# -> {ChannelGroupList} notifychannelgrouplist ...
 	{ name="ChannelGroupRename",            notify="channelgrouprename",            attributes=["cgid", "name"] },
 	# channelinfo cid=3
-	# -> pid=0 channel_name=Defaukt channel_topic channel_description channel_password channel_codec=4 channel_codec_quality=6 channel_maxclients=-1 channel_maxfamilyclients=-1 channel_order=1 channel_flag_permanent=0 channel_flag_semi_permanent=0 channel_flag_default=0 channel_flag_password=0 channel_codec_latency_factor=1 channel_codec_is_unencrypted=1 channel_security_salt channel_delete_delay=0 channel_flag_maxclients_unlimited=1 channel_flag_maxfamilyclients_unlimited=0 channel_flag_maxfamilyclients_inherited=1 channel_filepath=files\\virtualserver_1\\channel_3 channel_needed_talk_power=0 channel_forced_silence=0 channel_name_phonetic channel_icon_id=0 channel_flag_private=0 seconds_empty=-1
+	# -> {ChannelInfoResponse} pid=0 channel_name=Defaukt channel_topic channel_description channel_password channel_codec=4 channel_codec_quality=6 channel_maxclients=-1 channel_maxfamilyclients=-1 channel_order=1 channel_flag_permanent=0 channel_flag_semi_permanent=0 channel_flag_default=0 channel_flag_password=0 channel_codec_latency_factor=1 channel_codec_is_unencrypted=1 channel_security_salt channel_delete_delay=0 channel_flag_maxclients_unlimited=1 channel_flag_maxfamilyclients_unlimited=0 channel_flag_maxfamilyclients_inherited=1 channel_filepath=files\\virtualserver_1\\channel_3 channel_needed_talk_power=0 channel_forced_silence=0 channel_name_phonetic channel_icon_id=0 channel_flag_private=0 seconds_empty=-1
 	{ name="ChannelInfoRequest",            notify="channelinfo",                   attributes=["cid"] },
 	# channellist
 	# -> cid=1 pid=0 channel_order=0 channel_name=Default\sChannel total_clients=0 channel_needed_subscribe_power=0|cid=3 pid=0 channel_order=1 channel_name=Defaukt total_clients=1 channel_needed_subscribe_power=0
@@ -927,8 +944,8 @@ msg = [
 	# -> virtualserver_unique_identifier=SwHpaSmzsKpQ4ksmdkMFOMpBhqA= virtualserver_name=TeamSpeak\s]I[\sServer virtualserver_welcomemessage=Welcome\sto\sTeamSpeak,\scheck\s[URL]www.teamspeak.com[\/URL]\sfor\slatest\sinformation virtualserver_platform=Windows virtualserver_version=3.4.0\s[Build:\s1536564584] virtualserver_maxclients=32 virtualserver_password virtualserver_clientsonline=1 virtualserver_channelsonline=1 virtualserver_created=1537603734 virtualserver_uptime=7590 virtualserver_codec_encryption_mode=0 virtualserver_hostmessage virtualserver_hostmessage_mode=0 virtualserver_filebase=files\\virtualserver_1 virtualserver_default_server_group=8 virtualserver_default_channel_group=8 virtualserver_flag_password=0 virtualserver_default_channel_admin_group=5 virtualserver_max_download_total_bandwidth=18446744073709551615 virtualserver_max_upload_total_bandwidth=18446744073709551615 virtualserver_hostbanner_url virtualserver_hostbanner_gfx_url virtualserver_hostbanner_gfx_interval=0 virtualserver_complain_autoban_count=5 virtualserver_complain_autoban_time=1200 virtualserver_complain_remove_time=3600 virtualserver_min_clients_in_channel_before_forced_silence=100 virtualserver_priority_speaker_dimm_modificator=-18.0000 virtualserver_id=1 virtualserver_antiflood_points_tick_reduce=5 virtualserver_antiflood_points_needed_command_block=150 virtualserver_antiflood_points_needed_ip_block=250 virtualserver_client_connections=5 virtualserver_query_client_connections=4 virtualserver_hostbutton_tooltip virtualserver_hostbutton_url virtualserver_hostbutton_gfx_url virtualserver_queryclientsonline=0 virtualserver_download_quota=18446744073709551615 virtualserver_upload_quota=18446744073709551615 virtualserver_month_bytes_downloaded=143900 virtualserver_month_bytes_uploaded=1737584828 virtualserver_total_bytes_downloaded=156464 virtualserver_total_bytes_uploaded=1737647648 virtualserver_port=9987 virtualserver_autostart=1 virtualserver_machine_id virtualserver_needed_identity_security_level=8 virtualserver_log_client=1 virtualserver_log_query=1 virtualserver_log_channel=1 virtualserver_log_permissions=1 virtualserver_log_server=1 virtualserver_log_filetransfer=1 virtualserver_min_client_version=1513163251 virtualserver_name_phonetic virtualserver_icon_id=0 virtualserver_reserved_slots=0 virtualserver_total_packetloss_speech=0.0000 virtualserver_total_packetloss_keepalive=0.0000 virtualserver_total_packetloss_control=0.0000 virtualserver_total_packetloss_total=0.0000 virtualserver_total_ping=0.0000 virtualserver_ip=0.0.0.0,\s:: virtualserver_weblist_enabled=1 virtualserver_ask_for_privilegekey=0 virtualserver_hostbanner_mode=0 virtualserver_channel_temp_delete_delay_default=0 virtualserver_min_android_version=1502275280 virtualserver_min_ios_version=1502275280 virtualserver_nickname virtualserver_antiflood_points_needed_plugin_block=0 virtualserver_status=online connection_filetransfer_bandwidth_sent=0 connection_filetransfer_bandwidth_received=0 connection_filetransfer_bytes_sent_total=0 connection_filetransfer_bytes_received_total=0 connection_packets_sent_speech=0 connection_bytes_sent_speech=0 connection_packets_received_speech=0 connection_bytes_received_speech=0 connection_packets_sent_keepalive=17990 connection_bytes_sent_keepalive=737590 connection_packets_received_keepalive=17990 connection_bytes_received_keepalive=755578 connection_packets_sent_control=620 connection_bytes_sent_control=121323 connection_packets_received_control=636 connection_bytes_received_control=78134 connection_packets_sent_total=18610 connection_bytes_sent_total=858913 connection_packets_received_total=18626 connection_bytes_received_total=833712 connection_bandwidth_sent_last_second_total=81 connection_bandwidth_sent_last_minute_total=83 connection_bandwidth_received_last_second_total=83 connection_bandwidth_received_last_minute_total=90
 	{ name="ServerInfo",                    notify="serverinfo",                    attributes=[] },
 	# serverlist
-	# -> virtualserver_id=1 virtualserver_port=9987 virtualserver_status=online virtualserver_clientsonline=1 virtualserver_queryclientsonline=0 virtualserver_maxclients=32 virtualserver_uptime=7629 virtualserver_name=TeamSpeak\s]I[\sServer virtualserver_autostart=1 virtualserver_machine_id
-	{ name="ServerList",                    notify="serverlist",                    attributes=[] }, # -uid -short -all -onlyoffline
+	# -> {ServerListResponse} virtualserver_id=1 virtualserver_port=9987 virtualserver_status=online virtualserver_clientsonline=1 virtualserver_queryclientsonline=0 virtualserver_maxclients=32 virtualserver_uptime=7629 virtualserver_name=TeamSpeak\s]I[\sServer virtualserver_autostart=1 virtualserver_machine_id
+	{ name="ServerListRequest",             notify="serverlist",                    attributes=[] }, # -uid -short -all -onlyoffline
 	# [NOT FULL]
 	{ name="ServerNotifyRegister",          notify="servernotifyregister",          attributes=["event", "id?"] },
 	# [NOT FULL]
