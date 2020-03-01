@@ -1,0 +1,166 @@
+[[enum]]
+name = "PermissionType"
+#type = "u32"
+#doc = ""
+variants = [
+	{ name="ServerGroup", doc="Server group permission. (id1: ServerGroupId, id2: 0)" },
+	{ name="GlobalClient", doc="Client specific permission. (id1: ClientDbId, id2: 0)" },
+	{ name="Channel", doc="Channel specific permission. (id1: ChannelId, id2: 0)" },
+	{ name="ChannelGroup", doc="Channel group permission. (id1: ChannelId, id2: ChannelGroupId)" },
+	{ name="ChannelClient", doc="Channel-client specific permission. (id1: ChannelId, id2: ClientDbId)" },
+]
+
+[[enum]]
+name = "TextMessageTargetMode"
+variants = [
+	{ name="Unknown", doc="Maybe to all servers?" },
+	{ name="Client", doc="Send to specific client" },
+	{ name="Channel", doc="Send to current channel" },
+	{ name="Server", doc="Send to server chat" },
+]
+
+[[enum]]
+name = "HostMessageMode"
+variants = [
+	{ name="None", doc="Dont display anything" },
+	{ name="Log", doc="Display message inside log" },
+	{ name="Modal", doc="Display message inside a modal dialog" },
+	{ name="Modalquit", doc="Display message inside a modal dialog and quit/close server/connection" },
+]
+
+[[enum]]
+name = "HostBannerMode"
+variants = [
+	{ name="NoAdjust", doc="Do not adjust" },
+	{ name="AdjustIgnoreAspect", doc="Adjust and ignore aspect ratio" },
+	{ name="AdjustKeepAspect", doc="Adjust and keep aspect ratio" },
+]
+
+[[enum]]
+name = "Codec"
+variants = [
+	{ name="SpeexNarrowband", doc="Mono,   16bit,  8kHz, bitrate dependent on the quality setting" },
+	{ name="SpeexWideband", doc="Mono,   16bit, 16kHz, bitrate dependent on the quality setting" },
+	{ name="SpeexUltrawideband", doc="Mono,   16bit, 32kHz, bitrate dependent on the quality setting" },
+	{ name="CeltMono", doc="Mono,   16bit, 48kHz, bitrate dependent on the quality setting" },
+	{ name="OpusVoice", doc="Mono,   16bit, 48kHz, bitrate dependent on the quality setting, optimized for voice" },
+	{ name="OpusMusic", doc="Stereo, 16bit, 48kHz, bitrate dependent on the quality setting, optimized for music" },
+]
+
+[[enum]]
+name = "CodecEncryptionMode"
+variants = [
+	{ name="PerChannel", doc="Voice encryption is configured per channel" },
+	{ name="ForcedOff", doc="Voice encryption is globally off" },
+	{ name="ForcedOn", doc="Voice encryption is globally on" },
+]
+
+[[enum]]
+name = "Reason"
+variants = [
+	{ name="None", doc="No reason data" },
+	{ name="Moved", doc="Has invoker" },
+	{ name="Subscription", doc="No reason data" },
+	{ name="LostConnection", doc="Timeout" },
+	{ name="KickChannel", doc="Has invoker" },
+	{ name="KickServer", doc="Has invoker" },
+	{ name="KickServerBan", doc="Has invoker, bantime" },
+	{ name="Serverstop" },
+	{ name="Clientdisconnect" },
+	{ name="Channelupdate", doc="No reason data" },
+	{ name="Channeledit", doc="Has invoker" },
+	{ name="ClientdisconnectServerShutdown" },
+]
+
+[[enum]]
+name = "GroupNamingMode"
+variants = [
+	{ name="None", doc="No group name is displayed." },
+	{ name="Before", doc="Group name is displayed before the client name." },
+	{ name="After", doc="Group name is displayed after the client name." },
+]
+
+[[enum]]
+name = "GroupType"
+variants = [
+	{ name="Template", doc="Template group (used for new virtual servers)." },
+	{ name="Regular", doc="Regular group (used for regular clients)." },
+	{ name="Query", doc="Global query group (used for server query clients)." },
+]
+
+[[enum]]
+name = "LicenseType"
+variants = [
+	{ name="NoLicense", doc="No licence" },
+	{ name="Athp", doc="Authorised TeamSpeak Host Provider License (ATHP)" },
+	{ name="Lan", doc="Offline/LAN License" },
+	{ name="Npl", doc="Non-Profit License (NPL)" },
+	{ name="Unknown", doc="Unknown License" },
+]
+
+[[enum]]
+name = "ChannelType"
+variants = [
+	{ name="Permanent" },
+	{ name="SemiPermanent" },
+	{ name="Temporary" },
+]
+
+[[enum]]
+name = "TokenType"
+variants = [
+	{ name="ServerGroup", doc="Server group token (`id1={groupId}, id2=0`)" },
+	{ name="ChannelGroup", doc="Channel group token (`id1={groupId}, id2={channelId}`)" },
+]
+
+[[enum]]
+name = "PluginTargetMode"
+variants = [
+	{ name="CurrentChannel", doc="Send to all clients in the current channel." },
+	{ name="Server", doc="Send to all clients on the server." },
+	{ name="Client", doc="Send to all given clients ids." },
+	{ name="CurrentChannelSubsribedClients", doc="Send to all given clients which are subscribed to the current channel (i.e. which see the this client)." },
+]
+
+[[enum]]
+name = "LogLevel"
+variants = [
+	{ name="Error", doc="Everything that is really bad.", value=1 },
+	{ name="Warning", doc="Everything that might be bad." },
+	{ name="Debug", doc="Output that might help find a problem." },
+	{ name="Info", doc="Informational output." },
+]
+
+[[bitflag]]
+name = "ChannelPermissionHint"
+doc = "Hints if the client has the permission to make specific actions."
+variants = [
+	{ name="Join", doc="b_channel_join_*", value=1 },
+	{ name="Modify", doc="i_channel_modify_power", value=2 },
+	{ name="ForceDelete", doc="b_channel_delete_flag_force", value=4 },
+	{ name="Delete", doc="b_channel_delete_*", value=8 },
+	{ name="Subscribe", doc="i_channel_subscribe_power", value=16 },
+	{ name="ViewDescription", doc="i_channel_description_view_power", value=32 },
+	{ name="FileUpload", doc="i_ft_file_upload_power", value=64 },
+	{ name="FileDownload", doc="i_ft_needed_file_download_power", value=128 },
+	{ name="FileDelete", doc="i_ft_file_delete_power", value=256 },
+	{ name="FileRename", doc="i_ft_file_rename_power", value=512 },
+	{ name="FileBrowse", doc="i_ft_file_browse_power", value=1024 },
+	{ name="FileDirectoryCreate", doc="i_ft_directory_create_power", value=2048 },
+	{ name="ModifyPermissions", doc="i_channel_permission_modify_power", value=4096 },
+]
+
+[[bitflag]]
+name = "ClientPermissionHint"
+doc = "Hints if the client has the permission to make specific actions."
+variants = [
+	{ name="KickServer", doc="i_client_kick_from_server_power", value=1 },
+	{ name="KickChannel", doc="i_client_kick_from_channel_power", value=2 },
+	{ name="Ban", doc="i_client_ban_power", value=4 },
+	{ name="MoveClient", doc="i_client_move_power", value=8 },
+	{ name="PrivateMessage", doc="i_client_private_textmessage_power", value=16 },
+	{ name="Poke", doc="i_client_poke_power", value=32 },
+	{ name="Whisper", doc="i_client_whisper_power", value=64 },
+	{ name="Complain", doc="i_client_complain_power", value=128 },
+	{ name="ModifyPermissions", doc="i_client_permission_modify_power", value=256 },
+]
