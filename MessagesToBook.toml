@@ -105,6 +105,7 @@ operation = "add"
 properties = [
 	{ from="TargetChannelId", to="Channel" },
 	{ function="AwayCevFun", tolist=["AwayMessage"] },
+	{ function="ClientTypeCevFun", tolist=["ClientType"] },
 	{ function="TalkPowerCevFun", tolist=["TalkPowerRequest"] },
 	{ function="ReturnNone", tolist=["PermissionHints"] },
 	{ function="ReturnNone", tolist=["OptionalData"] },

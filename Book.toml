@@ -156,8 +156,7 @@ accessor = { get=true, set=true }
 properties = [
 	{ name="Id", type="ClientId", set=false },
 	{ name="Channel", type="ChannelId" },
-	# TODO replace by public key and add get_uid() method
-	{ name="Uid", type="Uid", set=false, doc="Unique Identifier" },
+	{ name="Uid", type="Uid", opt=true, set=false, doc="Unique Identifier" },
 	{ name="Name", type="str" },
 	{ name="InputMuted", type="bool", doc="`true` if muted, `false` otherwise" },
 	{ name="OutputMuted", type="bool", doc="`true` if muted, `false` otherwise" },
