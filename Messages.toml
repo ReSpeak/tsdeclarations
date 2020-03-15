@@ -52,6 +52,7 @@ fields = [
 	{ map="channel_password", ts="channel_password", pretty="Password", type="str" },
 	{ map="channel_security_salt", ts="channel_security_salt", pretty="PasswordSalt", type="str" },
 	{ map="channel_topic", ts="channel_topic", pretty="Topic", type="str" },
+	{ map="channel_unique_identifier", ts="channel_unique_identifier", pretty="Guid", type="str" },
 	{ map="cid", ts="cid", pretty="ChannelId", type="ChannelId" },
 	{ map="cldbid", ts="cldbid", pretty="ClientDbId", type="ClientDbId" },
 	{ map="clid", ts="clid", pretty="ClientId", type="ClientId" },
@@ -424,7 +425,7 @@ msg = [
 	{ name="ChannelChanged",            notify="notifychannelchanged",            attributes=["cid"] },
 	{ name="ChannelDescriptionChanged", notify="notifychanneldescriptionchanged", attributes=["cid"] },
 	# TODO check with ChannelData
-	{ name="ChannelList",               notify="channellist",                     attributes=["cid", "cpid", "channel_name", "channel_topic", "channel_codec", "channel_codec_quality", "channel_maxclients", "channel_maxfamilyclients", "channel_order", "channel_flag_permanent", "channel_flag_semi_permanent", "channel_flag_default", "channel_flag_password", "channel_codec_latency_factor", "channel_codec_is_unencrypted", "channel_delete_delay", "channel_flag_maxclients_unlimited", "channel_flag_maxfamilyclients_unlimited", "channel_flag_maxfamilyclients_inherited", "channel_needed_talk_power", "channel_forced_silence", "channel_name_phonetic", "channel_icon_id", "channel_flag_private?"] },
+	{ name="ChannelList",               notify="channellist",                     attributes=["cid", "cpid", "channel_name", "channel_topic", "channel_codec", "channel_codec_quality", "channel_maxclients", "channel_maxfamilyclients", "channel_order", "channel_flag_permanent", "channel_flag_semi_permanent", "channel_flag_default", "channel_flag_password", "channel_codec_latency_factor", "channel_codec_is_unencrypted", "channel_delete_delay", "channel_flag_maxclients_unlimited", "channel_flag_maxfamilyclients_unlimited", "channel_flag_maxfamilyclients_inherited", "channel_needed_talk_power", "channel_forced_silence", "channel_name_phonetic", "channel_icon_id", "channel_flag_private?", "channel_unique_identifier?"] },
 	{ name="ChannelListFinished",       notify="channellistfinished",             attributes=[] },
 	{ name="ChannelMoved",              notify="notifychannelmoved",              attributes=["order", "cid", "invokerid", "invokername", "invokeruid?", "reasonid", "cpid"] },
 	{ name="ChannelPasswordChanged",    notify="notifychannelpasswordchanged",    attributes=["cid"] },
