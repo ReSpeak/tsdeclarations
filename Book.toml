@@ -227,7 +227,7 @@ properties = [
 	{ name="LogChannel", type="bool", set=true },
 	{ name="LogPermissions", type="bool", set=true },
 	{ name="LogServer", type="bool", set=true },
-	{ name="LogFileTransfer", type="bool", set=true },
+	{ name="LogFiletransfer", type="bool", set=true },
 	{ name="MinClientVersion", type="DateTime" },
 	{ name="ReservedSlots", type="u16", set=true },
 	{ name="TotalPacketlossSpeech", type="f32" },
@@ -247,10 +247,10 @@ id = [
 doc = "Get by notifyserverconnectioninfo after serverrequestconnectioninfo"
 accessor = { get=true, set=false }
 properties = [
-	{ name="FileTransferBandwidthSent", type="u64" },
-	{ name="FileTransferBandwidthReceived", type="u64" },
-	{ name="FileTransferBytesSentTotal", type="u64" },
-	{ name="FileTransferBytesReceivedTotal", type="u64" },
+	{ name="FiletransferBandwidthSent", type="u64" },
+	{ name="FiletransferBandwidthReceived", type="u64" },
+	{ name="FiletransferBytesSentTotal", type="u64" },
+	{ name="FiletransferBytesReceivedTotal", type="u64" },
 	{ name="PacketsSentTotal", type="u64" },
 	{ name="BytesSentTotal", type="u64" },
 	{ name="PacketsReceivedTotal", type="u64" },
@@ -316,18 +316,4 @@ properties = [
 	{ name="Clients", type="Client", mod="map", key="ClientId", doc="All clients which are visible for us" },
 	{ name="Channels", type="Channel", mod="map", key="ChannelId", doc="All channels on the server" },
 	{ name="Groups", type="ServerGroup", mod="map", key="ServerGroupId", doc="All server groups on the server" },
-]
-
-[[struct]]
-name = "ChatEntry"
-id = [
-	{ struct="ChatEntry", prop="SenderClient" },
-]
-doc = "An abstract chat object"
-accessor = { get=true, set=false }
-properties = [
-	{ name="SenderClient", type="ClientId" },
-	{ name="Text", type="str" },
-	{ name="Date", type="DateTime" },
-	{ name="Mode", type="TextMessageTargetMode" },
 ]
