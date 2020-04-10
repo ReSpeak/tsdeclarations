@@ -86,6 +86,7 @@ doc = "Get in notifyclientupdated by clientgetvariables"
 accessor = { get=true, set=false }
 properties = [
 	{ name="Version", type="str", set=true, doc="Can only be set for our own client" },
+	{ name="VersionSign", type="str", set=true, doc="Can only be set for our own client" },
 	{ name="Platform", type="str", set=true, doc="Can only be set for our own client" },
 	{ name="LoginName", type="str", opt=true, doc="Set only for server queries" },
 	{ name="Created", type="DateTime" },
@@ -271,10 +272,10 @@ id = [
 doc = "Get in initserver"
 accessor = { get=true, set=false }
 properties = [
-	# TODO replace by public key and add get_uid() method
-	{ name="Uid", type="Uid", doc="UniqueIdentifier" },
+	{ name="PublicKey", type="EccKeyPubP256" },
 	{ name="VirtualServerId", type="u64", doc="The virtual server id" },
 	{ name="Name", type="str" },
+	{ name="Nickname", type="str" },
 	{ name="WelcomeMessage", type="str", doc="Welcome message when conecting to a server" },
 	{ name="Platform", type="str" },
 	{ name="Version", type="str" },
