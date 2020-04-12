@@ -6,6 +6,8 @@ id = []
 to = "Server"
 operation = "add"
 properties = [
+	{ from="ServerName", to="Name" },
+	{ from="ServerPhoneticName", to="PhoneticName" },
 	{ from="ServerPlatform", to="Platform" },
 	{ from="ServerVersion", to="Version" },
 	{ from="ServerCreated", to="Created" },
