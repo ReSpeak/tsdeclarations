@@ -275,7 +275,7 @@ properties = [
 	{ name="PublicKey", type="EccKeyPubP256" },
 	{ name="VirtualServerId", type="u64", doc="The virtual server id" },
 	{ name="Name", type="str" },
-	{ name="Nickname", type="str" },
+	{ name="Nickname", type="str", opt=true },
 	{ name="WelcomeMessage", type="str", doc="Welcome message when conecting to a server" },
 	{ name="Platform", type="str" },
 	{ name="Version", type="str" },
