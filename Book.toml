@@ -169,7 +169,7 @@ properties = [
 	{ name="IsRecording", type="bool", doc="Whether the client is recording" },
 	{ name="DatabaseId", type="ClientDbId", set=false },
 	{ name="ChannelGroup", type="ChannelGroupId" },
-	{ name="ServerGroups", type="ServerGroupId", mod="array" },
+	{ name="ServerGroups", type="ServerGroupId", mod="set" },
 	{ name="AwayMessage", type="str", opt=true, doc="Contains the away message if the client is away" },
 	{ name="ClientType", type="ClientType", set=false, doc="If this client is a server query or not" },
 	{ name="AvatarHash", type="str", set=false, doc="MD5 hash of the avatar, used to retrieve the avatar" },
