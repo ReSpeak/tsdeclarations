@@ -20,6 +20,35 @@ properties = [
 	# into multiple message parameters
 	# fn bla(Channel, MaxClientChannelInherited) -> (type of asd)
 	#{ from="MaxClientChannelInherited", function="Bla", tolist=["asd"] },
+
+	# 'order', 'name' are implicit
+	{ from="_void_1", to="Order" },
+	{ from="Topic", to="Topic" },
+	{ from="IsDefault", to="IsDefault" },
+	{ from="password", type="str?", function="PasswordFlaggedB2m", tolist=["HasPassword", "Password"] }, # 'password' is a helper
+	{ from="ChannelType", type="ChannelType", function="ChannelTypeFunB2m", tolist=["IsSemiPermanent", "IsPermanent"] },
+	{ from="Codec", to="Codec" },
+	{ from="CodecQuality", to="CodecQuality" },
+	{ from="NeededTalkPower", to="NeededTalkPower" },
+	{ from="IconId", to="IconId" },
+	{ from="MaxClients", type="MaxClients", function="MaxClientsFunB2m", tolist=["MaxClients", "IsMaxClientsUnlimited"] },
+	{ from="MaxFamilyClients", type="MaxClients", function="MaxFamilyClientsFunB2m", tolist=["MaxFamilyClients", "IsMaxFamilyClientsUnlimited", "InheritsMaxFamilyClients"] },
+	{ from="CodecLatencyFactor", to="CodecLatencyFactor" },
+	{ from="IsUnencrypted", to="IsUnencrypted" },
+	{ from="DeleteDelay", to="DeleteDelay" },
+	{ from="PhoneticName", to="PhoneticName" },
+	#{ from="", to="channel_description?" }, ???
+]
+
+[[rule]]
+from = "Channel"
+to = "ChannelMove"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+]
+properties = [
+	{ from="Position", type="(ChannelId, ChannelId)", function="setPositionInternal", tolist=["ParentId", "Order"] }, # 'Position' is a helper
 ]
 
 [[rule]]
