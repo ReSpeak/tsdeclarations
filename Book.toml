@@ -85,9 +85,9 @@ id = [
 doc = "Get in notifyclientupdated by clientgetvariables"
 accessor = { get=true, set=false }
 properties = [
-	{ name="Version", type="str", set=true, doc="Can only be set for our own client" },
-	{ name="VersionSign", type="str", set=true, doc="Can only be set for our own client" },
-	{ name="Platform", type="str", set=true, doc="Can only be set for our own client" },
+	{ name="Version", type="str" },
+	{ name="VersionSign", type="str" },
+	{ name="Platform", type="str" },
 	{ name="LoginName", type="str", opt=true, doc="Set only for server queries" },
 	{ name="Created", type="DateTime" },
 	{ name="LastConnected", type="DateTime" },
