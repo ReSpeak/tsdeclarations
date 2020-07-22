@@ -178,6 +178,12 @@ to = "ServerGroup"
 operation = "add"
 
 [[rule]]
+from = "ChannelGroupList"
+id = ["ChannelGroup"]
+to = "ChannelGroup"
+operation = "add"
+
+[[rule]]
 from = "ServerEdited"
 id = []
 to = "Server"

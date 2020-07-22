@@ -22,7 +22,7 @@ fields = [
 	{ map="beta", ts="beta", pretty="Beta", type="str" },
 	{ map="cfid", ts="cfid", pretty="SourceChannelId", type="ChannelId" },
 	{ map="cgi", ts="cgi", pretty="ChannelGroupIndex", type="ChannelGroupId" },
-	{ map="cgid", ts="cgid", pretty="ChannelGroup", type="ChannelGroupId" },
+	{ map="cgid", ts="cgid", pretty="ChannelGroup", type="ChannelGroupId" }, # TODO: Consider name 'ChannelGroup' for consistency
 	{ map="channel_banner_gfx_url", ts="channel_banner_gfx_url", pretty="BannerGfxUrl", type="str" },
 	{ map="channel_banner_mode", ts="channel_banner_mode", pretty="BannerMode", type="str" }, # ?? Same as HostBannerMode maybe? There's no ui for this setting
 	{ map="channel_codec", ts="channel_codec", pretty="Codec", type="Codec" },

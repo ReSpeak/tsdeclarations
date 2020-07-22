@@ -19,6 +19,26 @@ properties = [
 ]
 
 [[struct]]
+name = "ChannelGroup"
+id = [
+	{ struct="ChannelGroup", prop="Id" },
+]
+doc = "Get in notifychannelgrouplist"
+accessor = { get=true, set=true }
+properties = [
+	{ name="Id", type="ChannelGroupId", set=false },
+	{ name="Name", type="str" },
+	{ name="GroupType", type="GroupType" },
+	{ name="IconId", type="IconHash" },
+	{ name="IsPermanent", type="bool", doc="If the group is saved to the server database" },
+	{ name="SortId", type="i32" },
+	{ name="NamingMode", type="GroupNamingMode" },
+	{ name="NeededModifyPower", type="i32" },
+	{ name="NeededMemberAddPower", type="i32" },
+	{ name="NeededMemberRemovePower", type="i32", opt=true },
+]
+
+[[struct]]
 name = "File"
 id = [
 	{ struct="Channel", prop="Id" },
@@ -316,5 +336,6 @@ properties = [
 	{ name="Server", type="Server", doc="The server of this connection" },
 	{ name="Clients", type="Client", mod="map", key="ClientId", doc="All clients which are visible for us" },
 	{ name="Channels", type="Channel", mod="map", key="ChannelId", doc="All channels on the server" },
-	{ name="Groups", type="ServerGroup", mod="map", key="ServerGroupId", doc="All server groups on the server" },
+	{ name="ServerGroups", type="ServerGroup", mod="map", key="ServerGroupId", doc="All server groups on the server" },
+	{ name="ChannelGroups", type="ChannelGroup", mod="map", key="ChannelGroupId", doc="All channel groups on the server" },
 ]
