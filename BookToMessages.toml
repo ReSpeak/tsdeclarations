@@ -83,7 +83,7 @@ ids = [
 	{ from="DatabaseId", to="ClientDbId" },
 ]
 properties = [
-	{ from="ServerGroups", function="GetId", tolist=["ServerGroupId"] },
+	{ from="ServerGroupId", to="ServerGroupId" },
 ]
 
 [[rule]]
