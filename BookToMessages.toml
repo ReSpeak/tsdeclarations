@@ -28,6 +28,26 @@ properties = [
 	{ from="Description", to="Description" }, # From optional data
 ]
 
+# More or less dummy-struct
+[[rule]]
+from = "Channel"
+to = "ChannelSubscribe"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+]
+properties = [ ]
+
+# More or less dummy-struct
+[[rule]]
+from = "Channel"
+to = "ChannelUnsubscribe"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+]
+properties = [ ]
+
 [[rule]]
 from = "Channel"
 to = "ChannelMove"
