@@ -13,7 +13,7 @@ For example `u8` would be the C equivalent of `uint8` or `unsigned char`
 additionally if the length is known it is added in the brackets, separated by
 a semicolon. Eg: `[u8]`, `[i32; 16]`
 - Array ranges (parts of an array) are specified in square brackets with the
-included lower bound, a minus and the excluded upper bound. Eg: `[0-10]`
+included lower bound, two points (`..`) and the excluded upper bound. Eg: `[0..10]`
 
 
 # 1. Low-Level Packets
@@ -136,17 +136,17 @@ since it is generated with sha1, while the new protocol SharedIV will have
     temporary[0]    = 0x30 if (Client <- Server)
                       0x31 if (Client -> Server)
     temporary[1]    = PT
-    temporary[2-6]  = (PGId in network order)[0-4]
+    temporary[2..6] = (PGId in network order)[0..4]
     if SIV.length == 20
-        temporary[6-26] = SIV[0-20]
+        temporary[6..26] = SIV[0..20]
     else
-        temporary[6-70] = SIV[0-64]
+        temporary[6..70] = SIV[0..64]
 
     let keynonce: [u8; 32]
     keynonce        = sha256(temporary)
 
-    key: [u8; 16]   = keynonce[0-16]
-    nonce: [u8; 16] = keynonce[16-32]
+    key: [u8; 16]   = keynonce[ 0..16]
+    nonce: [u8; 16] = keynonce[16..32]
     key[0]          = key[0] xor ((PId & 0xFF00) >> 8)
     key[1]          = key[1] xor ((PId & 0x00FF) >> 0)
 
@@ -504,16 +504,16 @@ With this information the client now must calculate the shared secret.
     sharedSecret         = ECDH(serverPublicKey, ownPrivateKey)
     x                    = sharedSecret.x.AsByteArray()
     if x.length < 32
-        sharedData[0-(32-x.length)]  = [0..0]
-        sharedData[(32-x.length)-32] = x[0-x.length]
-    if x.length == 32
-        sharedData[0-32] = x[0-32]
-    if x.length > 32
-        sharedData[0-32] = x[(x.length-32)-x.length]
-    SharedIV             = sha1(sharedData)
-    SharedIV[0-10]       = SharedIV[0-10] xor alpha.decode64()
-    SharedIV[10-20]      = SharedIV[10-20] xor beta.decode64()
-    SharedMac[0-8]       = sha1(SharedIV)[0-8]
+        sharedData[ 0..(32-x.length)] = [0..0]
+        sharedData[(32-x.length)..32] = x[0..x.length]
+    elseif x.length == 32
+        sharedData[0..32] = x[0..32]
+    elseif x.length > 32
+        sharedData[0..32] = x[(x.length-32)..x.length]
+    SharedIV              = sha1(sharedData)
+    SharedIV[0..10]       = SharedIV[0..10] xor alpha.decode64()
+    SharedIV[10..20]      = SharedIV[10..20] xor beta.decode64()
+    SharedMac[0..8]       = sha1(SharedIV)[0..8]
 
 ### 3.2.2 initivexpand2 (Client <- Server)
 The server responds with this command.
@@ -595,12 +595,12 @@ describes an EdDsa signing/verify operation and is not the curve itself.
 To calculate the shared secret each license block now must be processed
 sequentially the following way:
 
-    next_key = public_key * clamp(sha512(block[1-end])[0-32]) + parent
+    next_key = public_key * clamp(sha512(block[1..])[0..32]) + parent
 
 Where:
 - `public_key` is the `Block public key` taken from the current license block.
   This array must be imported as a compressed Curve25519 EC point.
-- `sha512(block[1-end])[0-32]` is the sha512 of the current license block.  
+- `sha512(block[1..])[0..32]` is the sha512 of the current license block.  
   Note that the first byte (`Key type`) is skipped for the sha calculation.  
   For the result only the first 32 bytes are used.  
   This resulting array must be imported as a Curve25519 private key.
@@ -639,10 +639,10 @@ in the old protocol, can be calculated.
     let sharedData: [u8; 32]
 
     sharedData           = next_key * client_private_key
-    SharedIV             = sha512(sharedData[0-32])
-    SharedIV[0-10]       = SharedIV[ 0-10] xor alpha.decode64()
-    SharedIV[10-64]      = SharedIV[10-64] xor  beta.decode64()
-    SharedMac[0-8]       = sha1(SharedIV)[0-8]
+    SharedIV             = sha512(sharedData[0..32])
+    SharedIV[ 0..10]     = SharedIV[ 0..10] xor alpha.decode64()
+    SharedIV[10..64]     = SharedIV[10..64] xor  beta.decode64()
+    SharedMac[0..8]      = sha1(SharedIV)[0..8]
 
 #### 3.2.2.5 clientek (Client -> Server)
 
@@ -782,18 +782,19 @@ All passwords when sent are hashed and encoded with `base64(sha1(password))`
 ## 4.5 Importing/Deobfuscating Identities from the TeamSpeak3 Client
 The TeamSpeak3 Client exports identities the following way:
 
-    <key offset> + 'V' + <obfuscaded identity>
+    <key_offset> + 'V' + <obfuscaded_identity>
 
 (For an explanation of the key offset (see 4.1))
 
 ```ts
 const staticObfucationKey = b"b9dfaa7bee6ac57ac7b65f1094a1c155e747327bc2fe5d51c512023fe54a280201004e90ad1daaae1075d53b7d571c30e063b5a62a4a017bb394833aa0983e6e"
-let tmp1 = identity.decode64()
-let idx = tmp1[20-end].indexof('\0') // where '\0' is the null-byte
-let sha = sha1(tmp1[20-idx])
-let final;
-final[0-20] = tmp1[0-20] xor sha[0-20]
-final[20-end] = tmp1[20-end] xor staticObfucationKey[0-end]
+let ident = obfuscaded_identity.decode64()
+let sha_part = ident[20..]
+let idx = sha_part.indexof('\0') // where '\0' is the null-byte
+let sha = sha1(sha_part[..idx])
+ident[0..20] = ident[0..20] xor sha[0..20]
+let xorlen = min(ident.length, 100)
+ident[0..xorlen] = ident[0..xorlen] xor staticObfucationKey[0..xorlen]
 ```
 
 ## 4.? Differences between Query and Full Client
