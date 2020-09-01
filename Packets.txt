@@ -139,7 +139,6 @@ Packet
 			++ header.get_type() == PacketType::CommandLow
 		Ping
 			++ header.get_type() == PacketType::Ping
-			// TODO Use this?
 			//- u16 0xeee9
 		/// Pong with packet id
 		Pong u16
