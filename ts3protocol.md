@@ -363,6 +363,11 @@ The packet header values are set as following for all packets here:
 | Packet Id | u16: 101                                               |
 | Client Id | u16: 0                                                 |
 
+Init packets from the client contain a version field, which is the build
+timestamp of the client. This is a unix timestamp subtracted with 1356998400.
+The unix timestamp 1461588969 (date 2016-04-25) is encoded as
+1461588969 - 1356998400 = 0x063bece9 = { 0x06, 0x3b, 0xec, 0xe9 }.
+
 ## 2.1 Packet 0 (Client -> Server)
     04 bytes : Version of the TeamSpeak client as timestamp
                Example: { 0x06, 0x3b, 0xec, 0xe9 }
@@ -395,6 +400,11 @@ connecting from some networks for a yet unknown reason.
      64 bytes : 'n', an unsigned BigInteger
      04 bytes : 'level' a u32
     100 bytes : Server stuff := [A2]
+
+Note:
+- Sometimes, instead of sending an init with step 3, the server responds with
+  an init that contains 127 as step number. In that case, the client has to
+  restart the connection by sending packet 0 again.
 
 ## 2.5 Packet 4 (Client -> Server)
      04 bytes : Version of the TeamSpeak client as timestamp
