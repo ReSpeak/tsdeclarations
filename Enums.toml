@@ -92,10 +92,16 @@ variants = [
 name = "LicenseType"
 variants = [
 	{ name="NoLicense", doc="No licence" },
-	{ name="Athp", doc="Authorised TeamSpeak Host Provider License (ATHP)" },
-	{ name="Lan", doc="Offline/LAN License" },
+	{ name="Offline", doc="Offline/LAN license" },
+	{ name="Sdk", doc="TeamSpeak SDK license" },
+	{ name="SdkOffline", doc="TeamSpeak SDK offline license" },
 	{ name="Npl", doc="Non-Profit License (NPL)" },
-	{ name="Unknown", doc="Unknown License" },
+	{ name="Athp", doc="Authorised TeamSpeak Host Provider License (ATHP)" },
+	{ name="Aal", doc="Annual activation license (AAL)" },
+	{ name="Default", doc="Default license with 32 slots" },
+	{ name="Gamer", doc="Gamer license" },
+	{ name="Sponsorship", doc="Licenses sponsored by TeamSpeak" },
+	{ name="Commercial", doc="For use inside corporates" },
 ]
 
 [[enum]]
