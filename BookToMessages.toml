@@ -99,6 +99,18 @@ properties = [
 ]
 
 [[rule]]
+from = "Client"
+to = "ClientKick"
+operation = "update"
+ids = [
+	{ from="Id", to="ClientId" },
+	{ from="Reason", to="Reason" },
+]
+properties = [
+	{ from="ReasonMessage", to="ReasonMessage" },
+]
+
+[[rule]]
 from = "ServerGroup"
 to = "ServerGroupAddClient"
 operation = "add"
