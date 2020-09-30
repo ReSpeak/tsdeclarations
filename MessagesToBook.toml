@@ -6,12 +6,8 @@ id = []
 to = "Server"
 operation = "add"
 properties = [
-	{ from="ServerName", to="Name" },
-	{ from="ServerPhoneticName", to="PhoneticName" },
-	{ from="ServerPlatform", to="Platform" },
-	{ from="ServerVersion", to="Version" },
-	{ from="ServerCreated", to="Created" },
-	{ from="ServerIp", to="Ips" },
+	{ from="VirtualServerId", to="Id" },
+	# `Uid` is generated from public key
 	# ClientName, ClientId, TalkPower, NeededServerqueryViewPower
 	{ function="SetClientDataFun", tolist=[] },
 ]
@@ -24,14 +20,15 @@ to = "Channel"
 operation = "add"
 properties = [
 	{ from="ParentId", to="Parent" },
-	{ function="MaxClientsCcFun", tolist=["MaxClients", "MaxFamilyClients"] },
 	{ function="ChannelTypeCcFun", tolist=["ChannelType"] },
-	{ function="ReturnFalse", tolist=["ForcedSilence"] },
-	{ function="ReturnNone", tolist=["IsPrivate"] },
-	{ function="ReturnFalse", tolist=["Subscribed"] },
-	{ function="ReturnNone", tolist=["PermissionHints"] },
-	{ function="ReturnNone", tolist=["OptionalData"] },
 	{ function="ChannelOrderCcFun", tolist=["Order"] },
+	{ function="MaxClientsCcFun", tolist=["MaxClients", "MaxFamilyClients"] },
+	{ function="ReturnFalse", tolist=["ForcedSilence"] },
+	{ function="ReturnFalse", tolist=["Subscribed"] },
+	{ function="ReturnNone", tolist=["IsPrivate"] },
+	{ function="ReturnNone", tolist=["Guid"] },
+	{ function="ReturnNone", tolist=["OptionalData"] },
+	{ function="ReturnNone", tolist=["PermissionHints"] },
 ]
 
 [[rule]]

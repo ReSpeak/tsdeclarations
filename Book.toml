@@ -4,12 +4,11 @@ id = [
 	{ struct="ServerGroup", prop="Id" },
 ]
 doc = "Get in notifyservergrouplist"
-accessor = { get=true, set=true }
 properties = [
-	{ name="Id", type="ServerGroupId", set=false },
+	{ name="Id", type="ServerGroupId" },
 	{ name="Name", type="str" },
 	{ name="GroupType", type="GroupType" },
-	{ name="IconId", type="IconHash" },
+	{ name="Icon", type="IconId" },
 	{ name="IsPermanent", type="bool", doc="If the group is saved to the server database" },
 	{ name="SortId", type="i32" },
 	{ name="NamingMode", type="GroupNamingMode" },
@@ -24,12 +23,11 @@ id = [
 	{ struct="ChannelGroup", prop="Id" },
 ]
 doc = "Get in notifychannelgrouplist"
-accessor = { get=true, set=true }
 properties = [
-	{ name="Id", type="ChannelGroupId", set=false },
+	{ name="Id", type="ChannelGroupId" },
 	{ name="Name", type="str" },
 	{ name="GroupType", type="GroupType" },
-	{ name="IconId", type="IconHash" },
+	{ name="Icon", type="IconId" },
 	{ name="IsPermanent", type="bool", doc="If the group is saved to the server database" },
 	{ name="SortId", type="i32" },
 	{ name="NamingMode", type="GroupNamingMode" },
@@ -39,27 +37,11 @@ properties = [
 ]
 
 [[struct]]
-name = "File"
-id = [
-	{ struct="Channel", prop="Id" },
-	{ struct="File", prop="Path" },
-]
-doc = "A downloadable file"
-accessor = { get=true, set=true }
-properties = [
-	{ name="Path", type="str" },
-	{ name="Size", type="i64" },
-	{ name="LastChanged", type="DateTime" },
-	{ name="IsFile", type="bool", doc="`true` if this is a file, `false` if it is a folder" },
-]
-
-[[struct]]
 name = "OptionalChannelData"
 id = [
 	{ struct="Channel", prop="Id" },
 ]
 doc = "Get in notifychanneledited by channelgetdescription"
-accessor = { get=true, set=true }
 properties = [
 	{ name="Description", type="str" },
 ]
@@ -70,9 +52,9 @@ id = [
 	{ struct="Channel", prop="Id" },
 ]
 doc = "Get in channellist"
-accessor = { get=true, set=true }
 properties = [
-	{ name="Id", type="ChannelId", set=false },
+	{ name="Id", type="ChannelId" },
+	{ name="Guid", type="str", opt=true },
 	{ name="Parent", type="ChannelId", doc="0 means root channel" },
 	{ name="Name", type="str" },
 	{ name="Topic", type="str", opt=true },
@@ -88,13 +70,13 @@ properties = [
 	{ name="IsUnencrypted", type="bool", opt=true },
 	{ name="DeleteDelay", type="Duration", opt=true },
 	{ name="NeededTalkPower", type="i32", opt=true },
-	{ name="ForcedSilence", type="bool", set=false },
+	{ name="ForcedSilence", type="bool" },
 	{ name="PhoneticName", type="str", opt=true },
-	{ name="IconId", type="IconHash", opt=true },
+	{ name="Icon", type="IconId", opt=true },
 	{ name="IsPrivate", type="bool", opt=true },
 	{ name="Subscribed", type="bool" },
 	{ name="PermissionHints", type="ChannelPermissionHint", opt=true },
-	{ name="OptionalData", type="OptionalChannelData", opt=true, set=false },
+	{ name="OptionalData", type="OptionalChannelData", opt=true },
 ]
 
 [[struct]]
@@ -103,7 +85,6 @@ id = [
 	{ struct="Client", prop="Id" },
 ]
 doc = "Get in notifyclientupdated by clientgetvariables"
-accessor = { get=true, set=false }
 properties = [
 	{ name="Version", type="str" },
 	{ name="VersionSign", type="str" },
@@ -124,7 +105,6 @@ id = [
 	{ struct="Client", prop="Id" },
 ]
 doc = "Get in notifyconnectioninfo by getconnectioninfo"
-accessor = { get=true, set=false }
 properties = [
 	{ name="Ping", type="Duration" },
 	{ name="PingDeviation", type="Duration" },
@@ -173,11 +153,10 @@ id = [
 	{ struct="Client", prop="Id" },
 ]
 doc = "Get in notifycliententerview"
-accessor = { get=true, set=true }
 properties = [
-	{ name="Id", type="ClientId", set=false },
+	{ name="Id", type="ClientId" },
 	{ name="Channel", type="ChannelId" },
-	{ name="Uid", type="Uid", opt=true, set=false, doc="Unique Identifier" },
+	{ name="Uid", type="Uid", opt=true, doc="Unique Identifier" },
 	{ name="Name", type="str" },
 	{ name="InputMuted", type="bool", doc="`true` if muted, `false` otherwise" },
 	{ name="OutputMuted", type="bool", doc="`true` if muted, `false` otherwise" },
@@ -187,27 +166,27 @@ properties = [
 	{ name="TalkPowerGranted", type="bool", doc="If the client is granted talk power" },
 	{ name="Metadata", type="str", doc="Set by client" },
 	{ name="IsRecording", type="bool", doc="Whether the client is recording" },
-	{ name="DatabaseId", type="ClientDbId", set=false },
+	{ name="DatabaseId", type="ClientDbId" },
 	{ name="ChannelGroup", type="ChannelGroupId" },
 	{ name="ServerGroups", type="ServerGroupId", mod="set" },
 	{ name="AwayMessage", type="str", opt=true, doc="Contains the away message if the client is away" },
-	{ name="ClientType", type="ClientType", set=false, doc="If this client is a server query or not" },
-	{ name="AvatarHash", type="str", set=false, doc="MD5 hash of the avatar, used to retrieve the avatar" },
-	{ name="TalkPower", type="i32", set=false },
-	{ name="TalkPowerRequest", type="TalkPowerRequest", opt=true, set=false, doc="Contains a message and timestamp from the client if he requests talk power" },
+	{ name="ClientType", type="ClientType", doc="If this client is a server query or not" },
+	{ name="AvatarHash", type="str", doc="MD5 hash of the avatar, used to retrieve the avatar" },
+	{ name="TalkPower", type="i32" },
+	{ name="TalkPowerRequest", type="TalkPowerRequest", opt=true, doc="Contains a message and timestamp from the client if he requests talk power" },
 	{ name="Description", type="str" },
 	{ name="IsPrioritySpeaker", type="bool" },
-	{ name="UnreadMessages", type="u32", set=false },
+	{ name="UnreadMessages", type="u32" },
 	{ name="PhoneticName", type="str" },
-	{ name="NeededServerqueryViewPower", type="i32", set=false },
-	{ name="IconId", type="IconHash", set=false },
+	{ name="NeededServerqueryViewPower", type="i32" },
+	{ name="Icon", type="IconId" },
 	{ name="IsChannelCommander", type="bool" },
-	{ name="CountryCode", type="str", set=false, doc="Like US, DE" },
-	{ name="InheritedChannelGroupFromChannel", type="ChannelId", set=false },
+	{ name="CountryCode", type="str", doc="Like US, DE" },
+	{ name="InheritedChannelGroupFromChannel", type="ChannelId" },
 	{ name="Badges", type="str" },
 	{ name="PermissionHints", type="ClientPermissionHint", opt=true },
-	{ name="OptionalData", type="OptionalClientData", opt=true, set=false },
-	{ name="ConnectionData", type="ConnectionClientData", opt=true, set=false },
+	{ name="OptionalData", type="OptionalClientData", opt=true },
+	{ name="ConnectionData", type="ConnectionClientData", opt=true },
 ]
 
 [[struct]]
@@ -215,48 +194,47 @@ name = "OptionalServerData"
 id = [
 ]
 doc = "Get by notifyserverupdated after requested by servergetvariables"
-accessor = { get=true, set=false }
 properties = [
 	{ name="ConnectionCount", type="u32", doc="The amount of connections on this server.\n\nThis includes normal clients and server queries." },
 	{ name="ChannelCount", type="u64", doc="The amount of channels on the server" },
 	{ name="Uptime", type="Duration" },
 	{ name="HasPassword", type="bool" },
-	{ name="DefaultChannelAdminGroup", type="ChannelGroupId", set=true, doc="The channel group which will be given to channel creators" },
-	{ name="MaxDownloadTotalBandwith", type="u64", set=true },
-	{ name="MaxUploadTotalBandwith", type="u64", set=true },
-	{ name="ComplainAutobanCount", type="u32", set=true },
-	{ name="ComplainAutobanTime", type="Duration", set=true },
-	{ name="ComplainRemoveTime", type="Duration", set=true },
-	{ name="MinClientsForceSilence", type="u16", set=true, doc="How many clients can be in a server before silence is forced" },
-	{ name="AntifloodPointsTickReduce", type="u32", set=true },
-	{ name="AntifloodPointsNeededCommandBlock", type="u32", set=true },
+	{ name="DefaultChannelAdminGroup", type="ChannelGroupId", doc="The channel group which will be given to channel creators" },
+	{ name="MaxDownloadTotalBandwith", type="u64" },
+	{ name="MaxUploadTotalBandwith", type="u64" },
+	{ name="ComplainAutobanCount", type="u32" },
+	{ name="ComplainAutobanTime", type="Duration" },
+	{ name="ComplainRemoveTime", type="Duration" },
+	{ name="MinClientsForceSilence", type="u16", doc="How many clients can be in a server before silence is forced" },
+	{ name="AntifloodPointsTickReduce", type="u32" },
+	{ name="AntifloodPointsNeededCommandBlock", type="u32" },
 	{ name="ClientCount", type="u16", doc="The amount of clients which are online on the server" },
 	{ name="QueryCount", type="u32", doc="Amount of server queries connected to the server" },
 	{ name="QueryOnlineCount", type="u32", doc="Amount of server queries connected and online/visible on the server" },
-	{ name="DownloadQuota", type="u64", set=true },
-	{ name="UploadQuota", type="u64", set=true },
+	{ name="DownloadQuota", type="u64" },
+	{ name="UploadQuota", type="u64" },
 	{ name="MonthBytesDownloaded", type="u64" },
 	{ name="MonthBytesUploaded", type="u64" },
 	{ name="TotalBytesDownloaded", type="u64" },
 	{ name="TotalBytesUploaded", type="u64" },
 	{ name="Port", type="u16" },
-	{ name="Autostart", type="bool", set=true },
+	{ name="Autostart", type="bool" },
 	{ name="MachineId", type="str" },
-	{ name="NeededIdentitySecurityLevel", type="u8", set=true },
-	{ name="LogClient", type="bool", set=true },
-	{ name="LogQuery", type="bool", set=true },
-	{ name="LogChannel", type="bool", set=true },
-	{ name="LogPermissions", type="bool", set=true },
-	{ name="LogServer", type="bool", set=true },
-	{ name="LogFiletransfer", type="bool", set=true },
+	{ name="NeededIdentitySecurityLevel", type="u8" },
+	{ name="LogClient", type="bool" },
+	{ name="LogQuery", type="bool" },
+	{ name="LogChannel", type="bool" },
+	{ name="LogPermissions", type="bool" },
+	{ name="LogServer", type="bool" },
+	{ name="LogFiletransfer", type="bool" },
 	{ name="MinClientVersion", type="DateTime" },
-	{ name="ReservedSlots", type="u16", set=true },
+	{ name="ReservedSlots", type="u16" },
 	{ name="TotalPacketlossSpeech", type="f32" },
 	{ name="TotalPacketlossKeepalive", type="f32" },
 	{ name="TotalPacketlossControl", type="f32" },
 	{ name="TotalPacketlossTotal", type="f32" },
 	{ name="TotalPing", type="Duration" },
-	{ name="WeblistEnabled", type="bool", set=true },
+	{ name="WeblistEnabled", type="bool" },
 	{ name="MinAndroidVersion", type="DateTime", doc="TODO Maybe str" },
 	{ name="MinIosVersion", type="DateTime" },
 ]
@@ -266,7 +244,6 @@ name = "ConnectionServerData"
 id = [
 ]
 doc = "Get by notifyserverconnectioninfo after serverrequestconnectioninfo"
-accessor = { get=true, set=false }
 properties = [
 	{ name="FiletransferBandwidthSent", type="u64" },
 	{ name="FiletransferBandwidthReceived", type="u64" },
@@ -290,10 +267,10 @@ name = "Server"
 id = [
 ]
 doc = "Get in initserver"
-accessor = { get=true, set=false }
 properties = [
 	{ name="PublicKey", type="EccKeyPubP256" },
-	{ name="VirtualServerId", type="u64", doc="The virtual server id" },
+	{ name="Id", type="u64", doc="The virtual server id" },
+	# `Uid` is generated from public key
 	{ name="Name", type="str" },
 	{ name="Nickname", type="str", opt=true },
 	{ name="WelcomeMessage", type="str", doc="Welcome message when conecting to a server" },
@@ -301,24 +278,24 @@ properties = [
 	{ name="Version", type="str" },
 	{ name="MaxClients", type="u16", doc="The maximum number of clients on the server" },
 	{ name="Created", type="DateTime", doc="Seems to be always 0" },
-	{ name="CodecEncryptionMode", type="CodecEncryptionMode", set=true },
-	{ name="Hostmessage", type="str", set=true },
-	{ name="HostmessageMode", type="HostMessageMode", set=true },
-	{ name="DefaultServerGroup", type="ServerGroupId", set=true },
-	{ name="DefaultChannelGroup", type="ChannelGroupId", set=true },
-	{ name="HostbannerUrl", type="str", set=true },
-	{ name="HostbannerGfxUrl", type="str", set=true },
-	{ name="HostbannerGfxInterval", type="Duration", set=true, doc="How often the hostbanner should be updated" },
-	{ name="PrioritySpeakerDimmModificator", type="f32", set=true },
-	{ name="HostbuttonTooltip", type="str", set=true },
-	{ name="HostbuttonUrl", type="str", set=true },
-	{ name="HostbuttonGfxUrl", type="str", set=true },
-	{ name="PhoneticName", type="str", set=true },
-	{ name="IconId", type="IconHash", doc="Should be an u32, sometimes the server sends an u64 or an i32 for reasons which has to be cut to 32 bit" },
+	{ name="CodecEncryptionMode", type="CodecEncryptionMode" },
+	{ name="Hostmessage", type="str" },
+	{ name="HostmessageMode", type="HostMessageMode" },
+	{ name="DefaultServerGroup", type="ServerGroupId" },
+	{ name="DefaultChannelGroup", type="ChannelGroupId" },
+	{ name="HostbannerUrl", type="str" },
+	{ name="HostbannerGfxUrl", type="str" },
+	{ name="HostbannerGfxInterval", type="Duration", doc="How often the hostbanner should be updated" },
+	{ name="PrioritySpeakerDimmModificator", type="f32" },
+	{ name="HostbuttonTooltip", type="str" },
+	{ name="HostbuttonUrl", type="str" },
+	{ name="HostbuttonGfxUrl", type="str" },
+	{ name="PhoneticName", type="str" },
+	{ name="Icon", type="IconId", doc="Should be an u32, sometimes the server sends an u64 or an i32 for reasons which has to be cut to 32 bit" },
 	{ name="Ips", type="IpAddr", mod="array", doc="A list of listen ips, can be empty" },
 	{ name="AskForPrivilegekey", type="bool" },
-	{ name="HostbannerMode", type="HostBannerMode", set=true },
-	{ name="TempChannelDefaultDeleteDelay", type="Duration", set=true },
+	{ name="HostbannerMode", type="HostBannerMode" },
+	{ name="TempChannelDefaultDeleteDelay", type="Duration" },
 	{ name="ProtocolVersion", type="u16" },
 	{ name="License", type="LicenseType" },
 	{ name="OptionalData", type="OptionalServerData", opt=true },
@@ -330,7 +307,6 @@ name = "Connection"
 id = [
 ]
 doc = "A connection from our client to a server"
-accessor = { get=true, set=false }
 properties = [
 	{ name="OwnClient", type="ClientId", doc="The id of our own client on the server" },
 	{ name="Server", type="Server", doc="The server of this connection" },

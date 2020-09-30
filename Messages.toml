@@ -12,7 +12,7 @@
 
 fields = [
 	{ map="aclid", ts="aclid", pretty="ClientId", type="ClientId" },
-	{ map="acn", ts="acn", pretty="ClientName", type="str" },
+	{ map="acn", ts="acn", pretty="AcceptedClientName", type="str" },
 	{ map="alpha", ts="alpha", pretty="Alpha", type="str" },
 	{ map="average_speed", ts="average_speed", pretty="AverageSpeed", type="f32" },
 	{ map="banid", ts="banid", pretty="BanId", type="u32" }, # integer, size guessed
@@ -41,7 +41,7 @@ fields = [
 	{ map="channel_flag_private", ts="channel_flag_private", pretty="IsPrivate", type="bool" },
 	{ map="channel_flag_semi_permanent", ts="channel_flag_semi_permanent", pretty="IsSemiPermanent", type="bool" },
 	{ map="channel_forced_silence", ts="channel_forced_silence", pretty="ForcedSilence", type="bool" },
-	{ map="channel_icon_id", ts="channel_icon_id", pretty="IconId", type="IconHash" },
+	{ map="channel_icon_id", ts="channel_icon_id", pretty="Icon", type="IconId" },
 	{ map="channel_maxclients", ts="channel_maxclients", pretty="MaxClients", type="i32" }, # should be u16, but teamspeak sometimes sends '-1'
 	{ map="channel_maxfamilyclients", ts="channel_maxfamilyclients", pretty="MaxFamilyClients", type="i32" }, # should be u16, but teamspeak sometimes sends '-1'
 	{ map="channel_name", ts="channel_name", pretty="Name", type="str" },
@@ -74,7 +74,7 @@ fields = [
 	# ?? string ??
 	{ map="client_flag_avatar", ts="client_flag_avatar", pretty="AvatarHash", type="str" },
 	{ map="client_flag_talking", ts="client_flag_talking", pretty="IsTalking", type="bool" },
-	{ map="client_icon_id", ts="client_icon_id", pretty="IconId", type="IconHash" },
+	{ map="client_icon_id", ts="client_icon_id", pretty="Icon", type="IconId" },
 	{ map="client_id", ts="client_id", pretty="ClientId", type="ClientId" },
 	{ map="client_idle_time", ts="client_idle_time", pretty="ClientIdleTime", type="DurationMilliseconds" },
 	{ map="client_input_hardware", ts="client_input_hardware", pretty="InputHardwareEnabled", type="bool" },
@@ -97,12 +97,15 @@ fields = [
 	{ map="client_myteamspeak_avatar", ts="client_myteamspeak_avatar", pretty="MyTeamSpeakAvatar", type="str" }, # type guessed
 	{ map="client_needed_serverquery_view_power", ts="client_needed_serverquery_view_power", pretty="NeededServerqueryViewPower", type="i32" },
 	{ map="client_nickname", ts="client_nickname", pretty="Name", type="str" },
+	{ map="client_nickname@initserver", ts="client_nickname", pretty="ClientName", type="str" }, # Mirrored
 	{ map="client_nickname_phonetic", ts="client_nickname_phonetic", pretty="PhoneticName", type="str" },
+	{ map="client_nickname_phonetic@initserver", ts="client_nickname_phonetic", pretty="ClientPhoneticName", type="str" }, # Mirrored
 	{ map="client_origin_server_id", ts="client_origin_server_id", pretty="OriginServerId", type="u64" },
 	{ map="client_output_hardware", ts="client_output_hardware", pretty="OutputHardwareEnabled", type="bool" },
 	{ map="client_output_muted", ts="client_output_muted", pretty="OutputMuted", type="bool" },
 	{ map="client_outputonly_muted", ts="client_outputonly_muted", pretty="OutputOnlyMuted", type="bool" },
-	{ map="client_platform", ts="client_platform", pretty="ClientPlatform", type="str" },
+	{ map="client_platform", ts="client_platform", pretty="Platform", type="str" },
+	{ map="client_platform@initserver", ts="client_platform", pretty="ClientPlatform", type="str" }, # Mirrored
 	{ map="client_security_hash", ts="client_security_hash", pretty="SecurityHash", type="str" },
 	{ map="client_server_password", ts="client_server_password", pretty="Password", type="str" },
 	{ map="client_servergroups", ts="client_servergroups", pretty="ServerGroups", type="ServerGroupId", mod="array" },
@@ -115,8 +118,10 @@ fields = [
 	{ map="client_type", ts="client_type", pretty="ClientType", type="ClientType" },
 	{ map="client_unique_identifier", ts="client_unique_identifier", pretty="Uid", type="Uid" },
 	{ map="client_unread_messages", ts="client_unread_messages", pretty="UnreadMessages", type="u32" },
-	{ map="client_version", ts="client_version", pretty="ClientVersion", type="str" },
-	{ map="client_version_sign", ts="client_version_sign", pretty="ClientVersionSign", type="str" },
+	{ map="client_version", ts="client_version", pretty="Version", type="str" },
+	{ map="client_version@initserver", ts="client_version", pretty="ClientVersion", type="str" }, # Mirrored
+	{ map="client_version_sign", ts="client_version_sign", pretty="VersionSign", type="str" },
+	{ map="client_version_sign@initserver", ts="client_version_sign", pretty="ClientVersionSign", type="str" }, # Mirrored
 	{ map="clientftfid", ts="clientftfid", pretty="ClientFileTransferId", type="u16" },
 	{ map="cluid", ts="cluid", pretty="ClientUid", type="Uid" },
 	{ map="connection_bandwidth_received_last_minute_control", ts="connection_bandwidth_received_last_minute_control", pretty="BandwidthReceivedLastMinuteControl", type="u64" },
@@ -198,7 +203,7 @@ fields = [
 	{ map="force", ts="force", pretty="Force", type="bool" },
 	{ map="group_id_end", ts="group_id_end", pretty="GroupIdEnd", type="PermissionId" }, # describes how permissions are groupd in the client ui
 	{ map="hwid", ts="hwid", pretty="HardwareId", type="str" },
-	{ map="iconid", ts="iconid", pretty="IconId", type="IconHash" },
+	{ map="iconid", ts="iconid", pretty="Icon", type="IconId" },
 	{ map="id", ts="id", pretty="Id", type="ChannelId" },
 	{ map="id1", ts="id1", pretty="Id1", type="u64" }, # {ServerGroupId|ClientDbId|ChannelId}
 	{ map="id2", ts="id2", pretty="Id2", type="u64" }, # {0|ChannelGroupId|ClientDbId}
@@ -321,7 +326,7 @@ fields = [
 	{ map="virtualserver_complain_autoban_count", ts="virtualserver_complain_autoban_count", pretty="ComplainAutobanCount", type="u32" },
 	{ map="virtualserver_complain_autoban_time", ts="virtualserver_complain_autoban_time", pretty="ComplainAutobanTime", type="DurationSeconds" },
 	{ map="virtualserver_complain_remove_time", ts="virtualserver_complain_remove_time", pretty="ComplainRemoveTime", type="DurationSeconds" },
-	{ map="virtualserver_created", ts="virtualserver_created", pretty="ServerCreated", type="DateTime" },
+	{ map="virtualserver_created", ts="virtualserver_created", pretty="Created", type="DateTime" },
 	{ map="virtualserver_default_channel_group", ts="virtualserver_default_channel_group", pretty="DefaultChannelGroup", type="ChannelGroupId" },
 	{ map="virtualserver_default_channel_admin_group", ts="virtualserver_default_channel_admin_group", pretty="DefaultChannelAdminGroup", type="ChannelGroupId" },
 	{ map="virtualserver_default_server_group", ts="virtualserver_default_server_group", pretty="DefaultServerGroup", type="ServerGroupId" },
@@ -336,9 +341,9 @@ fields = [
 	{ map="virtualserver_hostbutton_url", ts="virtualserver_hostbutton_url", pretty="HostbuttonUrl", type="str" },
 	{ map="virtualserver_hostmessage", ts="virtualserver_hostmessage", pretty="Hostmessage", type="str" },
 	{ map="virtualserver_hostmessage_mode", ts="virtualserver_hostmessage_mode", pretty="HostmessageMode", type="HostMessageMode" },
-	{ map="virtualserver_icon_id", ts="virtualserver_icon_id", pretty="IconId", type="IconHash" },
+	{ map="virtualserver_icon_id", ts="virtualserver_icon_id", pretty="Icon", type="IconId" },
 	{ map="virtualserver_id", ts="virtualserver_id", pretty="VirtualServerId", type="u64" },
-	{ map="virtualserver_ip", ts="virtualserver_ip", pretty="ServerIp", type="IpAddr", mod="array" },
+	{ map="virtualserver_ip", ts="virtualserver_ip", pretty="Ips", type="IpAddr", mod="array" },
 	{ map="virtualserver_log_client", ts="virtualserver_log_client", pretty="LogClient", type="bool" },
 	{ map="virtualserver_log_query", ts="virtualserver_log_query", pretty="LogQuery", type="bool" },
 	{ map="virtualserver_log_channel", ts="virtualserver_log_channel", pretty="LogChannel", type="bool" },
@@ -355,12 +360,12 @@ fields = [
 	{ map="virtualserver_min_ios_version", ts="virtualserver_min_ios_version", pretty="MinIosVersion", type="u32" },
 	{ map="virtualserver_month_bytes_downloaded", ts="virtualserver_month_bytes_downloaded", pretty="BytesDownloadedMonth", type="u64" },
 	{ map="virtualserver_month_bytes_uploaded", ts="virtualserver_month_bytes_uploaded", pretty="BytesUploadedMonth", type="u64" },
-	{ map="virtualserver_name", ts="virtualserver_name", pretty="ServerName", type="str" },
-	{ map="virtualserver_name_phonetic", ts="virtualserver_name_phonetic", pretty="ServerPhoneticName", type="str" },
+	{ map="virtualserver_name", ts="virtualserver_name", pretty="Name", type="str" },
+	{ map="virtualserver_name_phonetic", ts="virtualserver_name_phonetic", pretty="PhoneticName", type="str" },
 	{ map="virtualserver_needed_identity_security_level", ts="virtualserver_needed_identity_security_level", pretty="IdentitySecurityLevel", type="u8" },
-	{ map="virtualserver_nickname", ts="virtualserver_nickname", pretty="Nickname", type="str" },
-	{ map="virtualserver_password", ts="virtualserver_password", pretty="ServerPassword", type="str" },
-	{ map="virtualserver_platform", ts="virtualserver_platform", pretty="ServerPlatform", type="str" },
+	{ map="virtualserver_nickname", ts="virtualserver_nickname", pretty="Nickname", type="str" }, # `:`-separated array
+	{ map="virtualserver_password", ts="virtualserver_password", pretty="Password", type="str" },
+	{ map="virtualserver_platform", ts="virtualserver_platform", pretty="Platform", type="str" },
 	{ map="virtualserver_port", ts="virtualserver_port", pretty="VirtualServerPort", type="u16" },
 	{ map="virtualserver_priority_speaker_dimm_modificator", ts="virtualserver_priority_speaker_dimm_modificator", pretty="PrioritySpeakerDimmModificator", type="f32" },
 	{ map="virtualserver_query_client_connections", ts="virtualserver_query_client_connections", pretty="QueryConnections", type="u64" },
@@ -377,7 +382,7 @@ fields = [
 	{ map="virtualserver_unique_identifier", ts="virtualserver_unique_identifier", pretty="VirtualServerUid", type="Uid" },
 	{ map="virtualserver_upload_quota", ts="virtualserver_upload_quota", pretty="UploadQuota", type="u64" },
 	{ map="virtualserver_uptime", ts="virtualserver_uptime", pretty="Uptime", type="DurationSeconds" },
-	{ map="virtualserver_version", ts="virtualserver_version", pretty="ServerVersion", type="str" },
+	{ map="virtualserver_version", ts="virtualserver_version", pretty="Version", type="str" },
 	{ map="virtualserver_weblist_enabled", ts="virtualserver_weblist_enabled", pretty="WeblistEnabled", type="bool" },
 	{ map="virtualserver_welcomemessage", ts="virtualserver_welcomemessage", pretty="WelcomeMessage", type="str" },
 
@@ -458,7 +463,7 @@ msg = [
 	{ name="FileTransferStatus",        notify="notifystatusfiletransfer",        attributes=["clientftfid", "status@err", "msg", "size"] },
 	{ name="InitIvExpand",              notify="initivexpand",                    attributes=["alpha", "beta", "omega"] },
 	{ name="InitIvExpand2",             notify="initivexpand2",                   attributes=["l", "beta", "omega", "ot?", "proof", "tvd", "root?"] },
-	{ name="InitServer",                notify="initserver",                      attributes=["virtualserver_name", "virtualserver_welcomemessage", "virtualserver_platform", "virtualserver_version", "virtualserver_maxclients", "virtualserver_created", "virtualserver_codec_encryption_mode", "virtualserver_hostmessage", "virtualserver_hostmessage_mode", "virtualserver_default_server_group", "virtualserver_default_channel_group", "virtualserver_id", "virtualserver_ip?", "virtualserver_ask_for_privilegekey", "lt?", "virtualserver_hostbanner_url", "virtualserver_hostbanner_gfx_url", "virtualserver_hostbanner_gfx_interval", "virtualserver_priority_speaker_dimm_modificator", "virtualserver_hostbutton_tooltip", "virtualserver_hostbutton_url", "virtualserver_hostbutton_gfx_url", "virtualserver_name_phonetic", "virtualserver_icon_id", "virtualserver_hostbanner_mode", "virtualserver_channel_temp_delete_delay_default", "virtualserver_nickname?", "virtualserver_unique_identifier?", "virtualserver_default_music_group?", "virtualserver_default_channel_admin_group?", "virtualserver_weblist_enabled?", "virtualserver_country?", "client_nickname?", "client_version?", "client_platform?", "client_input_muted?", "client_output_muted?", "client_outputonly_muted?", "client_input_hardware?", "client_output_hardware?", "client_default_channel?", "client_default_channel_password?", "client_server_password?", "client_meta_data?", "client_version_sign?", "client_security_hash?", "client_key_offset?", "client_away?", "client_away_message?", "client_nickname_phonetic?", "client_default_token?", "client_badges?", "client_myteamspeak_id?", "client_integrations?", "client_active_integrations_info?", "client_myteamspeak_avatar?", "client_signed_badges?", "acn", "aclid", "pv", "client_talk_power", "client_needed_serverquery_view_power"] },
+	{ name="InitServer",                notify="initserver",                      attributes=["virtualserver_name", "virtualserver_welcomemessage", "virtualserver_platform", "virtualserver_version", "virtualserver_maxclients", "virtualserver_created", "virtualserver_codec_encryption_mode", "virtualserver_hostmessage", "virtualserver_hostmessage_mode", "virtualserver_default_server_group", "virtualserver_default_channel_group", "virtualserver_id", "virtualserver_ip?", "virtualserver_ask_for_privilegekey", "lt?", "virtualserver_hostbanner_url", "virtualserver_hostbanner_gfx_url", "virtualserver_hostbanner_gfx_interval", "virtualserver_priority_speaker_dimm_modificator", "virtualserver_hostbutton_tooltip", "virtualserver_hostbutton_url", "virtualserver_hostbutton_gfx_url", "virtualserver_name_phonetic", "virtualserver_icon_id", "virtualserver_hostbanner_mode", "virtualserver_channel_temp_delete_delay_default", "virtualserver_nickname?", "virtualserver_unique_identifier?", "virtualserver_default_music_group?", "virtualserver_default_channel_admin_group?", "virtualserver_weblist_enabled?", "virtualserver_country?", "client_nickname@initserver?", "client_version@initserver?", "client_platform@initserver?", "client_input_muted?", "client_output_muted?", "client_outputonly_muted?", "client_input_hardware?", "client_output_hardware?", "client_default_channel?", "client_default_channel_password?", "client_server_password?", "client_meta_data?", "client_version_sign@initserver?", "client_security_hash?", "client_key_offset?", "client_away?", "client_away_message?", "client_nickname_phonetic@initserver?", "client_default_token?", "client_badges?", "client_myteamspeak_id?", "client_integrations?", "client_active_integrations_info?", "client_myteamspeak_avatar?", "client_signed_badges?", "acn", "aclid", "pv", "client_talk_power", "client_needed_serverquery_view_power"] },
 	{ name="PluginCommand",             notify="notifyplugincmd",                 attributes=["name", "data"] },
 	{ name="ServerEdited",              notify="notifyserveredited",              attributes=["invokerid", "invokername", "invokeruid?", "reasonid", "virtualserver_name?", "virtualserver_nickname?", "virtualserver_codec_encryption_mode?", "virtualserver_default_server_group?", "virtualserver_default_channel_group?", "virtualserver_hostbanner_url?", "virtualserver_hostbanner_gfx_url?", "virtualserver_hostbanner_gfx_interval?", "virtualserver_priority_speaker_dimm_modificator?", "virtualserver_hostbutton_tooltip?", "virtualserver_hostbutton_url?", "virtualserver_hostbutton_gfx_url?", "virtualserver_name_phonetic?", "virtualserver_icon_id?", "virtualserver_hostbanner_mode?", "virtualserver_channel_temp_delete_delay_default?" ] },
 	{ name="ServerTempPasswordList",    notify="notifyservertemppasswordlist",    attributes=["nickname", "uid", "desc", "pw_clear", "start@tmppw", "end", "tcid", "tcpw"] },
@@ -480,7 +485,7 @@ msg = [
 	# ChannelCreate
 	{ name="ChannelCreateResponse",       attributes=["cid"] },
 	# channelinfo
-	{ name="ChannelInfoResponse",       attributes=["pid", "channel_name", "channel_topic", "channel_description", "channel_password?", "channel_codec", "channel_codec_quality", "channel_maxclients", "channel_maxfamilyclients", "channel_order", "channel_flag_permanent", "channel_flag_semi_permanent", "channel_flag_default", "channel_flag_password", "channel_codec_latency_factor", "channel_codec_is_unencrypted", "channel_security_salt?", "channel_delete_delay", "channel_flag_maxclients_unlimited", "channel_flag_maxfamilyclients_unlimited", "channel_flag_maxfamilyclients_inherited", "channel_filepath", "channel_needed_talk_power", "channel_forced_silence", "channel_name_phonetic?", "channel_icon_id", "channel_banner_gfx_url?", "channel_banner_mode", "seconds_empty"] },
+	{ name="ChannelInfoResponse",       attributes=["pid", "channel_name", "channel_topic", "channel_description", "channel_password?", "channel_codec", "channel_codec_quality", "channel_maxclients", "channel_maxfamilyclients", "channel_order", "channel_flag_permanent", "channel_flag_semi_permanent", "channel_flag_default", "channel_flag_password", "channel_codec_latency_factor", "channel_codec_is_unencrypted", "channel_security_salt?", "channel_delete_delay", "channel_unique_identifier?", "channel_flag_maxclients_unlimited", "channel_flag_maxfamilyclients_unlimited", "channel_flag_maxfamilyclients_inherited", "channel_filepath", "channel_needed_talk_power", "channel_forced_silence", "channel_name_phonetic?", "channel_icon_id", "channel_banner_gfx_url?", "channel_banner_mode", "seconds_empty"] },
 	# channellist
 	{ name="ChannelListResponse",       attributes=["cid", "pid", "channel_order", "channel_name", "total_clients", "channel_needed_subscribe_power",
 		"channel_topic?", # -topic
