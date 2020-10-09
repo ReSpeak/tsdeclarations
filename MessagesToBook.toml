@@ -124,6 +124,8 @@ to = "Client"
 operation = "update"
 properties = [
 	{ from="TargetChannelId", to="Channel" },
+	# Set channel subscribed when the current client is moved
+	{ function="SubscribeChannelFun", tolist=[] },
 ]
 
 [[rule]]
