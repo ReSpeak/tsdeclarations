@@ -822,8 +822,10 @@ version,platform,hash
 5.0.0-beta28-rc1 [Build: 1602250328],Windows,8oW09UjVpXnQCDGBLJtyz3LzKQj69wPqBfHCCkGSkWcFOp3zqYrDQttOFjd7628rq8SczY9oiSJ85K3VwHPUDQ==
 5.0.0-beta28-rc2 [Build: 1602580552],macOS,oIEegsz45Eqs3RDI8jC5wdEu25TsrliV6c1gMaJraLRjvaU2p17xOmXzG5dtL6Qx81OGDqRF82ooXXE6jgymCw==
 5.0.0-beta28-rc2 [Build: 1602580552],Windows,Fvk4Xr/Z+HXAlO2MhB4dRN7Wi7X6IxwXSlXH8SFSkwxiPAnBKcNwvS1RonjilpxXNRwqhGemahkGewJAMtzfDg==
+5.0.0-beta28 [Build: 1602660382],Linux,cBBzfORlQ7Hgo+bIysxOjBrMn8R8C/cz7HefCctDZeqW/9jtQgdmC4j0WG2z44zFkSQpKyn37g/I14C7cg+YDg==
 5.0.0-beta28 [Build: 1602660382],macOS,wNdxosl+2z6YkNmd4jaLwWHQiuPDE+9NvGqN9Y/edJ3530ktACUE9/KbtDhLIhdk6Fgx+SwxKhuusqxszCOmBQ==
 5.0.0-beta28 [Build: 1602660382],Windows,pQ0ZCYZovulw3eqwdvzJpq/2d8XwqcTnRLggziiDmRn+FxeOtkWmemhlRZbgljo/GFV2n1Xj4T0Z5ktgMKXRBA==
+5.0.0-beta29-rc1 [Build: 1602672104],Windows,dU9SLOX6O8CnwmohtUrViexxDa40NeIoW5TWshyd0vuB4y/vyP69MRxcW7ma1Z4B9GgOO6MJo44M5FL6FvOyCw==
 3.?.? [Build: 5680278000],Android,AWb948BY32Z7bpIyoAlQguSmxOGcmjESPceQe1DpW5IZ4+AW1KfTk2VUIYNfUPsxReDJMCtlhVKslzhR2lf0AA==
 3.?.? [Build: 5680278000],iOS,XrAf+Buq6Eb0ehEW/niFp06YX+nGGOS0Ke4MoUBzn+cX9q6G5C0A/d5XtgcNMe8r9jJgV/adIYVpsGS3pVlSAA==
 3.?.? [Build: 5680278000],Linux,Hjd+N58Gv3ENhoKmGYy2bNRBsNNgm5kpiaQWxOj5HN2DXttG6REjymSwJtpJ8muC2gSwRuZi0R+8Laan5ts5CQ==
