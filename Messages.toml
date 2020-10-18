@@ -65,7 +65,7 @@ fields = [
 	{ map="client_channel_group_inherited_channel_id", ts="client_channel_group_inherited_channel_id", pretty="InheritedChannelGroupFromChannel", type="ChannelId" },
 	{ map="client_channel_id", ts="client_channel_id", pretty="ChannelId", type="ChannelId" },
 	{ map="client_country", ts="client_country", pretty="CountryCode", type="str" },
-	{ map="client_created", ts="client_created", pretty="CreationDate", type="DateTime" },
+	{ map="client_created", ts="client_created", pretty="Created", type="DateTime" },
 	{ map="client_database_id", ts="client_database_id", pretty="DatabaseId", type="ClientDbId" },
 	{ map="client_default_channel", ts="client_default_channel", pretty="DefaultChannel", type="str" },
 	{ map="client_default_channel_password", ts="client_default_channel_password", pretty="DefaultChannelPassword", type="str" },
@@ -91,8 +91,8 @@ fields = [
 	{ map="client_login_name", ts="client_login_name", pretty="LoginName", type="str" },
 	{ map="client_login_password", ts="client_login_password", pretty="LoginPassword", type="str" },
 	{ map="client_meta_data", ts="client_meta_data", pretty="Metadata", type="str" },
-	{ map="client_month_bytes_downloaded", ts="client_month_bytes_downloaded", pretty="MonthlyDownloadQuota", type="i64" },
-	{ map="client_month_bytes_uploaded", ts="client_month_bytes_uploaded", pretty="MonthlyUploadQuota", type="i64" },
+	{ map="client_month_bytes_downloaded", ts="client_month_bytes_downloaded", pretty="BytesDownloadedMonth", type="u64" },
+	{ map="client_month_bytes_uploaded", ts="client_month_bytes_uploaded", pretty="BytesUploadedMonth", type="u64" },
 	{ map="client_myteamspeak_id", ts="client_myteamspeak_id", pretty="MyTeamSpeakId", type="str" }, # type guessed
 	{ map="client_myteamspeak_avatar", ts="client_myteamspeak_avatar", pretty="MyTeamSpeakAvatar", type="str" }, # type guessed
 	{ map="client_needed_serverquery_view_power", ts="client_needed_serverquery_view_power", pretty="NeededServerqueryViewPower", type="i32" },
@@ -112,9 +112,9 @@ fields = [
 	{ map="client_talk_power", ts="client_talk_power", pretty="TalkPower", type="i32" },
 	{ map="client_talk_request", ts="client_talk_request", pretty="TalkPowerRequestTime", type="DateTime" },
 	{ map="client_talk_request_msg", ts="client_talk_request_msg", pretty="TalkPowerRequestMessage", type="str" },
-	{ map="client_total_bytes_downloaded", ts="client_total_bytes_downloaded", pretty="TotalDownloadQuota", type="i64" },
-	{ map="client_total_bytes_uploaded", ts="client_total_bytes_uploaded", pretty="TotalUploadQuota", type="i64" },
-	{ map="client_totalconnections", ts="client_totalconnections", pretty="TotalConnections", type="i32" },
+	{ map="client_total_bytes_downloaded", ts="client_total_bytes_downloaded", pretty="BytesDownloadedTotal", type="u64" },
+	{ map="client_total_bytes_uploaded", ts="client_total_bytes_uploaded", pretty="BytesUploadedTotal", type="u64" },
+	{ map="client_totalconnections", ts="client_totalconnections", pretty="ConnectionsTotal", type="u32" },
 	{ map="client_type", ts="client_type", pretty="ClientType", type="ClientType" },
 	{ map="client_unique_identifier", ts="client_unique_identifier", pretty="Uid", type="Uid" },
 	{ map="client_unread_messages", ts="client_unread_messages", pretty="UnreadMessages", type="u32" },
@@ -122,7 +122,7 @@ fields = [
 	{ map="client_version@initserver", ts="client_version", pretty="ClientVersion", type="str" }, # Mirrored
 	{ map="client_version_sign", ts="client_version_sign", pretty="VersionSign", type="str" },
 	{ map="client_version_sign@initserver", ts="client_version_sign", pretty="ClientVersionSign", type="str" }, # Mirrored
-	{ map="clientftfid", ts="clientftfid", pretty="ClientFileTransferId", type="u16" },
+	{ map="clientftfid", ts="clientftfid", pretty="ClientFiletransferId", type="u16" },
 	{ map="cluid", ts="cluid", pretty="ClientUid", type="Uid" },
 	{ map="connection_bandwidth_received_last_minute_control", ts="connection_bandwidth_received_last_minute_control", pretty="BandwidthReceivedLastMinuteControl", type="u64" },
 	{ map="connection_bandwidth_received_last_minute_keepalive", ts="connection_bandwidth_received_last_minute_keepalive", pretty="BandwidthReceivedLastMinuteKeepalive", type="u64" },
@@ -169,8 +169,8 @@ fields = [
 	{ map="connection_packets_sent_keepalive", ts="connection_packets_sent_keepalive", pretty="PacketsSentKeepalive", type="u64" },
 	{ map="connection_packets_sent_speech", ts="connection_packets_sent_speech", pretty="PacketsSentSpeech", type="u64" },
 	{ map="connection_packets_sent_total", ts="connection_packets_sent_total", pretty="PacketsSentTotal", type="u64" },
-	{ map="connection_ping", ts="connection_ping", pretty="Ping", type="DurationMilliseconds" },
-	{ map="connection_ping_deviation", ts="connection_ping_deviation", pretty="PingDeviation", type="DurationMilliseconds" },
+	{ map="connection_ping", ts="connection_ping", pretty="Ping", type="DurationMillisecondsFloat" },
+	{ map="connection_ping_deviation", ts="connection_ping_deviation", pretty="PingDeviation", type="DurationMillisecondsFloat" },
 	{ map="connection_server2client_packetloss_control", ts="connection_server2client_packetloss_control", pretty="ServerToClientPacketlossControl", type="f32" },
 	{ map="connection_server2client_packetloss_keepalive", ts="connection_server2client_packetloss_keepalive", pretty="ServerToClientPacketlossKeepalive", type="f32" },
 	{ map="connection_server2client_packetloss_speech", ts="connection_server2client_packetloss_speech", pretty="ServerToClientPacketlossSpeech", type="f32" },
@@ -199,7 +199,7 @@ fields = [
 	{ map="flags@client_ph", ts="flags", pretty="Flags", type="ClientPermissionHint" },
 	{ map="flag_read", ts="flag_read", pretty="IsRead", type="bool" },
 	{ map="fname", ts="fname", pretty="FromName", type="str" },
-	{ map="ftkey", ts="ftkey", pretty="FileTransferKey", type="str" },
+	{ map="ftkey", ts="ftkey", pretty="FiletransferKey", type="str" },
 	{ map="force", ts="force", pretty="Force", type="bool" },
 	{ map="group_id_end", ts="group_id_end", pretty="GroupIdEnd", type="PermissionId" }, # describes how permissions are groupd in the client ui
 	{ map="hwid", ts="hwid", pretty="HardwareId", type="str" },
@@ -266,7 +266,7 @@ fields = [
 	{ map="seekpos", ts="seekpos", pretty="SeekPosition", type="u64" },
 	# ?? type
 	{ map="sender", ts="sender", pretty="Sender", type="u64" },
-	{ map="serverftfid", ts="serverftfid", pretty="ServerFileTransferId", type="u16" },
+	{ map="serverftfid", ts="serverftfid", pretty="ServerFiletransferId", type="u16" },
 	{ map="sgid", ts="sgid", pretty="ServerGroupId", type="ServerGroupId" },
 	{ map="sgtype", ts="sgtype", pretty="ServerGroupType", type="u32" },  # integer, size guessed
 	{ map="sid", ts="sid", pretty="ServerId", type="u32" }, # integer, size guessed, maybe own type ServerId ?
@@ -304,8 +304,8 @@ fields = [
 	{ map="token1", ts="token1", pretty="Token1", type="str" },
 	{ map="token2", ts="token2", pretty="Token2", type="str" },
 	{ map="tokencustomset", ts="tokencustomset", pretty="TokenCustomSet", type="str" },
-	{ map="total_clients", ts="total_clients", pretty="TotalClients", type="i32" },
-	{ map="total_clients_family", ts="total_clients_family", pretty="TotalFamilyClients", type="i32" },
+	{ map="total_clients", ts="total_clients", pretty="ClientsTotal", type="i32" },
+	{ map="total_clients_family", ts="total_clients_family", pretty="FamilyClientsTotal", type="i32" },
 	{ map="tsgid", ts="tsgid", pretty="TargetServerGroupId", type="ServerGroupId" },
 	{ map="type@ft", ts="type", pretty="IsFile", type="bool" },
 	{ map="type@group", ts="type", pretty="GroupType", type="GroupType" },
@@ -319,9 +319,9 @@ fields = [
 	{ map="virtualserver_ask_for_privilegekey", ts="virtualserver_ask_for_privilegekey", pretty="AskForPrivilegekey", type="bool" },
 	{ map="virtualserver_autostart", ts="virtualserver_autostart", pretty="Autostart", type="bool" },
 	{ map="virtualserver_channel_temp_delete_delay_default", ts="virtualserver_channel_temp_delete_delay_default", pretty="TempChannelDefaultDeleteDelay", type="DurationSeconds" },
-	{ map="virtualserver_channelsonline", ts="virtualserver_channelsonline", pretty="ChannelsOnline", type="u64" },
-	{ map="virtualserver_client_connections", ts="virtualserver_client_connections", pretty="ClientConnections", type="u64" },
-	{ map="virtualserver_clientsonline", ts="virtualserver_clientsonline", pretty="ClientsOnline", type="u16" },
+	{ map="virtualserver_channelsonline", ts="virtualserver_channelsonline", pretty="ChannelCount", type="u64" },
+	{ map="virtualserver_client_connections", ts="virtualserver_client_connections", pretty="ConnectionCountTotal", type="u64" },
+	{ map="virtualserver_clientsonline", ts="virtualserver_clientsonline", pretty="ClientCount", type="u16" },
 	{ map="virtualserver_codec_encryption_mode", ts="virtualserver_codec_encryption_mode", pretty="CodecEncryptionMode", type="CodecEncryptionMode" },
 	{ map="virtualserver_complain_autoban_count", ts="virtualserver_complain_autoban_count", pretty="ComplainAutobanCount", type="u32" },
 	{ map="virtualserver_complain_autoban_time", ts="virtualserver_complain_autoban_time", pretty="ComplainAutobanTime", type="DurationSeconds" },
@@ -349,36 +349,36 @@ fields = [
 	{ map="virtualserver_log_channel", ts="virtualserver_log_channel", pretty="LogChannel", type="bool" },
 	{ map="virtualserver_log_permissions", ts="virtualserver_log_permissions", pretty="LogPermissions", type="bool" },
 	{ map="virtualserver_log_server", ts="virtualserver_log_server", pretty="LogServer", type="bool" },
-	{ map="virtualserver_log_filetransfer", ts="virtualserver_log_filetransfer", pretty="LogFileTransfer", type="bool" },
+	{ map="virtualserver_log_filetransfer", ts="virtualserver_log_filetransfer", pretty="LogFiletransfer", type="bool" },
 	{ map="virtualserver_machine_id", ts="virtualserver_machine_id", pretty="MachineId", type="str" },
-	{ map="virtualserver_max_download_total_bandwidth", ts="virtualserver_max_download_total_bandwidth", pretty="MaxDownloadTotalBandwidth", type="u64" },
-	{ map="virtualserver_max_upload_total_bandwidth", ts="virtualserver_max_upload_total_bandwidth", pretty="MaxUploadTotalBandwidth", type="u64" },
+	{ map="virtualserver_max_download_total_bandwidth", ts="virtualserver_max_download_total_bandwidth", pretty="MaxDownloadBandwidthTotal", type="u64" },
+	{ map="virtualserver_max_upload_total_bandwidth", ts="virtualserver_max_upload_total_bandwidth", pretty="MaxUploadBandwidthTotal", type="u64" },
 	{ map="virtualserver_maxclients", ts="virtualserver_maxclients", pretty="MaxClients", type="u16" },
-	{ map="virtualserver_min_android_version", ts="virtualserver_min_android_version", pretty="MinAndroidVersion", type="u32" },
-	{ map="virtualserver_min_client_version", ts="virtualserver_min_client_version", pretty="MinClientVersion", type="u32" },
-	{ map="virtualserver_min_clients_in_channel_before_forced_silence", ts="virtualserver_min_clients_in_channel_before_forced_silence", pretty="MinClientsInChannelBeforeForcedSilence", type="u32" },
-	{ map="virtualserver_min_ios_version", ts="virtualserver_min_ios_version", pretty="MinIosVersion", type="u32" },
+	{ map="virtualserver_min_android_version", ts="virtualserver_min_android_version", pretty="MinAndroidVersion", type="DateTime" },
+	{ map="virtualserver_min_client_version", ts="virtualserver_min_client_version", pretty="MinClientVersion", type="DateTime" },
+	{ map="virtualserver_min_clients_in_channel_before_forced_silence", ts="virtualserver_min_clients_in_channel_before_forced_silence", pretty="MinClientsInChannelBeforeForcedSilence", type="u16" },
+	{ map="virtualserver_min_ios_version", ts="virtualserver_min_ios_version", pretty="MinIosVersion", type="DateTime" },
 	{ map="virtualserver_month_bytes_downloaded", ts="virtualserver_month_bytes_downloaded", pretty="BytesDownloadedMonth", type="u64" },
 	{ map="virtualserver_month_bytes_uploaded", ts="virtualserver_month_bytes_uploaded", pretty="BytesUploadedMonth", type="u64" },
 	{ map="virtualserver_name", ts="virtualserver_name", pretty="Name", type="str" },
 	{ map="virtualserver_name_phonetic", ts="virtualserver_name_phonetic", pretty="PhoneticName", type="str" },
-	{ map="virtualserver_needed_identity_security_level", ts="virtualserver_needed_identity_security_level", pretty="IdentitySecurityLevel", type="u8" },
+	{ map="virtualserver_needed_identity_security_level", ts="virtualserver_needed_identity_security_level", pretty="NeededIdentitySecurityLevel", type="u8" },
 	{ map="virtualserver_nickname", ts="virtualserver_nickname", pretty="Nickname", type="str" }, # `:`-separated array
 	{ map="virtualserver_password", ts="virtualserver_password", pretty="Password", type="str" },
 	{ map="virtualserver_platform", ts="virtualserver_platform", pretty="Platform", type="str" },
-	{ map="virtualserver_port", ts="virtualserver_port", pretty="VirtualServerPort", type="u16" },
+	{ map="virtualserver_port", ts="virtualserver_port", pretty="Port", type="u16" },
 	{ map="virtualserver_priority_speaker_dimm_modificator", ts="virtualserver_priority_speaker_dimm_modificator", pretty="PrioritySpeakerDimmModificator", type="f32" },
-	{ map="virtualserver_query_client_connections", ts="virtualserver_query_client_connections", pretty="QueryConnections", type="u64" },
-	{ map="virtualserver_queryclientsonline", ts="virtualserver_queryclientsonline", pretty="QueriesOnline", type="u16" },
+	{ map="virtualserver_query_client_connections", ts="virtualserver_query_client_connections", pretty="QueryCountTotal", type="u64" },
+	{ map="virtualserver_queryclientsonline", ts="virtualserver_queryclientsonline", pretty="QueryCount", type="u32" },
 	{ map="virtualserver_reserved_slots", ts="virtualserver_reserved_slots", pretty="ReservedSlots", type="u16" },
 	{ map="virtualserver_status", ts="virtualserver_status", pretty="VirtualServerStatus", type="str" },
 	{ map="virtualserver_total_bytes_downloaded", ts="virtualserver_total_bytes_downloaded", pretty="BytesDownloadedTotal", type="u64" },
 	{ map="virtualserver_total_bytes_uploaded", ts="virtualserver_total_bytes_uploaded", pretty="BytesUploadedTotal", type="u64" },
-	{ map="virtualserver_total_packetloss_speech", ts="virtualserver_total_packetloss_speech", pretty="PacketlossTotalSpeech", type="f32" },
-	{ map="virtualserver_total_packetloss_keepalive", ts="virtualserver_total_packetloss_keepalive", pretty="PacketlossTotalKeepalive", type="f32" },
-	{ map="virtualserver_total_packetloss_control", ts="virtualserver_total_packetloss_control", pretty="PacketlossTotalControl", type="f32" },
-	{ map="virtualserver_total_packetloss_total", ts="virtualserver_total_packetloss_total", pretty="PacketlossTotal", type="f32" },
-	{ map="virtualserver_total_ping", ts="virtualserver_total_ping", pretty="PingTotal", type="f32" },
+	{ map="virtualserver_total_packetloss_speech", ts="virtualserver_total_packetloss_speech", pretty="TotalPacketlossSpeech", type="f32" },
+	{ map="virtualserver_total_packetloss_keepalive", ts="virtualserver_total_packetloss_keepalive", pretty="TotalPacketlossKeepalive", type="f32" },
+	{ map="virtualserver_total_packetloss_control", ts="virtualserver_total_packetloss_control", pretty="TotalPacketlossControl", type="f32" },
+	{ map="virtualserver_total_packetloss_total", ts="virtualserver_total_packetloss_total", pretty="TotalPacketloss", type="f32" },
+	{ map="virtualserver_total_ping", ts="virtualserver_total_ping", pretty="TotalPing", type="DurationMillisecondsFloat" },
 	{ map="virtualserver_unique_identifier", ts="virtualserver_unique_identifier", pretty="VirtualServerUid", type="Uid" },
 	{ map="virtualserver_upload_quota", ts="virtualserver_upload_quota", pretty="UploadQuota", type="u64" },
 	{ map="virtualserver_uptime", ts="virtualserver_uptime", pretty="Uptime", type="DurationSeconds" },
@@ -448,7 +448,7 @@ msg = [
 	{ name="ClientChannelGroupChanged", notify="notifyclientchannelgroupchanged", attributes=["invokerid", "invokername", "invokeruid?", "cgid", "cgi", "cid", "clid"] },
 	{ name="ClientChatClosed",          notify="notifyclientchatclosed",          attributes=["clid", "cluid"] },
 	{ name="ClientChatComposing",       notify="notifyclientchatcomposing",       attributes=["clid", "cluid"] },
-	{ name="ClientConnectionInfo",      notify="notifyconnectioninfo",            attributes=["clid", "connection_ping", "connection_ping_deviation", "connection_connected_time", "connection_client_ip", "connection_client_port", "connection_packets_sent_speech", "connection_packets_sent_keepalive", "connection_packets_sent_control", "connection_bytes_sent_speech", "connection_bytes_sent_keepalive", "connection_bytes_sent_control", "connection_packets_received_speech", "connection_packets_received_keepalive", "connection_packets_received_control", "connection_bytes_received_speech", "connection_bytes_received_keepalive", "connection_bytes_received_control", "connection_server2client_packetloss_speech", "connection_server2client_packetloss_keepalive", "connection_server2client_packetloss_control", "connection_server2client_packetloss_total", "connection_client2server_packetloss_speech", "connection_client2server_packetloss_keepalive", "connection_client2server_packetloss_control", "connection_client2server_packetloss_total", "connection_bandwidth_sent_last_second_speech", "connection_bandwidth_sent_last_second_keepalive", "connection_bandwidth_sent_last_second_control", "connection_bandwidth_sent_last_minute_speech", "connection_bandwidth_sent_last_minute_keepalive", "connection_bandwidth_sent_last_minute_control", "connection_bandwidth_received_last_second_speech", "connection_bandwidth_received_last_second_keepalive", "connection_bandwidth_received_last_second_control", "connection_bandwidth_received_last_minute_speech", "connection_bandwidth_received_last_minute_keepalive", "connection_bandwidth_received_last_minute_control", "connection_filetransfer_bandwidth_sent", "connection_filetransfer_bandwidth_received", "connection_idle_time"] },
+	{ name="ClientConnectionInfo",      notify="notifyconnectioninfo",            attributes=["clid", "connection_ping?", "connection_ping_deviation?", "connection_connected_time?", "connection_client_ip", "connection_client_port", "connection_packets_sent_speech?", "connection_packets_sent_keepalive?", "connection_packets_sent_control?", "connection_bytes_sent_speech?", "connection_bytes_sent_keepalive?", "connection_bytes_sent_control?", "connection_packets_received_speech?", "connection_packets_received_keepalive?", "connection_packets_received_control?", "connection_bytes_received_speech?", "connection_bytes_received_keepalive?", "connection_bytes_received_control?", "connection_server2client_packetloss_speech?", "connection_server2client_packetloss_keepalive?", "connection_server2client_packetloss_control?", "connection_server2client_packetloss_total?", "connection_client2server_packetloss_speech", "connection_client2server_packetloss_keepalive", "connection_client2server_packetloss_control", "connection_client2server_packetloss_total", "connection_bandwidth_sent_last_second_speech?", "connection_bandwidth_sent_last_second_keepalive?", "connection_bandwidth_sent_last_second_control?", "connection_bandwidth_sent_last_minute_speech?", "connection_bandwidth_sent_last_minute_keepalive?", "connection_bandwidth_sent_last_minute_control?", "connection_bandwidth_received_last_second_speech?", "connection_bandwidth_received_last_second_keepalive?", "connection_bandwidth_received_last_second_control?", "connection_bandwidth_received_last_minute_speech?", "connection_bandwidth_received_last_minute_keepalive?", "connection_bandwidth_received_last_minute_control?", "connection_filetransfer_bandwidth_sent?", "connection_filetransfer_bandwidth_received?", "connection_idle_time"] },
 	{ name="ClientConnectionInfoUpdateRequest", notify="notifyconnectioninforequest",     attributes=[] },
 	{ name="ClientEnterView",           notify="notifycliententerview",           attributes=["reasonid", "ctid", "invokerid?", "invokername?", "invokeruid?", "clid", "client_database_id", "client_nickname", "client_type", "cfid", "client_unique_identifier", "client_flag_avatar", "client_description", "client_icon_id", "client_input_muted", "client_output_muted", "client_outputonly_muted", "client_input_hardware", "client_output_hardware", "client_meta_data", "client_is_recording", "client_channel_group_id", "client_channel_group_inherited_channel_id", "client_servergroups", "client_away", "client_away_message", "client_talk_power", "client_talk_request", "client_talk_request_msg", "client_is_talker", "client_is_priority_speaker", "client_unread_messages", "client_nickname_phonetic", "client_needed_serverquery_view_power", "client_is_channel_commander", "client_country", "client_badges", "client_myteamspeak_id", "client_integrations", "client_myteamspeak_avatar?", "client_signed_badges?", "client_totalconnections?"] },
 	{ name="ClientLeftView",            notify="notifyclientleftview",            attributes=["reasonmsg?", "bantime?", "reasonid?", "ctid", "invokerid?", "invokername?", "invokeruid?", "clid", "cfid"] },
@@ -460,7 +460,7 @@ msg = [
 	{ name="ClientUpdated",             notify="notifyclientupdated",             attributes=["clid", "client_nickname?", "client_unread_messages?", "client_version?", "client_platform?", "client_login_name?", "client_created?", "client_lastconnected?", "client_totalconnections?", "client_month_bytes_uploaded?", "client_month_bytes_downloaded?", "client_total_bytes_uploaded?", "client_total_bytes_downloaded?", "client_input_muted?", "client_input_hardware?", "client_output_muted?", "client_output_hardware?", "client_description?", "client_is_priority_speaker?", "client_is_channel_commander?", "client_flag_avatar?", "client_signed_badges?", "client_talk_request?", "client_talk_request_msg?", "client_is_talker?", "client_nickname_phonetic?", "client_is_recording?", "client_servergroups?", "client_myteamspeak_id?", "client_badges?", "client_talk_power?", "client_icon_id?", "client_away?", "client_away_message?", "client_channel_group_inherited_channel_id?", "client_channel_group_id?"] },
 	{ name="CommandError",              notify="error",                           attributes=["error_id", "msg", "failed_permid?", "return_code?", "extra_msg?"] },
 	{ name="FileListFinished",          notify="notifyfilelistfinished",          attributes=["cid", "path"] },
-	{ name="FileTransferStatus",        notify="notifystatusfiletransfer",        attributes=["clientftfid", "status@err", "msg", "size"] },
+	{ name="FiletransferStatus",        notify="notifystatusfiletransfer",        attributes=["clientftfid", "status@err", "msg", "size"] },
 	{ name="InitIvExpand",              notify="initivexpand",                    attributes=["alpha", "beta", "omega"] },
 	{ name="InitIvExpand2",             notify="initivexpand2",                   attributes=["l", "beta", "omega", "ot?", "proof", "tvd", "root?"] },
 	{ name="InitServer",                notify="initserver",                      attributes=["virtualserver_name", "virtualserver_welcomemessage", "virtualserver_platform", "virtualserver_version", "virtualserver_maxclients", "virtualserver_created", "virtualserver_codec_encryption_mode", "virtualserver_hostmessage", "virtualserver_hostmessage_mode", "virtualserver_default_server_group", "virtualserver_default_channel_group", "virtualserver_id", "virtualserver_ip?", "virtualserver_ask_for_privilegekey", "lt?", "virtualserver_hostbanner_url", "virtualserver_hostbanner_gfx_url", "virtualserver_hostbanner_gfx_interval", "virtualserver_priority_speaker_dimm_modificator", "virtualserver_hostbutton_tooltip", "virtualserver_hostbutton_url", "virtualserver_hostbutton_gfx_url", "virtualserver_name_phonetic", "virtualserver_icon_id", "virtualserver_hostbanner_mode", "virtualserver_channel_temp_delete_delay_default", "virtualserver_nickname?", "virtualserver_unique_identifier?", "virtualserver_default_music_group?", "virtualserver_default_channel_admin_group?", "virtualserver_weblist_enabled?", "virtualserver_country?", "client_nickname@initserver?", "client_version@initserver?", "client_platform@initserver?", "client_input_muted?", "client_output_muted?", "client_outputonly_muted?", "client_input_hardware?", "client_output_hardware?", "client_default_channel?", "client_default_channel_password?", "client_server_password?", "client_meta_data?", "client_version_sign@initserver?", "client_security_hash?", "client_key_offset?", "client_away?", "client_away_message?", "client_nickname_phonetic@initserver?", "client_default_token?", "client_badges?", "client_myteamspeak_id?", "client_integrations?", "client_active_integrations_info?", "client_myteamspeak_avatar?", "client_signed_badges?", "acn", "aclid", "pv", "client_talk_power", "client_needed_serverquery_view_power"] },
@@ -475,7 +475,9 @@ msg = [
 [[msg_group]]
 default = { s2c=true, c2s=false, response=false, low=true, np=false }
 msg = [
-	{ name="ClientPoke",                    notify="notifyclientpoke",              attributes=["invokerid", "invokername", "invokeruid?", "msg"] },
+	# Response to channelgetdescription
+	{ name="ChannelEditedLow",          notify="notifychanneledited",               attributes=["cid",  "reasonid", "channel_description?"] },
+	{ name="ClientPoke",                notify="notifyclientpoke",                  attributes=["invokerid", "invokername", "invokeruid?", "msg"] },
 ]
 
 # Server to Client Responses
@@ -579,7 +581,7 @@ msg = [
 	{ name="FileDownload",              notify="notifystartdownload",               attributes=["clientftfid", "serverftfid", "ftkey", "port", "size", "proto", "ip?"] },
 	{ name="FileInfo",                  notify="notifyfileinfo",                    attributes=["cid", "path", "name", "size", "datetime"] },
 	{ name="FileList",                  notify="notifyfilelist",                    attributes=["cid", "path", "name", "size", "datetime", "type@ft"] },
-	{ name="FileTransfer",              notify="notifyfiletransferlist",            attributes=["clid", "path", "name", "size", "sizedone", "clientftfid", "serverftfid", "sender", "status@ft", "current_speed", "average_speed", "runtime"] },
+	{ name="Filetransfer",              notify="notifyfiletransferlist",            attributes=["clid", "path", "name", "size", "sizedone", "clientftfid", "serverftfid", "sender", "status@ft", "current_speed", "average_speed", "runtime"] },
 	{ name="FileUpload",                notify="notifystartupload",                 attributes=["clientftfid", "serverftfid", "ftkey", "port", "seekpos", "proto", "ip?"] },
 	{ name="OfflineMessage",            notify="notifymessage",                     attributes=["msgid", "cluid", "subject", "message", "timestamp"] },
 	{ name="OfflineMessageList",        notify="notifymessagelist",                 attributes=["msgid", "cluid", "subject", "timestamp", "flag_read"] },
@@ -645,7 +647,7 @@ msg = [
 	# -> void
 	{ name="ChannelDelPerm",                notify="channeldelperm",                attributes=[] },
 	# channelgetdescription cid=1
-	# -> {ChannelEdited} notifychanneledited cid=1 channel_description=blub
+	# -> {ChannelEditedLow} notifychanneledited cid=1 channel_description=blub
 	{ name="ChannelDescriptionRequest",     notify="channelgetdescription",         attributes=["cid"] },
 	# channeledit cid=2 channel_codec=5
 	# -> void
@@ -821,13 +823,13 @@ msg = [
 	# -> {FileUpload} notifystartupload clientftfid=4096 serverftfid=1 ftkey=U2VNc4+cRZdCKMdR6JECqfz8Ix1L40SM port=30033 seekpos=0 proto=1
 	{ name="FtInitUpload",                  notify="ftinitupload",                  attributes=["clientftfid", "name", "cid", "cpw", "size", "overwrite", "resume", "proto"] },
 	# ftlist
-	# -> {FileTransfer} notifyfiletransferlist clid=1 path=files\\virtualserver_1\\channel_4 name=Win10_1709_German_x64_Pro.iso size=3825467392 sizedone=1324744704 clientftfid=4096 serverftfid=1 sender=0 status=1 current_speed=101380912.0000 average_speed=98684800.0000 runtime=13
+	# -> {Filetransfer} notifyfiletransferlist clid=1 path=files\\virtualserver_1\\channel_4 name=Win10_1709_German_x64_Pro.iso size=3825467392 sizedone=1324744704 clientftfid=4096 serverftfid=1 sender=0 status=1 current_speed=101380912.0000 average_speed=98684800.0000 runtime=13
 	{ name="FtList",                        notify="ftlist",                        attributes=[] },
 	# ftrenamefile cid=4 cpw tcid=4 tcpw oldname=\/Doxyfile newname=\/Doxyfile2
 	# -> void
 	{ name="FtRenameFile",                  notify="ftrenamefile",                  attributes=["cid", "cpw", "tcid?", "tcpw?", "oldname", "newname"] },
 	# ftstop serverftfid=1 clientftfid=4096 delete=1
-	# -> {FileTransferStatus} notifystatusfiletransfer clientftfid=4096 status=2066 msg=file\stransfer\scanceled size=1736753152
+	# -> {FiletransferStatus} notifystatusfiletransfer clientftfid=4096 status=2066 msg=file\stransfer\scanceled size=1736753152
 	{ name="FtStop",                        notify="ftstop",                        attributes=["serverftfid", "delete"] },
 	# gm msg=test
 	# -> {TextMessage} notifytextmessage targetmode=3 msg=test invokerid=0 invokername=Server

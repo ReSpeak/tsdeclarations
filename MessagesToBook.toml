@@ -1,18 +1,6 @@
 # All properties which have an identical 'High-Level' name are copied implicitly
 
 [[rule]]
-from = "InitServer"
-id = []
-to = "Server"
-operation = "add"
-properties = [
-	{ from="VirtualServerId", to="Id" },
-	# `Uid` is generated from public key
-	# ClientName, ClientId, TalkPower, NeededServerqueryViewPower
-	{ function="SetClientDataFun", tolist=[] },
-]
-
-[[rule]]
 from = "ChannelCreated"
 id = ["ChannelId"]
 to = "Channel"
@@ -23,6 +11,8 @@ properties = [
 	{ function="ChannelTypeCcFun", tolist=["ChannelType"] },
 	{ function="ChannelOrderCcFun", tolist=["Order"] },
 	{ function="MaxClientsCcFun", tolist=["MaxClients", "MaxFamilyClients"] },
+	# Default codec is opus voice
+	{ function="ChannelCodecCcFun", tolist=["Codec"] },
 	{ function="ReturnFalse", tolist=["ForcedSilence"] },
 	{ function="ReturnFalse", tolist=["Subscribed"] },
 	{ function="ReturnNone", tolist=["IsPrivate"] },
@@ -49,6 +39,28 @@ properties = [
 ]
 
 [[rule]]
+from = "ChannelEdited"
+id = ["ChannelId"]
+to = "OptionalChannelData"
+operation = "update"
+properties = [
+]
+
+[[rule]]
+from = "ChannelEditedLow"
+id = ["ChannelId"]
+to = "OptionalChannelData"
+operation = "update"
+properties = [
+]
+
+[[rule]]
+from = "ChannelGroupList"
+id = ["ChannelGroup"]
+to = "ChannelGroup"
+operation = "add"
+
+[[rule]]
 from = "ChannelList"
 id = ["ChannelId"]
 to = "Channel"
@@ -70,6 +82,15 @@ operation = "update"
 properties = [
 	{ from="ParentId", to="Parent" },
 	{ function="ChannelOrderCmFun", tolist=["Order"] },
+]
+
+[[rule]]
+from = "ChannelPermissionHints"
+id = ["ChannelId"]
+to = "Channel"
+operation = "update"
+properties = [
+	{ from="Flags", to="PermissionHints" },
 ]
 
 [[rule]]
@@ -132,7 +153,7 @@ properties = [
 from = "ClientConnectionInfo"
 id = ["ClientId"]
 to = "ConnectionClientData"
-operation = "add"
+operation = "update"
 properties = [
 	{ function="AddressFun", tolist=["ClientAddress"] },
 ]
@@ -171,30 +192,12 @@ properties = [
 ]
 
 [[rule]]
-from = "ServerGroupList"
-id = ["ServerGroupId"]
-to = "ServerGroup"
-operation = "add"
-
-[[rule]]
-from = "ChannelGroupList"
-id = ["ChannelGroup"]
-to = "ChannelGroup"
-operation = "add"
-
-[[rule]]
-from = "ServerEdited"
-id = []
-to = "Server"
-operation = "update"
-
-[[rule]]
-from = "ChannelPermissionHints"
-id = ["ChannelId"]
-to = "Channel"
+from = "ClientUpdated"
+id = ["ClientId"]
+to = "OptionalClientData"
 operation = "update"
 properties = [
-	{ from="Flags", to="PermissionHints" },
+	{ function="ReturnSomeNone", tolist=["VersionSign"] },
 ]
 
 [[rule]]
@@ -204,4 +207,50 @@ to = "Client"
 operation = "update"
 properties = [
 	{ from="Flags", to="PermissionHints" },
+]
+
+[[rule]]
+from = "InitServer"
+id = []
+to = "Server"
+operation = "add"
+properties = [
+	{ from="VirtualServerId", to="Id" },
+	# `Uid` is generated from public key
+	# ClientName, ClientId, TalkPower, NeededServerqueryViewPower
+	{ function="SetClientDataFun", tolist=[] },
+]
+
+[[rule]]
+from = "ServerEdited"
+id = []
+to = "Server"
+operation = "update"
+
+[[rule]]
+from = "ServerUpdated"
+id = []
+to = "Server"
+operation = "update"
+
+[[rule]]
+from = "ServerGroupList"
+id = ["ServerGroupId"]
+to = "ServerGroup"
+operation = "add"
+
+[[rule]]
+from = "ServerConnectionInfo"
+id = []
+to = "ConnectionServerData"
+operation = "update"
+properties = [
+]
+
+[[rule]]
+from = "ServerUpdated"
+id = []
+to = "OptionalServerData"
+operation = "update"
+properties = [
 ]

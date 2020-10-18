@@ -38,6 +38,7 @@ properties = [
 
 [[struct]]
 name = "OptionalChannelData"
+opt = true
 id = [
 	{ struct="Channel", prop="Id" },
 ]
@@ -58,7 +59,7 @@ properties = [
 	{ name="Parent", type="ChannelId", doc="0 means root channel" },
 	{ name="Name", type="str" },
 	{ name="Topic", type="str", opt=true },
-	{ name="Codec", type="Codec", opt=true },
+	{ name="Codec", type="Codec" },
 	{ name="CodecQuality", type="u8", opt=true },
 	{ name="MaxClients", type="MaxClients", opt=true, doc="The maximum number of clients in the channel." },
 	{ name="MaxFamilyClients", type="MaxClients", opt=true, doc="Maximum number of clients in this and all child channels." },
@@ -81,69 +82,71 @@ properties = [
 
 [[struct]]
 name = "OptionalClientData"
+opt = true
 id = [
 	{ struct="Client", prop="Id" },
 ]
 doc = "Get in notifyclientupdated by clientgetvariables"
 properties = [
 	{ name="Version", type="str" },
-	{ name="VersionSign", type="str" },
+	{ name="VersionSign", type="str", opt=true },
 	{ name="Platform", type="str" },
 	{ name="LoginName", type="str", opt=true, doc="Set only for server queries" },
 	{ name="Created", type="DateTime" },
 	{ name="LastConnected", type="DateTime" },
-	{ name="TotalConnection", type="u32" },
-	{ name="MonthBytesUploaded", type="u64" },
-	{ name="MonthBytesDownloaded", type="u64" },
-	{ name="TotalBytesUploaded", type="u64" },
-	{ name="TotalBytesDownloaded", type="u64" },
+	{ name="ConnectionsTotal", type="u32" },
+	{ name="BytesUploadedMonth", type="u64" },
+	{ name="BytesDownloadedMonth", type="u64" },
+	{ name="BytesUploadedTotal", type="u64" },
+	{ name="BytesDownloadedTotal", type="u64" },
 ]
 
 [[struct]]
 name = "ConnectionClientData"
+opt = true
 id = [
 	{ struct="Client", prop="Id" },
 ]
 doc = "Get in notifyconnectioninfo by getconnectioninfo"
 properties = [
-	{ name="Ping", type="Duration" },
-	{ name="PingDeviation", type="Duration" },
-	{ name="ConnectedTime", type="Duration" },
+	{ name="Ping", type="Duration", opt=true },
+	{ name="PingDeviation", type="Duration", opt=true },
+	{ name="ConnectedTime", type="Duration", opt=true },
 	{ name="ClientAddress", type="SocketAddr", opt=true, doc="Only available if we have the permission to view it" },
-	{ name="PacketsSentSpeech", type="u64" },
-	{ name="PacketsSentKeepalive", type="u64" },
-	{ name="PacketsSentControl", type="u64" },
-	{ name="BytesSentSpeech", type="u64" },
-	{ name="BytesSentKeepalive", type="u64" },
-	{ name="BytesSentControl", type="u64" },
-	{ name="PacketsReceivedSpeech", type="u64" },
-	{ name="PacketsReceivedKeepalive", type="u64" },
-	{ name="PacketsReceivedControl", type="u64" },
-	{ name="BytesReceivedSpeech", type="u64" },
-	{ name="BytesReceivedKeepalive", type="u64" },
-	{ name="BytesReceivedControl", type="u64" },
-	{ name="ServerToClientPacketlossSpeech", type="f32" },
-	{ name="ServerToClientPacketlossKeepalive", type="f32" },
-	{ name="ServerToClientPacketlossControl", type="f32" },
-	{ name="ServerToClientPacketlossTotal", type="f32" },
+	{ name="PacketsSentSpeech", type="u64", opt=true },
+	{ name="PacketsSentKeepalive", type="u64", opt=true },
+	{ name="PacketsSentControl", type="u64", opt=true },
+	{ name="BytesSentSpeech", type="u64", opt=true },
+	{ name="BytesSentKeepalive", type="u64", opt=true },
+	{ name="BytesSentControl", type="u64", opt=true },
+	{ name="PacketsReceivedSpeech", type="u64", opt=true },
+	{ name="PacketsReceivedKeepalive", type="u64", opt=true },
+	{ name="PacketsReceivedControl", type="u64", opt=true },
+	{ name="BytesReceivedSpeech", type="u64", opt=true },
+	{ name="BytesReceivedKeepalive", type="u64", opt=true },
+	{ name="BytesReceivedControl", type="u64", opt=true },
+	{ name="ServerToClientPacketlossSpeech", type="f32", opt=true },
+	{ name="ServerToClientPacketlossKeepalive", type="f32", opt=true },
+	{ name="ServerToClientPacketlossControl", type="f32", opt=true },
+	{ name="ServerToClientPacketlossTotal", type="f32", opt=true },
 	{ name="ClientToServerPacketlossSpeech", type="f32" },
 	{ name="ClientToServerPacketlossKeepalive", type="f32" },
 	{ name="ClientToServerPacketlossControl", type="f32" },
 	{ name="ClientToServerPacketlossTotal", type="f32" },
-	{ name="BandwidthSentLastSecondSpeech", type="u64" },
-	{ name="BandwidthSentLastSecondKeepalive", type="u64" },
-	{ name="BandwidthSentLastSecondControl", type="u64" },
-	{ name="BandwidthSentLastMinuteSpeech", type="u64" },
-	{ name="BandwidthSentLastMinuteKeepalive", type="u64" },
-	{ name="BandwidthSentLastMinuteControl", type="u64" },
-	{ name="BandwidthReceivedLastSecondSpeech", type="u64" },
-	{ name="BandwidthReceivedLastSecondKeepalive", type="u64" },
-	{ name="BandwidthReceivedLastSecondControl", type="u64" },
-	{ name="BandwidthReceivedLastMinuteSpeech", type="u64" },
-	{ name="BandwidthReceivedLastMinuteKeepalive", type="u64" },
-	{ name="BandwidthReceivedLastMinuteControl", type="u64" },
-	{ name="FiletransferBandwidthSent", type="u64" },
-	{ name="FiletransferBandwidthReceived", type="u64" },
+	{ name="BandwidthSentLastSecondSpeech", type="u64", opt=true },
+	{ name="BandwidthSentLastSecondKeepalive", type="u64", opt=true },
+	{ name="BandwidthSentLastSecondControl", type="u64", opt=true },
+	{ name="BandwidthSentLastMinuteSpeech", type="u64", opt=true },
+	{ name="BandwidthSentLastMinuteKeepalive", type="u64", opt=true },
+	{ name="BandwidthSentLastMinuteControl", type="u64", opt=true },
+	{ name="BandwidthReceivedLastSecondSpeech", type="u64", opt=true },
+	{ name="BandwidthReceivedLastSecondKeepalive", type="u64", opt=true },
+	{ name="BandwidthReceivedLastSecondControl", type="u64", opt=true },
+	{ name="BandwidthReceivedLastMinuteSpeech", type="u64", opt=true },
+	{ name="BandwidthReceivedLastMinuteKeepalive", type="u64", opt=true },
+	{ name="BandwidthReceivedLastMinuteControl", type="u64", opt=true },
+	{ name="FiletransferBandwidthSent", type="u64", opt=true },
+	{ name="FiletransferBandwidthReceived", type="u64", opt=true },
 	{ name="IdleTime", type="Duration" },
 ]
 
@@ -191,32 +194,35 @@ properties = [
 
 [[struct]]
 name = "OptionalServerData"
+opt = true
 id = [
 ]
 doc = "Get by notifyserverupdated after requested by servergetvariables"
 properties = [
-	{ name="ConnectionCount", type="u32", doc="The amount of connections on this server.\n\nThis includes normal clients and server queries." },
-	{ name="ChannelCount", type="u64", doc="The amount of channels on the server" },
 	{ name="Uptime", type="Duration" },
 	{ name="HasPassword", type="bool" },
 	{ name="DefaultChannelAdminGroup", type="ChannelGroupId", doc="The channel group which will be given to channel creators" },
-	{ name="MaxDownloadTotalBandwith", type="u64" },
-	{ name="MaxUploadTotalBandwith", type="u64" },
+	{ name="MaxDownloadBandwidthTotal", type="u64" },
+	{ name="MaxUploadBandwidthTotal", type="u64" },
 	{ name="ComplainAutobanCount", type="u32" },
 	{ name="ComplainAutobanTime", type="Duration" },
 	{ name="ComplainRemoveTime", type="Duration" },
-	{ name="MinClientsForceSilence", type="u16", doc="How many clients can be in a server before silence is forced" },
+	{ name="MinClientsInChannelBeforeForcedSilence", type="u16", doc="How many clients can be in a server before silence is forced" },
 	{ name="AntifloodPointsTickReduce", type="u32" },
-	{ name="AntifloodPointsNeededCommandBlock", type="u32" },
+	{ name="AntifloodPointsToCommandBlock", type="u32" },
+	{ name="AntifloodPointsToIpBlock", type="u32" },
+	{ name="AntifloodPointsToPluginBlock", type="u32" },
+	{ name="ConnectionCountTotal", type="u64", doc="The amount of connections on this server.\n\nThis includes normal clients and server queries." },
+	{ name="ChannelCount", type="u64", doc="The amount of channels on the server" },
 	{ name="ClientCount", type="u16", doc="The amount of clients which are online on the server" },
-	{ name="QueryCount", type="u32", doc="Amount of server queries connected to the server" },
-	{ name="QueryOnlineCount", type="u32", doc="Amount of server queries connected and online/visible on the server" },
+	{ name="QueryCountTotal", type="u64", doc="Amount of server queries connected to the server" },
+	{ name="QueryCount", type="u32", doc="Amount of server queries connected and online/visible on the server" },
 	{ name="DownloadQuota", type="u64" },
 	{ name="UploadQuota", type="u64" },
-	{ name="MonthBytesDownloaded", type="u64" },
-	{ name="MonthBytesUploaded", type="u64" },
-	{ name="TotalBytesDownloaded", type="u64" },
-	{ name="TotalBytesUploaded", type="u64" },
+	{ name="BytesDownloadedMonth", type="u64" },
+	{ name="BytesUploadedMonth", type="u64" },
+	{ name="BytesDownloadedTotal", type="u64" },
+	{ name="BytesUploadedTotal", type="u64" },
 	{ name="Port", type="u16" },
 	{ name="Autostart", type="bool" },
 	{ name="MachineId", type="str" },
@@ -232,7 +238,7 @@ properties = [
 	{ name="TotalPacketlossSpeech", type="f32" },
 	{ name="TotalPacketlossKeepalive", type="f32" },
 	{ name="TotalPacketlossControl", type="f32" },
-	{ name="TotalPacketlossTotal", type="f32" },
+	{ name="TotalPacketloss", type="f32" },
 	{ name="TotalPing", type="Duration" },
 	{ name="WeblistEnabled", type="bool" },
 	{ name="MinAndroidVersion", type="DateTime", doc="TODO Maybe str" },
@@ -241,6 +247,7 @@ properties = [
 
 [[struct]]
 name = "ConnectionServerData"
+opt = true
 id = [
 ]
 doc = "Get by notifyserverconnectioninfo after serverrequestconnectioninfo"

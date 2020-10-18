@@ -30,12 +30,36 @@ properties = [
 
 [[rule]]
 from = "Channel"
+to = "ChannelDescriptionRequest"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+]
+
+[[rule]]
+from = "Channel"
 to = "ChannelMove"
 operation = "update"
 ids = [
 	{ from="Id", to="ChannelId" },
 	{ from="Parent", type="ChannelId", function="ChannelIdB2m", tolist=["ParentId"] },
 	{ from="Order", type="ChannelId", function="ChannelIdB2m", tolist=["Order"] },
+]
+
+[[rule]]
+from = "Client"
+to = "ClientConnectionInfoRequest"
+operation = "update"
+ids = [
+	{ from="Id", to="ClientId" },
+]
+
+[[rule]]
+from = "Client"
+to = "ClientVariablesRequest"
+operation = "update"
+ids = [
+	{ from="Id", to="ClientId" },
 ]
 
 [[rule]]
@@ -108,6 +132,20 @@ ids = [
 ]
 properties = [
 	{ from="ReasonMessage", to="ReasonMessage" },
+]
+
+[[rule]]
+from = "Server"
+to = "ServerVariablesRequest"
+operation = "update"
+ids = [
+]
+
+[[rule]]
+from = "Server"
+to = "ServerConnectionInfoRequest"
+operation = "update"
+ids = [
 ]
 
 [[rule]]
