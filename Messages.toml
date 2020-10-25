@@ -805,32 +805,32 @@ msg = [
 	{ name="CustomSet",                     notify="customset",                     attributes=["cldbid", "ident", "value"] },
 	# ftcreatedir cid=4 cpw dirname=\/test
 	# -> void
-	{ name="FtCreateDir",                   notify="ftcreatedir",                   attributes=["cid", "cpw", "dirname"] },
+	{ name="CreateDirectory",               notify="ftcreatedir",                   attributes=["cid", "cpw", "dirname"] },
 	# ftdeletefile cid=4 cpw name=\/Doxyfile2
 	# -> void
-	{ name="FtDeleteFile",                  notify="ftdeletefile",                  attributes=["cid", "cpw", "name"] },
+	{ name="DeleteFile",                    notify="ftdeletefile",                  attributes=["cid", "cpw", "name"] },
 	# ftgetfileinfo cid=7 name=\/Egg.ogg cpw
 	# -> {FileInfo} notifyfileinfo cid=7 name=\/Egg.ogg size=6009201 datetime=1523479202
-	{ name="FtFileInfoRequest",             notify="ftgetfileinfo",                 attributes=["cid", "cpw", "name"] },
+	{ name="FileInfoRequest",               notify="ftgetfileinfo",                 attributes=["cid", "cpw", "name"] },
 	# ftgetfilelist cid=4 cpw path=\/
 	# -> {FileList} notifyfilelist cid=4 path=\/ return_code=1:15 name=Doxyfile size=11984 datetime=1539276009 type=1
 	# -> {FileListFinished} notifyfilelistfinished cid=4 path=\/
-	{ name="FtFileListRequest",             notify="ftgetfilelist",                 attributes=["cid", "cpw", "path"] },
+	{ name="FileListRequest",               notify="ftgetfilelist",                 attributes=["cid", "cpw", "path"] },
 	# ftinitdownload clientftfid=4096 name=\/Doxyfile2 cid=4 cpw seekpos=0 proto=1
 	# -> {FileDownload} notifystartdownload clientftfid=4096 serverftfid=1 ftkey=YkmvbK7ibKPJPTRONaY68j3S\/fjx7dkO port=30033 size=11984 proto=1
-	{ name="FtInitDownload",                notify="ftinitdownload",                attributes=["clientftfid", "name", "cid", "cpw", "seekpos", "proto"] },
+	{ name="InitDownload",                  notify="ftinitdownload",                attributes=["clientftfid", "name", "cid", "cpw", "seekpos", "proto"] },
 	# ftinitupload clientftfid=4096 name=\/Doxyfile size=11984 cid=4 cpw overwrite=0 resume=0 proto=1
 	# -> {FileUpload} notifystartupload clientftfid=4096 serverftfid=1 ftkey=U2VNc4+cRZdCKMdR6JECqfz8Ix1L40SM port=30033 seekpos=0 proto=1
-	{ name="FtInitUpload",                  notify="ftinitupload",                  attributes=["clientftfid", "name", "cid", "cpw", "size", "overwrite", "resume", "proto"] },
+	{ name="InitUpload",                    notify="ftinitupload",                  attributes=["clientftfid", "name", "cid", "cpw", "size", "overwrite", "resume", "proto"] },
 	# ftlist
 	# -> {Filetransfer} notifyfiletransferlist clid=1 path=files\\virtualserver_1\\channel_4 name=Win10_1709_German_x64_Pro.iso size=3825467392 sizedone=1324744704 clientftfid=4096 serverftfid=1 sender=0 status=1 current_speed=101380912.0000 average_speed=98684800.0000 runtime=13
-	{ name="FtList",                        notify="ftlist",                        attributes=[] },
+	{ name="ListFileTransfers",             notify="ftlist",                        attributes=[] },
 	# ftrenamefile cid=4 cpw tcid=4 tcpw oldname=\/Doxyfile newname=\/Doxyfile2
 	# -> void
-	{ name="FtRenameFile",                  notify="ftrenamefile",                  attributes=["cid", "cpw", "tcid?", "tcpw?", "oldname", "newname"] },
+	{ name="RenameFile",                    notify="ftrenamefile",                  attributes=["cid", "cpw", "tcid?", "tcpw?", "oldname", "newname"] },
 	# ftstop serverftfid=1 clientftfid=4096 delete=1
 	# -> {FiletransferStatus} notifystatusfiletransfer clientftfid=4096 status=2066 msg=file\stransfer\scanceled size=1736753152
-	{ name="FtStop",                        notify="ftstop",                        attributes=["serverftfid", "delete"] },
+	{ name="StopFileTransfer",              notify="ftstop",                        attributes=["serverftfid", "delete"] },
 	# gm msg=test
 	# -> {TextMessage} notifytextmessage targetmode=3 msg=test invokerid=0 invokername=Server
 	{ name="GlobalMessage",                 notify="gm",                            attributes=["msg"] },

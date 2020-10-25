@@ -46,6 +46,54 @@ ids = [
 	{ from="Order", type="ChannelId", function="ChannelIdB2m", tolist=["Order"] },
 ]
 
+# Filetransfer stuff for Channel
+
+[[rule]]
+from = "Channel"
+to = "CreateDirectory"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+	{ from="Password", to="ChannelPassword" },
+	{ from="Path", to="DirectoryName" },
+]
+
+[[rule]]
+from = "Channel"
+to = "DeleteFile"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+	{ from="Password", to="ChannelPassword" },
+	{ from="Path", to="Name" },
+]
+
+[[rule]]
+from = "Channel"
+to = "FileListRequest"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+	{ from="Password", to="ChannelPassword" },
+	{ from="Path", to="Path" },
+]
+
+[[rule]]
+from = "Channel"
+to = "RenameFile"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+	{ from="Password", to="ChannelPassword" },
+	{ from="FromPath", to="OldName" },
+	{ from="ToPath", to="NewName" },
+]
+properties = [
+	{ from="ToChannel", to="TargetChannelId" },
+	{ from="ToChannelPassword", to="TargetChannelPassword" },
+]
+
+
 [[rule]]
 from = "Client"
 to = "ClientConnectionInfoRequest"
@@ -132,6 +180,16 @@ ids = [
 ]
 properties = [
 	{ from="ReasonMessage", to="ReasonMessage" },
+]
+
+[[rule]]
+from = "Server"
+to = "FileListRequest"
+operation = "update"
+ids = [
+	{ function="ZeroChannelId", tolist=["ChannelId"] },
+	{ from="Path", to="Path" },
+	{ function="EmptyString", tolist=["ChannelPassword"] },
 ]
 
 [[rule]]
