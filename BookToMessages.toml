@@ -207,6 +207,16 @@ ids = [
 ]
 
 [[rule]]
+from = "Server"
+to = "ServerEdit"
+operation = "update"
+ids = [
+]
+properties = [
+	#{ from="Description", to="Description" },
+]
+
+[[rule]]
 from = "ServerGroup"
 to = "ServerGroupAddClient"
 operation = "add"
