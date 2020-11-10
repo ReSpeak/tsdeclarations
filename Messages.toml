@@ -268,7 +268,7 @@ fields = [
 	{ map="sender", ts="sender", pretty="Sender", type="u64" },
 	{ map="serverftfid", ts="serverftfid", pretty="ServerFiletransferId", type="u16" },
 	{ map="sgid", ts="sgid", pretty="ServerGroupId", type="ServerGroupId" },
-	{ map="sgtype", ts="sgtype", pretty="ServerGroupType", type="u32" },  # integer, size guessed
+	{ map="sgtype", ts="sgtype", pretty="ServerGroupType", type="u32" }, # integer, size guessed
 	{ map="sid", ts="sid", pretty="ServerId", type="u32" }, # integer, size guessed, maybe own type ServerId ?
 	{ map="size", ts="size", pretty="Size", type="u64" },
 	{ map="sizedone", ts="sizedone", pretty="SizeDone", type="i64" },
@@ -281,7 +281,8 @@ fields = [
 	{ map="start@list", ts="start", pretty="Offset", type="u32" }, # integer, size guessed
 	{ map="start@tmppw", ts="start", pretty="Start", type="DateTime" },
 	{ map="t", ts="t", pretty="PermissionType", type="PermissionType" },
-	{ map="target", ts="target", pretty="TargetClientId", type="ClientId" },
+	{ map="target@msg", ts="target", pretty="TargetClientId", type="ClientId" },
+	{ map="target@plugin", ts="target", pretty="TargetClientId", type="ClientId" },
 	{ map="targetmode@msg", ts="targetmode", pretty="Target", type="TextMessageTargetMode" },
 	{ map="targetmode@plugin", ts="targetmode", pretty="Target", type="PluginTargetMode" },
 	{ map="tcgid", ts="tcgid", pretty="TargetChannelGroupId", type="ChannelGroupId" },
@@ -594,7 +595,7 @@ msg = [
 	{ name="ServerGroupPermList",       notify="notifyservergrouppermlist",         attributes=["sgid", "permid?", "permsid?", "permvalue", "permnegated", "permskip"] },
 	{ name="ServerGroupsByClientId",    notify="notifyservergroupsbyclientid",      attributes=["name", "sgid", "cldbid"] },
 	{ name="ServerLog",                 notify="notifyserverlog",                   attributes=["last_pos", "file_size", "l"] },
-	{ name="TextMessage",               notify="notifytextmessage",                 attributes=["targetmode@msg", "msg", "target?", "invokerid", "invokername", "invokeruid?", "timestamp?"] },
+	{ name="TextMessage",               notify="notifytextmessage",                 attributes=["targetmode@msg", "msg", "target@msg?", "invokerid", "invokername", "invokeruid?", "timestamp?"] },
 	{ name="TokenAdd",                  notify="notifytokenadd",                    attributes=["token"] },
 	{ name="TokenList",                 notify="notifytokenlist",                   attributes=["token", "token_type", "token_id1", "token_id2", "token_created", "token_description"] },
 ]
@@ -605,7 +606,7 @@ default = { s2c=false, c2s=true, response=false, low=false, np=false }
 msg = [
 	{ name="ClientInit",                    notify="clientinit",                    attributes=["client_nickname", "client_version", "client_platform", "client_input_hardware", "client_output_hardware", "client_default_channel", "client_default_channel_password", "client_server_password", "client_meta_data", "client_version_sign", "client_key_offset", "client_nickname_phonetic", "client_default_token", "hwid", "client_badges?", "client_security_hash?", "client_myteamspeak_id?", "client_integrations?", "client_active_integrations_info?", "client_myteamspeak_avatar?", "client_signed_badges?" ] },
 	{ name="ClientInitIv",                  notify="clientinitiv",                  attributes=["alpha", "omega", "ip"] },
-	{ name="PluginCommandRequest",          notify="plugincmd",                     attributes=["name", "data", "targetmode@plugin"] },
+	{ name="PluginCommandRequest",          notify="plugincmd",                     attributes=["name", "data", "targetmode@plugin", "target@plugin?"] },
 	# banadd ip=42\\.42\\.42\\.42 name=test uid=b+P0CqXms5I0C+A66HZ4Sbu\/PNw= time=5 banreason=test
 	# -> void
 	{ name="BanAdd",                        notify="banadd",                        attributes=["ip?", "name?", "uid?", "time?", "banreason?"] },
@@ -903,7 +904,7 @@ msg = [
 	{ name="Quit",                          notify="quit",                          attributes=[] },
 	# sendtextmessage targetmode=2 msg=hi
 	# -> {TextMessage} notifytextmessage targetmode=2 msg=hi invokerid=4 invokername=Splamy invokeruid=uA0U7t4PBxdJ5TLnarsOHQh4\/tY=
-	{ name="SendTextMessage",               notify="sendtextmessage",               attributes=["targetmode@msg", "target?", "msg"] },
+	{ name="SendTextMessage",               notify="sendtextmessage",               attributes=["targetmode@msg", "target@msg?", "msg"] },
 	# TODO
 	{ name="ServerCreate",                  notify="servercreate",                  attributes=["virtualserver_name"] }, # TODO PROPERTIES !
 	# TODO

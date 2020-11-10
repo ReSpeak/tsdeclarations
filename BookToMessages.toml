@@ -137,6 +137,18 @@ to = "Disconnect"
 operation = "remove"
 
 [[rule]]
+from = "Connection"
+to = "PluginCommandRequest"
+operation = "update"
+ids = [
+	{ from="Name", to="Name" },
+	{ from="Data", to="Data" },
+	{ from="Target", to="Target" },
+	# TODO optional
+	{ from="TargetClientId", to="TargetClientId" },
+]
+
+[[rule]]
 from = "Client"
 to = "ServerGroupAddClient"
 operation = "add"
