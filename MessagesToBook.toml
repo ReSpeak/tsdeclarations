@@ -55,6 +55,12 @@ properties = [
 ]
 
 [[rule]]
+from = "ChannelDescriptionChanged"
+id = ["ChannelId"]
+to = "OptionalChannelData"
+operation = "remove"
+
+[[rule]]
 from = "ChannelGroupList"
 id = ["ChannelGroup"]
 to = "ChannelGroup"
