@@ -604,7 +604,7 @@ msg = [
 [[msg_group]]
 default = { s2c=false, c2s=true, response=false, low=false, np=false }
 msg = [
-	{ name="ClientInit",                    notify="clientinit",                    attributes=["client_nickname", "client_version", "client_platform", "client_input_hardware", "client_output_hardware", "client_default_channel", "client_default_channel_password", "client_server_password", "client_meta_data", "client_version_sign", "client_key_offset", "client_nickname_phonetic", "client_default_token", "hwid", "client_badges?", "client_security_hash?", "client_myteamspeak_id?", "client_integrations?", "client_active_integrations_info?", "client_myteamspeak_avatar?", "client_signed_badges?" ] },
+	{ name="ClientInit",                    notify="clientinit",                    attributes=["client_nickname", "client_version", "client_platform", "client_input_hardware", "client_output_hardware", "client_input_muted?", "client_output_muted?", "client_away?", "client_away_message?", "client_default_channel", "client_default_channel_password", "client_server_password", "client_meta_data", "client_version_sign", "client_key_offset", "client_nickname_phonetic", "client_default_token", "hwid", "client_badges?", "client_security_hash?", "client_myteamspeak_id?", "client_integrations?", "client_active_integrations_info?", "client_myteamspeak_avatar?", "client_signed_badges?" ] },
 	{ name="ClientInitIv",                  notify="clientinitiv",                  attributes=["alpha", "omega", "ip"] },
 	{ name="PluginCommandRequest",          notify="plugincmd",                     attributes=["name", "data", "targetmode@plugin", "target@plugin?"] },
 	# banadd ip=42\\.42\\.42\\.42 name=test uid=b+P0CqXms5I0C+A66HZ4Sbu\/PNw= time=5 banreason=test
