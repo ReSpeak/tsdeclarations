@@ -825,13 +825,13 @@ msg = [
 	{ name="InitUpload",                    notify="ftinitupload",                  attributes=["clientftfid", "name", "cid", "cpw", "size", "overwrite", "resume", "proto"] },
 	# ftlist
 	# -> {Filetransfer} notifyfiletransferlist clid=1 path=files\\virtualserver_1\\channel_4 name=Win10_1709_German_x64_Pro.iso size=3825467392 sizedone=1324744704 clientftfid=4096 serverftfid=1 sender=0 status=1 current_speed=101380912.0000 average_speed=98684800.0000 runtime=13
-	{ name="ListFileTransfers",             notify="ftlist",                        attributes=[] },
+	{ name="ListFiletransfers",             notify="ftlist",                        attributes=[] },
 	# ftrenamefile cid=4 cpw tcid=4 tcpw oldname=\/Doxyfile newname=\/Doxyfile2
 	# -> void
 	{ name="RenameFile",                    notify="ftrenamefile",                  attributes=["cid", "cpw", "tcid?", "tcpw?", "oldname", "newname"] },
 	# ftstop serverftfid=1 clientftfid=4096 delete=1
 	# -> {FiletransferStatus} notifystatusfiletransfer clientftfid=4096 status=2066 msg=file\stransfer\scanceled size=1736753152
-	{ name="StopFileTransfer",              notify="ftstop",                        attributes=["serverftfid", "delete"] },
+	{ name="StopFiletransfer",              notify="ftstop",                        attributes=["serverftfid", "delete"] },
 	# gm msg=test
 	# -> {TextMessage} notifytextmessage targetmode=3 msg=test invokerid=0 invokername=Server
 	{ name="GlobalMessage",                 notify="gm",                            attributes=["msg"] },
