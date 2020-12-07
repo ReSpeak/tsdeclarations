@@ -234,6 +234,12 @@ to = "Server"
 operation = "update"
 
 [[rule]]
+from = "ServerEdited"
+id = []
+to = "OptionalServerData"
+operation = "remove"
+
+[[rule]]
 from = "ServerUpdated"
 id = []
 to = "Server"
