@@ -54,7 +54,7 @@ to = "CreateDirectory"
 operation = "update"
 ids = [
 	{ from="Id", to="ChannelId" },
-	{ from="Password", to="ChannelPassword" },
+	{ from="Password", type="str", function="PasswordB2m", tolist=["ChannelPassword"] },
 	{ from="Path", to="DirectoryName" },
 ]
 
@@ -64,7 +64,7 @@ to = "DeleteFile"
 operation = "update"
 ids = [
 	{ from="Id", to="ChannelId" },
-	{ from="Password", to="ChannelPassword" },
+	{ from="Password", type="str", function="PasswordB2m", tolist=["ChannelPassword"] },
 	{ from="Path", to="Name" },
 ]
 
@@ -74,7 +74,7 @@ to = "FileListRequest"
 operation = "update"
 ids = [
 	{ from="Id", to="ChannelId" },
-	{ from="Password", to="ChannelPassword" },
+	{ from="Password", type="str", function="PasswordB2m", tolist=["ChannelPassword"] },
 	{ from="Path", to="Path" },
 ]
 
@@ -84,13 +84,13 @@ to = "RenameFile"
 operation = "update"
 ids = [
 	{ from="Id", to="ChannelId" },
-	{ from="Password", to="ChannelPassword" },
+	{ from="Password", type="str", function="PasswordB2m", tolist=["ChannelPassword"] },
 	{ from="FromPath", to="OldName" },
 	{ from="ToPath", to="NewName" },
 ]
 properties = [
 	{ from="ToChannel", to="TargetChannelId" },
-	{ from="ToChannelPassword", to="TargetChannelPassword" },
+	{ from="ToChannelPassword", type="str", function="PasswordB2m2", tolist=["TargetChannelPassword"] },
 ]
 
 
@@ -225,7 +225,7 @@ operation = "update"
 ids = [
 ]
 properties = [
-	#{ from="Description", to="Description" },
+	{ from="Password", type="str?", function="PasswordB2m", tolist=["Password"] },
 ]
 
 [[rule]]
