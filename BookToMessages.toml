@@ -126,9 +126,16 @@ properties = [
 	# The original properties are on the client object, but we can only change
 	# our own properties, so these methods are available on the connection.
 	{ from="Name", to="Name" },
+	{ from="PhoneticName", to="PhoneticName" },
 	{ from="InputMuted", to="InputMuted" },
 	{ from="OutputMuted", to="OutputMuted" },
-	{ from="away", type="str?", function="AwayFunB2m", tolist=["IsAway", "AwayMessage"] },
+	{ from="InputHardwareEnabled", to="InputHardwareEnabled" },
+	{ from="OutputHardwareEnabled", to="OutputHardwareEnabled" },
+	{ from="IsChannelCommander", to="IsChannelCommander" },
+	{ from="IsRecording", to="IsRecording" },
+	{ from="AvatarHash", to="AvatarHash" },
+	{ from="Away", type="str?", function="AwayFunB2m", tolist=["IsAway", "AwayMessage"] },
+	{ from="TalkPowerRequest", type="str?", function="AwayFunB2m", tolist=["TalkPowerRequest", "TalkPowerRequestMessage"] },
 ]
 
 [[rule]]
@@ -200,8 +207,18 @@ to = "FileListRequest"
 operation = "update"
 ids = [
 	{ function="ZeroChannelId", tolist=["ChannelId"] },
-	{ from="Path", to="Path" },
 	{ function="EmptyString", tolist=["ChannelPassword"] },
+	{ from="Path", to="Path" },
+]
+
+[[rule]]
+from = "Server"
+to = "DeleteFile"
+operation = "update"
+ids = [
+	{ function="ZeroChannelId", tolist=["ChannelId"] },
+	{ function="EmptyString", tolist=["ChannelPassword"] },
+	{ from="Path", to="Name" },
 ]
 
 [[rule]]
