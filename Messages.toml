@@ -218,6 +218,7 @@ fields = [
 	{ map="lastnickname", ts="lastnickname", pretty="LastNickname", type="str" },
 	{ map="last_pos", ts="last_pos", pretty="LastOffset", type="u64" }, # integer, size guessed
 	{ map="lines", ts="lines", pretty="Lines", type="u32" }, # integer, size guessed
+	{ map="log", ts="l", pretty="Log", type="str" }, # one argument per line
 	{ map="logmsg", ts="logmsg", pretty="LogMessage", type="str" },
 	{ map="loglevel", ts="loglevel", pretty="LogLevel", type="LogLevel" },
 	{ map="lt", ts="lt", pretty="LicenseType", type="LicenseType" },
@@ -595,7 +596,7 @@ msg = [
 	{ name="ServerGroupList",           notify="notifyservergrouplist",             attributes=["sgid", "name", "type@group", "iconid", "savedb", "sortid", "namemode", "n_modifyp", "n_member_addp", "n_member_removep?"] },
 	{ name="ServerGroupPermList",       notify="notifyservergrouppermlist",         attributes=["sgid", "permid?", "permsid?", "permvalue", "permnegated", "permskip"] },
 	{ name="ServerGroupsByClientId",    notify="notifyservergroupsbyclientid",      attributes=["name", "sgid", "cldbid"] },
-	{ name="ServerLog",                 notify="notifyserverlog",                   attributes=["last_pos", "file_size", "l"] },
+	{ name="ServerLog",                 notify="notifyserverlog",                   attributes=["last_pos", "file_size", "log"] },
 	{ name="TextMessage",               notify="notifytextmessage",                 attributes=["targetmode@msg", "msg", "target@msg?", "invokerid", "invokername", "invokeruid?", "timestamp?"] },
 	{ name="TokenAdd",                  notify="notifytokenadd",                    attributes=["token"] },
 	{ name="TokenList",                 notify="notifytokenlist",                   attributes=["token", "token_type", "token_id1", "token_id2", "token_created", "token_description"] },

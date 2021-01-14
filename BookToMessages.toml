@@ -237,6 +237,19 @@ ids = [
 
 [[rule]]
 from = "Server"
+to = "LogView"
+operation = "update"
+ids = [
+]
+properties = [
+	{ from="Lines", to="Lines" },
+	{ from="Reverse", to="Reverse" },
+	{ from="InstanceLog", to="InstanceLog" },
+	{ from="Offset", to="Offset" },
+]
+
+[[rule]]
+from = "Server"
 to = "ServerEdit"
 operation = "update"
 ids = [
