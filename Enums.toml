@@ -39,11 +39,11 @@ variants = [
 [[enum]]
 name = "Codec"
 variants = [
-	{ name="SpeexNarrowband", doc="Mono,   16bit,  8kHz, bitrate dependent on the quality setting" },
-	{ name="SpeexWideband", doc="Mono,   16bit, 16kHz, bitrate dependent on the quality setting" },
-	{ name="SpeexUltrawideband", doc="Mono,   16bit, 32kHz, bitrate dependent on the quality setting" },
-	{ name="CeltMono", doc="Mono,   16bit, 48kHz, bitrate dependent on the quality setting" },
-	{ name="OpusVoice", doc="Mono,   16bit, 48kHz, bitrate dependent on the quality setting, optimized for voice" },
+	{ name="SpeexNarrowband", doc="Mono, 16bit, 8kHz, bitrate dependent on the quality setting" },
+	{ name="SpeexWideband", doc="Mono, 16bit, 16kHz, bitrate dependent on the quality setting" },
+	{ name="SpeexUltrawideband", doc="Mono, 16bit, 32kHz, bitrate dependent on the quality setting" },
+	{ name="CeltMono", doc="Mono, 16bit, 48kHz, bitrate dependent on the quality setting" },
+	{ name="OpusVoice", doc="Mono, 16bit, 48kHz, bitrate dependent on the quality setting, optimized for voice" },
 	{ name="OpusMusic", doc="Stereo, 16bit, 48kHz, bitrate dependent on the quality setting, optimized for music" },
 ]
 
@@ -65,11 +65,11 @@ variants = [
 	{ name="KickChannel", doc="Has invoker" },
 	{ name="KickServer", doc="Has invoker" },
 	{ name="KickServerBan", doc="Has invoker, bantime" },
-	{ name="Serverstop" },
-	{ name="Clientdisconnect" },
+	{ name="Serverstop", doc="" },
+	{ name="Clientdisconnect", doc="" },
 	{ name="Channelupdate", doc="No reason data" },
 	{ name="Channeledit", doc="Has invoker" },
-	{ name="ClientdisconnectServerShutdown" },
+	{ name="ClientdisconnectServerShutdown", doc="" },
 ]
 
 [[enum]]
@@ -107,9 +107,9 @@ variants = [
 [[enum]]
 name = "ChannelType"
 variants = [
-	{ name="Permanent" },
-	{ name="SemiPermanent" },
-	{ name="Temporary" },
+	{ name="Permanent", doc="Normal channel" },
+	{ name="SemiPermanent", doc="Deleted when the server restarts" },
+	{ name="Temporary", doc="Deleted when empty" },
 ]
 
 [[enum]]
