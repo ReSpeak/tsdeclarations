@@ -807,6 +807,28 @@ let xorlen = min(ident.length, 100)
 ident[0..xorlen] = ident[0..xorlen] xor staticObfucationKey[0..xorlen]
 ```
 
+## 4.6 Audio
+When the Opus codec is used, Voice and VoiceWhisper packets are using a sampling
+rate of 48 kHz. An voice packat without audio data signals the end of a stream.
+
+## 4.7 Permissions
+`permissionlist` requests the list of all permissions of the server.
+`notifypermissionlist` returns the list of permissions and a grouping as a list
+of `group_id_end`s. The end ids are excluding, so a `group_id_end=6` for the first
+group means the first 6 permissions (`perms[0..6]`) are in this group.
+
+## 4.8 Channel Subscription
+Clients can subscribe channels, so they get notifications when someone enters or
+leaves from a subscribed channel. If a new channel is subscribed, the server
+usually sends a notification, except in some cases:
+- If the client server groups or permissions change, it stays subscribed, even
+  if it does not have the power anymore
+- If the channel permissions change, the server sends a notification if the
+  subscription status changed
+- If a client enters a channel, it gets subscribed but there is no notification
+- If a client leaves a channel, there is a notification that it unsubscribed
+- If a new channel is created, clients are not automatically subscribed
+
 ## 4.? Differences between Query and Full Client
 - notifyconnectioninforequest
 - => setconnectioninfo
