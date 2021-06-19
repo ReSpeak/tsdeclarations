@@ -655,7 +655,7 @@ msg = [
 	{ name="ChannelDescriptionRequest",     notify="channelgetdescription",         attributes=["cid"] },
 	# channeledit cid=2 channel_codec=5
 	# -> void
-	{ name="ChannelEdit",                   notify="channeledit",                   attributes=["cid", "channel_order?", "channel_name?", "channel_topic?", "channel_flag_default?", "channel_flag_password?", "channel_password?", "channel_flag_permanent?", "channel_flag_semi_permanent?", "channel_codec?", "channel_codec_quality?", "channel_needed_talk_power?", "channel_icon_id?", "channel_maxclients?", "channel_maxfamilyclients?", "channel_codec_latency_factor?", "channel_codec_is_unencrypted?", "channel_delete_delay?", "channel_flag_maxclients_unlimited?", "channel_flag_maxfamilyclients_unlimited?", "channel_flag_maxfamilyclients_inherited?", "channel_name_phonetic?", "channel_description?"] },
+	{ name="ChannelEdit",                   notify="channeledit",                   attributes=["cid", "channel_order?", "channel_name?", "channel_topic?", "channel_flag_default?", "channel_flag_password?", "channel_password?", "channel_flag_permanent?", "channel_flag_semi_permanent?", "channel_codec?", "channel_codec_quality?", "channel_needed_talk_power?", "channel_maxclients?", "channel_maxfamilyclients?", "channel_codec_latency_factor?", "channel_codec_is_unencrypted?", "channel_delete_delay?", "channel_flag_maxclients_unlimited?", "channel_flag_maxfamilyclients_unlimited?", "channel_flag_maxfamilyclients_inherited?", "channel_name_phonetic?", "channel_description?"] },
 	# channelfind pattern=Def
 	# -> {ChannelFind} cid=1 channel_name=Default\sChannel|cid=3 channel_name=Defaukt
 	{ name="ChannelFindRequest",            notify="channelfind",                   attributes=["pattern"] },

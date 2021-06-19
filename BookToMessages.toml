@@ -30,6 +30,19 @@ properties = [
 
 [[rule]]
 from = "Channel"
+to = "ChannelAddPerm"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+	{ from="Value", to="PermissionValue" },
+]
+properties = [
+	{ from="PermissionId", to ="PermissionId" },
+	{ from="PermissionName", to ="PermissionNameId" },
+]
+
+[[rule]]
+from = "Channel"
 to = "ChannelDescriptionRequest"
 operation = "update"
 ids = [
@@ -93,6 +106,20 @@ properties = [
 	{ from="ToChannelPassword", type="str", function="PasswordB2m2", tolist=["TargetChannelPassword"] },
 ]
 
+
+[[rule]]
+from = "Client"
+to = "ClientAddPerm"
+operation = "update"
+ids = [
+	{ from="DatabaseId", to="ClientDbId" },
+	{ from="Value", to="PermissionValue" },
+	{ from="Skip", to="PermissionSkip" },
+]
+properties = [
+	{ from="PermissionId", to ="PermissionId" },
+	{ from="PermissionName", to ="PermissionNameId" },
+]
 
 [[rule]]
 from = "Client"
