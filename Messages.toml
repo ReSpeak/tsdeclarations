@@ -590,7 +590,7 @@ msg = [
 	{ name="OfflineMessage",            notify="notifymessage",                     attributes=["msgid", "cluid", "subject", "message", "timestamp"] },
 	{ name="OfflineMessageList",        notify="notifymessagelist",                 attributes=["msgid", "cluid", "subject", "timestamp", "flag_read"] },
 	{ name="PermFind",                  notify="notifypermfind",                    attributes=["t", "id1", "id2", "p"] },
-	{ name="PermList",                  notify="notifypermissionlist",              attributes=["group_id_end", "permid?", "permname?", "permdesc?"] }, # Note: very weird ordering
+	{ name="PermList",                  notify="notifypermissionlist",              attributes=["group_id_end", "permname?", "permdesc?"] }, # Note: very weird ordering
 	{ name="PermOverview",              notify="notifypermoverview",                attributes=["cldbid", "cid", "t", "id1", "id2", "p", "v", "n", "s"] },
 	{ name="ServerConnectionInfo",      notify="notifyserverconnectioninfo",        attributes=["connection_filetransfer_bandwidth_sent", "connection_filetransfer_bandwidth_received", "connection_filetransfer_bytes_sent_total", "connection_filetransfer_bytes_received_total", "connection_packets_sent_total", "connection_bytes_sent_total", "connection_packets_received_total", "connection_bytes_received_total", "connection_bandwidth_sent_last_second_total", "connection_bandwidth_sent_last_minute_total", "connection_bandwidth_received_last_second_total", "connection_bandwidth_received_last_minute_total", "connection_connected_time", "connection_packetloss_total", "connection_ping"] },
 	{ name="ServerGroupClientList",     notify="notifyservergroupclientlist",       attributes=["sgid", "cldbid", "client_nickname?", "client_unique_identifier?"] },
@@ -649,7 +649,7 @@ msg = [
 	{ name="ChannelDelete",                 notify="channeldelete",                 attributes=["cid", "force"] },
 	# channeldelperm cid=1 permid=78
 	# -> void
-	{ name="ChannelDelPerm",                notify="channeldelperm",                attributes=[] },
+	{ name="ChannelDelPerm",                notify="channeldelperm",                attributes=["cid", "permid?", "permsid?"] },
 	# channelgetdescription cid=1
 	# -> {ChannelEditedLow} notifychanneledited cid=1 channel_description=blub
 	{ name="ChannelDescriptionRequest",     notify="channelgetdescription",         attributes=["cid"] },

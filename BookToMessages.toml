@@ -41,6 +41,56 @@ properties = [
 	{ from="PermissionName", to ="PermissionNameId" },
 ]
 
+# Define Client-Channel-Permissions on the channel, because a channel always exists and we need to
+# be able to change permissions, even if a client is not online.
+[[rule]]
+from = "Channel"
+to = "ChannelClientAddPerm"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+	{ from="ClientDbId", to="ClientDbId" },
+	{ from="Value", to="PermissionValue" },
+]
+properties = [
+	{ from="PermissionId", to ="PermissionId" },
+	{ from="PermissionName", to ="PermissionNameId" },
+]
+
+[[rule]]
+from = "Channel"
+to = "ChannelClientDelPerm"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+	{ from="ClientDbId", to="ClientDbId" },
+]
+properties = [
+	{ from="PermissionId", to ="PermissionId" },
+	{ from="PermissionName", to ="PermissionNameId" },
+]
+
+[[rule]]
+from = "Channel"
+to = "ChannelClientPermListRequest"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+	{ from="ClientDbId", to="ClientDbId" },
+]
+
+[[rule]]
+from = "Channel"
+to = "ChannelDelPerm"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
+]
+properties = [
+	{ from="PermissionId", to ="PermissionId" },
+	{ from="PermissionName", to ="PermissionNameId" },
+]
+
 [[rule]]
 from = "Channel"
 to = "ChannelDescriptionRequest"
@@ -57,6 +107,14 @@ ids = [
 	{ from="Id", to="ChannelId" },
 	{ from="Parent", type="ChannelId", function="ChannelIdB2m", tolist=["ParentId"] },
 	{ from="Order", type="ChannelId", function="ChannelIdB2m", tolist=["Order"] },
+]
+
+[[rule]]
+from = "Channel"
+to = "ChannelPermListRequest"
+operation = "update"
+ids = [
+	{ from="Id", to="ChannelId" },
 ]
 
 # Filetransfer stuff for Channel
@@ -127,6 +185,26 @@ to = "ClientConnectionInfoRequest"
 operation = "update"
 ids = [
 	{ from="Id", to="ClientId" },
+]
+
+[[rule]]
+from = "Client"
+to = "ClientDelPerm"
+operation = "update"
+ids = [
+	{ from="DatabaseId", to="ClientDbId" },
+]
+properties = [
+	{ from="PermissionId", to ="PermissionId" },
+	{ from="PermissionName", to ="PermissionNameId" },
+]
+
+[[rule]]
+from = "Client"
+to = "ClientPermListRequest"
+operation = "update"
+ids = [
+	{ from="DatabaseId", to="ClientDbId" },
 ]
 
 [[rule]]
@@ -246,6 +324,13 @@ ids = [
 	{ function="ZeroChannelId", tolist=["ChannelId"] },
 	{ function="EmptyString", tolist=["ChannelPassword"] },
 	{ from="Path", to="Name" },
+]
+
+[[rule]]
+from = "Server"
+to = "PermListRequest"
+operation = "update"
+ids = [
 ]
 
 [[rule]]
