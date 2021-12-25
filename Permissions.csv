@@ -1,5 +1,5 @@
 name,doc
-unknown,May occour on error returns with no associated permission
+unknown,May occur on error returns with no associated permission
 b_serverinstance_help_view,Retrieve information about ServerQuery commands
 b_serverinstance_version_view,Retrieve global server version (including platform and build number)
 b_serverinstance_info_view,Retrieve global server information
