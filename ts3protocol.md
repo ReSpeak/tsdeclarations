@@ -335,7 +335,7 @@ Packet resend timeouts should be calculated with an exponential backoff to
 prevent network congestion.
 
 ## 1.11 Wrap-up
-| Type         | Acknowledged (by) | Resend | Encrypted | Splittable | Compressable |
+| Type         | Acknowledged (by) | Resend | Encrypted | Splittable | Compressible |
 |--------------|-------------------|--------|-----------|------------|--------------|
 | Voice        | ✗                 | ✗      | Optional  | ✗          | ✗            |
 | VoiceWhisper | ✗                 | ✗      | Optional  | ✗          | ✗            |

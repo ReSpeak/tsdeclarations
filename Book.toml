@@ -280,7 +280,7 @@ properties = [
 	# `Uid` is generated from public key
 	{ name="Name", type="str" },
 	{ name="Nickname", type="str", opt=true },
-	{ name="WelcomeMessage", type="str", doc="Welcome message when conecting to a server" },
+	{ name="WelcomeMessage", type="str", doc="Welcome message when connecting to a server" },
 	{ name="Platform", type="str" },
 	{ name="Version", type="str" },
 	{ name="MaxClients", type="u16", doc="The maximum number of clients on the server" },

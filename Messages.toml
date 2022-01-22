@@ -5,10 +5,10 @@
 # - "ts": is then field name in the command as teamspeak uses it.
 # - "pretty": is a high-level name for the field which should be better readable
 #   | and make more sense in the object context it is used.
-# - "type": Descibes a primitive type or enum which can be used for this field.
-#   | We use the primitve type namings of the language 'Rust'.
+# - "type": Describes a primitive type or enum which can be used for this field.
+#   | We use the primitive type namings of the language 'Rust'.
 # - "mod": Applies an additional modifier to this field. Current modifiers:
-#   | "array": The field is a comma-seperated list and can be read as an array.
+#   | "array": The field is a comma-separated list and can be read as an array.
 
 fields = [
 	{ map="aclid", ts="aclid", pretty="ClientId", type="ClientId" },
@@ -202,7 +202,7 @@ fields = [
 	{ map="fname", ts="fname", pretty="FromName", type="str" },
 	{ map="ftkey", ts="ftkey", pretty="FiletransferKey", type="str" },
 	{ map="force", ts="force", pretty="Force", type="bool" },
-	{ map="group_id_end", ts="group_id_end", pretty="GroupIdEnd", type="PermissionId" }, # describes how permissions are groupd in the client ui
+	{ map="group_id_end", ts="group_id_end", pretty="GroupIdEnd", type="PermissionId" }, # describes how permissions are grouped in the client ui
 	{ map="hwid", ts="hwid", pretty="HardwareId", type="str" },
 	{ map="iconid", ts="iconid", pretty="Icon", type="IconId" },
 	{ map="id", ts="id", pretty="Id", type="ChannelId" },
@@ -240,7 +240,7 @@ fields = [
 	{ map="overwrite", ts="overwrite", pretty="Overwrite", type="bool" },
 	{ map="p", ts="p", pretty="PermissionId", type="PermissionId" },
 	{ map="path", ts="path", pretty="Path", type="str" },
-	{ map="pattern", ts="pattern", pretty="Pattern", type="str" }, # sometimes Regex/SQL Wilcards
+	{ map="pattern", ts="pattern", pretty="Pattern", type="str" }, # sometimes Regex/SQL Wildcards
 	{ map="permid", ts="permid", pretty="PermissionId", type="PermissionId" },
 	{ map="permnegated", ts="permnegated", pretty="PermissionNegated", type="bool" },
 	{ map="permsid", ts="permsid", pretty="PermissionNameId", type="str" },
@@ -408,12 +408,12 @@ fields = [
 	{ map="root", ts="root", pretty="RootKey", type="str" },
 ]
 
-# The "msg_group: array specifies all messages which can be sent beween client
+# The "msg_group: array specifies all messages which can be sent between client
 # and server.
 # They are categorized into message groups whereby each group has a list of
 # default modifiers which are applied on each message in the group.
 # [Message structure]:
-# - "name": The high-level name of the messsage.
+# - "name": The high-level name of the message.
 # - "notify": The event name as teamspeak uses it (can be omitted when
 #   | response=true; this means that it can't be received without request).
 # - "attributes": The "map"-name from all fields which are a parameter of this
@@ -657,7 +657,7 @@ msg = [
 	# -> void
 	{ name="ChannelEdit",                   notify="channeledit",                   attributes=["cid", "channel_order?", "channel_name?", "channel_topic?", "channel_flag_default?", "channel_flag_password?", "channel_password?", "channel_flag_permanent?", "channel_flag_semi_permanent?", "channel_codec?", "channel_codec_quality?", "channel_needed_talk_power?", "channel_maxclients?", "channel_maxfamilyclients?", "channel_codec_latency_factor?", "channel_codec_is_unencrypted?", "channel_delete_delay?", "channel_flag_maxclients_unlimited?", "channel_flag_maxfamilyclients_unlimited?", "channel_flag_maxfamilyclients_inherited?", "channel_name_phonetic?", "channel_description?"] },
 	# channelfind pattern=Def
-	# -> {ChannelFind} cid=1 channel_name=Default\sChannel|cid=3 channel_name=Defaukt
+	# -> {ChannelFind} cid=1 channel_name=Default\sChannel|cid=3 channel_name=Default
 	{ name="ChannelFindRequest",            notify="channelfind",                   attributes=["pattern"] },
 	# channelgroupadd name=TestGroup type=1
 	# -> {ChannelGroupList} notifychannelgrouplist cgid=1 name=Channel\sAdmin type=0 iconid=100 savedb=1 sortid=0 namemode=0 n_modifyp=75 n_member_addp=50 n_member_removep=50|cgid=2 name=Operator type=0 iconid=200 savedb=1 sortid=0 namemode=0 n_modifyp=75 n_member_addp=30 n_member_removep=30|...
@@ -687,10 +687,10 @@ msg = [
 	# -> {ChannelGroupList} notifychannelgrouplist ...
 	{ name="ChannelGroupRename",            notify="channelgrouprename",            attributes=["cgid", "name"] },
 	# channelinfo cid=3
-	# -> {ChannelInfoResponse} pid=0 channel_name=Defaukt channel_topic channel_description channel_password channel_codec=4 channel_codec_quality=6 channel_maxclients=-1 channel_maxfamilyclients=-1 channel_order=1 channel_flag_permanent=0 channel_flag_semi_permanent=0 channel_flag_default=0 channel_flag_password=0 channel_codec_latency_factor=1 channel_codec_is_unencrypted=1 channel_security_salt channel_delete_delay=0 channel_flag_maxclients_unlimited=1 channel_flag_maxfamilyclients_unlimited=0 channel_flag_maxfamilyclients_inherited=1 channel_filepath=files\\virtualserver_1\\channel_3 channel_needed_talk_power=0 channel_forced_silence=0 channel_name_phonetic channel_icon_id=0 channel_flag_private=0 seconds_empty=-1
+	# -> {ChannelInfoResponse} pid=0 channel_name=Default channel_topic channel_description channel_password channel_codec=4 channel_codec_quality=6 channel_maxclients=-1 channel_maxfamilyclients=-1 channel_order=1 channel_flag_permanent=0 channel_flag_semi_permanent=0 channel_flag_default=0 channel_flag_password=0 channel_codec_latency_factor=1 channel_codec_is_unencrypted=1 channel_security_salt channel_delete_delay=0 channel_flag_maxclients_unlimited=1 channel_flag_maxfamilyclients_unlimited=0 channel_flag_maxfamilyclients_inherited=1 channel_filepath=files\\virtualserver_1\\channel_3 channel_needed_talk_power=0 channel_forced_silence=0 channel_name_phonetic channel_icon_id=0 channel_flag_private=0 seconds_empty=-1
 	{ name="ChannelInfoRequest",            notify="channelinfo",                   attributes=["cid"] },
 	# channellist
-	# -> cid=1 pid=0 channel_order=0 channel_name=Default\sChannel total_clients=0 channel_needed_subscribe_power=0|cid=3 pid=0 channel_order=1 channel_name=Defaukt total_clients=1 channel_needed_subscribe_power=0
+	# -> cid=1 pid=0 channel_order=0 channel_name=Default\sChannel total_clients=0 channel_needed_subscribe_power=0|cid=3 pid=0 channel_order=1 channel_name=Default total_clients=1 channel_needed_subscribe_power=0
 	{ name="ChannelListRequest",            notify="channellist",                   attributes=[] }, # [-topic] [-flags] [-voice] [-limits] [-icon] [-secondsempty]
 	# channelmove cid=3 cpid=1
 	# -> {ChannelMoved} notifychannelmoved cid=3 cpid=1 order=0 reasonid=1 invokerid=3 invokername=Splamy invokeruid=uA0U7t4PBxdJ5TLnarsOHQh4\/tY=
