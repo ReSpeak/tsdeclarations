@@ -571,7 +571,7 @@ The block base layout:
      04 bytes : Not valid after date,
     var bytes : (Content from the block type)
 
-There are currently 3 different `License block type`s used. 
+There are currently 4 different `License block type`s used. 
 - `00` Intermediate.  
   `content`:
     ```
@@ -584,6 +584,15 @@ There are currently 3 different `License block type`s used.
      01 bytes : Server License Type
      04 bytes : Unknown
     var bytes : A null terminated string, which describes the issuer of this certificate.
+    ```
+- `08` TS5 Server  
+  `content`:
+    ```
+     01 bytes : Server License Type
+     04 bytes : Unknown
+    var bytes : A null terminated string, which describes the issuer of this certificate.
+     01 bytes : Length
+    var bytes : `<Length>` bytes of unknown data
     ```
 - `32` Ephemeral  
   `content`: none
