@@ -264,7 +264,7 @@ properties = [
 	{ name="BandwidthSentLastMinuteTotal", type="u64" },
 	{ name="BandwidthReceivedLastSecondTotal", type="u64" },
 	{ name="BandwidthReceivedLastMinuteTotal", type="u64" },
-	{ name="ConnectedTime", type="Duration" },
+	{ name="ConnectedTimeTotal", type="Duration" },
 	{ name="PacketlossTotal", type="f32" },
 	{ name="Ping", type="Duration" },
 ]
