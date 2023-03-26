@@ -466,7 +466,7 @@ The first packet is sent (Client -> Server) although this is only sent for
 legacy reasons since newer servers (at least 3.0.13.0?) use the data part
 embedded in the last `Init1` packet from the low-level handshake (see 2.5).
 
-    clientinitiv alpha={alpha} omega={omega} ip={ip}
+    clientinitiv alpha={alpha} omega={omega} ot={ot} ip={ip}
 
 - `alpha` is set to `base64(random[u8; 10])`  
   which are 10 random bytes for entropy.
@@ -480,6 +480,7 @@ embedded in the last `Init1` packet from the low-level handshake (see 2.5).
   | INTEGER    | publicKey.x    | The affine X-Coordinate of the public key |
   | INTEGER    | publicKey.y    | The affine Y-Coordinate of the public key |
 
+- `ot` should always be `1`
 - `ip` should be set to the final resolved ip address of the server you are
   actually connecting to.
 
@@ -564,11 +565,11 @@ The license header:
 The block base layout:
 
      01 bytes : Key type
-                Const: 0x00
+                Const: 0x00 (public key)
      32 bytes : Block public key
      01 bytes : License block type
-     04 bytes : Not valid before date,
-     04 bytes : Not valid after date,
+     04 bytes : Not valid before date
+     04 bytes : Not valid after date
     var bytes : (Content from the block type)
 
 There are currently 4 different `License block type`s used. 
@@ -578,22 +579,41 @@ There are currently 4 different `License block type`s used.
      04 bytes : Unknown
     var bytes : A null terminated string, which describes the issuer of this certificate.
     ```
-- `02` Server  
+- `01` Website/`03` Code  
+  `content`:
+    ```
+    var bytes : A null terminated string, which describes the issuer of this certificate.
+    ```
+- `02` TS3 Server  
   `content`:
     ```
      01 bytes : Server License Type
-     04 bytes : Unknown
+     04 bytes : Max clients allowed on the server
     var bytes : A null terminated string, which describes the issuer of this certificate.
     ```
 - `08` TS5 Server  
   `content`:
     ```
      01 bytes : Server License Type
-     04 bytes : Unknown
-    var bytes : A null terminated string, which describes the issuer of this certificate.
-     01 bytes : Length
-    var bytes : `<Length>` bytes of unknown data
+     01 bytes : Property count
+    var bytes : Properties, see following description on how each property is encoded
+
+    Per property:
+     01 bytes : Length of following data
+     01 bytes : Property Id
+     01 bytes : Data Type
+    var bytes : Content depending on data type, see below
     ```
+
+    Data Types:
+    - `00`: Null-terminated string
+    - `01`/`03`: 4 byte data
+    - `02`/`04`: 8 byte data
+
+    Property Id:
+    - `01` (type `01`): Unknown
+    - `02` (type `00`): Issuer of the certificate
+    - `03` (type `01`): Max clients allowed on the server, defaults to 32 if not present
 - `32` Ephemeral  
   `content`: none
 
